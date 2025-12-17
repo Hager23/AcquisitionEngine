@@ -97,7 +97,7 @@ body {
 
 /* Bigger logo */
 .logo{
-  height: 80px;           /* desktop size */
+  height: 50px;           /* desktop size */
   width: auto;
   display: block;
 }
@@ -1920,3 +1920,4 @@ body {
     justify-content: flex-start;
   }
 }
+
