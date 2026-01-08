@@ -127,7 +127,7 @@ body {
 
 /* Bigger logo */
 .logo{
-  height: 30px;           /* desktop size */
+  height: 60px;           /* desktop size */
   width: auto;
   display: block;
 }
@@ -1896,3 +1896,4 @@ body {
   .cookie-card{ grid-template-columns: 1fr; }
   .cookie-actions{ justify-content: flex-start; }
 }
+
