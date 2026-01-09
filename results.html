@@ -18,49 +18,43 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- Tooltip (reused by script.js) -->
   <div id="chartTip" class="chart-tip" aria-hidden="true"></div>
 
-  <!-- Global background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
   </div>
 
-  <!-- HEADER (same as home) -->
+  <!-- HEADER -->
   <header class="header" id="siteHeader">
     <div class="header-inner">
       <a class="brand" href="index.html#top" aria-label="Onix Marketing home">
         <img src="logo2.png" alt="Onix Marketing" class="logo" />
       </a>
 
-      <!-- Desktop nav -->
       <nav class="nav nav-desktop" aria-label="Primary">
         <a href="index.html#proof">Home Proof</a>
-        <a href="#proof">Results</a>
+        <a href="results.html" aria-current="page">Results</a>
         <a href="#breakdown">How it works</a>
         <a href="#book" class="btn-primary">Book a Call</a>
       </nav>
 
-      <!-- Mobile hamburger -->
       <button class="nav-toggle" id="navToggle" type="button"
         aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
         <span class="nav-bars" aria-hidden="true"></span>
       </button>
     </div>
 
-    <!-- Mobile menu -->
     <div class="nav-mobile" id="mobileNav" aria-hidden="true">
       <div class="nav-mobile-card">
         <a href="index.html#top" class="nav-m-link">Home</a>
-        <a href="#proof" class="nav-m-link">Results</a>
+        <a href="results.html" class="nav-m-link">Results</a>
         <a href="#breakdown" class="nav-m-link">How it works</a>
         <a href="#book" class="btn-primary nav-m-cta">Book a Call</a>
       </div>
@@ -73,14 +67,14 @@
       <div class="results-hero-inner">
         <div class="results-hero-copy reveal">
           <p class="kicker">Results</p>
-          <h1>Booked calls. Closed deals. Real proof.</h1>
+          <h1>Booked calls. Closed deals. Real proof — in plain text.</h1>
           <p class="sub">
-            A mix of Onix Marketing campaign snapshots + Fly Me High system proof.
-            Screenshots are unedited (some details blurred for privacy).
+            Instead of image screenshots, here are real examples of what clients and teams report
+            once the engine is installed: speed-to-lead, booked calls, pipeline visibility, and wins.
           </p>
 
           <div class="results-hero-cta">
-            <a href="#proof" class="btn-primary large">View proof</a>
+            <a href="#proof" class="btn-primary large">Read proof</a>
             <a href="#book" class="btn-secondary">Book a call</a>
           </div>
 
@@ -90,21 +84,20 @@
           </div>
         </div>
 
-        <!-- Quick “wins” cards -->
         <div class="results-hero-wins reveal">
-          <div class="win-card" data-tip="Typical performance range across niches and offers (varies by market).">
-            <span class="win-kicker">Avg lift (typical)</span>
+          <div class="win-card" data-tip="Typical lift depends on offer, market, follow-up speed, and capacity.">
+            <span class="win-kicker">Typical lift</span>
             <span class="win-value">+5–10</span>
             <span class="win-sub">wins / month</span>
           </div>
 
-          <div class="win-card" data-tip="Speed-to-lead is a major factor in conversion.">
+          <div class="win-card" data-tip="Speed-to-lead is one of the biggest conversion drivers.">
             <span class="win-kicker">Response time</span>
             <span class="win-value"><span class="count" data-count="2">0</span> min</span>
             <span class="win-sub">median</span>
           </div>
 
-          <div class="win-card" data-tip="Big wins happen when volume + follow-up + capacity all align.">
+          <div class="win-card" data-tip="Big wins occur when volume + follow-up + capacity align.">
             <span class="win-kicker">Big win example</span>
             <span class="win-value">$500k+</span>
             <span class="win-sub">deal closed</span>
@@ -114,12 +107,12 @@
     </div>
   </section>
 
-  <!-- NICHE FILTER -->
+  <!-- NICHE -->
   <section class="section results-niches" aria-label="Choose niche">
     <div class="container">
       <div class="niche-head reveal">
         <h2>Choose your niche</h2>
-        <p class="sub">Filter proof by the type of business you run.</p>
+        <p class="sub">See typical conversion ranges + proof style that matches your business.</p>
       </div>
 
       <div class="niche-tabs reveal" role="tablist" aria-label="Niche filters" id="nicheTabs">
@@ -137,7 +130,7 @@
         <div class="rate-card">
           <span class="rate-label">Avg conversion rate</span>
           <span class="rate-value" id="convRate">—</span>
-          <span class="rate-sub">Based on niche + offer + speed-to-lead</span>
+          <span class="rate-sub">Varies by offer, region, follow-up speed, and capacity.</span>
         </div>
 
         <a class="btn-secondary rate-link" href="index.html#how">
@@ -147,42 +140,160 @@
     </div>
   </section>
 
-  <!-- PROOF WALL -->
-  <section class="section section-proofwall" id="proof" aria-label="Proof wall">
+  <!-- TEXT PROOF -->
+  <section class="section section-textproof" id="proof">
     <div class="container">
-      <div class="proofwall-head reveal">
+      <div class="textproof-head reveal">
         <p class="kicker">Proof</p>
-        <h2>Not testimonials — receipts.</h2>
+        <h2>Receipts, but readable.</h2>
         <p class="sub">
-          Messages, calendars, Stripe notifications, dashboards, and CRM views — pulled directly from active systems.
+          Short snippets (like you’d see in a Slack/WhatsApp update) that reflect what happens after install.
+          Some details removed for privacy.
         </p>
+      </div>
 
-        <div class="proof-source">
-          <span class="source-chip">Onix Marketing</span>
-          <span class="source-chip">Fly Me High</span>
+      <div class="proof-groups" id="proofGroups">
+
+        <!-- Group: Tradies -->
+        <div class="proof-group reveal" data-niche="tradies">
+          <div class="group-head">
+            <h3>Tradies</h3>
+            <p>More booked calls + faster follow-up.</p>
+          </div>
+
+          <div class="chat-grid">
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 2</span>
+              </div>
+              <p class="chat-text">“Phone is ringing again. Missed calls are down and the calendar is filling.”</p>
+              <div class="chat-tags">
+                <span>Speed-to-lead</span><span>Booking</span><span>Follow-up</span>
+              </div>
+            </article>
+
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 4</span>
+              </div>
+              <p class="chat-text">“We’re actually choosing jobs now — not begging for them.”</p>
+              <div class="chat-tags">
+                <span>Quality</span><span>Capacity control</span>
+              </div>
+            </article>
+
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Ongoing</span>
+              </div>
+              <p class="chat-text">“The receptionist follow-up is the difference — people answer when it’s fast.”</p>
+              <div class="chat-tags">
+                <span>Reception</span><span>Conversion</span>
+              </div>
+            </article>
+          </div>
         </div>
+
+        <!-- Group: Solar -->
+        <div class="proof-group reveal" data-niche="solar" style="display:none">
+          <div class="group-head">
+            <h3>Solar</h3>
+            <p>Qualified appointments + consistent pipeline.</p>
+          </div>
+
+          <div class="chat-grid">
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 3</span>
+              </div>
+              <p class="chat-text">“Leads are coming in daily and the booked calls are actually qualified.”</p>
+              <div class="chat-tags">
+                <span>Qualification</span><span>Appointments</span>
+              </div>
+            </article>
+
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 5</span>
+              </div>
+              <p class="chat-text">“The no-show rate dropped once the reminders and follow-ups kicked in.”</p>
+              <div class="chat-tags">
+                <span>Nurture</span><span>Reminders</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Group: Agencies -->
+        <div class="proof-group reveal" data-niche="agencies" style="display:none">
+          <div class="group-head">
+            <h3>Agencies</h3>
+            <p>Booked strategy calls + clearer ROI.</p>
+          </div>
+
+          <div class="chat-grid">
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 2</span>
+              </div>
+              <p class="chat-text">“We can finally see where leads come from and what converts.”</p>
+              <div class="chat-tags">
+                <span>Attribution</span><span>Reporting</span>
+              </div>
+            </article>
+
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Onix</span>
+                <span class="chat-meta">Week 6</span>
+              </div>
+              <p class="chat-text">“The follow-up SOP is saving us — we’re not dropping leads anymore.”</p>
+              <div class="chat-tags">
+                <span>SOP</span><span>Pipeline</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Group: Fly Me High (system proof) -->
+        <div class="proof-group reveal" data-niche="realestate" style="display:none">
+          <div class="group-head">
+            <h3>Fly Me High (internal proof)</h3>
+            <p>Systemised lead flow across multiple verticals.</p>
+          </div>
+
+          <div class="chat-grid">
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Fly Me High</span>
+                <span class="chat-meta">System</span>
+              </div>
+              <p class="chat-text">“Same engine logic — capture → speed-to-lead → qualify → distribute → track.”</p>
+              <div class="chat-tags">
+                <span>Process</span><span>Automation</span><span>Reporting</span>
+              </div>
+            </article>
+
+            <article class="chat-card">
+              <div class="chat-top">
+                <span class="chat-pill">Fly Me High</span>
+                <span class="chat-meta">System</span>
+              </div>
+              <p class="chat-text">“Proof isn’t just leads — it’s the consistency of follow-up and conversion.”</p>
+              <div class="chat-tags">
+                <span>Consistency</span><span>Conversion</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Add your images below. Tag each with data-niche + data-source -->
-      <div class="proof-wall reveal" id="proofWall">
-        <!-- Onix (examples) -->
-        <img src="proof1.png" alt="Onix proof 1" loading="lazy" decoding="async" data-niche="tradies" data-source="onix">
-        <img src="proof2.png" alt="Onix proof 2" loading="lazy" decoding="async" data-niche="solar" data-source="onix">
-        <img src="proof3.png" alt="Onix proof 3" loading="lazy" decoding="async" data-niche="agencies" data-source="onix">
-        <img src="proof4.png" alt="Onix proof 4" loading="lazy" decoding="async" data-niche="home" data-source="onix">
-        <img src="proof5.png" alt="Onix proof 5" loading="lazy" decoding="async" data-niche="local" data-source="onix">
-        <img src="proof6.png" alt="Onix proof 6" loading="lazy" decoding="async" data-niche="tradies" data-source="onix">
-
-        <!-- Fly Me High (rename these files when you add them) -->
-        <img src="fmh-01.png" alt="Fly Me High proof 1" loading="lazy" decoding="async" data-niche="realestate" data-source="fmh">
-        <img src="fmh-02.png" alt="Fly Me High proof 2" loading="lazy" decoding="async" data-niche="insurance" data-source="fmh">
-        <img src="fmh-03.png" alt="Fly Me High proof 3" loading="lazy" decoding="async" data-niche="local" data-source="fmh">
-        <img src="fmh-04.png" alt="Fly Me High proof 4" loading="lazy" decoding="async" data-niche="tradies" data-source="fmh">
-        <img src="fmh-05.png" alt="Fly Me High proof 5" loading="lazy" decoding="async" data-niche="solar" data-source="fmh">
-        <img src="fmh-06.png" alt="Fly Me High proof 6" loading="lazy" decoding="async" data-niche="agencies" data-source="fmh">
-      </div>
-
-      <p class="proof-note">Tip: tall mobile screenshots read best. Blur names/numbers if needed.</p>
     </div>
   </section>
 
@@ -217,7 +328,7 @@
     </div>
   </section>
 
-  <!-- BOOK / CALENDAR -->
+  <!-- CALENDAR -->
   <section class="section section-book" id="book">
     <div class="container">
       <div class="book-head reveal">
@@ -284,36 +395,18 @@
     </div>
   </footer>
 
-  <!-- Cookie banner -->
-  <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie notice" aria-hidden="true">
-    <div class="cookie-card">
-      <div class="cookie-copy">
-        <p class="cookie-title">Cookies</p>
-        <p class="cookie-text">
-          We use cookies to improve your experience and understand site usage.
-          <a href="cookies.html" class="cookie-link">Cookie Policy</a>
-        </p>
-      </div>
-
-      <div class="cookie-actions">
-        <button class="cookie-btn ghost" id="cookieDecline" type="button">Decline</button>
-        <button class="cookie-btn solid" id="cookieAccept" type="button">Accept</button>
-      </div>
-    </div>
-  </div>
-
   <script src="script.js" defer></script>
 
-  <!-- Results page inline JS (filter + conversion rate) -->
+  <!-- Results page JS: niche tabs + rate -->
   <script>
-    (function resultsFilters(){
+    (function resultsTextProof(){
       const tabs = document.querySelectorAll('.niche-tab');
-      const imgs = document.querySelectorAll('#proofWall img');
+      const groups = document.querySelectorAll('.proof-group');
       const rateOut = document.getElementById('convRate');
 
-      if (!tabs.length || !imgs.length || !rateOut) return;
+      if (!tabs.length || !groups.length || !rateOut) return;
 
-      // Adjust these to match YOUR proof (keep honest)
+      // tweak any time (keep honest)
       const rates = {
         all: "10%–28%",
         tradies: "18%–32%",
@@ -332,19 +425,18 @@
           b.setAttribute('aria-selected', active ? 'true' : 'false');
         });
 
-        imgs.forEach(img => {
-          const tag = img.dataset.niche || "all";
-          const show = (niche === "all") || (tag === niche);
-          img.style.display = show ? "" : "none";
-        });
+        if (niche === "all") {
+          groups.forEach(g => { g.style.display = ""; });
+        } else {
+          groups.forEach(g => {
+            g.style.display = (g.dataset.niche === niche) ? "" : "none";
+          });
+        }
 
         rateOut.textContent = rates[niche] || "—";
       }
 
-      tabs.forEach(btn => {
-        btn.addEventListener('click', () => setActive(btn.dataset.niche));
-      });
-
+      tabs.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.niche)));
       setActive('all');
     })();
   </script>
