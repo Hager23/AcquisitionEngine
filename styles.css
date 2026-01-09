@@ -102,19 +102,47 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   background:rgba(255,255,255,.72);
   cursor:pointer;align-items:center;justify-content:center;
 }
+/* ===== Mobile hamburger (3 dashes) ===== */
 .nav-bars{
-  width:20px;height:14px;position:relative;display:block;
-  background:rgba(12,10,27,.78);
+  position:relative;
+  width:22px;
+  height:2px;
+  background:rgba(12,10,27,.85);
   border-radius:999px;
-  box-shadow:0 6px 0 rgba(12,10,27,.78);
+  display:block;
+  transition:transform 180ms ease, background 180ms ease;
 }
-.nav-bars::before,.nav-bars::after{
-  content:"";position:absolute;left:0;right:0;height:2px;border-radius:999px;
-  background:rgba(12,10,27,.78);
+
+.nav-bars::before,
+.nav-bars::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:22px;
+  height:2px;
+  background:rgba(12,10,27,.85);
+  border-radius:999px;
   transition:transform 180ms ease, top 180ms ease, bottom 180ms ease;
 }
-.nav-bars::before{top:2px}
-.nav-bars::after{bottom:2px}
+
+.nav-bars::before{ top:-7px; }
+.nav-bars::after{ bottom:-7px; }
+
+/* Open -> X */
+.header.menu-open .nav-bars{
+  background:transparent;
+}
+
+.header.menu-open .nav-bars::before{
+  top:0;
+  transform:rotate(45deg);
+}
+
+.header.menu-open .nav-bars::after{
+  bottom:0;
+  transform:rotate(-45deg);
+}
+
 
 .nav-mobile{display:none;border-top:1px solid rgba(12,10,27,.08);background:rgba(255,255,255,.75);backdrop-filter:blur(14px)}
 .nav-mobile-card{width:min(100% - 32px,var(--container));margin:0 auto;padding:14px 0 18px;display:grid;gap:10px}
@@ -127,10 +155,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
 }
 .nav-m-cta{width:100%}
 
-.header.menu-open .nav-mobile{display:block}
-.header.menu-open .nav-bars{background:transparent;box-shadow:none}
-.header.menu-open .nav-bars::before{top:6px;transform:rotate(45deg)}
-.header.menu-open .nav-bars::after{bottom:6px;transform:rotate(-45deg)}
+
 
 /* Hero */
 .hero{padding:92px 0 64px}
@@ -440,6 +465,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   }
   .proof-strip img{height:190px;scroll-snap-align:start}
 }
+
 
 
 
