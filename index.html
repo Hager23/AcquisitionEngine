@@ -132,11 +132,37 @@
             <span class="value money count" data-count="48200">$0</span>
           </div>
 
-          <div class="chart-card">
-            <div class="chart-header">
-              <h4>Enquiry Trend</h4>
-              <span class="chip">7 days</span>
-            </div>
+          <div class="chart-header chart-header-advanced">
+  <div class="chart-left">
+    <h4>Enquiry Trend</h4>
+    <span class="chip">7 days</span>
+  </div>
+
+  <div class="chart-right">
+    <label class="chart-label" for="nicheSelect">Choose your niche</label>
+    <select id="nicheSelect" class="chart-select">
+      <option value="tradies" selected>Tradies</option>
+      <option value="solar">Solar</option>
+      <option value="agencies">Agencies</option>
+      <option value="home">Home Improvement</option>
+      <option value="local">Local Services</option>
+      <option value="realestate">Real Estate</option>
+      <option value="insurance">Insurance</option>
+    </select>
+  </div>
+</div>
+
+<div class="chart-meta">
+  <div class="chart-stat">
+    <span class="chart-stat-label">Avg conversion rate</span>
+    <span class="chart-stat-value" id="convRate">—</span>
+  </div>
+
+  <a class="btn-secondary chart-results-btn" href="results.html">
+    Click here to see results →
+  </a>
+</div>
+
 
             <svg class="line-chart" viewBox="0 0 300 120">
               <defs>
@@ -479,4 +505,5 @@
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
