@@ -626,6 +626,90 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
 .break-card h3{font-size:16px;font-weight:950}
 .break-card p{margin-top:8px;color:var(--muted)}
 
+/* =========================
+   RESULTS TEXT PROOF (add-on)
+========================= */
+
+.section-textproof .textproof-head{max-width:880px}
+.proof-groups{margin-top:18px;display:flex;flex-direction:column;gap:18px}
+
+.proof-group{
+  padding:18px;
+  border-radius:26px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(12,10,27,.10);
+  box-shadow:0 18px 55px rgba(12,10,27,.08);
+}
+
+.group-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.group-head h3{font-size:18px;font-weight:950;letter-spacing:-.01em}
+.group-head p{color:var(--muted);font-weight:650}
+
+.chat-grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.chat-card{
+  padding:16px;
+  border-radius:20px;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(12,10,27,.10);
+}
+
+.chat-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.chat-pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(12,10,27,.10);
+  background:rgba(135,121,214,.12);
+  font-weight:850;
+  font-size:12px;
+}
+
+.chat-meta{
+  color:var(--muted2);
+  font-size:12px;
+  font-weight:700;
+}
+
+.chat-text{
+  font-weight:750;
+  color:rgba(12,10,27,.88);
+  line-height:1.45;
+}
+
+.chat-tags{
+  margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.chat-tags span{
+  font-size:12px;
+  font-weight:750;
+  color:rgba(12,10,27,.72);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(12,10,27,.10);
+  background:rgba(255,255,255,.70);
+}
+
+@media (max-width: 980px){
+  .chat-grid{grid-template-columns:1fr}
+}
+
+
 /* Responsive */
 @media (max-width:980px){
   .results-hero-inner{grid-template-columns:1fr}
@@ -690,6 +774,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   }
   .proof-strip img{height:190px;scroll-snap-align:start}
 }
+
 
 
 
