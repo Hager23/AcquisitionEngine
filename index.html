@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onix Marketing</title>
 
+  <!-- Make page visible even if JS fails -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+  </script>
+
   <!-- FAVICON -->
-  <link rel="icon" href="/logo2.png" sizes="any">
-  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="styles.css" />
@@ -79,7 +86,7 @@
           <a href="#how" class="btn-secondary">See the engine</a>
         </div>
 
-        <!-- HERO PROOF STRIP -->
+        <!-- HERO PROOF STRIP (readable) -->
         <div class="proof-strip" aria-label="Recent client results screenshots">
           <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
           <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
@@ -273,7 +280,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: How it works -->
+  <!-- SECTION 3 -->
   <section class="section section-engine" id="how">
     <div class="container engine">
       <div class="engine-left reveal">
@@ -360,7 +367,7 @@
     </div>
   </section>
 
-  <!-- SECTION 4: Before vs After -->
+  <!-- SECTION 4 -->
   <section class="section section-compare" id="results">
     <div class="container compare">
       <div class="compare-head reveal">
@@ -368,7 +375,7 @@
         <h2>From chaos to autopilot.</h2>
         <p class="sub">
           Most businesses don’t lose because they’re bad — they lose because follow-up is inconsistent.
-          Onix Marketing installs <strong>the team, the playbook, and the daily execution</strong> to turn enquiries into booked calls.
+          Onix Marketing installs <strong>the team, the playbook, and the daily execution</strong>.
         </p>
       </div>
 
@@ -386,12 +393,6 @@
             <li><span class="compare-dot bad"></span> No clear tracking of what’s working</li>
             <li><span class="compare-dot bad"></span> Feast-or-famine months</li>
           </ul>
-
-          <div class="signal">
-            <div class="signal-row"><span class="signal-label">Speed-to-lead</span><div class="meter"><div class="meter-fill" style="--w: 28%"></div></div></div>
-            <div class="signal-row"><span class="signal-label">Booked calls</span><div class="meter"><div class="meter-fill" style="--w: 35%"></div></div></div>
-            <div class="signal-row"><span class="signal-label">Close rate</span><div class="meter"><div class="meter-fill" style="--w: 22%"></div></div></div>
-          </div>
         </article>
 
         <article class="compare-card after reveal">
@@ -407,43 +408,6 @@
             <li><span class="compare-dot good"></span> Weekly reporting + improvements</li>
             <li><span class="compare-dot good"></span> Consistent pipeline you can scale</li>
           </ul>
-
-          <div class="signal">
-            <div class="signal-row"><span class="signal-label">Speed-to-lead</span><div class="meter"><div class="meter-fill good" style="--w: 88%"></div></div></div>
-            <div class="signal-row"><span class="signal-label">Booked calls</span><div class="meter"><div class="meter-fill good" style="--w: 78%"></div></div></div>
-            <div class="signal-row"><span class="signal-label">Close rate</span><div class="meter"><div class="meter-fill good" style="--w: 66%"></div></div></div>
-          </div>
-        </article>
-
-        <article class="autopilot-strip reveal">
-          <div class="auto-left">
-            <h3>What “autopilot” actually means</h3>
-            <p>
-              While you deliver the work, <strong>our team handles the follow-up and admin</strong>:
-              <strong>new enquiries → calls → qualification → bookings → reporting.</strong>
-            </p>
-
-            <div class="auto-stats">
-              <div class="stat"><span class="stat-label">Typical lift</span><span class="stat-value">+5–10 jobs / month</span></div>
-              <div class="stat"><span class="stat-label">Big win example</span><span class="stat-value">$500k+ job closed</span></div>
-            </div>
-
-            <div class="auto-cta">
-              <a class="btn-primary large" href="#book">Book a 15-minute call</a>
-              <a class="btn-secondary" href="#pricing">See pricing</a>
-            </div>
-          </div>
-
-          <div class="auto-right">
-            <div class="timeline" aria-label="Autopilot timeline">
-              <div class="t-item"><div class="t-dot"></div><div class="t-content"><span class="t-title">Enquiry comes in</span><span class="t-sub">Form / call / message</span></div></div>
-              <div class="t-item"><div class="t-dot"></div><div class="t-content"><span class="t-title">Receptionist follow-up</span><span class="t-sub">Calls + qualifies</span></div></div>
-              <div class="t-item"><div class="t-dot"></div><div class="t-content"><span class="t-title">Booking confirmed</span><span class="t-sub">Calendar filled</span></div></div>
-              <div class="t-item"><div class="t-dot"></div><div class="t-content"><span class="t-title">Weekly optimisation</span><span class="t-sub">Improve scripts + scale what works</span></div></div>
-              <div class="t-line" aria-hidden="true"></div>
-              <div class="t-progress" id="timelineProgress" aria-hidden="true"></div>
-            </div>
-          </div>
         </article>
       </div>
     </div>
@@ -465,34 +429,6 @@
         <img src="proof10.png" alt="Client result screenshot 10" loading="lazy" decoding="async">
         <img src="proof11.png" alt="Client result screenshot 11" loading="lazy" decoding="async">
         <img src="proof12.png" alt="Client result screenshot 12" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section section-testimonials" id="testimonials" aria-label="Testimonials">
-    <div class="container">
-      <div class="test-head reveal">
-        <p class="kicker">Testimonials</p>
-        <h2>Short words. Big outcomes.</h2>
-        <p class="sub">A few notes from teams who wanted more booked calls — without more chaos.</p>
-      </div>
-
-      <div class="testimonials-grid reveal">
-        <article class="testimonial">
-          <p>“We stopped missing leads. The receptionist follow-up alone paid for the system.”</p>
-          <div class="t-meta"><span><strong>Jordan</strong> • Renovation</span><span>⭐ 5.0</span></div>
-        </article>
-
-        <article class="testimonial">
-          <p>“Booked calls became predictable. We can actually plan the month now.”</p>
-          <div class="t-meta"><span><strong>Sam</strong> • Solar</span><span>⭐ 5.0</span></div>
-        </article>
-
-        <article class="testimonial">
-          <p>“Fast response time + tracking ROI = we finally know what to scale.”</p>
-          <div class="t-meta"><span><strong>Hana</strong> • Local Services</span><span>⭐ 5.0</span></div>
-        </article>
       </div>
     </div>
   </section>
@@ -548,18 +484,6 @@
             <p class="guarantee-main">Results-first partnership</p>
             <p class="guarantee-sub">If you don’t win work, we don’t get paid.</p>
           </div>
-
-          <div class="guarantee-stats">
-            <div class="g-stat"><span class="g-label">Typical result</span><span class="g-value">+5–10 wins / month</span></div>
-            <div class="g-stat"><span class="g-label">Largest win</span><span class="g-value">$500k+ deal closed</span></div>
-          </div>
-
-          <div class="guarantee-foot">
-            <p>
-              We scale to your capacity — not hype.
-              If you can handle more work, we increase volume. If you’re capped, we throttle.
-            </p>
-          </div>
         </article>
       </div>
     </div>
@@ -583,67 +507,9 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="section section-final-cta" id="final">
-    <div class="container">
-      <div class="final-cta reveal">
-        <div class="final-copy">
-          <p class="kicker">Ready when you are</p>
-          <h2>Turn your pipeline into a machine.</h2>
-          <p class="sub">
-            Enquiries in. Follow-up handled. Calls booked. ROI tracked.
-            You stay focused on delivery — we run the engine.
-          </p>
-        </div>
-
-        <div class="final-actions">
-          <a href="#book" class="btn-primary large">Book a 15-minute call</a>
-          <p class="tiny-note">If you don’t win work, we don’t get paid.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="logo2.png" alt="Onix Marketing" class="footer-logo" />
-          <p class="footer-desc">
-            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
-          </p>
-          <div class="footer-badges">
-            <span class="f-badge">Receptionist follow-up</span>
-            <span class="f-badge">Booked calls</span>
-            <span class="f-badge">ROI reporting</span>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#how">How it works</a>
-          <a href="#results">Results</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#book">Book a call</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#top">Home</a>
-          <a href="#proof">Why us</a>
-          <a href="#book">Contact</a>
-          <a href="#book">Support</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="cookies.html">Cookie Policy</a>
-        </div>
-      </div>
-
       <div class="footer-bottom">
         <p>© <span id="year"></span> Onix Marketing. All rights reserved.</p>
         <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
@@ -669,6 +535,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
