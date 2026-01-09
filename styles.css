@@ -85,7 +85,7 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   padding:11px 16px;border-radius:999px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.78);
-  color:#ffffff ;font-weight:650;
+  color: var(--ink) ;font-weight:650;
 }
 
 /* Mobile menu */
@@ -434,4 +434,5 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   }
   .proof-strip img{height:190px;scroll-snap-align:start}
 }
+
 
