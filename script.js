@@ -345,8 +345,37 @@ if (aurora) {
 
   acceptBtn.addEventListener("click", () => close("accepted"));
   declineBtn.addEventListener("click", () => close("declined"));
+}
+// ================================
+// Hero chart: niche selector -> avg conversion rate
+// ================================
+(function nicheConversion(){
+  const select = document.getElementById("nicheSelect");
+  const out = document.getElementById("convRate");
+  if (!select || !out) return;
+
+  // You can tweak these anytime (keep them honest / backed by proof)
+  const rates = {
+    tradies: "18%–32%",
+    solar: "12%–24%",
+    agencies: "10%–18%",
+    home: "14%–26%",
+    local: "16%–28%",
+    realestate: "8%–16%",
+    insurance: "7%–14%"
+  };
+
+  function setRate() {
+    const key = select.value;
+    out.textContent = rates[key] || "—";
+  }
+
+  select.addEventListener("change", setRate);
+  setRate(); // initial
 })();
+
 
 // ===============================
 // END: script.js
 // ===============================
+
