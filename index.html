@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onix Marketing</title>
 
-  <!-- Make page visible even if JS fails -->
+  <!-- JS marker (safe reveal fallback if JS fails) -->
   <script>
     document.documentElement.classList.remove('no-js');
   </script>
 
-  <!-- FAVICON -->
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" />
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Fonts (Stripe-like) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
   <!-- Tooltip -->
   <div id="chartTip" class="chart-tip" aria-hidden="true"></div>
 
-  <!-- Global animated background -->
+  <!-- Background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
@@ -42,7 +42,7 @@
         <img src="logo2.png" alt="Onix Marketing" class="logo" />
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop nav -->
       <nav class="nav nav-desktop" aria-label="Primary">
         <a href="#proof">Results</a>
         <a href="#how">How it works</a>
@@ -50,14 +50,14 @@
         <a href="#book" class="btn-primary">Book a Call</a>
       </nav>
 
-      <!-- Mobile Hamburger -->
+      <!-- Mobile hamburger -->
       <button class="nav-toggle" id="navToggle" type="button"
         aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
         <span class="nav-bars" aria-hidden="true"></span>
       </button>
     </div>
 
-    <!-- Mobile Menu Panel -->
+    <!-- Mobile menu -->
     <div class="nav-mobile" id="mobileNav" aria-hidden="true">
       <div class="nav-mobile-card">
         <a href="#proof" class="nav-m-link">Results</a>
@@ -71,8 +71,7 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-inner">
-      <!-- LEFT -->
-      <div class="hero-copy">
+      <div class="hero-copy reveal">
         <span class="pill">⚙️ Done-for-you acquisition + follow-up system</span>
         <h1>Your pipeline, on autopilot.</h1>
         <p>
@@ -82,11 +81,11 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#book" class="btn-primary large">Book a 15-minute call</a>
+          <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
           <a href="#how" class="btn-secondary">See the engine</a>
         </div>
 
-        <!-- HERO PROOF STRIP (readable) -->
+        <!-- PROOF STRIP -->
         <div class="proof-strip" aria-label="Recent client results screenshots">
           <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
           <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
@@ -95,10 +94,8 @@
         <p class="proof-note">Real client messages • Unedited screenshots</p>
       </div>
 
-      <!-- RIGHT -->
-      <div class="hero-visual">
+      <div class="hero-visual reveal">
         <div class="dashboard-card hero-dashboard">
-          <!-- KPI 1 -->
           <div class="kpi" data-tip="New enquiries received today across your channels">
             <div class="kpi-top">
               <span class="kpi-icon">⚡</span>
@@ -108,7 +105,6 @@
             <span class="value count" data-count="38">0</span>
           </div>
 
-          <!-- KPI 2 -->
           <div class="kpi" data-tip="Qualified calls booked into your calendar">
             <div class="kpi-top">
               <span class="kpi-icon">📅</span>
@@ -118,7 +114,6 @@
             <span class="value count" data-count="12">0</span>
           </div>
 
-          <!-- KPI 3 -->
           <div class="kpi" data-tip="Deals marked as won (jobs/projects/clients)">
             <div class="kpi-top">
               <span class="kpi-icon">✅</span>
@@ -128,7 +123,6 @@
             <span class="value count" data-count="5">0</span>
           </div>
 
-          <!-- KPI 4 -->
           <div class="kpi" data-tip="Revenue influenced by the engine (today)">
             <div class="kpi-top">
               <span class="kpi-icon">💸</span>
@@ -138,7 +132,6 @@
             <span class="value money count" data-count="48200">$0</span>
           </div>
 
-          <!-- Lead Trend chart -->
           <div class="chart-card">
             <div class="chart-header">
               <h4>Enquiry Trend</h4>
@@ -152,35 +145,16 @@
                   <stop offset="55%" stop-color="#8779D6"/>
                   <stop offset="100%" stop-color="#345DBE"/>
                 </linearGradient>
-
-                <linearGradient id="shimmerGrad" x1="-200" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-                  <stop offset="50%" stop-color="rgba(255,255,255,0.75)"/>
-                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-                  <animate attributeName="x1" from="-200" to="300" dur="2.6s" repeatCount="indefinite"/>
-                  <animate attributeName="x2" from="0" to="500" dur="2.6s" repeatCount="indefinite"/>
-                </linearGradient>
-
-                <mask id="lineMask">
-                  <path class="chart-line-mask"
-                        d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
-                        stroke="white" stroke-width="6" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </mask>
               </defs>
 
               <path class="chart-area"
                     d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
               <path class="chart-line"
                     d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"/>
-              <path class="chart-shimmer"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
-                    mask="url(#lineMask)"/>
               <circle class="chart-dot" r="4" cx="300" cy="28"/>
             </svg>
           </div>
 
-          <!-- Funnel -->
           <div class="widget funnel-widget">
             <div class="widget-head">
               <span class="widget-title">Pipeline</span>
@@ -193,19 +167,16 @@
                 <div class="bar"><div class="fill" style="--w: 100%"></div></div>
                 <strong>38</strong>
               </div>
-
               <div class="frow">
                 <span>Contacted</span>
                 <div class="bar"><div class="fill" style="--w: 74%"></div></div>
                 <strong>28</strong>
               </div>
-
               <div class="frow">
                 <span>Booked</span>
                 <div class="bar"><div class="fill" style="--w: 32%"></div></div>
                 <strong>12</strong>
               </div>
-
               <div class="frow">
                 <span>Won</span>
                 <div class="bar"><div class="fill" style="--w: 13%"></div></div>
@@ -213,12 +184,13 @@
               </div>
             </div>
           </div>
-        </div><!-- /dashboard-card -->
-      </div><!-- /hero-visual -->
-    </div><!-- /hero-inner -->
+
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- SECTION 2 -->
+  <!-- RESULTS -->
   <section class="section section-proof" id="proof">
     <div class="container">
       <div class="proof-top reveal">
@@ -242,7 +214,7 @@
         <div class="outcome-card reveal">
           <div class="outcome-icon">📈</div>
           <h3>Predictable enquiries</h3>
-          <p>Consistent lead flow engineered for buyers — not browsers — across trades, solar, agencies, and services.</p>
+          <p>Consistent lead flow engineered for buyers — not browsers.</p>
           <div class="metric">
             <span class="m-label">Avg qualified enquiries / week</span>
             <span class="m-value count" data-count="18">0</span>
@@ -252,7 +224,7 @@
         <div class="outcome-card reveal">
           <div class="outcome-icon">⚡</div>
           <h3>Speed-to-lead wins</h3>
-          <p>Our receptionist team follows up in minutes so you’re first — and first usually wins.</p>
+          <p>We follow up in minutes so you’re first — and first usually wins.</p>
           <div class="metric">
             <span class="m-label">Median response time</span>
             <span class="m-value"><span class="count" data-count="2">0</span> min</span>
@@ -262,7 +234,7 @@
         <div class="outcome-card reveal">
           <div class="outcome-icon">🧠</div>
           <h3>Know your ROI</h3>
-          <p>Track enquiries → booked calls → quotes/jobs → revenue so you always know what to scale.</p>
+          <p>Track enquiries → booked calls → wins so you know what to scale.</p>
           <div class="metric">
             <span class="m-label">Typical ROI range</span>
             <span class="m-value">
@@ -280,14 +252,14 @@
     </div>
   </section>
 
-  <!-- SECTION 3 -->
+  <!-- HOW IT WORKS -->
   <section class="section section-engine" id="how">
     <div class="container engine">
       <div class="engine-left reveal">
         <p class="kicker">How it works</p>
         <h2>The Acquisition Engine, end-to-end.</h2>
         <p class="sub">
-          You don’t “learn marketing.” We install the system, run it daily, and keep improving it —
+          We install the system, run it daily, and keep improving it —
           so your calendar stays full with qualified opportunities.
         </p>
 
@@ -296,7 +268,7 @@
           <div class="rail-progress" id="railProgress"></div>
         </div>
 
-        <div class="engine-index" role="tablist" aria-label="Engine steps">
+        <div class="engine-index">
           <button class="idx active" data-step="0" type="button">01 Trust & Presence</button>
           <button class="idx" data-step="1" type="button">02 Content Engine</button>
           <button class="idx" data-step="2" type="button">03 Proof & Positioning</button>
@@ -329,13 +301,13 @@
         </article>
 
         <article class="step-card reveal" data-step="3">
-          <div class="step-top"><span class="step-num">04</span><span class="step-ic">📣</span><h3>Paid demand that scales to capacity</h3></div>
+          <div class="step-top"><span class="step-num">04</span><span class="step-ic">📣</span><h3>Paid demand that scales</h3></div>
           <p>Targeted campaigns that we increase or throttle depending on your workload.</p>
           <div class="step-tags"><span class="tag">Targeting</span><span class="tag">Testing</span><span class="tag">Budget control</span></div>
         </article>
 
         <article class="step-card reveal" data-step="4">
-          <div class="step-top"><span class="step-num">05</span><span class="step-ic">📞</span><h3>Receptionist team (we hire + manage)</h3></div>
+          <div class="step-top"><span class="step-num">05</span><span class="step-ic">📞</span><h3>Receptionist team</h3></div>
           <p>We provide trained receptionists to call, qualify, and book — so enquiries don’t go cold.</p>
           <div class="step-tags"><span class="tag">Calls</span><span class="tag">Qualification</span><span class="tag">Booking</span></div>
         </article>
@@ -347,13 +319,13 @@
         </article>
 
         <article class="step-card reveal" data-step="6">
-          <div class="step-top"><span class="step-num">07</span><span class="step-ic">🗓️</span><h3>Booking + calendar control</h3></div>
+          <div class="step-top"><span class="step-num">07</span><span class="step-ic">🗓️</span><h3>Booking + calendar</h3></div>
           <p>Qualified leads turn into booked calls/site visits — synced to your calendar.</p>
           <div class="step-tags"><span class="tag">Calendly</span><span class="tag">Capacity</span><span class="tag">No-shows reduced</span></div>
         </article>
 
         <article class="step-card reveal" data-step="7">
-          <div class="step-top"><span class="step-num">08</span><span class="step-ic">📊</span><h3>Weekly optimisation & reporting</h3></div>
+          <div class="step-top"><span class="step-num">08</span><span class="step-ic">📊</span><h3>Weekly optimisation</h3></div>
           <p>We track enquiries → bookings → wins so you know what’s working and what to scale.</p>
           <div class="step-tags"><span class="tag">KPIs</span><span class="tag">Leak fixes</span><span class="tag">Next actions</span></div>
         </article>
@@ -361,74 +333,8 @@
         <article class="step-card reveal" data-step="8">
           <div class="step-top"><span class="step-num">09</span><span class="step-ic">🛡️</span><h3>Support + guarantee</h3></div>
           <p>Direct support, SOPs, and a results-first guarantee: if you don’t win work, we don’t get paid.</p>
-          <div class="step-tags"><span class="tag">WhatsApp support</span><span class="tag">SOPs</span><span class="tag">Guarantee</span></div>
+          <div class="step-tags"><span class="tag">Support</span><span class="tag">SOPs</span><span class="tag">Guarantee</span></div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section class="section section-compare" id="results">
-    <div class="container compare">
-      <div class="compare-head reveal">
-        <p class="kicker">Before vs after</p>
-        <h2>From chaos to autopilot.</h2>
-        <p class="sub">
-          Most businesses don’t lose because they’re bad — they lose because follow-up is inconsistent.
-          Onix Marketing installs <strong>the team, the playbook, and the daily execution</strong>.
-        </p>
-      </div>
-
-      <div class="compare-grid">
-        <article class="compare-card before reveal">
-          <div class="compare-top">
-            <span class="badge bad">Before</span>
-            <h3>Owner-run, inconsistent follow-up</h3>
-          </div>
-
-          <ul class="compare-list">
-            <li><span class="compare-dot bad"></span> Enquiries sit too long</li>
-            <li><span class="compare-dot bad"></span> Missed calls + slow replies</li>
-            <li><span class="compare-dot bad"></span> Leads go cold / get lost</li>
-            <li><span class="compare-dot bad"></span> No clear tracking of what’s working</li>
-            <li><span class="compare-dot bad"></span> Feast-or-famine months</li>
-          </ul>
-        </article>
-
-        <article class="compare-card after reveal">
-          <div class="compare-top">
-            <span class="badge good">After</span>
-            <h3>A managed team that runs the pipeline daily</h3>
-          </div>
-
-          <ul class="compare-list">
-            <li><span class="compare-dot good"></span> Enquiries contacted fast (minutes, not hours)</li>
-            <li><span class="compare-dot good"></span> Receptionist team calls + follows up for you</li>
-            <li><span class="compare-dot good"></span> Leads qualified and booked into your calendar</li>
-            <li><span class="compare-dot good"></span> Weekly reporting + improvements</li>
-            <li><span class="compare-dot good"></span> Consistent pipeline you can scale</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF WALL -->
-  <section class="section section-proofwall" aria-label="Proof wall">
-    <div class="container">
-      <div class="proofwall-head reveal">
-        <p class="kicker">More proof</p>
-        <h2>Not testimonials — receipts.</h2>
-        <p class="sub">A few unedited snapshots from real conversations and wins.</p>
-      </div>
-
-      <div class="proof-wall reveal">
-        <img src="proof7.png" alt="Client result screenshot 7" loading="lazy" decoding="async">
-        <img src="proof8.png" alt="Client result screenshot 8" loading="lazy" decoding="async">
-        <img src="proof9.png" alt="Client result screenshot 9" loading="lazy" decoding="async">
-        <img src="proof10.png" alt="Client result screenshot 10" loading="lazy" decoding="async">
-        <img src="proof11.png" alt="Client result screenshot 11" loading="lazy" decoding="async">
-        <img src="proof12.png" alt="Client result screenshot 12" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -440,20 +346,15 @@
         <p class="kicker">Pricing & guarantee</p>
         <h2>We only win when you win.</h2>
         <p class="sub">
-          Onix Marketing runs a fully-managed growth system — not software and not DIY.
-          We build it, run it daily, optimise it weekly, and scale it with you.
+          Onix Marketing is a fully-managed growth system — built, run, and optimised by a team.
         </p>
       </div>
 
       <div class="pricing-grid">
         <article class="pricing-card featured reveal">
           <div class="pricing-badge">Most popular</div>
-
           <h3>Local Authority Scaling System</h3>
-          <p class="pricing-desc">
-            End-to-end acquisition, follow-up, booking, and optimisation.
-            Built to run while you run operations.
-          </p>
+          <p class="pricing-desc">Acquisition, follow-up, booking, and optimisation — end-to-end.</p>
 
           <div class="pricing-price">
             <span class="price-main">6-month engagement</span>
@@ -465,20 +366,17 @@
             <li>✔ Content + authority positioning</li>
             <li>✔ Receptionist follow-up</li>
             <li>✔ Calls booked into your calendar</li>
-            <li>✔ Paid scaling (when ready)</li>
             <li>✔ Weekly reporting & optimisation</li>
-            <li>✔ WhatsApp support with your team</li>
           </ul>
 
           <div class="pricing-cta">
-            <a href="#book" class="btn-primary large">Book a 15-minute call</a>
+            <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
             <span class="pricing-note">If you don’t win work, we don’t get paid.</span>
           </div>
         </article>
 
         <article class="pricing-card guarantee reveal">
           <h3>Our guarantee</h3>
-
           <div class="guarantee-box">
             <span class="guarantee-icon">🛡️</span>
             <p class="guarantee-main">Results-first partnership</p>
@@ -489,8 +387,8 @@
     </div>
   </section>
 
-  <!-- BOOK / CALENDAR -->
-  <section class="section section-book" id="book" aria-label="Book a call">
+  <!-- ✅ BOOK / CALENDAR (THIS WAS MISSING) -->
+  <section class="section section-book" id="book">
     <div class="container">
       <div class="book-head reveal">
         <p class="kicker">Book a call</p>
@@ -500,15 +398,19 @@
 
       <div class="book-card reveal">
         <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/jordan-burkett" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/jordan-burkett"
+             style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript"
+                src="https://assets.calendly.com/assets/external/widget.js"
+                async></script>
         <!-- Calendly inline widget end -->
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- ✅ FOOTER (THIS WAS MISSING) -->
+  <footer class="footer" id="footer">
     <div class="container">
       <div class="footer-bottom">
         <p>© <span id="year"></span> Onix Marketing. All rights reserved.</p>
