@@ -6,10 +6,8 @@
   <title>Onix Marketing</title>
 
   <!-- FAVICON -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/logo2.png" sizes="any">
+  
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="styles.css" />
@@ -31,16 +29,35 @@
   </div>
 
   <!-- HEADER -->
-  <header class="header">
+  <header class="header" id="siteHeader">
     <div class="header-inner">
-      <img src="logo2.png" alt="Onix Marketing" class="logo" />
+      <a class="brand" href="#top" aria-label="Onix Marketing home">
+        <img src="logo2.png" alt="Onix Marketing" class="logo" />
+      </a>
 
-      <nav class="nav">
+      <!-- Desktop Nav -->
+      <nav class="nav nav-desktop" aria-label="Primary">
         <a href="#proof">Results</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#book" class="btn-primary">Book a Call</a>
       </nav>
+
+      <!-- Mobile Hamburger -->
+      <button class="nav-toggle" id="navToggle" type="button"
+        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <span class="nav-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="nav-mobile" id="mobileNav" aria-hidden="true">
+      <div class="nav-mobile-card">
+        <a href="#proof" class="nav-m-link">Results</a>
+        <a href="#how" class="nav-m-link">How it works</a>
+        <a href="#pricing" class="nav-m-link">Pricing</a>
+        <a href="#book" class="btn-primary nav-m-cta">Book a Call</a>
+      </div>
     </div>
   </header>
 
@@ -248,7 +265,6 @@
         </div>
       </div>
 
-      <!-- PROOF GRID -->
       <div class="proof-grid reveal" aria-label="More proof screenshots">
         <figure class="proof-card"><img src="proof4.png" alt="Client result screenshot 4" loading="lazy" decoding="async"></figure>
         <figure class="proof-card"><img src="proof5.png" alt="Client result screenshot 5" loading="lazy" decoding="async"></figure>
@@ -257,7 +273,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: How it works (Engine Map) -->
+  <!-- SECTION 3: How it works -->
   <section class="section section-engine" id="how">
     <div class="container engine">
       <div class="engine-left reveal">
@@ -286,105 +302,59 @@
         </div>
       </div>
 
-      <!-- ✅ THIS IS THE MISSING SECTION PEOPLE OFTEN LOSE -->
       <div class="engine-right" id="engineSteps">
         <article class="step-card reveal" data-step="0">
-          <div class="step-top">
-            <span class="step-num">01</span><span class="step-ic">🏷️</span>
-            <h3>Trust & visibility foundation</h3>
-          </div>
+          <div class="step-top"><span class="step-num">01</span><span class="step-ic">🏷️</span><h3>Trust & visibility foundation</h3></div>
           <p>We tighten your positioning so prospects instantly “get it” and feel safe booking.</p>
-          <div class="step-tags">
-            <span class="tag">Offer clarity</span><span class="tag">Authority</span><span class="tag">Presence</span>
-          </div>
+          <div class="step-tags"><span class="tag">Offer clarity</span><span class="tag">Authority</span><span class="tag">Presence</span></div>
         </article>
 
         <article class="step-card reveal" data-step="1">
-          <div class="step-top">
-            <span class="step-num">02</span><span class="step-ic">🎥</span>
-            <h3>Content engine (done-for-you)</h3>
-          </div>
+          <div class="step-top"><span class="step-num">02</span><span class="step-ic">🎥</span><h3>Content engine (done-for-you)</h3></div>
           <p>Short-form proof + authority content that warms people before they speak to you.</p>
-          <div class="step-tags">
-            <span class="tag">Scripts</span><span class="tag">Posting cadence</span><span class="tag">Proof</span>
-          </div>
+          <div class="step-tags"><span class="tag">Scripts</span><span class="tag">Posting cadence</span><span class="tag">Proof</span></div>
         </article>
 
         <article class="step-card reveal" data-step="2">
-          <div class="step-top">
-            <span class="step-num">03</span><span class="step-ic">⭐</span>
-            <h3>Proof & trust sequence</h3>
-          </div>
+          <div class="step-top"><span class="step-num">03</span><span class="step-ic">⭐</span><h3>Proof & trust sequence</h3></div>
           <p>Reviews, examples, and follow-up messaging that makes you the obvious choice.</p>
-          <div class="step-tags">
-            <span class="tag">Reviews</span><span class="tag">Case studies</span><span class="tag">Trust sequence</span>
-          </div>
+          <div class="step-tags"><span class="tag">Reviews</span><span class="tag">Case studies</span><span class="tag">Trust sequence</span></div>
         </article>
 
         <article class="step-card reveal" data-step="3">
-          <div class="step-top">
-            <span class="step-num">04</span><span class="step-ic">📣</span>
-            <h3>Paid demand that scales to capacity</h3>
-          </div>
+          <div class="step-top"><span class="step-num">04</span><span class="step-ic">📣</span><h3>Paid demand that scales to capacity</h3></div>
           <p>Targeted campaigns that we increase or throttle depending on your workload.</p>
-          <div class="step-tags">
-            <span class="tag">Targeting</span><span class="tag">Testing</span><span class="tag">Budget control</span>
-          </div>
+          <div class="step-tags"><span class="tag">Targeting</span><span class="tag">Testing</span><span class="tag">Budget control</span></div>
         </article>
 
         <article class="step-card reveal" data-step="4">
-          <div class="step-top">
-            <span class="step-num">05</span><span class="step-ic">📞</span>
-            <h3>Receptionist team (we hire + manage)</h3>
-          </div>
+          <div class="step-top"><span class="step-num">05</span><span class="step-ic">📞</span><h3>Receptionist team (we hire + manage)</h3></div>
           <p>We provide trained receptionists to call, qualify, and book — so enquiries don’t go cold.</p>
-          <div class="step-tags">
-            <span class="tag">Calls</span><span class="tag">Qualification</span><span class="tag">Booking</span>
-          </div>
+          <div class="step-tags"><span class="tag">Calls</span><span class="tag">Qualification</span><span class="tag">Booking</span></div>
         </article>
 
         <article class="step-card reveal" data-step="5">
-          <div class="step-top">
-            <span class="step-num">06</span><span class="step-ic">⚙️</span>
-            <h3>Nurture automation</h3>
-          </div>
+          <div class="step-top"><span class="step-num">06</span><span class="step-ic">⚙️</span><h3>Nurture automation</h3></div>
           <p>SMS + email follow-ups for non-responders and warm leads — automatically.</p>
-          <div class="step-tags">
-            <span class="tag">SMS</span><span class="tag">Email</span><span class="tag">Nurture</span>
-          </div>
+          <div class="step-tags"><span class="tag">SMS</span><span class="tag">Email</span><span class="tag">Nurture</span></div>
         </article>
 
         <article class="step-card reveal" data-step="6">
-          <div class="step-top">
-            <span class="step-num">07</span><span class="step-ic">🗓️</span>
-            <h3>Booking + calendar control</h3>
-          </div>
+          <div class="step-top"><span class="step-num">07</span><span class="step-ic">🗓️</span><h3>Booking + calendar control</h3></div>
           <p>Qualified leads turn into booked calls/site visits — synced to your calendar.</p>
-          <div class="step-tags">
-            <span class="tag">Calendly</span><span class="tag">Capacity</span><span class="tag">No-shows reduced</span>
-          </div>
+          <div class="step-tags"><span class="tag">Calendly</span><span class="tag">Capacity</span><span class="tag">No-shows reduced</span></div>
         </article>
 
         <article class="step-card reveal" data-step="7">
-          <div class="step-top">
-            <span class="step-num">08</span><span class="step-ic">📊</span>
-            <h3>Weekly optimisation & reporting</h3>
-          </div>
+          <div class="step-top"><span class="step-num">08</span><span class="step-ic">📊</span><h3>Weekly optimisation & reporting</h3></div>
           <p>We track enquiries → bookings → wins so you know what’s working and what to scale.</p>
-          <div class="step-tags">
-            <span class="tag">KPIs</span><span class="tag">Leak fixes</span><span class="tag">Next actions</span>
-          </div>
+          <div class="step-tags"><span class="tag">KPIs</span><span class="tag">Leak fixes</span><span class="tag">Next actions</span></div>
         </article>
 
         <article class="step-card reveal" data-step="8">
-          <div class="step-top">
-            <span class="step-num">09</span><span class="step-ic">🛡️</span>
-            <h3>Support + guarantee</h3>
-          </div>
+          <div class="step-top"><span class="step-num">09</span><span class="step-ic">🛡️</span><h3>Support + guarantee</h3></div>
           <p>Direct support, SOPs, and a results-first guarantee: if you don’t win work, we don’t get paid.</p>
-          <div class="step-tags">
-            <span class="tag">WhatsApp support</span><span class="tag">SOPs</span><span class="tag">Guarantee</span>
-          </div>
+          <div class="step-tags"><span class="tag">WhatsApp support</span><span class="tag">SOPs</span><span class="tag">Guarantee</span></div>
         </article>
       </div>
     </div>
@@ -403,7 +373,6 @@
       </div>
 
       <div class="compare-grid">
-        <!-- BEFORE -->
         <article class="compare-card before reveal">
           <div class="compare-top">
             <span class="badge bad">Before</span>
@@ -419,22 +388,12 @@
           </ul>
 
           <div class="signal">
-            <div class="signal-row">
-              <span class="signal-label">Speed-to-lead</span>
-              <div class="meter"><div class="meter-fill" style="--w: 28%"></div></div>
-            </div>
-            <div class="signal-row">
-              <span class="signal-label">Booked calls</span>
-              <div class="meter"><div class="meter-fill" style="--w: 35%"></div></div>
-            </div>
-            <div class="signal-row">
-              <span class="signal-label">Close rate</span>
-              <div class="meter"><div class="meter-fill" style="--w: 22%"></div></div>
-            </div>
+            <div class="signal-row"><span class="signal-label">Speed-to-lead</span><div class="meter"><div class="meter-fill" style="--w: 28%"></div></div></div>
+            <div class="signal-row"><span class="signal-label">Booked calls</span><div class="meter"><div class="meter-fill" style="--w: 35%"></div></div></div>
+            <div class="signal-row"><span class="signal-label">Close rate</span><div class="meter"><div class="meter-fill" style="--w: 22%"></div></div></div>
           </div>
         </article>
 
-        <!-- AFTER -->
         <article class="compare-card after reveal">
           <div class="compare-top">
             <span class="badge good">After</span>
@@ -450,22 +409,12 @@
           </ul>
 
           <div class="signal">
-            <div class="signal-row">
-              <span class="signal-label">Speed-to-lead</span>
-              <div class="meter"><div class="meter-fill good" style="--w: 88%"></div></div>
-            </div>
-            <div class="signal-row">
-              <span class="signal-label">Booked calls</span>
-              <div class="meter"><div class="meter-fill good" style="--w: 78%"></div></div>
-            </div>
-            <div class="signal-row">
-              <span class="signal-label">Close rate</span>
-              <div class="meter"><div class="meter-fill good" style="--w: 66%"></div></div>
-            </div>
+            <div class="signal-row"><span class="signal-label">Speed-to-lead</span><div class="meter"><div class="meter-fill good" style="--w: 88%"></div></div></div>
+            <div class="signal-row"><span class="signal-label">Booked calls</span><div class="meter"><div class="meter-fill good" style="--w: 78%"></div></div></div>
+            <div class="signal-row"><span class="signal-label">Close rate</span><div class="meter"><div class="meter-fill good" style="--w: 66%"></div></div></div>
           </div>
         </article>
 
-        <!-- AUTOPILOT STRIP -->
         <article class="autopilot-strip reveal">
           <div class="auto-left">
             <h3>What “autopilot” actually means</h3>
@@ -475,14 +424,8 @@
             </p>
 
             <div class="auto-stats">
-              <div class="stat">
-                <span class="stat-label">Typical lift</span>
-                <span class="stat-value">+5–10 jobs / month</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Big win example</span>
-                <span class="stat-value">$500k+ job closed</span>
-              </div>
+              <div class="stat"><span class="stat-label">Typical lift</span><span class="stat-value">+5–10 jobs / month</span></div>
+              <div class="stat"><span class="stat-label">Big win example</span><span class="stat-value">$500k+ job closed</span></div>
             </div>
 
             <div class="auto-cta">
@@ -526,7 +469,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS (desktop grid, mobile swipe) -->
+  <!-- TESTIMONIALS -->
   <section class="section section-testimonials" id="testimonials" aria-label="Testimonials">
     <div class="container">
       <div class="test-head reveal">
@@ -538,26 +481,17 @@
       <div class="testimonials-grid reveal">
         <article class="testimonial">
           <p>“We stopped missing leads. The receptionist follow-up alone paid for the system.”</p>
-          <div class="t-meta">
-            <span><strong>Jordan</strong> • Renovation</span>
-            <span>⭐ 5.0</span>
-          </div>
+          <div class="t-meta"><span><strong>Jordan</strong> • Renovation</span><span>⭐ 5.0</span></div>
         </article>
 
         <article class="testimonial">
           <p>“Booked calls became predictable. We can actually plan the month now.”</p>
-          <div class="t-meta">
-            <span><strong>Sam</strong> • Solar</span>
-            <span>⭐ 5.0</span>
-          </div>
+          <div class="t-meta"><span><strong>Sam</strong> • Solar</span><span>⭐ 5.0</span></div>
         </article>
 
         <article class="testimonial">
           <p>“Fast response time + tracking ROI = we finally know what to scale.”</p>
-          <div class="t-meta">
-            <span><strong>Hana</strong> • Local Services</span>
-            <span>⭐ 5.0</span>
-          </div>
+          <div class="t-meta"><span><strong>Hana</strong> • Local Services</span><span>⭐ 5.0</span></div>
         </article>
       </div>
     </div>
@@ -641,15 +575,12 @@
       </div>
 
       <div class="book-card reveal">
-        <div
-          class="calendly-inline-widget"
-          data-url="https://calendly.com/jordan-burkett/get-more-reno-jobs"
-          style="min-width:320px;height:760px;"
-        ></div>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/jordan-burkett" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
       </div>
     </div>
-
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </section>
 
   <!-- FINAL CTA -->
