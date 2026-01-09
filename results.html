@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results – Onix Marketing</title>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Tooltip (reused by script.js) -->
+  <div id="chartTip" class="chart-tip" aria-hidden="true"></div>
+
+  <!-- Global background -->
+  <div class="site-bg" aria-hidden="true">
+    <div class="site-aurora"></div>
+    <div class="site-noise"></div>
+  </div>
+
+  <!-- HEADER (same as home) -->
+  <header class="header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="index.html#top" aria-label="Onix Marketing home">
+        <img src="logo2.png" alt="Onix Marketing" class="logo" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="nav nav-desktop" aria-label="Primary">
+        <a href="index.html#proof">Home Proof</a>
+        <a href="#proof">Results</a>
+        <a href="#breakdown">How it works</a>
+        <a href="#book" class="btn-primary">Book a Call</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" id="navToggle" type="button"
+        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <span class="nav-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="mobileNav" aria-hidden="true">
+      <div class="nav-mobile-card">
+        <a href="index.html#top" class="nav-m-link">Home</a>
+        <a href="#proof" class="nav-m-link">Results</a>
+        <a href="#breakdown" class="nav-m-link">How it works</a>
+        <a href="#book" class="btn-primary nav-m-cta">Book a Call</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="section results-hero" id="top">
+    <div class="container">
+      <div class="results-hero-inner">
+        <div class="results-hero-copy reveal">
+          <p class="kicker">Results</p>
+          <h1>Booked calls. Closed deals. Real proof.</h1>
+          <p class="sub">
+            A mix of Onix Marketing campaign snapshots + Fly Me High system proof.
+            Screenshots are unedited (some details blurred for privacy).
+          </p>
+
+          <div class="results-hero-cta">
+            <a href="#proof" class="btn-primary large">View proof</a>
+            <a href="#book" class="btn-secondary">Book a call</a>
+          </div>
+
+          <div class="results-mini-note">
+            <span class="dot"></span>
+            <span>We scale to your capacity — not hype.</span>
+          </div>
+        </div>
+
+        <!-- Quick “wins” cards -->
+        <div class="results-hero-wins reveal">
+          <div class="win-card" data-tip="Typical performance range across niches and offers (varies by market).">
+            <span class="win-kicker">Avg lift (typical)</span>
+            <span class="win-value">+5–10</span>
+            <span class="win-sub">wins / month</span>
+          </div>
+
+          <div class="win-card" data-tip="Speed-to-lead is a major factor in conversion.">
+            <span class="win-kicker">Response time</span>
+            <span class="win-value"><span class="count" data-count="2">0</span> min</span>
+            <span class="win-sub">median</span>
+          </div>
+
+          <div class="win-card" data-tip="Big wins happen when volume + follow-up + capacity all align.">
+            <span class="win-kicker">Big win example</span>
+            <span class="win-value">$500k+</span>
+            <span class="win-sub">deal closed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NICHE FILTER -->
+  <section class="section results-niches" aria-label="Choose niche">
+    <div class="container">
+      <div class="niche-head reveal">
+        <h2>Choose your niche</h2>
+        <p class="sub">Filter proof by the type of business you run.</p>
+      </div>
+
+      <div class="niche-tabs reveal" role="tablist" aria-label="Niche filters" id="nicheTabs">
+        <button class="niche-tab active" type="button" data-niche="all" role="tab" aria-selected="true">All</button>
+        <button class="niche-tab" type="button" data-niche="tradies" role="tab">Tradies</button>
+        <button class="niche-tab" type="button" data-niche="solar" role="tab">Solar</button>
+        <button class="niche-tab" type="button" data-niche="agencies" role="tab">Agencies</button>
+        <button class="niche-tab" type="button" data-niche="home" role="tab">Home Improvement</button>
+        <button class="niche-tab" type="button" data-niche="local" role="tab">Local Services</button>
+        <button class="niche-tab" type="button" data-niche="realestate" role="tab">Real Estate</button>
+        <button class="niche-tab" type="button" data-niche="insurance" role="tab">Insurance</button>
+      </div>
+
+      <div class="niche-rate reveal" aria-live="polite">
+        <div class="rate-card">
+          <span class="rate-label">Avg conversion rate</span>
+          <span class="rate-value" id="convRate">—</span>
+          <span class="rate-sub">Based on niche + offer + speed-to-lead</span>
+        </div>
+
+        <a class="btn-secondary rate-link" href="index.html#how">
+          See how the engine works →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF WALL -->
+  <section class="section section-proofwall" id="proof" aria-label="Proof wall">
+    <div class="container">
+      <div class="proofwall-head reveal">
+        <p class="kicker">Proof</p>
+        <h2>Not testimonials — receipts.</h2>
+        <p class="sub">
+          Messages, calendars, Stripe notifications, dashboards, and CRM views — pulled directly from active systems.
+        </p>
+
+        <div class="proof-source">
+          <span class="source-chip">Onix Marketing</span>
+          <span class="source-chip">Fly Me High</span>
+        </div>
+      </div>
+
+      <!-- Add your images below. Tag each with data-niche + data-source -->
+      <div class="proof-wall reveal" id="proofWall">
+        <!-- Onix (examples) -->
+        <img src="proof1.png" alt="Onix proof 1" loading="lazy" decoding="async" data-niche="tradies" data-source="onix">
+        <img src="proof2.png" alt="Onix proof 2" loading="lazy" decoding="async" data-niche="solar" data-source="onix">
+        <img src="proof3.png" alt="Onix proof 3" loading="lazy" decoding="async" data-niche="agencies" data-source="onix">
+        <img src="proof4.png" alt="Onix proof 4" loading="lazy" decoding="async" data-niche="home" data-source="onix">
+        <img src="proof5.png" alt="Onix proof 5" loading="lazy" decoding="async" data-niche="local" data-source="onix">
+        <img src="proof6.png" alt="Onix proof 6" loading="lazy" decoding="async" data-niche="tradies" data-source="onix">
+
+        <!-- Fly Me High (rename these files when you add them) -->
+        <img src="fmh-01.png" alt="Fly Me High proof 1" loading="lazy" decoding="async" data-niche="realestate" data-source="fmh">
+        <img src="fmh-02.png" alt="Fly Me High proof 2" loading="lazy" decoding="async" data-niche="insurance" data-source="fmh">
+        <img src="fmh-03.png" alt="Fly Me High proof 3" loading="lazy" decoding="async" data-niche="local" data-source="fmh">
+        <img src="fmh-04.png" alt="Fly Me High proof 4" loading="lazy" decoding="async" data-niche="tradies" data-source="fmh">
+        <img src="fmh-05.png" alt="Fly Me High proof 5" loading="lazy" decoding="async" data-niche="solar" data-source="fmh">
+        <img src="fmh-06.png" alt="Fly Me High proof 6" loading="lazy" decoding="async" data-niche="agencies" data-source="fmh">
+      </div>
+
+      <p class="proof-note">Tip: tall mobile screenshots read best. Blur names/numbers if needed.</p>
+    </div>
+  </section>
+
+  <!-- BREAKDOWN -->
+  <section class="section results-breakdown" id="breakdown">
+    <div class="container">
+      <div class="break-head reveal">
+        <p class="kicker">Why this works</p>
+        <h2>Results come from execution + follow-up.</h2>
+        <p class="sub">
+          Most businesses don’t lose because marketing “doesn’t work” — they lose because follow-up is inconsistent.
+          We fix the pipeline end-to-end.
+        </p>
+      </div>
+
+      <div class="break-grid">
+        <article class="break-card reveal">
+          <h3>⚡ Speed-to-lead</h3>
+          <p>We follow up in minutes so you get the first conversation.</p>
+        </article>
+
+        <article class="break-card reveal">
+          <h3>📞 Qualification + booking</h3>
+          <p>Receptionist team calls, qualifies, and books into your calendar.</p>
+        </article>
+
+        <article class="break-card reveal">
+          <h3>📈 Optimisation</h3>
+          <p>Weekly KPI tracking to scale what’s working and fix leaks fast.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK / CALENDAR -->
+  <section class="section section-book" id="book">
+    <div class="container">
+      <div class="book-head reveal">
+        <p class="kicker">Book a call</p>
+        <h2>Pick a time that works.</h2>
+        <p class="sub">We’ll map the fastest path to more booked calls — and what to fix first.</p>
+      </div>
+
+      <div class="book-card reveal">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/jordan-burkett"
+             style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript"
+                src="https://assets.calendly.com/assets/external/widget.js"
+                async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="logo2.png" alt="Onix Marketing" class="footer-logo" />
+          <p class="footer-desc">
+            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and local service businesses.
+          </p>
+          <div class="footer-badges">
+            <span class="f-badge">Receptionist follow-up</span>
+            <span class="f-badge">Booked calls</span>
+            <span class="f-badge">ROI reporting</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Site</h4>
+          <a href="index.html#top">Home</a>
+          <a href="#proof">Results</a>
+          <a href="#breakdown">How it works</a>
+          <a href="#book">Book a call</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#book">Contact</a>
+          <a href="#book">Support</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="cookies.html">Cookie Policy</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Onix Marketing. All rights reserved.</p>
+        <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie notice" aria-hidden="true">
+    <div class="cookie-card">
+      <div class="cookie-copy">
+        <p class="cookie-title">Cookies</p>
+        <p class="cookie-text">
+          We use cookies to improve your experience and understand site usage.
+          <a href="cookies.html" class="cookie-link">Cookie Policy</a>
+        </p>
+      </div>
+
+      <div class="cookie-actions">
+        <button class="cookie-btn ghost" id="cookieDecline" type="button">Decline</button>
+        <button class="cookie-btn solid" id="cookieAccept" type="button">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+
+  <!-- Results page inline JS (filter + conversion rate) -->
+  <script>
+    (function resultsFilters(){
+      const tabs = document.querySelectorAll('.niche-tab');
+      const imgs = document.querySelectorAll('#proofWall img');
+      const rateOut = document.getElementById('convRate');
+
+      if (!tabs.length || !imgs.length || !rateOut) return;
+
+      // Adjust these to match YOUR proof (keep honest)
+      const rates = {
+        all: "10%–28%",
+        tradies: "18%–32%",
+        solar: "12%–24%",
+        agencies: "10%–18%",
+        home: "14%–26%",
+        local: "16%–28%",
+        realestate: "8%–16%",
+        insurance: "7%–14%"
+      };
+
+      function setActive(niche){
+        tabs.forEach(b => {
+          const active = b.dataset.niche === niche;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        imgs.forEach(img => {
+          const tag = img.dataset.niche || "all";
+          const show = (niche === "all") || (tag === niche);
+          img.style.display = show ? "" : "none";
+        });
+
+        rateOut.textContent = rates[niche] || "—";
+      }
+
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => setActive(btn.dataset.niche));
+      });
+
+      setActive('all');
+    })();
+  </script>
+</body>
+</html>
