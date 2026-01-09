@@ -79,6 +79,12 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   box-shadow:0 14px 40px rgba(52,93,190,.18);
   font-weight:750;
 }
+/* Header primary button: force white text */
+.header .btn-primary,
+.header .btn-primary:visited{
+  color:#fff !important;
+}
+
 .btn-primary.large{padding:13px 20px;font-size:15px}
 .btn-secondary{
   display:inline-flex;align-items:center;justify-content:center;
@@ -434,5 +440,6 @@ h2{font-size:clamp(28px,3vw,44px);line-height:1.1;letter-spacing:-.03em}
   }
   .proof-strip img{height:190px;scroll-snap-align:start}
 }
+
 
 
