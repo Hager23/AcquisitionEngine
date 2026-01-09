@@ -1891,9 +1891,153 @@ body {
 }
 
 .cookie-btn.solid:hover{ filter: brightness(1.02); }
+/* =========================
+   PROOF (TESTIMONIAL SCREENSHOTS)
+   Matches your glass + soft card system
+========================= */
+
+/* Hero strip */
+.proof-strip{
+  margin-top: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.proof-strip img{
+  width: 190px;
+  max-width: 46vw;
+  height: auto;
+  display: block;
+
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.75);
+
+  /* matches your card depth */
+  box-shadow: 0 30px 70px rgba(12,10,27,0.10);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+/* tiny “organic” tilt like modern landing pages */
+.proof-strip img:nth-child(2){ transform: rotate(1.2deg); }
+.proof-strip img:nth-child(3){ transform: rotate(-1.2deg); }
+
+.proof-strip img:hover{
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(84,64,178,0.18);
+  box-shadow: 0 40px 90px rgba(12,10,27,0.14);
+}
+
+.proof-note{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted2);
+  font-weight: 750;
+}
+
+/* Section 2 proof grid (3-up) */
+.proof-grid{
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.proof-card{
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 70px rgba(12,10,27,0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.proof-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(84,64,178,0.18);
+  box-shadow: 0 40px 90px rgba(12,10,27,0.09);
+}
+
+.proof-card img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Proof wall section */
+.section-proofwall{
+  position: relative;
+  background:
+    radial-gradient(70% 60% at 15% 20%, rgba(84,64,178,0.06), transparent 55%),
+    radial-gradient(60% 60% at 85% 30%, rgba(146,120,230,0.05), transparent 55%),
+    #ffffff;
+}
+
+.proofwall-head h2{
+  font-size: 42px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  max-width: 760px;
+  color: var(--ink);
+}
+
+.proofwall-head .sub{
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 720px;
+  font-weight: 650;
+}
+
+/* Masonry-style wall using CSS columns */
+.proof-wall{
+  margin-top: 22px;
+  columns: 3;
+  column-gap: 16px;
+}
+
+.proof-wall img{
+  width: 100%;
+  display: block;
+  margin: 0 0 16px;
+
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 30px 70px rgba(12,10,27,0.06);
+
+  break-inside: avoid;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.proof-wall img:hover{
+  transform: translateY(-3px);
+  border-color: rgba(84,64,178,0.18);
+  box-shadow: 0 40px 90px rgba(12,10,27,0.09);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .proof-grid{ grid-template-columns: 1fr; }
+  .proof-wall{ columns: 2; }
+  .proof-strip img{ width: 46vw; }
+}
+
+@media (max-width: 520px){
+  .proof-wall{ columns: 1; }
+  .proof-strip{ gap: 10px; }
+  .proof-strip img{ width: 100%; max-width: 100%; }
+}
+
 
 @media (max-width: 700px){
   .cookie-card{ grid-template-columns: 1fr; }
   .cookie-actions{ justify-content: flex-start; }
 }
+
 
