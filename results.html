@@ -1,228 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Results • ONIX</title>
-  <meta name="description" content="Real proof and outcomes from the ONIX system — screenshots, reviews, and the process behind it." />
-  <link rel="icon" href="logo2.png" type="image/png" />
-
-  <!-- IMPORTANT: this MUST be the correct path -->
-  <link rel="stylesheet" href="styles.css" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results — Onix</title>
+  <meta name="description" content="Real results, proof screenshots, and client feedback." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <!-- Site background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
   </div>
 
-  <!-- HEADER -->
-  <header class="header">
+  <!-- ✅ Header (same structure + ids) -->
+  <header class="header" role="banner">
     <div class="header-inner">
-      <a href="index.html" aria-label="ONIX home">
-        <img src="logo2.png" alt="ONIX" class="logo" />
+      <a href="index.html#top" aria-label="Home">
+        <!-- Keep your existing logo src exactly (change only if your file path differs) -->
+        <img class="logo" src="logo.png" alt="Onix" />
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav" type="button">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
+      <button
+        id="navToggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="siteNav"
+        aria-expanded="false">
+        <span class="nav-toggle-icon" aria-hidden="true"></span>
       </button>
 
-      <nav class="nav" id="siteNav">
+      <nav id="siteNav" class="nav" aria-label="Primary navigation">
+        <a href="index.html#proof">Proof</a>
         <a href="results.html" aria-current="page">Results</a>
-        <a href="index.html#how">How it works</a>
-        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#reviews">Reviews</a>
         <a href="#book" class="btn-primary">Book a Call</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" style="padding: 110px 20px 70px;">
-    <div class="hero-inner" style="grid-template-columns: 1.1fr 0.9fr;">
-      <div class="hero-copy">
-        <span class="pill">⭐ Proof library</span>
-        <h1>Real results. Real screenshots.</h1>
-        <p>
-          No stock testimonials. No “trust me bro” marketing.
-          These are unedited messages and outcomes from clients — across niches.
+  <main id="top">
+    <!-- ✅ Results hero -->
+    <section class="results-hero">
+      <div class="results-hero-inner">
+        <div class="kicker reveal">RESULTS</div>
+        <h1 class="reveal">Real outcomes. Real proof.</h1>
+        <p class="sub reveal">
+          Below are screenshots and client feedback pulled directly from real campaigns and real systems.
+          Scroll the proof strips and book a call when you’re ready.
         </p>
 
-        <div class="hero-cta">
-          <a class="btn-primary large" href="#book">Book a 15-minute call</a>
-          <a class="btn-secondary" href="#proof">See proof</a>
-          <a class="btn-secondary" href="#reviews">Read reviews</a>
+        <div class="results-actions reveal">
+          <a class="btn-primary large" href="#book">Book a Call</a>
+          <a class="btn-secondary" href="index.html#proof">Back to main proof</a>
         </div>
       </div>
+    </section>
 
-      <div class="hero-visual">
-        <div class="dashboard-card hero-dashboard" style="max-width: 560px;">
-          <div class="chart-card">
-            <div class="chart-header">
-              <h4>What you’ll get</h4>
-              <span class="chip">Transparent</span>
-            </div>
-            <div class="mini-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-              <div class="kpi">
-                <div class="kpi-top"><span class="kpi-icon">📌</span><span class="label">Proof wall</span></div>
-                <span class="value" style="font-size:18px; font-weight:950;">Screenshots</span>
+    <!-- ✅ Proof row (3) -->
+    <section class="section section-proof">
+      <div class="container">
+        <div class="kicker reveal">PROOF SNAPSHOTS</div>
+        <h2 class="reveal">A quick look (3 highlights)</h2>
+        <p class="sub reveal">These are quick highlights — more screenshots below.</p>
+
+        <div class="proof-row3 reveal" aria-label="Three proof screenshots">
+          <figure class="proof-shot">
+            <img src="proof1.png" alt="Proof screenshot 1" loading="lazy" />
+          </figure>
+          <figure class="proof-shot">
+            <img src="proof2.png" alt="Proof screenshot 2" loading="lazy" />
+          </figure>
+          <figure class="proof-shot">
+            <img src="proof3.png" alt="Proof screenshot 3" loading="lazy" />
+          </figure>
+        </div>
+
+        <p class="proof-note reveal">Tip: on mobile, the strips and grids are spaced for clean scrolling.</p>
+      </div>
+    </section>
+
+    <!-- ✅ Reviews as chat bubbles (extracted from flymehigh.com “What My Clients Have To Say?”) -->
+    <section class="section section-textblock" id="reviews">
+      <div class="container">
+        <div class="textblock reveal">
+          <h2>What clients say</h2>
+          <p>
+            Styled as chat bubbles for fast scanning. (Content sourced from the “What My Clients Have To Say?” section.)
+          </p>
+
+          <div class="chat-reviews" aria-label="Chat style reviews">
+            <article class="chat-bubble left">
+              <div class="chat-meta">
+                <span class="chat-name">Nicky M.</span>
+                <span class="chat-tag">No1 Real Estate Agent • West Auckland</span>
               </div>
-              <div class="kpi">
-                <div class="kpi-top"><span class="kpi-icon">⭐</span><span class="label">Reviews</span></div>
-                <span class="value" style="font-size:18px; font-weight:950;">Written + readable</span>
+              <p>John’s leads and system have given us an extra $100k on our bottom line year on year</p>
+            </article>
+
+            <article class="chat-bubble right">
+              <div class="chat-meta">
+                <span class="chat-name">Carolyn M.</span>
+                <span class="chat-tag">Real Estate Agent • Napier</span>
               </div>
-              <div class="kpi">
-                <div class="kpi-top"><span class="kpi-icon">⚡</span><span class="label">Speed to lead</span></div>
-                <span class="value" style="font-size:18px; font-weight:950;">Minutes</span>
+              <p>John is a sharp, smart mover who gets things done. He is always one step ahead and his word is 100% genuine and always wanting the best for his clients</p>
+            </article>
+
+            <article class="chat-bubble left">
+              <div class="chat-meta">
+                <span class="chat-name">Amanda S.</span>
+                <span class="chat-tag">Real Estate Agent • WGTN</span>
               </div>
-              <div class="kpi">
-                <div class="kpi-top"><span class="kpi-icon">📅</span><span class="label">Outcome</span></div>
-                <span class="value" style="font-size:18px; font-weight:950;">Booked calls</span>
+              <p>The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!</p>
+            </article>
+
+            <article class="chat-bubble right">
+              <div class="chat-meta">
+                <span class="chat-name">Rachel J.</span>
+                <span class="chat-tag">CEO • FIJI Yacht Cruises</span>
               </div>
+              <p>Careful what you wish for working with John. He’ll have your business flying in a flash!</p>
+            </article>
+
+            <article class="chat-bubble left">
+              <div class="chat-meta">
+                <span class="chat-name">Paul S.</span>
+                <span class="chat-tag">Risk Insurance</span>
+              </div>
+              <p>I’ve invested 17k for 2019 and my return was $110k. Super happy and just gets better year on year.</p>
+            </article>
+
+            <article class="chat-bubble right">
+              <div class="chat-meta">
+                <span class="chat-name">Mike M.</span>
+                <span class="chat-tag">ACC Business Advice</span>
+              </div>
+              <p>My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ More proof screenshots -->
+    <section class="section section-proof">
+      <div class="container">
+        <div class="kicker reveal">MORE PROOF</div>
+        <h2 class="reveal">More screenshots (scroll + snap)</h2>
+        <p class="sub reveal">Horizontal strips so nothing stacks into an ugly column on mobile.</p>
+
+        <div class="proof-strip reveal" aria-label="Proof screenshots strip">
+          <img src="proof4.png" alt="Proof screenshot 4" loading="lazy" />
+          <img src="proof5.png" alt="Proof screenshot 5" loading="lazy" />
+          <img src="proof6.png" alt="Proof screenshot 6" loading="lazy" />
+          <img src="proof7.png" alt="Proof screenshot 7" loading="lazy" />
+          <img src="proof8.png" alt="Proof screenshot 8" loading="lazy" />
+          <img src="proof9.png" alt="Proof screenshot 9" loading="lazy" />
+        </div>
+
+        <div class="proof-strip reveal" aria-label="More proof screenshots strip">
+          <img src="proof10.png" alt="Proof screenshot 10" loading="lazy" />
+          <img src="proof11.png" alt="Proof screenshot 11" loading="lazy" />
+          <img src="proof12.png" alt="Proof screenshot 12" loading="lazy" />
+        </div>
+
+        <p class="proof-note reveal">If you want these scattered inside the main site too, just drop the helper blocks anywhere (no layout break).</p>
+      </div>
+    </section>
+
+    <!-- ✅ Book a call + Calendly -->
+    <section class="section section-textblock" id="book">
+      <div class="container">
+        <div class="textblock reveal">
+          <h2>Book a call</h2>
+          <p>Pick a time that suits you. We’ll map your next 30–60 days and show you what to fix first.</p>
+
+          <div class="calendly-wrap" aria-label="Calendly scheduling widget">
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone-clone?back=1&month=2026-01"
+              style="min-width:320px;height:760px;">
             </div>
           </div>
-
-          <div class="widget" style="margin-top:14px;">
-            <div class="widget-head">
-              <span class="widget-title">Want this?</span>
-              <span class="widget-pill">Next step</span>
-            </div>
-            <p style="margin:0; color: var(--muted); font-weight:700; font-size:13.5px;">
-              Book a quick call and we’ll map the exact industry setup + show what to expect.
-            </p>
-            <div style="margin-top:12px;">
-              <a class="btn-primary" href="#book" style="display:inline-block;">Book a call</a>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROOF WALL -->
-  <section class="section section-proofwall" id="proof">
-    <div class="container">
-      <div class="proofwall-head">
-        <p class="kicker">Proof</p>
-        <h2>Unedited screenshots</h2>
-        <p class="sub">Drop your real images into proof1.png → proof12.png.</p>
-      </div>
-
-      <div class="proof-wall">
-        <img src="proof1.png" alt="Proof 1" loading="lazy" decoding="async">
-        <img src="proof2.png" alt="Proof 2" loading="lazy" decoding="async">
-        <img src="proof3.png" alt="Proof 3" loading="lazy" decoding="async">
-        <img src="proof4.png" alt="Proof 4" loading="lazy" decoding="async">
-        <img src="proof5.png" alt="Proof 5" loading="lazy" decoding="async">
-        <img src="proof6.png" alt="Proof 6" loading="lazy" decoding="async">
-        <img src="proof7.png" alt="Proof 7" loading="lazy" decoding="async">
-        <img src="proof8.png" alt="Proof 8" loading="lazy" decoding="async">
-        <img src="proof9.png" alt="Proof 9" loading="lazy" decoding="async">
-        <img src="proof10.png" alt="Proof 10" loading="lazy" decoding="async">
-        <img src="proof11.png" alt="Proof 11" loading="lazy" decoding="async">
-        <img src="proof12.png" alt="Proof 12" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="section section-compare" id="reviews">
-    <div class="container">
-      <div class="compare-head">
-        <p class="kicker">Reviews</p>
-        <h2>Written reviews</h2>
-        <p class="sub">Readable + clean — not screenshots of text.</p>
-      </div>
-
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-top">
-            <span class="badge good">Review</span>
-            <h3>Nicky M. — Real Estate (West Auckland)</h3>
-          </div>
-          <p class="sub">“John’s leads and system have given us an extra $100k on our bottom line year on year.”</p>
-        </article>
-
-        <article class="compare-card">
-          <div class="compare-top">
-            <span class="badge good">Review</span>
-            <h3>Paul S. — Risk Insurance</h3>
-          </div>
-          <p class="sub">“I invested 17k and my return was $110k. Super happy and it gets better year on year.”</p>
-        </article>
-
-        <article class="compare-card">
-          <div class="compare-top">
-            <span class="badge good">Review</span>
-            <h3>Mike M. — Business Advice</h3>
-          </div>
-          <p class="sub">“My site generates 20–25 leads a month returning $8k–$10k in commission per month.”</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOOK -->
-  <section class="section section-pricing" id="book">
-    <div class="container">
-      <div class="pricing-head">
-        <p class="kicker">Book</p>
-        <h2>Let’s map your niche engine.</h2>
-        <p class="sub">Pick a time and we’ll show you the setup for your industry.</p>
-      </div>
-
-      <div class="pricing-card" style="padding: 18px;">
-        <div class="calendly-inline-widget"
-             data-url="https://calendly.com/jordan-burkett"
-             style="min-width:320px;height:700px;"></div>
-        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="logo2.png" alt="ONIX" class="footer-logo" />
-          <p class="footer-desc">A fully managed acquisition + follow-up engine for service businesses.</p>
-          <div class="footer-badges">
-            <span class="f-badge">Receptionist follow-up</span>
-            <span class="f-badge">Booked calls</span>
-            <span class="f-badge">ROI reporting</span>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Pages</h4>
-          <a href="index.html#how">How it works</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="#proof">Proof</a>
-          <a href="#book">Book a call</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="cookies.html">Cookie Policy</a>
+    <!-- ✅ Footer (keep your exact footer if you already have one)
+         If your main site has a footer, paste it here unchanged.
+         This placeholder is intentionally minimal and safe. -->
+    <footer class="section" style="padding-top:40px; padding-bottom:40px;">
+      <div class="container" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div style="color:var(--muted2); font-weight:750;">© <span id="yr"></span> Onix</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="index.html#top" style="text-decoration:none; color:rgba(12,10,27,0.78); font-weight:850;">Home</a>
+          <a href="index.html#proof" style="text-decoration:none; color:rgba(12,10,27,0.78); font-weight:850;">Proof</a>
+          <a href="#book" style="text-decoration:none; color:rgba(12,10,27,0.78); font-weight:850;">Book</a>
         </div>
       </div>
+    </footer>
+  </main>
 
-      <div class="footer-bottom">
-        <p>© <span id="year"></span> ONIX. All rights reserved.</p>
-        <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
-      </div>
-    </div>
-  </footer>
-
+  <!-- Calendly embed script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="script.js"></script>
 </body>
 </html>
