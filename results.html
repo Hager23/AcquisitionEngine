@@ -1,19 +1,18 @@
+<!-- ===============================
+     results.html
+     =============================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Results – Onix Marketing</title>
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#ffffff" />
+  <title>Results • ONIX Marketing</title>
+  <meta name="description" content="Real proof. Real outcomes. Unedited screenshots and reviews across niches." />
+  <link rel="icon" href="logo2.png" type="image/png" />
 
   <link rel="stylesheet" href="styles.css" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -24,112 +23,286 @@
 </head>
 
 <body>
+  <!-- Tooltip -->
   <div id="chartTip" class="chart-tip" aria-hidden="true"></div>
 
+  <!-- Global animated background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
   </div>
 
   <!-- HEADER -->
-  <header class="header" id="top">
+  <header class="header">
     <div class="header-inner">
-      <a class="brand" href="index.html#top" aria-label="Onix Marketing home">
-        <img src="logo2.png" alt="Onix Marketing" class="logo" />
+      <a href="index.html" aria-label="ONIX Marketing home">
+        <img src="logo2.png" alt="ONIX Marketing" class="logo" />
       </a>
 
-      <nav class="nav nav-desktop" aria-label="Primary">
-        <a href="index.html#proof">Home Proof</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#proofwall">Proof</a>
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav" type="button">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <nav class="nav" id="siteNav">
+        <a href="results.html" aria-current="page">Results</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="#book" class="btn-primary" data-book>Book a Call</a>
       </nav>
-
-      <button class="nav-toggle" id="navToggle" type="button"
-        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-        <span class="nav-bars" aria-hidden="true"></span>
-      </button>
-    </div>
-
-    <div class="nav-mobile" id="mobileNav" aria-hidden="true">
-      <div class="nav-mobile-card">
-        <a href="index.html#top" class="nav-m-link">Home</a>
-        <a href="#reviews" class="nav-m-link">Reviews</a>
-        <a href="#proofwall" class="nav-m-link">Proof</a>
-        <a href="#book" class="btn-primary nav-m-cta" data-book>Book a Call</a>
-      </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="section" style="padding-top:62px;">
-    <div class="container">
-      <div class="proof-top reveal">
-        <p class="kicker">Results</p>
-        <h2>Booked calls. Closed deals. Real proof.</h2>
-        <p class="sub">
-          A mix of Onix Marketing campaign snapshots + Fly Me High proof — shown as readable text reviews and proof blocks.
+  <section class="hero" id="top" style="padding: 110px 20px 70px;">
+    <div class="hero-inner" style="grid-template-columns: 1.05fr 0.95fr;">
+      <div class="hero-copy">
+        <span class="pill">⭐ Proof library</span>
+        <h1>Results you can actually verify.</h1>
+        <p>
+          No stock testimonials. No polished case study fluff.
+          Just unedited screenshots + written reviews across niches — showing what happens when follow-up is handled properly.
         </p>
 
-        <div class="hero-cta" style="margin-top:14px;">
-          <a href="#reviews" class="btn-primary large">Read reviews</a>
-          <a href="#book" class="btn-secondary" data-book>Book a call</a>
+        <div class="hero-cta">
+          <a class="btn-primary large" href="#book" data-book>Book a 15-minute call</a>
+          <a class="btn-secondary" href="#proof">See proof</a>
+          <a class="btn-secondary" href="#reviews">Read reviews</a>
+        </div>
+
+        <div class="logos" style="margin-top:18px;">
+          <div class="logo-chip">Tradies</div>
+          <div class="logo-chip">Solar</div>
+          <div class="logo-chip">Agencies</div>
+          <div class="logo-chip">Local Services</div>
+          <div class="logo-chip">Real Estate</div>
+          <div class="logo-chip">Insurance</div>
+          <div class="logo-chip">Mortgages</div>
+          <div class="logo-chip">Medical</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="dashboard-card hero-dashboard" style="max-width:560px;">
+          <div class="kpi" data-tip="Proof is strongest when it’s consistent.">
+            <div class="kpi-top">
+              <span class="kpi-icon">📌</span>
+              <span class="label">What you’ll see</span>
+              <span class="delta flat">Live</span>
+            </div>
+            <span class="value" style="font-size:18px; color: var(--ink); font-weight:950;">Screenshots + reviews</span>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon">⚡</span>
+              <span class="label">Speed-to-lead focus</span>
+              <span class="delta up">Key</span>
+            </div>
+            <span class="value" style="font-size:18px; color: var(--ink); font-weight:950;">Minutes, not hours</span>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon">📅</span>
+              <span class="label">Outcome</span>
+              <span class="delta up">Booked</span>
+            </div>
+            <span class="value" style="font-size:18px; color: var(--ink); font-weight:950;">Qualified calls</span>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon">🧠</span>
+              <span class="label">System</span>
+              <span class="delta flat">Daily</span>
+            </div>
+            <span class="value" style="font-size:18px; color: var(--ink); font-weight:950;">Managed follow-up</span>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4>Proof pages</h4>
+              <span class="chip">12 screenshots</span>
+            </div>
+            <p style="margin:0; color: var(--muted); font-weight:700; font-size:13.5px;">
+              Scroll below for the full proof wall + written reviews.
+            </p>
+          </div>
+
+          <div class="widget">
+            <div class="widget-head">
+              <span class="widget-title">Next step</span>
+              <span class="widget-pill">Simple</span>
+            </div>
+            <p style="margin:0; color: var(--muted); font-weight:700; font-size:13.5px;">
+              Want similar results? Book a call and we’ll show you the exact engine for your niche.
+            </p>
+            <div style="margin-top:12px;">
+              <a class="btn-primary" href="#book" data-book style="display:inline-block;">Book a call</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS (MIXED: Onix + Fly Me High) -->
-  <section class="section" id="reviews">
+  <!-- PROOF IMAGES 1-12 -->
+  <section class="section section-proofwall" id="proof" aria-label="Proof screenshots">
     <div class="container">
-      <div class="proof-top reveal">
-        <p class="kicker">Reviews</p>
-        <h2>What people say after the system is installed</h2>
-        <p class="sub">A mix of Onix and Fly Me High feedback. Some details removed for privacy.</p>
-      </div>
-
-      <div class="reviews-grid reveal" id="reviewsGrid"></div>
-    </div>
-  </section>
-
-  <!-- PROOF WALL (IMAGES OPTIONAL) -->
-  <section class="section" id="proofwall">
-    <div class="container">
-      <div class="proof-top reveal">
+      <div class="proofwall-head reveal">
         <p class="kicker">Proof</p>
-        <h2>Not testimonials — receipts.</h2>
-        <p class="sub">If you prefer images, add your proof screenshots below (optional).</p>
+        <h2>Unedited screenshots (1–12).</h2>
+        <p class="sub">Exactly as received — no redesign, no rewriting.</p>
       </div>
 
-      <div class="proof-grid reveal" aria-label="Proof screenshots">
-        <figure class="proof-card"><img src="proof1.png" alt="Proof 1" loading="lazy" decoding="async"></figure>
-        <figure class="proof-card"><img src="proof2.png" alt="Proof 2" loading="lazy" decoding="async"></figure>
-        <figure class="proof-card"><img src="proof3.png" alt="Proof 3" loading="lazy" decoding="async"></figure>
-      </div>
-
-      <div class="center-cta reveal">
-        <a href="index.html#top" class="btn-secondary">Back to Home</a>
-        <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
+      <div class="proof-wall reveal">
+        <img src="proof1.png" alt="Proof screenshot 1" loading="lazy" decoding="async">
+        <img src="proof2.png" alt="Proof screenshot 2" loading="lazy" decoding="async">
+        <img src="proof3.png" alt="Proof screenshot 3" loading="lazy" decoding="async">
+        <img src="proof4.png" alt="Proof screenshot 4" loading="lazy" decoding="async">
+        <img src="proof5.png" alt="Proof screenshot 5" loading="lazy" decoding="async">
+        <img src="proof6.png" alt="Proof screenshot 6" loading="lazy" decoding="async">
+        <img src="proof7.png" alt="Proof screenshot 7" loading="lazy" decoding="async">
+        <img src="proof8.png" alt="Proof screenshot 8" loading="lazy" decoding="async">
+        <img src="proof9.png" alt="Proof screenshot 9" loading="lazy" decoding="async">
+        <img src="proof10.png" alt="Proof screenshot 10" loading="lazy" decoding="async">
+        <img src="proof11.png" alt="Proof screenshot 11" loading="lazy" decoding="async">
+        <img src="proof12.png" alt="Proof screenshot 12" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
 
-  <!-- BOOK -->
-  <section class="section section-book" id="book">
+  <!-- TEXT SECTION -->
+  <section class="section" aria-label="What this means">
     <div class="container">
-      <div class="book-head reveal">
-        <p class="kicker">Book a call</p>
-        <h2>Pick a time that works.</h2>
-        <p class="sub">We’ll map the fastest path to more booked calls — and what to fix first.</p>
+      <div class="reveal">
+        <p class="kicker">What it means</p>
+        <h2 style="font-size:42px; line-height:1.08; letter-spacing:-0.02em; color: var(--ink); max-width: 820px;">
+          Results are a byproduct of a system — not motivation.
+        </h2>
+        <p class="sub" style="max-width:820px; margin-top:10px;">
+          Most businesses already have demand. They just lose it in the gaps:
+          missed calls, slow follow-up, no nurturing, and no tracking.
+          The engine fixes those gaps with a managed team + a repeatable process — so your marketing doesn’t rely on you “being on” every day.
+        </p>
+
+        <div class="support-guarantee" style="margin-top:18px;">
+          <div class="sg-card">
+            <h3>What we install</h3>
+            <ul class="sg-list">
+              <li>Speed-to-lead follow-up</li>
+              <li>Receptionist qualification + booking</li>
+              <li>Nurture for non-responders</li>
+              <li>Reporting that shows ROI</li>
+            </ul>
+          </div>
+
+          <div class="sg-card sg-guarantee">
+            <h3>How we run it</h3>
+            <div class="sg-big">Daily execution</div>
+            <div class="sg-small">
+              We don’t hand you “a strategy”.
+              We run the follow-up, keep the calendar full, and improve the system every week.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITTEN REVIEWS (includes Fly Me High ones as text) -->
+  <section class="section section-compare" id="reviews" aria-label="Written reviews">
+    <div class="container">
+      <div class="compare-head reveal">
+        <p class="kicker">Reviews</p>
+        <h2>Written reviews from real clients.</h2>
+        <p class="sub">Displayed as text (not images) so it’s readable and searchable.</p>
       </div>
 
-      <div class="book-card reveal">
+      <div class="compare-grid">
+        <!-- Review cards styled using existing compare-card -->
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Nicky M. — No1 Real Estate Agent, West Auckland</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “John’s leads and system have given us an extra $100k on our bottom line year on year.”
+          </p>
+        </article>
+
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Carolyn M. — Real Estate Agent, Napier</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “John is a sharp, smart mover who gets things done. He is always one step ahead and his word is 100% genuine and always wanting the best for his clients.”
+          </p>
+        </article>
+
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Amanda S. — Real Estate Agent, WGTN</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!”
+          </p>
+        </article>
+
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Rachel J. — CEO, FIJI Yacht Cruises</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “Careful what you wish for working with John. He’ll have your business flying in a flash!”
+          </p>
+        </article>
+
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Paul S. — Risk Insurance</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “I’ve invested 17k for 2019 and my return was $110k. Super happy and just gets better year on year.”
+          </p>
+        </article>
+
+        <article class="compare-card reveal">
+          <div class="compare-top">
+            <span class="badge good">Review</span>
+            <h3>Mike M. — ACC Business Advice</h3>
+          </div>
+          <p class="sub" style="max-width: 720px;">
+            “My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!”
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR / BOOKING -->
+  <section class="section section-pricing" id="book" aria-label="Book a call">
+    <div class="container">
+      <div class="pricing-head reveal">
+        <p class="kicker">Book</p>
+        <h2>Let’s map your niche engine.</h2>
+        <p class="sub">Pick a time. We’ll show you the exact setup for your business and what to expect.</p>
+      </div>
+
+      <div class="pricing-card reveal" style="padding: 18px;">
+        <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget"
              data-url="https://calendly.com/jordan-burkett"
              style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript"
-                src="https://assets.calendly.com/assets/external/widget.js"
-                async></script>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
       </div>
     </div>
   </section>
@@ -139,9 +312,9 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="logo2.png" alt="Onix Marketing" class="footer-logo" />
+          <img src="logo2.png" alt="ONIX Marketing" class="footer-logo" />
           <p class="footer-desc">
-            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
+            A fully managed acquisition + follow-up engine for service businesses.
           </p>
           <div class="footer-badges">
             <span class="f-badge">Receptionist follow-up</span>
@@ -151,16 +324,18 @@
         </div>
 
         <div class="footer-col">
-          <h4>Site</h4>
-          <a href="index.html#top">Home</a>
-          <a href="#reviews">Reviews</a>
+          <h4>Pages</h4>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="#proof">Proof</a>
           <a href="#book" data-book>Book a call</a>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#book" data-book>Contact</a>
-          <a href="#book" data-book>Support</a>
+          <h4>Results</h4>
+          <a href="#proof">Screenshots</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#book" data-book>Calendar</a>
         </div>
 
         <div class="footer-col">
@@ -172,48 +347,12 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="year"></span> Onix Marketing. All rights reserved.</p>
+        <p>© <span id="year"></span> ONIX Marketing. All rights reserved.</p>
         <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
-
-  <!-- Reviews data (mixed) -->
-  <script>
-    (function renderReviews(){
-      const mount = document.getElementById("reviewsGrid");
-      if (!mount) return;
-
-      const REVIEWS = [
-        // ✅ Onix (you can replace with your exact ones anytime)
-        { source: "Onix", meta: "Week 2", quote: "“Phone is ringing again. Missed calls are down and the calendar is filling.”", tags: ["Speed-to-lead", "Booking"] },
-        { source: "Onix", meta: "Week 4", quote: "“We’re actually choosing jobs now — not begging for them.”", tags: ["Quality", "Capacity"] },
-        { source: "Onix", meta: "Ongoing", quote: "“The receptionist follow-up is the difference — people answer when it’s fast.”", tags: ["Reception", "Conversion"] },
-
-        // ✅ Fly Me High (text captured from Fly Me High feedback section)
-        { source: "Fly Me High", meta: "Apr 2022", quote: "“You do have a good lead generation system and I do see the value in it.”", tags: ["Lead gen", "System"] },
-        { source: "Fly Me High", meta: "Feb 2021", quote: "“Have purchased 3 leads… and have already booked in 3 in-person appraisals! Your scripts are awesome.”", tags: ["Booked calls", "Scripts"] },
-        { source: "Fly Me High", meta: "Aug 2021", quote: "“Really Loving the System definitely seeing good results”", tags: ["Results", "Consistency"] },
-        { source: "Fly Me High", meta: "Feb 2022", quote: "“The leads I have been getting through have been great and more than 50%… turning into good potential listings…”", tags: ["Quality", "Conversion"] },
-        { source: "Fly Me High", meta: "May 2021", quote: "“They are genuine leads. I want to say a big Thank You to the FlyMeHigh team.”", tags: ["Quality", "Trust"] },
-        { source: "Fly Me High", meta: "—", quote: "“Slick, professional and simple – this is a great addition to our process and pipeline marketing”", tags: ["Process", "Pipeline"] },
-      ];
-
-      mount.innerHTML = REVIEWS.map(r => `
-        <article class="review-card">
-          <div class="review-top">
-            <span class="review-badge">${r.source}</span>
-            <span class="review-meta">${r.meta}</span>
-          </div>
-          <p class="review-quote">${r.quote}</p>
-          <div class="review-tags">
-            ${r.tags.map(t => `<span>${t}</span>`).join("")}
-          </div>
-        </article>
-      `).join("");
-    })();
-  </script>
 </body>
 </html>
