@@ -3,6 +3,169 @@
 // ===============================
 
 // -------------------------------
+// 0) Industry selector -> update chart + KPIs
+// -------------------------------
+const INDUSTRY_PRESETS = {
+  tradies: {
+    label: "Tradies",
+    kpis: { enquiries: 38, calls: 12, won: 5, revenue: 48200 },
+    deltas: { enquiries: "+18%", calls: "+9%", won: "—", revenue: "-4%" },
+    chart: {
+      lineD: "M0 98 L40 86 L80 90 L120 62 L160 58 L200 74 L240 44 L280 34 L300 30",
+      areaD: "M0 98 L40 86 L80 90 L120 62 L160 58 L200 74 L240 44 L280 34 L300 30 L300 120 L0 120 Z",
+    },
+    funnel: { enquiries: 38, contacted: 28, booked: 12, won: 5 },
+  },
+  solar: {
+    label: "Solar",
+    kpis: { enquiries: 26, calls: 9, won: 3, revenue: 61300 },
+    deltas: { enquiries: "+11%", calls: "+7%", won: "+1", revenue: "+6%" },
+    chart: {
+      lineD: "M0 102 L40 92 L80 78 L120 66 L160 70 L200 56 L240 48 L280 40 L300 36",
+      areaD: "M0 102 L40 92 L80 78 L120 66 L160 70 L200 56 L240 48 L280 40 L300 36 L300 120 L0 120 Z",
+    },
+    funnel: { enquiries: 26, contacted: 20, booked: 9, won: 3 },
+  },
+  agencies: {
+    label: "Agencies",
+    kpis: { enquiries: 18, calls: 7, won: 2, revenue: 22400 },
+    deltas: { enquiries: "+9%", calls: "+5%", won: "—", revenue: "+3%" },
+    chart: {
+      lineD: "M0 104 L40 96 L80 92 L120 78 L160 72 L200 74 L240 60 L280 52 L300 48",
+      areaD: "M0 104 L40 96 L80 92 L120 78 L160 72 L200 74 L240 60 L280 52 L300 48 L300 120 L0 120 Z",
+    },
+    funnel: { enquiries: 18, contacted: 14, booked: 7, won: 2 },
+  },
+  local: {
+    label: "Local Services",
+    kpis: { enquiries: 31, calls: 10, won: 4, revenue: 36750 },
+    deltas: { enquiries: "+14%", calls: "+8%", won: "+1", revenue: "+2%" },
+    chart: {
+      lineD: "M0 100 L40 88 L80 92 L120 70 L160 64 L200 68 L240 52 L280 42 L300 40",
+      areaD: "M0 100 L40 88 L80 92 L120 70 L160 64 L200 68 L240 52 L280 42 L300 40 L300 120 L0 120 Z",
+    },
+    funnel: { enquiries: 31, contacted: 23, booked: 10, won: 4 },
+  },
+};
+
+function setText(el, v) {
+  if (!el) return;
+  el.textContent = String(v);
+}
+
+function formatMoney(v) {
+  const n = Number(v || 0);
+  return `$${n.toLocaleString()}`;
+}
+
+function setDelta(el, v, cls) {
+  if (!el) return;
+  el.textContent = v;
+  el.classList.remove("up", "down", "flat");
+  el.classList.add(cls);
+}
+
+function updateFunnel(f) {
+  const e = Number(f.enquiries || 0);
+  const c = Number(f.contacted || 0);
+  const b = Number(f.booked || 0);
+  const w = Number(f.won || 0);
+
+  const rows = [
+    { key: "enquiries", val: e, w: 100 },
+    { key: "contacted", val: c, w: e ? Math.round((c / e) * 100) : 0 },
+    { key: "booked", val: b, w: e ? Math.round((b / e) * 100) : 0 },
+    { key: "won", val: w, w: e ? Math.round((w / e) * 100) : 0 },
+  ];
+
+  rows.forEach((r) => {
+    const strong = document.querySelector(`[data-funnel="${r.key}"] strong`);
+    const fill = document.querySelector(`[data-funnel="${r.key}"] .fill`);
+    if (strong) strong.textContent = r.val.toLocaleString();
+    if (fill) fill.style.setProperty("--w", `${r.w}%`);
+  });
+}
+
+function updateChartPaths(preset) {
+  const line = document.querySelector(".chart-line");
+  const area = document.querySelector(".chart-area");
+  const shimmerMask = document.querySelector(".chart-line-mask");
+  const shimmer = document.querySelector(".chart-shimmer");
+
+  if (!line || !area) return;
+
+  line.setAttribute("d", preset.chart.lineD);
+  area.setAttribute("d", preset.chart.areaD);
+  if (shimmerMask) shimmerMask.setAttribute("d", preset.chart.lineD);
+  if (shimmer) shimmer.setAttribute("d", preset.chart.lineD);
+
+  // reset draw animation so it feels “alive” after switching
+  line.style.animation = "none";
+  void line.getBoundingClientRect();
+  line.style.animation = "";
+  area.style.animation = "none";
+  void area.getBoundingClientRect();
+  area.style.animation = "";
+}
+
+function applyIndustry(key) {
+  const preset = INDUSTRY_PRESETS[key] || INDUSTRY_PRESETS.tradies;
+
+  // label in chip (keeps “7 days”, but you also get industry)
+  const industryChip = document.getElementById("industryChip");
+  setText(industryChip, preset.label);
+
+  // KPI numbers (we keep count-up behavior by writing final values, then the observer will animate on next view)
+  const kpiEnq = document.getElementById("kpiEnquiries");
+  const kpiCalls = document.getElementById("kpiCalls");
+  const kpiWon = document.getElementById("kpiWon");
+  const kpiRev = document.getElementById("kpiRevenue");
+
+  if (kpiEnq) kpiEnq.setAttribute("data-count", String(preset.kpis.enquiries));
+  if (kpiCalls) kpiCalls.setAttribute("data-count", String(preset.kpis.calls));
+  if (kpiWon) kpiWon.setAttribute("data-count", String(preset.kpis.won));
+  if (kpiRev) kpiRev.setAttribute("data-count", String(preset.kpis.revenue));
+
+  // reset visible text so it re-counts nicely if already on screen
+  [kpiEnq, kpiCalls, kpiWon].forEach((el) => el && (el.textContent = "0"));
+  if (kpiRev) kpiRev.textContent = "$0";
+
+  // deltas
+  setDelta(document.getElementById("dEnquiries"), preset.deltas.enquiries, "up");
+  setDelta(document.getElementById("dCalls"), preset.deltas.calls, "up");
+
+  // won delta (flat)
+  setDelta(document.getElementById("dWon"), preset.deltas.won, "flat");
+
+  // revenue delta (decide up/down based on sign)
+  const revDelta = String(preset.deltas.revenue || "—");
+  const revCls = revDelta.includes("-") ? "down" : revDelta.includes("+") ? "up" : "flat";
+  setDelta(document.getElementById("dRevenue"), revDelta, revCls);
+
+  // funnel
+  updateFunnel(preset.funnel);
+
+  // chart paths
+  updateChartPaths(preset);
+
+  // place dot at end after path swap
+  placeDotAtEnd();
+
+  // re-run dot “once” animation (soft)
+  animateDotOnce();
+
+  // re-run counts if visible (cheap trigger)
+  forceShowReveals();
+}
+
+const industrySelect = document.getElementById("industrySelect");
+if (industrySelect) {
+  industrySelect.addEventListener("change", () => {
+    applyIndustry(industrySelect.value);
+  });
+}
+
+// -------------------------------
 // 1) Smooth anchor scrolling
 // -------------------------------
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -150,8 +313,8 @@ let tiltRAF = null;
 function setTilt(x, y) {
   if (!heroCard) return;
   const rect = heroCard.getBoundingClientRect();
-  const px = (x - rect.left) / rect.width;   // 0..1
-  const py = (y - rect.top) / rect.height;   // 0..1
+  const px = (x - rect.left) / rect.width; // 0..1
+  const py = (y - rect.top) / rect.height; // 0..1
 
   const rotateY = (px - 0.5) * 10; // -5..5 deg
   const rotateX = (0.5 - py) * 10; // -5..5 deg
@@ -227,21 +390,23 @@ function animateDotOnce() {
 // Run ONCE when hero becomes visible
 const hero = document.querySelector(".hero");
 if (hero) {
-  const heroObs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      animateDotOnce();
-      heroObs.disconnect();
-    });
-  }, { threshold: 0.2 });
+  const heroObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        animateDotOnce();
+        heroObs.disconnect();
+      });
+    },
+    { threshold: 0.2 }
+  );
 
   heroObs.observe(hero);
 } else {
-  // fallback
   animateDotOnce();
 }
 
-// Optional hover interaction: dot follows your mouse (feels “real” without constant motion)
+// Optional hover interaction: dot follows your mouse
 if (chart && linePath && dot && linePath.getTotalLength) {
   const total = linePath.getTotalLength();
 
@@ -276,7 +441,6 @@ document.querySelectorAll(".btn-primary, .btn-secondary").forEach((btn) => {
 
 // -------------------------------
 // 8) Subtle scroll-based background intensity
-//    (makes site feel more “alive”)
 // -------------------------------
 const aurora = document.querySelector(".site-aurora");
 if (aurora) {
@@ -294,7 +458,7 @@ if (aurora) {
 // ================================
 // Section 3: Engine Map interactions
 // ================================
-(function initEngineMap(){
+(function initEngineMap() {
   const stepsWrap = document.getElementById("engineSteps");
   const idxButtons = document.querySelectorAll(".idx");
   const progressEl = document.getElementById("railProgress");
@@ -307,7 +471,7 @@ if (aurora) {
   idxButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const n = Number(btn.dataset.step || "0");
-      const target = stepCards.find(c => Number(c.dataset.step) === n);
+      const target = stepCards.find((c) => Number(c.dataset.step) === n);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   });
@@ -322,10 +486,13 @@ if (aurora) {
       const r = card.getBoundingClientRect();
       const center = r.top + r.height * 0.45;
       const dist = Math.abs(center - vh * 0.42);
-      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestIdx = i;
+      }
     });
 
-    idxButtons.forEach(b => b.classList.remove("active"));
+    idxButtons.forEach((b) => b.classList.remove("active"));
     const activeStep = stepCards[bestIdx]?.dataset.step;
     const activeBtn = document.querySelector(`.idx[data-step="${activeStep}"]`);
     if (activeBtn) activeBtn.classList.add("active");
@@ -342,7 +509,7 @@ if (aurora) {
 // ================================
 // Section 4: Timeline progress fill
 // ================================
-(function initTimelineProgress(){
+(function initTimelineProgress() {
   const prog = document.getElementById("timelineProgress");
   const wrap = prog?.closest(".timeline");
   if (!prog || !wrap) return;
@@ -380,7 +547,7 @@ if (aurora) {
 // ================================
 // Booking link: bind all CTAs
 // ================================
-(function bindBookingLinks(){
+(function bindBookingLinks() {
   const url = window.BOOKING_URL;
   if (!url) return;
 
@@ -394,7 +561,7 @@ if (aurora) {
 // ================================
 // Footer year
 // ================================
-(function footerYear(){
+(function footerYear() {
   const el = document.getElementById("year");
   if (el) el.textContent = new Date().getFullYear();
 })();
@@ -402,7 +569,7 @@ if (aurora) {
 // ================================
 // Cookie banner (Accept/Decline)
 // ================================
-(function cookieBanner(){
+(function cookieBanner() {
   const KEY = "ae_cookie_choice"; // "accepted" | "declined"
   const banner = document.getElementById("cookieBanner");
   const acceptBtn = document.getElementById("cookieAccept");
@@ -416,7 +583,7 @@ if (aurora) {
     banner.setAttribute("aria-hidden", "false");
   }
 
-  function close(choice){
+  function close(choice) {
     localStorage.setItem(KEY, choice);
     banner.classList.remove("show");
     banner.setAttribute("aria-hidden", "true");
@@ -432,6 +599,11 @@ if (aurora) {
     }
   });
 })();
+
+// -------------------------------
+// Init: set default industry (matches your old numbers)
+// -------------------------------
+applyIndustry("tradies");
 
 // ===============================
 // END: script.js
