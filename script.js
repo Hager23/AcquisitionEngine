@@ -1,41 +1,52 @@
 // ===============================
-// START: script.js (Onix Marketing)
+// script.js (Onix Marketing)
 // ===============================
 
-const qs = (s, r = document) => r.querySelector(s);
-const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
-
 // -------------------------------
-// 0) Mobile hamburger menu
+// 0) Mobile nav toggle (hamburger)
 // -------------------------------
 (function mobileNav(){
-  const header = qs("#siteHeader");
-  const btn = qs("#navToggle");
-  const panel = qs("#mobileNav");
-  if (!header || !btn || !panel) return;
+  const toggle = document.getElementById("navToggle");
+  const mobile = document.getElementById("mobileNav");
+  if (!toggle || !mobile) return;
 
-  const setOpen = (open) => {
-    header.classList.toggle("menu-open", open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-    panel.setAttribute("aria-hidden", open ? "false" : "true");
-    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-  };
+  function close() {
+    mobile.classList.remove("show");
+    mobile.setAttribute("aria-hidden", "true");
+    toggle.setAttribute("aria-expanded", "false");
+  }
 
-  btn.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
-  panel.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
-  window.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-  window.addEventListener("resize", () => { if (window.innerWidth > 820) setOpen(false); });
+  function open() {
+    mobile.classList.add("show");
+    mobile.setAttribute("aria-hidden", "false");
+    toggle.setAttribute("aria-expanded", "true");
+  }
+
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    expanded ? close() : open();
+  });
+
+  // close menu when clicking a link
+  mobile.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => close());
+  });
+
+  // ESC closes
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
 })();
 
 // -------------------------------
 // 1) Smooth anchor scrolling
 // -------------------------------
-qsa('a[href^="#"]').forEach((a) => {
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
     const href = a.getAttribute("href");
-    if (!href || href === "#" || href === "#0") return;
+    if (!href || href === "#") return;
 
-    const target = qs(href);
+    const target = document.querySelector(href);
     if (!target) return;
 
     e.preventDefault();
@@ -44,42 +55,25 @@ qsa('a[href^="#"]').forEach((a) => {
 });
 
 // -------------------------------
-// 2) Scroll reveal (SAFE)
-// uses .show (and also adds .is-visible for compatibility)
+// 2) Scroll reveal
 // -------------------------------
-const revealEls = qsa(".reveal");
-const makeVisible = (el) => { el.classList.add("show"); el.classList.add("is-visible"); };
+const revealEls = Array.from(document.querySelectorAll(".reveal"));
 
-if (!("IntersectionObserver" in window)) {
-  revealEls.forEach(makeVisible);
-} else {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("show");
+      revealObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
+);
 
-        // stagger children if it's a container
-        const kids = el.querySelectorAll(".reveal-child");
-        if (kids.length) {
-          kids.forEach((k, i) => {
-            k.style.transitionDelay = `${i * 90}ms`;
-            makeVisible(k);
-          });
-        }
-
-        makeVisible(el);
-        revealObserver.unobserve(el);
-      });
-    },
-    { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
-  );
-
-  revealEls.forEach((el) => revealObserver.observe(el));
-}
+revealEls.forEach((el) => revealObserver.observe(el));
 
 // -------------------------------
-// 3) Count-up animation (slower + stagger)
+// 3) Count-up animation
 // -------------------------------
 function animateCount(el, delayMs = 0) {
   const target = Number(el.getAttribute("data-count") || "0");
@@ -88,43 +82,35 @@ function animateCount(el, delayMs = 0) {
   const start = performance.now() + delayMs;
 
   function tick(now) {
-    if (now < start) { requestAnimationFrame(tick); return; }
+    if (now < start) return requestAnimationFrame(tick);
     const t = Math.min(1, (now - start) / duration);
     const eased = 1 - Math.pow(1 - t, 3);
     const value = Math.round(target * eased);
-
     el.textContent = isMoney ? `$${value.toLocaleString()}` : value.toLocaleString();
     if (t < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 }
 
-const countEls = qsa(".count[data-count]");
-if (!("IntersectionObserver" in window)) {
-  countEls.forEach((node, i) => animateCount(node, i * 110));
-} else {
-  const countObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-
-        const parent = e.target.closest(".dashboard-card, .outcomes, .section");
-        const group = parent ? qsa(".count[data-count]", parent) : [e.target];
-
-        group.forEach((node, i) => animateCount(node, i * 110));
-        group.forEach((node) => countObserver.unobserve(node));
-      });
-    },
-    { threshold: 0.35 }
-  );
-
-  countEls.forEach((el) => countObserver.observe(el));
-}
+const countEls = Array.from(document.querySelectorAll(".count[data-count]"));
+const countObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const parent = e.target.closest(".dashboard-card, .outcomes, .section") || document;
+      const group = Array.from(parent.querySelectorAll(".count[data-count]"));
+      group.forEach((node, i) => animateCount(node, i * 110));
+      group.forEach((node) => countObserver.unobserve(node));
+    });
+  },
+  { threshold: 0.35 }
+);
+countEls.forEach((el) => countObserver.observe(el));
 
 // -------------------------------
 // 4) Tooltip for KPI (data-tip)
 // -------------------------------
-const tip = qs("#chartTip");
+const tip = document.getElementById("chartTip");
 
 function showTip(text) {
   if (!tip) return;
@@ -134,12 +120,8 @@ function showTip(text) {
 }
 function moveTip(x, y) {
   if (!tip) return;
-  const pad = 14;
-  const maxW = 280;
-  const left = Math.min(window.innerWidth - maxW, x + pad);
-  const top = Math.max(10, y + pad);
-  tip.style.left = `${left}px`;
-  tip.style.top = `${top}px`;
+  tip.style.left = `${x + 14}px`;
+  tip.style.top = `${y + 14}px`;
 }
 function hideTip() {
   if (!tip) return;
@@ -147,16 +129,16 @@ function hideTip() {
   tip.setAttribute("aria-hidden", "true");
 }
 
-qsa("[data-tip]").forEach((node) => {
+document.querySelectorAll("[data-tip]").forEach((node) => {
   node.addEventListener("mouseenter", () => showTip(node.getAttribute("data-tip")));
   node.addEventListener("mousemove", (e) => moveTip(e.clientX, e.clientY));
   node.addEventListener("mouseleave", hideTip);
 });
 
 // -------------------------------
-// 5) Hero dashboard tilt/parallax
+// 5) Hero dashboard tilt
 // -------------------------------
-const heroCard = qs(".hero-dashboard");
+const heroCard = document.querySelector(".hero-dashboard");
 let tiltRAF = null;
 
 function setTilt(x, y) {
@@ -167,12 +149,14 @@ function setTilt(x, y) {
 
   const rotateY = (px - 0.5) * 10;
   const rotateX = (0.5 - py) * 10;
-  heroCard.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(18px)`;
+
+  heroCard.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
 }
 function resetTilt() {
   if (!heroCard) return;
   heroCard.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
 }
+
 if (heroCard) {
   heroCard.addEventListener("mousemove", (e) => {
     if (tiltRAF) cancelAnimationFrame(tiltRAF);
@@ -185,19 +169,12 @@ if (heroCard) {
 }
 
 // -------------------------------
-// 6) Lead chart animate once + hover dot
+// 6) Lead chart: dot animates once
 // -------------------------------
-const chart = qs(".line-chart");
-const linePath = qs(".chart-line");
-const dot = qs(".chart-dot");
+const chart = document.querySelector(".line-chart");
+const linePath = document.querySelector(".chart-line");
+const dot = document.querySelector(".chart-dot");
 
-function placeDotAtEnd() {
-  if (!linePath || !dot || !linePath.getTotalLength) return;
-  const total = linePath.getTotalLength();
-  const p = linePath.getPointAtLength(total);
-  dot.setAttribute("cx", p.x);
-  dot.setAttribute("cy", p.y);
-}
 function animateDotOnce() {
   if (!linePath || !dot || !linePath.getTotalLength) return;
   const total = linePath.getTotalLength();
@@ -211,13 +188,12 @@ function animateDotOnce() {
     dot.setAttribute("cx", p.x);
     dot.setAttribute("cy", p.y);
     if (t < 1) requestAnimationFrame(frame);
-    else placeDotAtEnd();
   }
   requestAnimationFrame(frame);
 }
 
-const hero = qs(".hero");
-if (hero && "IntersectionObserver" in window) {
+const hero = document.querySelector(".hero");
+if (hero) {
   const heroObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
@@ -226,37 +202,12 @@ if (hero && "IntersectionObserver" in window) {
     });
   }, { threshold: 0.2 });
   heroObs.observe(hero);
-} else {
-  animateDotOnce();
-}
-
-if (chart && linePath && dot && linePath.getTotalLength) {
-  const total = linePath.getTotalLength();
-  chart.addEventListener("mousemove", (e) => {
-    const rect = chart.getBoundingClientRect();
-    const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
-    const t = x / rect.width;
-    const p = linePath.getPointAtLength(total * t);
-    dot.setAttribute("cx", p.x);
-    dot.setAttribute("cy", p.y);
-  });
-  chart.addEventListener("mouseleave", placeDotAtEnd);
 }
 
 // -------------------------------
-// 7) Button micro-interaction
+// 7) Subtle scroll-based background intensity
 // -------------------------------
-qsa(".btn-primary, .btn-secondary").forEach((btn) => {
-  btn.addEventListener("mousedown", () => { btn.style.transform = "translateY(1px) scale(0.99)"; });
-  const reset = () => (btn.style.transform = "");
-  btn.addEventListener("mouseup", reset);
-  btn.addEventListener("mouseleave", reset);
-});
-
-// -------------------------------
-// 8) Background intensity on scroll
-// -------------------------------
-const aurora = qs(".site-aurora");
+const aurora = document.querySelector(".site-aurora");
 if (aurora) {
   let raf = null;
   window.addEventListener("scroll", () => {
@@ -266,19 +217,19 @@ if (aurora) {
       const intensity = Math.min(1, y / 900);
       aurora.style.filter = `blur(${34 - intensity * 6}px) saturate(${110 + intensity * 15}%)`;
     });
-  }, { passive: true });
+  });
 }
 
 // -------------------------------
-// Engine map interactions
+// 8) Engine Map interactions
 // -------------------------------
 (function initEngineMap(){
-  const stepsWrap = qs("#engineSteps");
-  const idxButtons = qsa(".idx");
-  const progressEl = qs("#railProgress");
+  const stepsWrap = document.getElementById("engineSteps");
+  const idxButtons = document.querySelectorAll(".idx");
+  const progressEl = document.getElementById("railProgress");
   if (!stepsWrap || !idxButtons.length || !progressEl) return;
 
-  const stepCards = qsa(".step-card", stepsWrap);
+  const stepCards = Array.from(stepsWrap.querySelectorAll(".step-card"));
 
   idxButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -289,7 +240,7 @@ if (aurora) {
   });
 
   function onScroll() {
-    const vh = window.innerHeight || 1;
+    const vh = window.innerHeight;
     let bestIdx = 0;
     let bestDist = Infinity;
 
@@ -302,7 +253,7 @@ if (aurora) {
 
     idxButtons.forEach(b => b.classList.remove("active"));
     const activeStep = stepCards[bestIdx]?.dataset.step;
-    const activeBtn = qs(`.idx[data-step="${activeStep}"]`);
+    const activeBtn = document.querySelector(`.idx[data-step="${activeStep}"]`);
     if (activeBtn) activeBtn.classList.add("active");
 
     const p = stepCards.length <= 1 ? 100 : (bestIdx / (stepCards.length - 1)) * 100;
@@ -314,21 +265,36 @@ if (aurora) {
 })();
 
 // -------------------------------
-// Footer year (single)
+// 9) Bind booking links to Calendly
 // -------------------------------
-(function footerYear(){
-  const el = qs("#year");
-  if (el) el.textContent = String(new Date().getFullYear());
+(function bindBookingLinks(){
+  const url = window.BOOKING_URL;
+  if (!url) return;
+
+  document.querySelectorAll("[data-book]").forEach((btn) => {
+    btn.setAttribute("href", url);
+    btn.setAttribute("target", "_blank");
+    btn.setAttribute("rel", "noopener noreferrer");
+  });
 })();
 
 // -------------------------------
-// Cookie banner
+// 10) Footer year
+// -------------------------------
+(function footerYear(){
+  const el = document.getElementById("year");
+  if (el) el.textContent = new Date().getFullYear();
+})();
+
+// -------------------------------
+// 11) Cookie banner
 // -------------------------------
 (function cookieBanner(){
   const KEY = "onix_cookie_choice";
-  const banner = qs("#cookieBanner");
-  const acceptBtn = qs("#cookieAccept");
-  const declineBtn = qs("#cookieDecline");
+  const banner = document.getElementById("cookieBanner");
+  const acceptBtn = document.getElementById("cookieAccept");
+  const declineBtn = document.getElementById("cookieDecline");
+
   if (!banner || !acceptBtn || !declineBtn) return;
 
   const existing = localStorage.getItem(KEY);
@@ -345,16 +311,20 @@ if (aurora) {
 
   acceptBtn.addEventListener("click", () => close("accepted"));
   declineBtn.addEventListener("click", () => close("declined"));
-}
-// ================================
-// Hero chart: niche selector -> avg conversion rate
-// ================================
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && banner.classList.contains("show")) close("declined");
+  });
+})();
+
+// -------------------------------
+// 12) Hero chart niche -> conversion rate
+// -------------------------------
 (function nicheConversion(){
   const select = document.getElementById("nicheSelect");
   const out = document.getElementById("convRate");
   if (!select || !out) return;
 
-  // You can tweak these anytime (keep them honest / backed by proof)
   const rates = {
     tradies: "18%–32%",
     solar: "12%–24%",
@@ -366,16 +336,9 @@ if (aurora) {
   };
 
   function setRate() {
-    const key = select.value;
-    out.textContent = rates[key] || "—";
+    out.textContent = rates[select.value] || "—";
   }
 
   select.addEventListener("change", setRate);
-  setRate(); // initial
+  setRate();
 })();
-
-
-// ===============================
-// END: script.js
-// ===============================
-
