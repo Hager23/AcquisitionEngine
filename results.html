@@ -4,21 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ONIX — Results & Booking</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900;950&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
-<body>
-  <div class="site-bg" aria-hidden="true"></div>
+<body class="results-page">
+  <!-- Global animated background (match index) -->
+  <div class="site-bg" aria-hidden="true">
+    <div class="site-aurora"></div>
+    <div class="site-noise"></div>
+  </div>
 
   <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="nav">
         <a class="brand" href="./index.html" aria-label="ONIX Home">
-          <img src="./assets/onix-logo.png" alt="ONIX logo" onerror="this.style.display='none'">
+          <img src="logo2.png" alt="ONIX logo" onerror="this.style.display='none'">
           <div class="brand-name">ONIX</div>
         </a>
 
@@ -49,7 +55,7 @@
     <a href="./index.html#pricing" data-nav-close>Pricing</a>
     <a href="./results.html" data-nav-close>Results Page</a>
     <div style="height:10px"></div>
-    <a class="btn btn-primary" href="#book" style="justify-content:center;">Book a Call</a>
+    <a class="btn btn-primary" href="#book" data-nav-close style="justify-content:center;">Book a Call</a>
   </aside>
 
   <section class="results-hero">
@@ -103,7 +109,6 @@
         </div>
 
         <div class="calendly" id="book">
-          <!-- ✅ Replace Calendly URL with yours -->
           <iframe
             title="Book a call"
             src="https://calendly.com/"
