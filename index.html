@@ -118,9 +118,25 @@
           </div>
 
           <!-- Lead Trend chart -->
-          <div class="chart-card">
-            <div class="chart-header">
-              <h4>Enquiry Trend</h4>
+         <div class="chart-header">
+  <div class="chart-left">
+    <h4>Enquiry Trend</h4>
+    <div class="chart-sub">Last 7 days • <span id="chartIndustryLabel">All</span></div>
+  </div>
+
+  <div class="chart-right">
+    <div class="seg" id="industryTabs" role="tablist" aria-label="Industry filter">
+      <button class="seg-btn active" data-industry="all" role="tab" aria-selected="true">All</button>
+      <button class="seg-btn" data-industry="tradies" role="tab">Tradies</button>
+      <button class="seg-btn" data-industry="builders" role="tab">Builders</button>
+      <button class="seg-btn" data-industry="insurance" role="tab">Insurance</button>
+      <button class="seg-btn" data-industry="solar" role="tab">Solar</button>
+      <button class="seg-btn" data-industry="agencies" role="tab">Agencies</button>
+    </div>
+
+    <span class="chip" id="chartRangeChip">7 days • All</span>
+  </div>
+</div>
 
               <!-- ✅ Industry chips -->
               <div class="chip-group" id="industryChips" aria-label="Industry filter">
@@ -764,3 +780,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
