@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <script>
+    // ✅ booking URL (used by script.js to bind all CTAs)
     window.BOOKING_URL = "https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01";
   </script>
 </head>
@@ -32,16 +33,15 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <a href="#top" class="brand" aria-label="Go to top">
-        <img src="logo2.png" alt="ONIX Marketing" class="logo" />
+      <a href="index.html" class="logo-link" aria-label="Go to home">
+        <img src="logo2.png" alt="ONIX" class="logo" />
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#proof">Results</a>
-        <a href="results.html">Results Page</a>
+      <nav class="nav">
+        <a href="results.html">Results</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
-        <a href="#book" class="btn-primary">Book a Call</a>
+        <a href="#book" class="btn-primary" data-book>Book a Call</a>
       </nav>
     </div>
   </header>
@@ -49,7 +49,6 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-inner">
-
       <!-- LEFT -->
       <div class="hero-copy">
         <span class="pill">⚙️ Done-for-you acquisition + follow-up system</span>
@@ -61,46 +60,38 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#book" class="btn-primary large">Book a 15-minute call</a>
+          <a href="#book" class="btn-primary large hero-btn" data-book>
+            Book a 15-minute call
+          </a>
           <a href="#how" class="btn-secondary">See the engine</a>
         </div>
 
-        <!-- ✅ HERO PROOF (ONLY PLACE PROOF EXISTS NOW) -->
-        <div class="hero-proof" aria-label="Recent client results screenshots">
-          <div class="proof-head">
-            <strong>Real receipts</strong>
-            <span>Unedited screenshots</span>
-          </div>
-
-          <!-- Make sure these files exist -->
-          <div class="proof-strip">
-            <a class="proof-item" href="proof1.png" target="_blank" rel="noopener">
-              <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
-            </a>
-            <a class="proof-item" href="proof2.png" target="_blank" rel="noopener">
-              <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
-            </a>
-            <a class="proof-item" href="proof3.png" target="_blank" rel="noopener">
-              <img src="proof3.png" alt="Client result screenshot 3" loading="lazy" decoding="async">
-            </a>
-          </div>
-
-          <p class="proof-note">Tap any screenshot to open full size.</p>
+        <!-- HERO PROOF STRIP (READABLE) -->
+        <div class="proof-strip" aria-label="Recent client results screenshots">
+          <figure class="proof-thumb">
+            <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
+          </figure>
+          <figure class="proof-thumb">
+            <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
+          </figure>
+          <figure class="proof-thumb">
+            <img src="proof3.png" alt="Client result screenshot 3" loading="lazy" decoding="async">
+          </figure>
         </div>
+        <p class="proof-note">Real client messages • Unedited screenshots</p>
       </div>
 
       <!-- RIGHT -->
       <div class="hero-visual">
         <div class="dashboard-card hero-dashboard">
-
           <!-- KPI 1 -->
           <div class="kpi" data-tip="New enquiries received today across your channels">
             <div class="kpi-top">
               <span class="kpi-icon">⚡</span>
               <span class="label">New Enquiries</span>
-              <span class="delta up" id="kpiDeltaEnq">+18%</span>
+              <span class="delta up" id="deltaEnq">+18%</span>
             </div>
-            <span class="value count" data-count="38" id="kpiEnq">0</span>
+            <span class="value" id="kpiEnquiries">38</span>
           </div>
 
           <!-- KPI 2 -->
@@ -108,9 +99,9 @@
             <div class="kpi-top">
               <span class="kpi-icon">📅</span>
               <span class="label">Calls Booked</span>
-              <span class="delta up" id="kpiDeltaBooked">+9%</span>
+              <span class="delta up" id="deltaBooked">+9%</span>
             </div>
-            <span class="value count" data-count="12" id="kpiBooked">0</span>
+            <span class="value" id="kpiBooked">12</span>
           </div>
 
           <!-- KPI 3 -->
@@ -118,9 +109,9 @@
             <div class="kpi-top">
               <span class="kpi-icon">✅</span>
               <span class="label">Deals Won</span>
-              <span class="delta flat" id="kpiDeltaWon">—</span>
+              <span class="delta flat" id="deltaWon">—</span>
             </div>
-            <span class="value count" data-count="5" id="kpiWon">0</span>
+            <span class="value" id="kpiWon">5</span>
           </div>
 
           <!-- KPI 4 -->
@@ -128,37 +119,29 @@
             <div class="kpi-top">
               <span class="kpi-icon">💸</span>
               <span class="label">Revenue</span>
-              <span class="delta down" id="kpiDeltaRev">-4%</span>
+              <span class="delta down" id="deltaRev">-4%</span>
             </div>
-            <span class="value money count" data-count="48200" id="kpiRev">$0</span>
+            <span class="value money" id="kpiRevenue">$48,200</span>
           </div>
 
           <!-- Lead Trend chart -->
           <div class="chart-card">
             <div class="chart-header">
-              <div class="chart-left">
-                <div class="chart-header">
-                  <h4>Enquiry Trend</h4>
-                  <span class="chip" id="chartRangeLabel">7 days • All</span>
-                </div>
-                
-                <div class="chart-controls" id="industryControls" aria-label="Industry filters">
-                <button class="seg active" type="button" data-industry="all">All</button>
-                <button class="seg" type="button" data-industry="tradies">Tradies</button>
-                <button class="seg" type="button" data-industry="builders">Builders</button>
-                <button class="seg" type="button" data-industry="insurance">Insurance</button>
-                <button class="seg" type="button" data-industry="solar">Solar</button>
-                <button class="seg" type="button" data-industry="agencies">Agencies</button>
-              </div>
-
-              </div>
-
-              <div class="chart-right">
-                <span class="chip" id="chartRangeChip">7 days • All</span>
-              </div>
+              <h4>Enquiry Trend</h4>
+              <span class="chip" id="chartRangeLabel">7 days • All</span>
             </div>
 
-            <svg class="line-chart" viewBox="0 0 300 120" aria-label="Enquiry chart">
+            <!-- ✅ industry buttons (NOT squished + actually works) -->
+            <div class="chart-controls" id="industryControls" aria-label="Industry filters">
+              <button class="seg active" type="button" data-industry="all">All</button>
+              <button class="seg" type="button" data-industry="tradies">Tradies</button>
+              <button class="seg" type="button" data-industry="builders">Builders</button>
+              <button class="seg" type="button" data-industry="insurance">Insurance</button>
+              <button class="seg" type="button" data-industry="solar">Solar</button>
+              <button class="seg" type="button" data-industry="agencies">Agencies</button>
+            </div>
+
+            <svg class="line-chart" viewBox="0 0 300 120" aria-label="Enquiry trend chart">
               <defs>
                 <linearGradient id="lineGrad" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#6A00FF"/>
@@ -176,24 +159,20 @@
 
                 <mask id="lineMask">
                   <path class="chart-line-mask"
-                        id="chartMaskPath"
-                        d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                        d="M0 96 L40 80 L80 84 L120 60 L160 56 L200 70 L240 40 L280 30 L300 28"
                         stroke="white" stroke-width="6" fill="none"
                         stroke-linecap="round" stroke-linejoin="round"/>
                 </mask>
               </defs>
 
               <path class="chart-area"
-                    id="chartArea"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
+                    d="M0 96 L40 80 L80 84 L120 60 L160 56 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
               <path class="chart-line"
-                    id="chartLine"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"/>
+                    d="M0 96 L40 80 L80 84 L120 60 L160 56 L200 70 L240 40 L280 30 L300 28"/>
               <path class="chart-shimmer"
-                    id="chartShimmer"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                    d="M0 96 L40 80 L80 84 L120 60 L160 56 L200 70 L240 40 L280 30 L300 28"
                     mask="url(#lineMask)"/>
-              <circle class="chart-dot" id="chartDot" r="4" cx="300" cy="28"/>
+              <circle class="chart-dot" r="4" cx="300" cy="28"/>
             </svg>
           </div>
 
@@ -201,43 +180,41 @@
           <div class="widget funnel-widget">
             <div class="widget-head">
               <span class="widget-title">Pipeline</span>
-              <span class="widget-pill" id="pipelineChip">Today • All</span>
+              <span class="widget-pill" id="pipelineLabel">Today • All</span>
             </div>
 
             <div class="funnel">
               <div class="frow">
                 <span>Enquiries</span>
-                <div class="bar"><div class="fill" style="--w: 100%"></div></div>
+                <div class="bar"><div class="fill" id="barEnq"></div></div>
                 <strong id="fEnq">38</strong>
               </div>
 
               <div class="frow">
                 <span>Contacted</span>
-                <div class="bar"><div class="fill" style="--w: 74%"></div></div>
-                <strong id="fContacted">28</strong>
+                <div class="bar"><div class="fill" id="barCon"></div></div>
+                <strong id="fCon">28</strong>
               </div>
 
               <div class="frow">
                 <span>Booked</span>
-                <div class="bar"><div class="fill" style="--w: 32%"></div></div>
-                <strong id="fBooked">12</strong>
+                <div class="bar"><div class="fill" id="barBoo"></div></div>
+                <strong id="fBoo">12</strong>
               </div>
 
               <div class="frow">
                 <span>Won</span>
-                <div class="bar"><div class="fill" style="--w: 13%"></div></div>
+                <div class="bar"><div class="fill" id="barWon"></div></div>
                 <strong id="fWon">5</strong>
               </div>
             </div>
           </div>
-
         </div><!-- /dashboard-card -->
       </div><!-- /hero-visual -->
-
     </div><!-- /hero-inner -->
   </section>
 
-  <!-- RESULTS (NO PROOF IMAGES HERE ANYMORE) -->
+  <!-- SECTION 2 -->
   <section class="section section-proof" id="proof">
     <div class="container">
       <div class="proof-top reveal">
@@ -264,7 +241,7 @@
           <p>Consistent lead flow engineered for buyers — not browsers — across trades, solar, agencies, and services.</p>
           <div class="metric">
             <span class="m-label">Avg qualified enquiries / week</span>
-            <span class="m-value count" data-count="18">0</span>
+            <span class="m-value">18</span>
           </div>
         </div>
 
@@ -274,26 +251,42 @@
           <p>Our receptionist team follows up in minutes so you’re first — and first usually wins.</p>
           <div class="metric">
             <span class="m-label">Median response time</span>
-            <span class="m-value"><span class="count" data-count="2">0</span> min</span>
+            <span class="m-value">2 min</span>
           </div>
         </div>
 
         <div class="outcome-card reveal">
           <div class="outcome-icon">🧠</div>
           <h3>Know your ROI</h3>
-          <p>Track enquiries → booked calls → wins → revenue so you always know what to scale.</p>
+          <p>Track enquiries → booked calls → quotes/jobs → revenue so you always know what to scale.</p>
           <div class="metric">
             <span class="m-label">Typical ROI range</span>
-            <span class="m-value">
-              <span class="count" data-count="3">0</span>–<span class="count" data-count="6">0</span>x
-            </span>
+            <span class="m-value">3–6x</span>
           </div>
         </div>
+      </div>
+
+      <!-- PROOF GRID (kept clean + “proper”) -->
+      <div class="proof-grid reveal" aria-label="More proof screenshots">
+        <figure class="proof-card">
+          <img src="proof4.png" alt="Client result screenshot 4" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof5.png" alt="Client result screenshot 5" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof6.png" alt="Client result screenshot 6" loading="lazy" decoding="async">
+        </figure>
+      </div>
+
+      <div class="section-actions">
+        <a class="btn-primary large" href="results.html">View full results</a>
+        <a class="btn-secondary" href="#book" data-book>Book a call</a>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
+  <!-- SECTION 3: How it works -->
   <section class="section section-engine" id="how">
     <div class="container engine">
       <div class="engine-left reveal">
@@ -434,7 +427,7 @@
     </div>
   </section>
 
-  <!-- Pricing -->
+  <!-- SECTION 5: Pricing -->
   <section class="section section-pricing" id="pricing">
     <div class="container">
       <div class="pricing-head reveal">
@@ -472,7 +465,7 @@
           </ul>
 
           <div class="pricing-cta">
-            <a href="#book" class="btn-primary large">Book a 15-minute call</a>
+            <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
             <span class="pricing-note">If you don’t win work, we don’t get paid.</span>
           </div>
         </article>
@@ -510,55 +503,19 @@
     </div>
   </section>
 
-  <!-- Book -->
-  <section class="section section-book" id="book" aria-label="Book a call">
+  <!-- BOOK -->
+  <section class="section section-book" id="book">
     <div class="container">
-      <div class="book-head reveal">
-        <p class="kicker">Book a call</p>
-        <h2>Let’s map your next 30 days of wins.</h2>
-        <p class="sub">Pick a time that suits you — we’ll walk you through what the engine looks like for your business.</p>
-      </div>
-
       <div class="book-card reveal">
-        <div class="book-top">
-          <div class="book-left">
-            <h3>Your calendar, filled (the right way)</h3>
-            <p>
-              We’ll review your current pipeline, your offer, and what’s blocking bookings.
-              Then we’ll show you exactly how we install the system end-to-end.
-            </p>
-          </div>
-          <div class="book-actions">
-            <a class="btn-primary" href="#" data-book>Open in new tab</a>
-            <span class="tiny-note">No pressure • 15 minutes</span>
-          </div>
+        <div class="book-copy">
+          <p class="kicker">Book a call</p>
+          <h2>Let’s map your next 30 days.</h2>
+          <p class="sub">We’ll review your offer, your follow-up, your ads, and your capacity — then show you the exact plan.</p>
         </div>
 
-        <div class="cal-wrap">
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
-               style="min-width:320px;height:780px;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="section section-final-cta" id="final">
-    <div class="container">
-      <div class="final-cta reveal">
-        <div class="final-copy">
-          <p class="kicker">Ready when you are</p>
-          <h2>Turn your pipeline into a machine.</h2>
-          <p class="sub">
-            Enquiries in. Follow-up handled. Calls booked. ROI tracked.
-            You stay focused on delivery — we run the engine.
-          </p>
-        </div>
-
-        <div class="final-actions">
-          <a href="#book" class="btn-primary large">Book a 15-minute call</a>
-          <p class="tiny-note">If you don’t win work, we don’t get paid.</p>
+        <div class="book-actions">
+          <a class="btn-primary large" href="#" data-book>Open Calendly</a>
+          <a class="btn-secondary" href="results.html">See results</a>
         </div>
       </div>
     </div>
@@ -569,7 +526,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="logo2.png" alt="ONIX Marketing" class="footer-logo" />
+          <img src="logo2.png" alt="ONIX" class="footer-logo" />
           <p class="footer-desc">
             A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
           </p>
@@ -581,19 +538,19 @@
         </div>
 
         <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#how">How it works</a>
+          <h4>Pages</h4>
+          <a href="#top">Home</a>
           <a href="#proof">Results</a>
+          <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a href="#book">Book a call</a>
+          <a href="results.html">Results Page</a>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#top">Home</a>
-          <a href="#proof">Why us</a>
-          <a href="#book">Contact</a>
-          <a href="#book">Support</a>
+          <h4>Get started</h4>
+          <a href="#book" data-book>Book a call</a>
+          <a href="results.html">See proof</a>
+          <a href="#pricing">Pricing</a>
         </div>
 
         <div class="footer-col">
@@ -605,7 +562,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="year"></span> ONIX Marketing. All rights reserved.</p>
+        <p>© <span id="year"></span> ONIX. All rights reserved.</p>
         <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
       </div>
     </div>
@@ -629,9 +586,6 @@
     </div>
   </div>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="script.js"></script>
 </body>
 </html>
-
-
