@@ -665,6 +665,17 @@ a { color: inherit; }
 }
 .chart-tip.show { opacity: 1; transform: translateY(0); }
 
+/* ✅ Fix: remove black shimmer line */
+.chart-shimmer{
+  fill: none;
+  stroke: url(#shimmerGrad);
+  stroke-width: 6;
+  opacity: 0.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -718,3 +729,4 @@ a { color: inherit; }
   .cookie-card{ grid-template-columns: 1fr; }
   .cookie-actions{ justify-content: flex-start; }
 }
+
