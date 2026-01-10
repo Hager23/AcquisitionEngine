@@ -602,6 +602,102 @@ if (aurora) {
     // re-run dot animation once so it feels “real”
     animateDotOnce();
   }
+  // ===============================
+// Industry dashboard switching + proof lightbox
+// ===============================
+(function industryDashboard(){
+  const datasets = {
+    all: {
+      name: "All",
+      kpis: { enq: 38, booked: 12, won: 5, rev: 48200 },
+      deltas: { enq: "+18%", booked: "+9%", won: "—", rev: "-4%" },
+      pipe: { enq: 38, contacted: 28, booked: 12, won: 5 },
+      paths: {
+        line: "M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28",
+        area: "M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z",
+        dot: { x: 300, y: 28 }
+      }
+    },
+    tradies: {
+      name: "Tradies",
+      kpis: { enq: 44, booked: 15, won: 6, rev: 51600 },
+      deltas: { enq: "+22%", booked: "+12%", won: "+8%", rev: "+6%" },
+      pipe: { enq: 44, contacted: 33, booked: 15, won: 6 },
+      paths: {
+        line: "M0 104 L40 92 L80 78 L120 72 L160 60 L200 54 L240 48 L280 36 L300 32",
+        area: "M0 104 L40 92 L80 78 L120 72 L160 60 L200 54 L240 48 L280 36 L300 32 L300 120 L0 120 Z",
+        dot: { x: 300, y: 32 }
+      }
+    },
+    builders: {
+      name: "Builders",
+      kpis: { enq: 31, booked: 9, won: 3, rev: 38800 },
+      deltas: { enq: "+10%", booked: "+6%", won: "—", rev: "+3%" },
+      pipe: { enq: 31, contacted: 22, booked: 9, won: 3 },
+      paths: {
+        line: "M0 102 L40 96 L80 88 L120 82 L160 78 L200 70 L240 62 L280 58 L300 54",
+        area: "M0 102 L40 96 L80 88 L120 82 L160 78 L200 70 L240 62 L280 58 L300 54 L300 120 L0 120 Z",
+        dot: { x: 300, y: 54 }
+      }
+    },
+    insurance: {
+      name: "Insurance",
+      kpis: { enq: 27, booked: 11, won: 4, rev: 38800 },
+      deltas: { enq: "+15%", booked: "+10%", won: "+5%", rev: "+9%" },
+      pipe: { enq: 27, contacted: 21, booked: 11, won: 4 },
+      paths: {
+        line: "M0 108 L40 96 L80 90 L120 78 L160 72 L200 64 L240 60 L280 56 L300 44",
+        area: "M0 108 L40 96 L80 90 L120 78 L160 72 L200 64 L240 60 L280 56 L300 44 L300 120 L0 120 Z",
+        dot: { x: 300, y: 44 }
+      }
+    },
+    solar: {
+      name: "Solar",
+      kpis: { enq: 36, booked: 10, won: 4, rev: 44500 },
+      deltas: { enq: "+14%", booked: "+7%", won: "+4%", rev: "+5%" },
+      pipe: { enq: 36, contacted: 26, booked: 10, won: 4 },
+      paths: {
+        line: "M0 106 L40 98 L80 86 L120 74 L160 70 L200 58 L240 52 L280 46 L300 42",
+        area: "M0 106 L40 98 L80 86 L120 74 L160 70 L200 58 L240 52 L280 46 L300 42 L300 120 L0 120 Z",
+        dot: { x: 300, y: 42 }
+      }
+    },
+    agencies: {
+      name: "Agencies",
+      kpis: { enq: 24, booked: 8, won: 2, rev: 31200 },
+      deltas: { enq: "+8%", booked: "+6%", won: "—", rev: "+2%" },
+      pipe: { enq: 24, contacted: 17, booked: 8, won: 2 },
+      paths: {
+        line: "M0 108 L40 104 L80 96 L120 90 L160 84 L200 78 L240 70 L280 66 L300 62",
+        area: "M0 108 L40 104 L80 96 L120 90 L160 84 L200 78 L240 70 L280 66 L300 62 L300 120 L0 120 Z",
+        dot: { x: 300, y: 62 }
+      }
+    }
+  };
+
+  const tabs = Array.from(document.querySelectorAll(".tab[data-industry]"));
+  const chip = document.getElementById("chipWindow");
+  const pipeLabel = document.getElementById("pipeLabel");
+
+  const kpiEnq = document.getElementById("kpiEnq");
+  const kpiBooked = document.getElementById("kpiBooked");
+  const kpiWon = document.getElementById("kpiWon");
+  const kpiRev = document.getElementById("kpiRev");
+
+  const dEnq = document.getElementById("deltaEnq");
+  const dBooked = document.getElementById("deltaBooked");
+  const dWon = document.getElementById("deltaWon");
+  const dRev = document.getElementById("deltaRev");
+
+  const pipeEnq = document.getElementById("pipeEnq");
+  const pipeContacted = document.getElementById("pipeContacted");
+  const pipeBooked = document.getElementById("pipeBooked");
+  const pipeWon = document.getElementById("pipeWon");
+
+  const barEnq = document.getElementById("barEnq");
+  const barContacted = document.getElementById("barContacted");
+  const barBooked
+
 
   segButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -624,3 +720,4 @@ if (aurora) {
 // ===============================
 // END: script.js
 // ===============================
+
