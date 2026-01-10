@@ -125,8 +125,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  position: relative; /* anchor for mobile dropdown */
 }
 
 /* Bigger logo */
@@ -174,71 +172,6 @@ body {
   color: var(--indigo);
   font-weight: 900;
   text-decoration: none;
-}
-
-/* =========================================================
-   ✅ FIX #1 — MOBILE MENU (hamburger + dropdown panel)
-========================================================= */
-.nav-toggle{
-  display: none; /* desktop hidden */
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.78);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 18px 40px rgba(12,10,27,0.06);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.nav-toggle:hover{
-  transform: translateY(-1px);
-  border-color: rgba(84,64,178,0.18);
-  box-shadow: 0 26px 60px rgba(12,10,27,0.08);
-}
-
-.nav-toggle:focus{
-  outline: none;
-  border-color: rgba(84,64,178,0.22);
-  box-shadow: 0 18px 40px rgba(84,64,178,0.12);
-}
-
-.nav-toggle-icon{
-  width: 18px;
-  height: 12px;
-  position: relative;
-  display: block;
-}
-
-.nav-toggle-icon::before,
-.nav-toggle-icon::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  border-radius: 999px;
-  background: rgba(12,10,27,0.78);
-  transition: transform 180ms ease, top 180ms ease, opacity 180ms ease;
-}
-
-.nav-toggle-icon::before{ top: 0; }
-.nav-toggle-icon::after{ top: 10px; }
-
-.nav-toggle-icon span{ display:none; }
-
-/* animate into X when expanded */
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before{
-  top: 5px;
-  transform: rotate(45deg);
-}
-
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after{
-  top: 5px;
-  transform: rotate(-45deg);
 }
 
 /* =========================
@@ -879,9 +812,48 @@ body {
   font-size: 14.6px;
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .header-inner { padding: 14px 16px; }
+  .nav { gap: 14px; }
+  .nav a { font-size: 14px; }
+  .logo { height: 32px; }
+
+  .hero { padding: 90px 16px 70px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .hero-copy h1 { font-size: 40px; line-height: 1.05; }
+
+  .outcomes { grid-template-columns: 1fr; }
+
+  .results-hero h1{ font-size: 40px; }
+  .proof-12{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reviews-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nav { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; }
+  .nav a { font-size: 14px; }
+  .nav a.btn-primary { width: fit-content; }
+
+  .section { padding: 70px 16px; }
+  .reveal { opacity: 1; transform: none; }
+  .hero-copy h1 { font-size: 34px; }
+  .hero-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .btn-secondary { margin-left: 0; }
+  .dashboard-card { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+  .kpi .value { font-size: 24px; }
+
+  .proof-12{ grid-template-columns: 1fr; }
+}
+
 /* =========================================================
-   ✅ FIX #2 — TESTIMONIAL / PROOF SCREENSHOTS (HORIZONTAL SNAP STRIP)
+   ✅ TESTIMONIAL / PROOF SCREENSHOTS — BETTER STYLING
 ========================================================= */
+
+/* HERO: horizontal proof strip (no wrap) */
 .proof-strip{
   margin-top: 18px;
   display: flex;
@@ -932,24 +904,177 @@ body {
   font-weight: 750;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-  .header-inner { padding: 14px 16px; }
-  .logo { height: 32px; }
+/* =========================================================
+   ✅ ADDITIONS — RESULTS PAGE LAYOUT (CLEAN ON MOBILE)
+========================================================= */
 
-  /* ✅ Mobile menu behavior (<900px) */
-  .nav-toggle{
-    display: inline-flex;
-  }
+/* 3-proof row at top of results */
+.proof-row3{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
 
-  /* dropdown panel (hidden unless .open) */
+.proof-shot{
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 70px rgba(12,10,27,0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.proof-shot:hover{
+  transform: translateY(-3px);
+  border-color: rgba(84,64,178,0.18);
+  box-shadow: 0 40px 90px rgba(12,10,27,0.09);
+}
+
+.proof-shot img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Chat bubble reviews */
+.chat-reviews{
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.chat-bubble{
+  border: 1px solid rgba(12,10,27,0.10);
+  background: rgba(255,255,255,0.84);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(12,10,27,0.06);
+  border-radius: 18px;
+  padding: 14px 14px;
+  max-width: 840px;
+}
+
+.chat-bubble.left{ justify-self: start; }
+.chat-bubble.right{ justify-self: end; background: rgba(245,246,250,0.78); }
+
+.chat-meta{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.chat-name{
+  font-weight: 950;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+.chat-tag{
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--indigo);
+  background: rgba(84,64,178,0.10);
+  border: 1px solid rgba(84,64,178,0.12);
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chat-bubble p{
+  margin: 0;
+  color: var(--muted);
+  font-weight: 650;
+  font-size: 14.7px;
+  line-height: 1.45;
+}
+
+/* Calendly container */
+.calendly-wrap{
+  margin-top: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(12,10,27,0.10);
+  overflow: hidden;
+  background: rgba(255,255,255,0.70);
+  box-shadow: 0 30px 80px rgba(12,10,27,0.08);
+}
+
+/* =========================================================
+   ✅ FIX #1 — Mobile nav dropdown (glass) without breaking desktop
+========================================================= */
+.nav-toggle{
+  display: none;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(12,10,27,0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.nav-toggle:hover{
+  transform: translateY(-1px);
+  border-color: rgba(84,64,178,0.18);
+  box-shadow: 0 26px 60px rgba(12,10,27,0.08);
+}
+
+.nav-toggle:focus{
+  outline: none;
+  border-color: rgba(84,64,178,0.22);
+  box-shadow: 0 18px 40px rgba(84,64,178,0.12);
+}
+
+.nav-toggle-icon{
+  width: 18px;
+  height: 12px;
+  position: relative;
+  display: block;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(12,10,27,0.78);
+  transition: transform 180ms ease, top 180ms ease, opacity 180ms ease;
+}
+
+.nav-toggle-icon::before{ top: 0; }
+.nav-toggle-icon::after{ top: 10px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before{
+  top: 5px;
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after{
+  top: 5px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px){
+  .header-inner{ position: relative; }
+  .nav-toggle{ display: inline-flex; }
+
+  /* dropdown panel hidden by default */
   #siteNav{
     position: absolute;
     top: calc(100% + 10px);
-    right: 16px;
     left: 16px;
+    right: 16px;
+
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -961,7 +1086,6 @@ body {
     backdrop-filter: blur(12px);
     box-shadow: 0 30px 80px rgba(12,10,27,0.12);
 
-    /* hidden by default */
     opacity: 0;
     transform: translateY(-6px);
     pointer-events: none;
@@ -974,45 +1098,16 @@ body {
     pointer-events: auto;
   }
 
-  /* ensure link sizing looks good */
-  #siteNav a{
-    font-size: 14px;
-  }
-
-  /* buttons inside panel */
   #siteNav a.btn-primary,
   #siteNav a.btn-secondary{
-    width: fit-content;
     margin-left: 0;
+    width: fit-content;
   }
 
-  .hero { padding: 90px 16px 70px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 28px; }
-  .hero-copy h1 { font-size: 40px; line-height: 1.05; }
-
-  .outcomes { grid-template-columns: 1fr; }
-
-  .results-hero h1{ font-size: 40px; }
-  .proof-12{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .reviews-grid{ grid-template-columns: 1fr; }
-}
-
-@media (max-width: 520px) {
-  .section { padding: 70px 16px; }
-  .reveal { opacity: 1; transform: none; }
-  .hero-copy h1 { font-size: 34px; }
-  .hero-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-  .btn-secondary { margin-left: 0; }
-  .dashboard-card { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
-  .kpi .value { font-size: 24px; }
-
-  .proof-12{ grid-template-columns: 1fr; }
-
-  /* slightly tighter dropdown on very small screens */
-  #siteNav{
-    right: 12px;
-    left: 12px;
-  }
+  /* results: keep spacing comfy */
+  .proof-row3{ grid-template-columns: 1fr; gap: 12px; }
+  .chat-meta{ flex-direction: column; align-items: flex-start; }
+  .chat-tag{ white-space: normal; }
 }
 
 /* Cookie banner */
