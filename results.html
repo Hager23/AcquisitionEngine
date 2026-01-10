@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Results – Onix Marketing</title>
-
-  <script>
-    document.documentElement.classList.remove('no-js');
-  </script>
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -21,6 +17,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    window.BOOKING_URL = "https://calendly.com/jordan-burkett";
+  </script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
   </div>
 
   <!-- HEADER -->
-  <header class="header" id="siteHeader">
+  <header class="header" id="top">
     <div class="header-inner">
       <a class="brand" href="index.html#top" aria-label="Onix Marketing home">
         <img src="logo2.png" alt="Onix Marketing" class="logo" />
@@ -40,9 +40,9 @@
 
       <nav class="nav nav-desktop" aria-label="Primary">
         <a href="index.html#proof">Home Proof</a>
-        <a href="results.html" aria-current="page">Results</a>
-        <a href="#breakdown">How it works</a>
-        <a href="#book" class="btn-primary">Book a Call</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#proofwall">Proof</a>
+        <a href="#book" class="btn-primary" data-book>Book a Call</a>
       </nav>
 
       <button class="nav-toggle" id="navToggle" type="button"
@@ -54,281 +54,67 @@
     <div class="nav-mobile" id="mobileNav" aria-hidden="true">
       <div class="nav-mobile-card">
         <a href="index.html#top" class="nav-m-link">Home</a>
-        <a href="results.html" class="nav-m-link">Results</a>
-        <a href="#breakdown" class="nav-m-link">How it works</a>
-        <a href="#book" class="btn-primary nav-m-cta">Book a Call</a>
+        <a href="#reviews" class="nav-m-link">Reviews</a>
+        <a href="#proofwall" class="nav-m-link">Proof</a>
+        <a href="#book" class="btn-primary nav-m-cta" data-book>Book a Call</a>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="section results-hero" id="top">
+  <section class="section" style="padding-top:62px;">
     <div class="container">
-      <div class="results-hero-inner">
-        <div class="results-hero-copy reveal">
-          <p class="kicker">Results</p>
-          <h1>Booked calls. Closed deals. Real proof — in plain text.</h1>
-          <p class="sub">
-            Instead of image screenshots, here are real examples of what clients and teams report
-            once the engine is installed: speed-to-lead, booked calls, pipeline visibility, and wins.
-          </p>
+      <div class="proof-top reveal">
+        <p class="kicker">Results</p>
+        <h2>Booked calls. Closed deals. Real proof.</h2>
+        <p class="sub">
+          A mix of Onix Marketing campaign snapshots + Fly Me High proof — shown as readable text reviews and proof blocks.
+        </p>
 
-          <div class="results-hero-cta">
-            <a href="#proof" class="btn-primary large">Read proof</a>
-            <a href="#book" class="btn-secondary">Book a call</a>
-          </div>
-
-          <div class="results-mini-note">
-            <span class="dot"></span>
-            <span>We scale to your capacity — not hype.</span>
-          </div>
-        </div>
-
-        <div class="results-hero-wins reveal">
-          <div class="win-card" data-tip="Typical lift depends on offer, market, follow-up speed, and capacity.">
-            <span class="win-kicker">Typical lift</span>
-            <span class="win-value">+5–10</span>
-            <span class="win-sub">wins / month</span>
-          </div>
-
-          <div class="win-card" data-tip="Speed-to-lead is one of the biggest conversion drivers.">
-            <span class="win-kicker">Response time</span>
-            <span class="win-value"><span class="count" data-count="2">0</span> min</span>
-            <span class="win-sub">median</span>
-          </div>
-
-          <div class="win-card" data-tip="Big wins occur when volume + follow-up + capacity align.">
-            <span class="win-kicker">Big win example</span>
-            <span class="win-value">$500k+</span>
-            <span class="win-sub">deal closed</span>
-          </div>
+        <div class="hero-cta" style="margin-top:14px;">
+          <a href="#reviews" class="btn-primary large">Read reviews</a>
+          <a href="#book" class="btn-secondary" data-book>Book a call</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NICHE -->
-  <section class="section results-niches" aria-label="Choose niche">
+  <!-- REVIEWS (MIXED: Onix + Fly Me High) -->
+  <section class="section" id="reviews">
     <div class="container">
-      <div class="niche-head reveal">
-        <h2>Choose your niche</h2>
-        <p class="sub">See typical conversion ranges + proof style that matches your business.</p>
+      <div class="proof-top reveal">
+        <p class="kicker">Reviews</p>
+        <h2>What people say after the system is installed</h2>
+        <p class="sub">A mix of Onix and Fly Me High feedback. Some details removed for privacy.</p>
       </div>
 
-      <div class="niche-tabs reveal" role="tablist" aria-label="Niche filters" id="nicheTabs">
-        <button class="niche-tab active" type="button" data-niche="all" role="tab" aria-selected="true">All</button>
-        <button class="niche-tab" type="button" data-niche="tradies" role="tab">Tradies</button>
-        <button class="niche-tab" type="button" data-niche="solar" role="tab">Solar</button>
-        <button class="niche-tab" type="button" data-niche="agencies" role="tab">Agencies</button>
-        <button class="niche-tab" type="button" data-niche="home" role="tab">Home Improvement</button>
-        <button class="niche-tab" type="button" data-niche="local" role="tab">Local Services</button>
-        <button class="niche-tab" type="button" data-niche="realestate" role="tab">Real Estate</button>
-        <button class="niche-tab" type="button" data-niche="insurance" role="tab">Insurance</button>
-      </div>
-
-      <div class="niche-rate reveal" aria-live="polite">
-        <div class="rate-card">
-          <span class="rate-label">Avg conversion rate</span>
-          <span class="rate-value" id="convRate">—</span>
-          <span class="rate-sub">Varies by offer, region, follow-up speed, and capacity.</span>
-        </div>
-
-        <a class="btn-secondary rate-link" href="index.html#how">
-          See how the engine works →
-        </a>
-      </div>
+      <div class="reviews-grid reveal" id="reviewsGrid"></div>
     </div>
   </section>
 
-  <!-- TEXT PROOF -->
-  <section class="section section-textproof" id="proof">
+  <!-- PROOF WALL (IMAGES OPTIONAL) -->
+  <section class="section" id="proofwall">
     <div class="container">
-      <div class="textproof-head reveal">
+      <div class="proof-top reveal">
         <p class="kicker">Proof</p>
-        <h2>Receipts, but readable.</h2>
-        <p class="sub">
-          Short snippets (like you’d see in a Slack/WhatsApp update) that reflect what happens after install.
-          Some details removed for privacy.
-        </p>
+        <h2>Not testimonials — receipts.</h2>
+        <p class="sub">If you prefer images, add your proof screenshots below (optional).</p>
       </div>
 
-      <div class="proof-groups" id="proofGroups">
+      <div class="proof-grid reveal" aria-label="Proof screenshots">
+        <figure class="proof-card"><img src="proof1.png" alt="Proof 1" loading="lazy" decoding="async"></figure>
+        <figure class="proof-card"><img src="proof2.png" alt="Proof 2" loading="lazy" decoding="async"></figure>
+        <figure class="proof-card"><img src="proof3.png" alt="Proof 3" loading="lazy" decoding="async"></figure>
+      </div>
 
-        <!-- Group: Tradies -->
-        <div class="proof-group reveal" data-niche="tradies">
-          <div class="group-head">
-            <h3>Tradies</h3>
-            <p>More booked calls + faster follow-up.</p>
-          </div>
-
-          <div class="chat-grid">
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 2</span>
-              </div>
-              <p class="chat-text">“Phone is ringing again. Missed calls are down and the calendar is filling.”</p>
-              <div class="chat-tags">
-                <span>Speed-to-lead</span><span>Booking</span><span>Follow-up</span>
-              </div>
-            </article>
-
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 4</span>
-              </div>
-              <p class="chat-text">“We’re actually choosing jobs now — not begging for them.”</p>
-              <div class="chat-tags">
-                <span>Quality</span><span>Capacity control</span>
-              </div>
-            </article>
-
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Ongoing</span>
-              </div>
-              <p class="chat-text">“The receptionist follow-up is the difference — people answer when it’s fast.”</p>
-              <div class="chat-tags">
-                <span>Reception</span><span>Conversion</span>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Group: Solar -->
-        <div class="proof-group reveal" data-niche="solar" style="display:none">
-          <div class="group-head">
-            <h3>Solar</h3>
-            <p>Qualified appointments + consistent pipeline.</p>
-          </div>
-
-          <div class="chat-grid">
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 3</span>
-              </div>
-              <p class="chat-text">“Leads are coming in daily and the booked calls are actually qualified.”</p>
-              <div class="chat-tags">
-                <span>Qualification</span><span>Appointments</span>
-              </div>
-            </article>
-
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 5</span>
-              </div>
-              <p class="chat-text">“The no-show rate dropped once the reminders and follow-ups kicked in.”</p>
-              <div class="chat-tags">
-                <span>Nurture</span><span>Reminders</span>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Group: Agencies -->
-        <div class="proof-group reveal" data-niche="agencies" style="display:none">
-          <div class="group-head">
-            <h3>Agencies</h3>
-            <p>Booked strategy calls + clearer ROI.</p>
-          </div>
-
-          <div class="chat-grid">
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 2</span>
-              </div>
-              <p class="chat-text">“We can finally see where leads come from and what converts.”</p>
-              <div class="chat-tags">
-                <span>Attribution</span><span>Reporting</span>
-              </div>
-            </article>
-
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Onix</span>
-                <span class="chat-meta">Week 6</span>
-              </div>
-              <p class="chat-text">“The follow-up SOP is saving us — we’re not dropping leads anymore.”</p>
-              <div class="chat-tags">
-                <span>SOP</span><span>Pipeline</span>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Group: Fly Me High (system proof) -->
-        <div class="proof-group reveal" data-niche="realestate" style="display:none">
-          <div class="group-head">
-            <h3>Fly Me High (internal proof)</h3>
-            <p>Systemised lead flow across multiple verticals.</p>
-          </div>
-
-          <div class="chat-grid">
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Fly Me High</span>
-                <span class="chat-meta">System</span>
-              </div>
-              <p class="chat-text">“Same engine logic — capture → speed-to-lead → qualify → distribute → track.”</p>
-              <div class="chat-tags">
-                <span>Process</span><span>Automation</span><span>Reporting</span>
-              </div>
-            </article>
-
-            <article class="chat-card">
-              <div class="chat-top">
-                <span class="chat-pill">Fly Me High</span>
-                <span class="chat-meta">System</span>
-              </div>
-              <p class="chat-text">“Proof isn’t just leads — it’s the consistency of follow-up and conversion.”</p>
-              <div class="chat-tags">
-                <span>Consistency</span><span>Conversion</span>
-              </div>
-            </article>
-          </div>
-        </div>
-
+      <div class="center-cta reveal">
+        <a href="index.html#top" class="btn-secondary">Back to Home</a>
+        <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
       </div>
     </div>
   </section>
 
-  <!-- BREAKDOWN -->
-  <section class="section results-breakdown" id="breakdown">
-    <div class="container">
-      <div class="break-head reveal">
-        <p class="kicker">Why this works</p>
-        <h2>Results come from execution + follow-up.</h2>
-        <p class="sub">
-          Most businesses don’t lose because marketing “doesn’t work” — they lose because follow-up is inconsistent.
-          We fix the pipeline end-to-end.
-        </p>
-      </div>
-
-      <div class="break-grid">
-        <article class="break-card reveal">
-          <h3>⚡ Speed-to-lead</h3>
-          <p>We follow up in minutes so you get the first conversation.</p>
-        </article>
-
-        <article class="break-card reveal">
-          <h3>📞 Qualification + booking</h3>
-          <p>Receptionist team calls, qualifies, and books into your calendar.</p>
-        </article>
-
-        <article class="break-card reveal">
-          <h3>📈 Optimisation</h3>
-          <p>Weekly KPI tracking to scale what’s working and fix leaks fast.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CALENDAR -->
+  <!-- BOOK -->
   <section class="section section-book" id="book">
     <div class="container">
       <div class="book-head reveal">
@@ -338,26 +124,24 @@
       </div>
 
       <div class="book-card reveal">
-        <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget"
              data-url="https://calendly.com/jordan-burkett"
              style="min-width:320px;height:700px;"></div>
         <script type="text/javascript"
                 src="https://assets.calendly.com/assets/external/widget.js"
                 async></script>
-        <!-- Calendly inline widget end -->
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer" id="footer">
+  <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
           <img src="logo2.png" alt="Onix Marketing" class="footer-logo" />
           <p class="footer-desc">
-            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and local service businesses.
+            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
           </p>
           <div class="footer-badges">
             <span class="f-badge">Receptionist follow-up</span>
@@ -369,15 +153,14 @@
         <div class="footer-col">
           <h4>Site</h4>
           <a href="index.html#top">Home</a>
-          <a href="#proof">Results</a>
-          <a href="#breakdown">How it works</a>
-          <a href="#book">Book a call</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#book" data-book>Book a call</a>
         </div>
 
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="#book">Contact</a>
-          <a href="#book">Support</a>
+          <a href="#book" data-book>Contact</a>
+          <a href="#book" data-book>Support</a>
         </div>
 
         <div class="footer-col">
@@ -395,49 +178,41 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 
-  <!-- Results page JS: niche tabs + rate -->
+  <!-- Reviews data (mixed) -->
   <script>
-    (function resultsTextProof(){
-      const tabs = document.querySelectorAll('.niche-tab');
-      const groups = document.querySelectorAll('.proof-group');
-      const rateOut = document.getElementById('convRate');
+    (function renderReviews(){
+      const mount = document.getElementById("reviewsGrid");
+      if (!mount) return;
 
-      if (!tabs.length || !groups.length || !rateOut) return;
+      const REVIEWS = [
+        // ✅ Onix (you can replace with your exact ones anytime)
+        { source: "Onix", meta: "Week 2", quote: "“Phone is ringing again. Missed calls are down and the calendar is filling.”", tags: ["Speed-to-lead", "Booking"] },
+        { source: "Onix", meta: "Week 4", quote: "“We’re actually choosing jobs now — not begging for them.”", tags: ["Quality", "Capacity"] },
+        { source: "Onix", meta: "Ongoing", quote: "“The receptionist follow-up is the difference — people answer when it’s fast.”", tags: ["Reception", "Conversion"] },
 
-      // tweak any time (keep honest)
-      const rates = {
-        all: "10%–28%",
-        tradies: "18%–32%",
-        solar: "12%–24%",
-        agencies: "10%–18%",
-        home: "14%–26%",
-        local: "16%–28%",
-        realestate: "8%–16%",
-        insurance: "7%–14%"
-      };
+        // ✅ Fly Me High (text captured from Fly Me High feedback section)
+        { source: "Fly Me High", meta: "Apr 2022", quote: "“You do have a good lead generation system and I do see the value in it.”", tags: ["Lead gen", "System"] },
+        { source: "Fly Me High", meta: "Feb 2021", quote: "“Have purchased 3 leads… and have already booked in 3 in-person appraisals! Your scripts are awesome.”", tags: ["Booked calls", "Scripts"] },
+        { source: "Fly Me High", meta: "Aug 2021", quote: "“Really Loving the System definitely seeing good results”", tags: ["Results", "Consistency"] },
+        { source: "Fly Me High", meta: "Feb 2022", quote: "“The leads I have been getting through have been great and more than 50%… turning into good potential listings…”", tags: ["Quality", "Conversion"] },
+        { source: "Fly Me High", meta: "May 2021", quote: "“They are genuine leads. I want to say a big Thank You to the FlyMeHigh team.”", tags: ["Quality", "Trust"] },
+        { source: "Fly Me High", meta: "—", quote: "“Slick, professional and simple – this is a great addition to our process and pipeline marketing”", tags: ["Process", "Pipeline"] },
+      ];
 
-      function setActive(niche){
-        tabs.forEach(b => {
-          const active = b.dataset.niche === niche;
-          b.classList.toggle('active', active);
-          b.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-
-        if (niche === "all") {
-          groups.forEach(g => { g.style.display = ""; });
-        } else {
-          groups.forEach(g => {
-            g.style.display = (g.dataset.niche === niche) ? "" : "none";
-          });
-        }
-
-        rateOut.textContent = rates[niche] || "—";
-      }
-
-      tabs.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.niche)));
-      setActive('all');
+      mount.innerHTML = REVIEWS.map(r => `
+        <article class="review-card">
+          <div class="review-top">
+            <span class="review-badge">${r.source}</span>
+            <span class="review-meta">${r.meta}</span>
+          </div>
+          <p class="review-quote">${r.quote}</p>
+          <div class="review-tags">
+            ${r.tags.map(t => `<span>${t}</span>`).join("")}
+          </div>
+        </article>
+      `).join("");
     })();
   </script>
 </body>
