@@ -9,12 +9,12 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Fonts (Stripe-like) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- ✅ Booking URL used by script.js for all [data-book] buttons -->
+  <!-- Booking URL used by script.js bindBookingLinks() -->
   <script>
     window.BOOKING_URL = "https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01";
   </script>
@@ -33,7 +33,9 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <img src="logo2.png" alt="Acquisition Engine" class="logo" />
+      <a class="brand" href="#top" aria-label="Go to top">
+        <img src="logo2.png" alt="ONIX" class="logo" />
+      </a>
 
       <nav class="nav">
         <a href="#proof">Results</a>
@@ -47,12 +49,12 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-inner">
+    <div class="container hero-grid">
       <!-- LEFT -->
-      <div class="hero-copy">
+      <div class="hero-left">
         <span class="pill">⚙️ Done-for-you acquisition + follow-up system</span>
         <h1>Your pipeline, on autopilot.</h1>
-        <p>
+        <p class="hero-sub">
           Built for tradies, solar companies, agencies, and local service businesses.
           We generate enquiries, follow up fast with a managed receptionist team, book qualified calls,
           and track ROI — so you can focus on delivery.
@@ -63,20 +65,20 @@
           <a href="#how" class="btn-secondary">See the engine</a>
         </div>
 
-        <!-- ✅ HERO PROOF (READABLE / CLEAN) -->
+        <!-- HERO PROOF (readable + doesn’t break layout) -->
         <div class="hero-proof" aria-label="Recent client results screenshots">
-          <div class="proof-strip">
-            <img class="proof-thumb" src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
-            <img class="proof-thumb" src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
-            <img class="proof-thumb" src="proof3.png" alt="Client result screenshot 3" loading="lazy" decoding="async">
+          <div class="proof-row">
+            <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
+            <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
+            <img src="proof3.png" alt="Client result screenshot 3" loading="lazy" decoding="async">
           </div>
-          <p class="proof-note">Real client messages • Unedited screenshots</p>
+          <div class="proof-caption">Real client messages • Unedited screenshots</div>
         </div>
       </div>
 
       <!-- RIGHT -->
-      <div class="hero-visual">
-        <div class="dashboard-card hero-dashboard">
+      <div class="hero-right">
+        <div class="dashboard-card hero-dashboard" aria-label="Dashboard preview">
           <!-- KPI 1 -->
           <div class="kpi" data-tip="New enquiries received today across your channels">
             <div class="kpi-top">
@@ -84,7 +86,7 @@
               <span class="label">New Enquiries</span>
               <span class="delta up" id="kpiDeltaEnq">+18%</span>
             </div>
-            <span class="value count" id="kpiEnq" data-count="38">0</span>
+            <span class="value count" data-count="38" id="kpiEnquiries">0</span>
           </div>
 
           <!-- KPI 2 -->
@@ -92,9 +94,9 @@
             <div class="kpi-top">
               <span class="kpi-icon">📅</span>
               <span class="label">Calls Booked</span>
-              <span class="delta up" id="kpiDeltaBooked">+9%</span>
+              <span class="delta up" id="kpiDeltaCalls">+9%</span>
             </div>
-            <span class="value count" id="kpiBooked" data-count="12">0</span>
+            <span class="value count" data-count="12" id="kpiCalls">0</span>
           </div>
 
           <!-- KPI 3 -->
@@ -104,7 +106,7 @@
               <span class="label">Deals Won</span>
               <span class="delta flat" id="kpiDeltaWon">—</span>
             </div>
-            <span class="value count" id="kpiWon" data-count="5">0</span>
+            <span class="value count" data-count="5" id="kpiWon">0</span>
           </div>
 
           <!-- KPI 4 -->
@@ -114,116 +116,103 @@
               <span class="label">Revenue</span>
               <span class="delta down" id="kpiDeltaRev">-4%</span>
             </div>
-            <span class="value money count" id="kpiRev" data-count="48200">$0</span>
+            <span class="value money count" data-count="48200" id="kpiRevenue">$0</span>
           </div>
 
-          <!-- Lead Trend chart -->
-         <div class="chart-header">
-  <div class="chart-left">
-    <h4>Enquiry Trend</h4>
-    <div class="chart-sub">Last 7 days • <span id="chartIndustryLabel">All</span></div>
-  </div>
+          <!-- Trend -->
+          <div class="chart-card" id="trendCard">
+            <div class="chart-header">
+              <div class="chart-left">
+                <h4>Enquiry Trend</h4>
+              </div>
 
-  <div class="chart-right">
-    <div class="seg" id="industryTabs" role="tablist" aria-label="Industry filter">
-      <button class="seg-btn active" data-industry="all" role="tab" aria-selected="true">All</button>
-      <button class="seg-btn" data-industry="tradies" role="tab">Tradies</button>
-      <button class="seg-btn" data-industry="builders" role="tab">Builders</button>
-      <button class="seg-btn" data-industry="insurance" role="tab">Insurance</button>
-      <button class="seg-btn" data-industry="solar" role="tab">Solar</button>
-      <button class="seg-btn" data-industry="agencies" role="tab">Agencies</button>
-    </div>
+              <div class="chart-right">
+                <div class="seg" role="tablist" aria-label="Industry filter">
+                  <button class="seg-btn active" type="button" data-industry="all" aria-selected="true">All</button>
+                  <button class="seg-btn" type="button" data-industry="tradies">Tradies</button>
+                  <button class="seg-btn" type="button" data-industry="builders">Builders</button>
+                  <button class="seg-btn" type="button" data-industry="insurance">Insurance</button>
+                  <button class="seg-btn" type="button" data-industry="solar">Solar</button>
+                  <button class="seg-btn" type="button" data-industry="agencies">Agencies</button>
+                </div>
 
-    <span class="chip" id="chartRangeChip">7 days • All</span>
-  </div>
-</div>
-
-              <!-- ✅ Industry chips -->
-              <div class="chip-group" id="industryChips" aria-label="Industry filter">
-                <button class="chip-btn active" type="button" data-industry="all">All</button>
-                <button class="chip-btn" type="button" data-industry="tradies">Tradies</button>
-                <button class="chip-btn" type="button" data-industry="builders">Builders</button>
-                <button class="chip-btn" type="button" data-industry="insurance">Insurance</button>
-                <button class="chip-btn" type="button" data-industry="solar">Solar</button>
-                <button class="chip-btn" type="button" data-industry="agencies">Agencies</button>
+                <span class="chip" id="trendChip">7 days • All</span>
               </div>
             </div>
 
-            <div class="chart-subrow">
-              <span class="chip" id="chartMeta">7 days • All</span>
+            <div class="chart-wrap">
+              <svg class="line-chart" viewBox="0 0 300 120" aria-label="Trend chart">
+                <defs>
+                  <linearGradient id="lineGrad" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#6A00FF"/>
+                    <stop offset="50%" stop-color="#B388FF"/>
+                    <stop offset="100%" stop-color="#6A00FF"/>
+                  </linearGradient>
+
+                  <linearGradient id="shimmerGrad" x1="-200" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+                    <stop offset="50%" stop-color="rgba(255,255,255,0.65)"/>
+                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                    <animate attributeName="x1" from="-200" to="300" dur="2.6s" repeatCount="indefinite"/>
+                    <animate attributeName="x2" from="0" to="500" dur="2.6s" repeatCount="indefinite"/>
+                  </linearGradient>
+
+                  <mask id="lineMask">
+                    <path class="chart-line-mask"
+                          d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                          stroke="white" stroke-width="6" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </mask>
+                </defs>
+
+                <path class="chart-area"
+                      d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
+                <path class="chart-line"
+                      d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"/>
+                <path class="chart-shimmer"
+                      d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                      mask="url(#lineMask)"/>
+                <circle class="chart-dot" r="4" cx="300" cy="28"/>
+              </svg>
             </div>
-
-            <svg class="line-chart" viewBox="0 0 300 120" aria-label="Trend chart">
-              <defs>
-                <linearGradient id="lineGrad" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#6A00FF"/>
-                  <stop offset="50%" stop-color="#B388FF"/>
-                  <stop offset="100%" stop-color="#6A00FF"/>
-                </linearGradient>
-
-                <linearGradient id="shimmerGrad" x1="-200" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-                  <stop offset="50%" stop-color="rgba(255,255,255,0.65)"/>
-                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-                  <animate attributeName="x1" from="-200" to="300" dur="2.6s" repeatCount="indefinite"/>
-                  <animate attributeName="x2" from="0" to="500" dur="2.6s" repeatCount="indefinite"/>
-                </linearGradient>
-
-                <mask id="lineMask">
-                  <path id="chartMaskPath"
-                        d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
-                        stroke="white" stroke-width="6" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </mask>
-              </defs>
-
-              <path class="chart-area" id="chartAreaPath"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
-              <path class="chart-line" id="chartLinePath"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"/>
-              <path class="chart-shimmer" id="chartShimmerPath"
-                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
-                    mask="url(#lineMask)"/>
-              <circle class="chart-dot" id="chartDot" r="4" cx="300" cy="28"/>
-            </svg>
           </div>
 
           <!-- Funnel -->
           <div class="widget funnel-widget">
             <div class="widget-head">
               <span class="widget-title">Pipeline</span>
-              <span class="widget-pill" id="pipeMeta">Today • All</span>
+              <span class="widget-pill" id="pipeChip">Today • All</span>
             </div>
 
             <div class="funnel">
               <div class="frow">
                 <span>Enquiries</span>
-                <div class="bar"><div class="fill" id="barEnq" style="--w: 100%"></div></div>
+                <div class="bar"><div class="fill" style="--w: 100%"></div></div>
                 <strong id="pipeEnq">38</strong>
               </div>
 
               <div class="frow">
                 <span>Contacted</span>
-                <div class="bar"><div class="fill" id="barContacted" style="--w: 74%"></div></div>
-                <strong id="pipeContacted">28</strong>
+                <div class="bar"><div class="fill" style="--w: 74%"></div></div>
+                <strong id="pipeCon">28</strong>
               </div>
 
               <div class="frow">
                 <span>Booked</span>
-                <div class="bar"><div class="fill" id="barBooked" style="--w: 32%"></div></div>
-                <strong id="pipeBooked">12</strong>
+                <div class="bar"><div class="fill" style="--w: 32%"></div></div>
+                <strong id="pipeBoo">12</strong>
               </div>
 
               <div class="frow">
                 <span>Won</span>
-                <div class="bar"><div class="fill" id="barWon" style="--w: 13%"></div></div>
+                <div class="bar"><div class="fill" style="--w: 13%"></div></div>
                 <strong id="pipeWon">5</strong>
               </div>
             </div>
           </div>
-        </div><!-- /dashboard-card -->
-      </div><!-- /hero-visual -->
-    </div><!-- /hero-inner -->
+        </div><!-- /dashboard -->
+      </div>
+    </div>
   </section>
 
   <!-- SECTION 2 -->
@@ -280,37 +269,22 @@
         </div>
       </div>
 
-      <!-- ✅ CLEAN: proof images are NOT scattered anymore -->
-      <div class="mini-note reveal">
-        Want to see real screenshots? Jump to the <a href="#gallery">Proof Gallery</a> or open the <a href="results.html">Results Page</a>.
+      <!-- PROOF GRID -->
+      <div class="proof-grid reveal" aria-label="More proof screenshots">
+        <figure class="proof-card">
+          <img src="proof4.png" alt="Client result screenshot 4" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof5.png" alt="Client result screenshot 5" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof6.png" alt="Client result screenshot 6" loading="lazy" decoding="async">
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ✅ PROOF GALLERY (ONE PROPER PLACE) -->
-  <section class="section section-proofwall" id="gallery" aria-label="Proof gallery">
-    <div class="container">
-      <div class="proofwall-head reveal">
-        <p class="kicker">Proof gallery</p>
-        <h2>Receipts — not “testimonials”.</h2>
-        <p class="sub">Unedited snapshots from real conversations and wins.</p>
-      </div>
-
-      <div class="proof-wall reveal">
-        <img src="proof4.png" alt="Client result screenshot 4" loading="lazy" decoding="async">
-        <img src="proof5.png" alt="Client result screenshot 5" loading="lazy" decoding="async">
-        <img src="proof6.png" alt="Client result screenshot 6" loading="lazy" decoding="async">
-        <img src="proof7.png" alt="Client result screenshot 7" loading="lazy" decoding="async">
-        <img src="proof8.png" alt="Client result screenshot 8" loading="lazy" decoding="async">
-        <img src="proof9.png" alt="Client result screenshot 9" loading="lazy" decoding="async">
-        <img src="proof10.png" alt="Client result screenshot 10" loading="lazy" decoding="async">
-        <img src="proof11.png" alt="Client result screenshot 11" loading="lazy" decoding="async">
-        <img src="proof12.png" alt="Client result screenshot 12" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: How it works (Engine Map) -->
+  <!-- SECTION 3: How it works -->
   <section class="section section-engine" id="how">
     <div class="container engine">
       <div class="engine-left reveal">
@@ -451,7 +425,7 @@
     </div>
   </section>
 
-  <!-- SECTION 4: Before vs After (Autopilot) -->
+  <!-- SECTION 4: Before vs After -->
   <section class="section section-compare" id="results">
     <div class="container compare">
       <div class="compare-head reveal">
@@ -464,7 +438,6 @@
       </div>
 
       <div class="compare-grid">
-        <!-- BEFORE -->
         <article class="compare-card before reveal">
           <div class="compare-top">
             <span class="badge bad">Before</span>
@@ -495,7 +468,6 @@
           </div>
         </article>
 
-        <!-- AFTER -->
         <article class="compare-card after reveal">
           <div class="compare-top">
             <span class="badge good">After</span>
@@ -526,7 +498,6 @@
           </div>
         </article>
 
-        <!-- AUTOPILOT STRIP -->
         <article class="autopilot-strip reveal">
           <div class="auto-left">
             <h3>What “autopilot” actually means</h3>
@@ -553,7 +524,6 @@
           </div>
 
           <div class="auto-right">
-            <!-- Animated timeline -->
             <div class="timeline" aria-label="Autopilot timeline">
               <div class="t-item">
                 <div class="t-dot"></div>
@@ -596,7 +566,27 @@
     </div>
   </section>
 
-  <!-- SECTION 5: Pricing + Guarantee -->
+  <!-- PROOF WALL -->
+  <section class="section section-proofwall" aria-label="Proof wall">
+    <div class="container">
+      <div class="proofwall-head reveal">
+        <p class="kicker">More proof</p>
+        <h2>Not testimonials — receipts.</h2>
+        <p class="sub">A few unedited snapshots from real conversations and wins.</p>
+      </div>
+
+      <div class="proof-wall reveal">
+        <img src="proof7.png" alt="Client result screenshot 7" loading="lazy" decoding="async">
+        <img src="proof8.png" alt="Client result screenshot 8" loading="lazy" decoding="async">
+        <img src="proof9.png" alt="Client result screenshot 9" loading="lazy" decoding="async">
+        <img src="proof10.png" alt="Client result screenshot 10" loading="lazy" decoding="async">
+        <img src="proof11.png" alt="Client result screenshot 11" loading="lazy" decoding="async">
+        <img src="proof12.png" alt="Client result screenshot 12" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Pricing -->
   <section class="section section-pricing" id="pricing">
     <div class="container">
       <div class="pricing-head reveal">
@@ -672,16 +662,16 @@
     </div>
   </section>
 
-  <!-- ✅ BOOK SECTION (Calendly embed) -->
+  <!-- BOOKING (Calendly embed) -->
   <section class="section section-book" id="book" aria-label="Book a call">
     <div class="container">
       <div class="book-head reveal">
         <p class="kicker">Book a call</p>
-        <h2>Let’s map out your next 30 days of growth.</h2>
-        <p class="sub">Pick a time that suits you — we’ll show you exactly what we’d install and how we’ll track ROI.</p>
+        <h2>Let’s map your pipeline and get you booked out.</h2>
+        <p class="sub">Pick a time that suits you — we’ll confirm and send the prep steps.</p>
       </div>
 
-      <div class="cal-wrap reveal">
+      <div class="book-card reveal">
         <div class="calendly-inline-widget"
              data-url="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
              style="min-width:320px;height:760px;"></div>
@@ -689,7 +679,7 @@
     </div>
   </section>
 
-  <!-- FINAL CTA STRIP -->
+  <!-- FINAL CTA -->
   <section class="section section-final-cta" id="final">
     <div class="container">
       <div class="final-cta reveal">
@@ -710,12 +700,12 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FULL FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="logo2.png" alt="Acquisition Engine" class="footer-logo" />
+          <img src="logo2.png" alt="ONIX" class="footer-logo" />
           <p class="footer-desc">
             A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
           </p>
@@ -731,16 +721,16 @@
           <a href="#how">How it works</a>
           <a href="#results">Results</a>
           <a href="#pricing">Pricing</a>
-          <a href="results.html">Results Page</a>
           <a href="#book" data-book>Book a call</a>
+          <a href="results.html">Results Page</a>
         </div>
 
         <div class="footer-col">
           <h4>Company</h4>
           <a href="#top">Home</a>
           <a href="#proof">Why us</a>
-          <a href="#gallery">Proof Gallery</a>
           <a href="#book" data-book>Contact</a>
+          <a href="#book" data-book>Support</a>
         </div>
 
         <div class="footer-col">
@@ -752,7 +742,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="year"></span> Acquisition Engine. All rights reserved.</p>
+        <p>© <span id="year"></span> ONIX. All rights reserved.</p>
         <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
       </div>
     </div>
@@ -776,8 +766,10 @@
     </div>
   </div>
 
+  <!-- Calendly embed script -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Your existing JS -->
   <script src="script.js"></script>
 </body>
 </html>
-
