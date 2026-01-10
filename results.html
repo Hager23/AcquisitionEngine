@@ -1,218 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONIX Results</title>
-  <meta name="description" content="Real proof, screenshots, and reviews from clients using the ONIX acquisition engine." />
-  <link rel="icon" href="logo2.png" type="image/png" />
-  <link rel="stylesheet" href="styles.css" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ONIX — Results & Booking</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <script>
-    window.BOOKING_URL = "https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01";
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900;950&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <div class="site-bg" aria-hidden="true">
-    <div class="site-aurora"></div>
-    <div class="site-noise"></div>
-  </div>
+  <div class="site-bg" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo-link" aria-label="Go to home">
-        <img src="logo2.png" alt="ONIX" class="logo" />
-      </a>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="./index.html" aria-label="ONIX Home">
+          <img src="./assets/onix-logo.png" alt="ONIX logo" onerror="this.style.display='none'">
+          <div class="brand-name">ONIX</div>
+        </a>
 
-      <nav class="nav">
-        <a href="index.html#proof">Results</a>
-        <a href="index.html#how">How it works</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="results.html" aria-current="page">Results Page</a>
-        <a href="#book" class="btn-primary" data-book>Book a Call</a>
-      </nav>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="./index.html#results">Results</a>
+          <a href="./index.html#how">How it works</a>
+          <a href="./index.html#pricing">Pricing</a>
+          <a href="./results.html">Results Page</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-primary" href="#book">Book a Call</a>
+          <button class="nav-toggle" data-nav-toggle aria-label="Open menu">☰</button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- RESULTS HERO -->
+  <!-- Mobile nav -->
+  <div class="nav-backdrop" data-nav-backdrop></div>
+  <aside class="nav-panel" data-nav-panel aria-label="Mobile menu">
+    <div class="nav-panel-top">
+      <b>Menu</b>
+      <button class="nav-toggle" data-nav-close aria-label="Close menu">✕</button>
+    </div>
+    <a href="./index.html#results" data-nav-close>Results</a>
+    <a href="./index.html#how" data-nav-close>How it works</a>
+    <a href="./index.html#pricing" data-nav-close>Pricing</a>
+    <a href="./results.html" data-nav-close>Results Page</a>
+    <div style="height:10px"></div>
+    <a class="btn btn-primary" href="#book" style="justify-content:center;">Book a Call</a>
+  </aside>
+
   <section class="results-hero">
-    <div class="container results-hero-inner">
-      <div class="results-hero-copy">
-        <p class="kicker">Results</p>
-        <h1>Not testimonials — receipts.</h1>
-        <p class="sub">
-          Real screenshots, real outcomes, and real reviews from clients using the engine.
-          If you’re serious about consistent booked calls — this is what it looks like.
-        </p>
+    <div class="container">
+      <div class="results-grid">
+        <div class="results-card">
+          <div class="kicker">RESULTS</div>
+          <h1 class="h2">Real outcomes from real lead systems.</h1>
+          <p class="p">
+            If you want a pipeline that delivers enquiries, books calls, and tracks ROI,
+            we’ll show you exactly how it works — and if you’re a fit, we’ll install it.
+          </p>
 
-        <div class="results-hero-actions">
-          <a class="btn-primary large" href="#book" data-book>Book a 15-minute call</a>
-          <a class="btn-secondary" href="index.html">Back to home</a>
-        </div>
-      </div>
-
-      <div class="results-hero-card">
-        <div class="results-mini">
-          <div class="rm-kpi">
-            <span class="rm-l">Booked calls</span>
-            <span class="rm-v">8–20 / wk</span>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="n">$100k</div>
+              <div class="t">extra bottom line</div>
+            </div>
+            <div class="stat">
+              <div class="n">$110k</div>
+              <div class="t">return from 17k</div>
+            </div>
+            <div class="stat">
+              <div class="n">20–25</div>
+              <div class="t">leads/month example</div>
+            </div>
           </div>
-          <div class="rm-kpi">
-            <span class="rm-l">Speed-to-lead</span>
-            <span class="rm-v">~2 min</span>
+
+          <div class="results-list">
+            <div class="tick"><div class="dot"></div><div><b>Qualified enquiries</b> <span>delivered in real time.</span></div></div>
+            <div class="tick"><div class="dot"></div><div><b>Fast follow-up</b> <span>so leads don’t go cold.</span></div></div>
+            <div class="tick"><div class="dot"></div><div><b>Booked calls</b> <span>with tracking + reporting.</span></div></div>
           </div>
-          <div class="rm-kpi">
-            <span class="rm-l">ROI range</span>
-            <span class="rm-v">3–6x</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- TOP PROOF (3) -->
-  <section class="section results-proof-top">
-    <div class="container">
-      <div class="results-proof-grid">
-        <figure class="proof-card"><img src="proof1.png" alt="Proof 1" loading="lazy"></figure>
-        <figure class="proof-card"><img src="proof2.png" alt="Proof 2" loading="lazy"></figure>
-        <figure class="proof-card"><img src="proof3.png" alt="Proof 3" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
+          <div style="height:14px"></div>
 
-  <!-- CHAT BUBBLE REVIEWS -->
-  <section class="section results-bubbles">
-    <div class="container">
-      <div class="bubbles-head">
-        <p class="kicker">Reviews</p>
-        <h2>What clients say after week 1.</h2>
-        <p class="sub">Short, raw feedback — the kind you get when the pipeline actually starts moving.</p>
-      </div>
-
-      <div class="bubbles-grid">
-        <div class="bubble bubble-left">
-          <p><strong>“We had our first proper week of consistent enquiries.”</strong></p>
-          <p>Follow-up is fast. Calendar started filling without us chasing.</p>
-          <span class="bubble-meta">Tradie • Auckland</span>
-        </div>
-
-        <div class="bubble bubble-right">
-          <p><strong>“It finally feels organised.”</strong></p>
-          <p>We can see what’s working and what to scale. Massive relief.</p>
-          <span class="bubble-meta">Agency • NZ</span>
-        </div>
-
-        <div class="bubble bubble-left">
-          <p><strong>“We stopped missing leads.”</strong></p>
-          <p>Receptionist follow-up is the difference. No more cold enquiries.</p>
-          <span class="bubble-meta">Home services</span>
-        </div>
-
-        <div class="bubble bubble-right">
-          <p><strong>“Booked calls are higher quality.”</strong></p>
-          <p>Less tyre-kickers, more decision makers. It’s cleaner.</p>
-          <span class="bubble-meta">Solar</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MORE PROOF WALL -->
-  <section class="section section-proofwall" aria-label="More proof screenshots">
-    <div class="container">
-      <div class="proofwall-head reveal">
-        <p class="kicker">More proof</p>
-        <h2>Scroll the receipts.</h2>
-        <p class="sub">Unedited snapshots from real conversations and wins.</p>
-      </div>
-
-      <div class="proof-wall reveal">
-        <img src="proof4.png" alt="Proof 4" loading="lazy">
-        <img src="proof5.png" alt="Proof 5" loading="lazy">
-        <img src="proof6.png" alt="Proof 6" loading="lazy">
-        <img src="proof7.png" alt="Proof 7" loading="lazy">
-        <img src="proof8.png" alt="Proof 8" loading="lazy">
-        <img src="proof9.png" alt="Proof 9" loading="lazy">
-        <img src="proof10.png" alt="Proof 10" loading="lazy">
-        <img src="proof11.png" alt="Proof 11" loading="lazy">
-        <img src="proof12.png" alt="Proof 12" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- BOOK / CALENDLY EMBED -->
-  <section class="section section-book" id="book">
-    <div class="container">
-      <div class="book-card reveal">
-        <div class="book-copy">
-          <p class="kicker">Book a call</p>
-          <h2>Let’s build your next 30 days.</h2>
-          <p class="sub">Pick a time. We’ll map the engine, the follow-up, and the plan to scale.</p>
-        </div>
-
-        <div class="calendly-shell">
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
-               style="min-width:320px;height:720px;">
+          <div class="proof-grid">
+            <div class="quote">
+              <p>“My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!”</p>
+              <div class="who">— Mike M. (ACC Business Advice)</div>
+            </div>
+            <div class="quote">
+              <p>“The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!”</p>
+              <div class="who">— Amanda S. (Real Estate Agent WGTN)</div>
+            </div>
+            <div class="quote">
+              <p>“Careful what you wish for working with John. He’ll have your business flying in a flash!”</p>
+              <div class="who">— Rachel J. (CEO FIJI Yacht Cruises)</div>
+            </div>
           </div>
         </div>
+
+        <div class="calendly" id="book">
+          <!-- ✅ Replace Calendly URL with yours -->
+          <iframe
+            title="Book a call"
+            src="https://calendly.com/"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="logo2.png" alt="ONIX" class="footer-logo" />
-          <p class="footer-desc">
-            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
-          </p>
-          <div class="footer-badges">
-            <span class="f-badge">Receptionist follow-up</span>
-            <span class="f-badge">Booked calls</span>
-            <span class="f-badge">ROI reporting</span>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Pages</h4>
-          <a href="index.html">Home</a>
-          <a href="index.html#proof">Results</a>
-          <a href="index.html#how">How it works</a>
-          <a href="index.html#pricing">Pricing</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Get started</h4>
-          <a href="#book" data-book>Book a call</a>
-          <a href="results.html">See proof</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="cookies.html">Cookie Policy</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© <span id="year"></span> ONIX. All rights reserved.</p>
-        <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
+      <div class="footer-note">
+        <span>© <span id="year"></span> ONIX. All rights reserved.</span>
+        <span><a href="./index.html" style="display:inline; padding:0;">Back to Home</a></span>
       </div>
     </div>
   </footer>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
