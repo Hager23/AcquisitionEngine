@@ -675,6 +675,56 @@ a { color: inherit; }
   stroke-linejoin: round;
 }
 
+/* =========================================
+   CHART FILTER TABS (Industry buttons)
+   Fixes: squished buttons + makes them scroll
+========================================= */
+
+.chart-controls{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 6px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.chart-controls::-webkit-scrollbar{ display: none; }
+
+.chart-controls .seg{
+  flex: 0 0 auto;            /* ✅ no shrinking */
+  white-space: nowrap;       /* ✅ keep text on one line */
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(12,10,27,0.14);
+  background: rgba(255,255,255,0.75);
+  font-weight: 900;
+  font-size: 13px;
+  color: rgba(12,10,27,0.78);
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.chart-controls .seg:hover{
+  transform: translateY(-1px);
+  border-color: rgba(84,64,178,0.28);
+}
+
+.chart-controls .seg.active{
+  background: rgba(84,64,178,0.12);
+  border-color: rgba(84,64,178,0.35);
+  color: rgba(41,42,97,0.98);
+  box-shadow: 0 10px 24px rgba(84,64,178,0.10);
+}
+
+/* On very narrow widths, keep it clean */
+@media (max-width: 520px){
+  .chart-controls{ gap: 8px; }
+  .chart-controls .seg{ font-size: 12.5px; padding: 7px 11px; }
+}
+
 
 /* =========================
    RESPONSIVE
@@ -729,4 +779,5 @@ a { color: inherit; }
   .cookie-card{ grid-template-columns: 1fr; }
   .cookie-actions{ justify-content: flex-start; }
 }
+
 
