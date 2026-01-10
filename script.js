@@ -554,9 +554,143 @@ if (aurora) {
     if (e.key === "Escape" && banner.classList.contains("show")) {
       close("declined");
     }
+    // ================================
+// Industry filter for hero dashboard
+// (Updates KPI + chart + pipeline + label)
+// ================================
+(function initIndustryFilters(){
+  const controls = document.getElementById("industryControls");
+  const rangeLabel = document.getElementById("chartRangeLabel");
+
+  const kpiEnq = document.querySelector('.kpi[data-tip*="New enquiries"] .value');
+  const kpiBooked = document.querySelector('.kpi[data-tip*="Qualified calls"] .value');
+  const kpiWon = document.querySelector('.kpi[data-tip*="Deals marked"] .value');
+  const kpiRev = document.querySelector('.kpi[data-tip*="Revenue influenced"] .value');
+
+  // funnel numbers
+  const funnelRows = Array.from(document.querySelectorAll(".funnel .frow"));
+  const funnelMap = {}; // label -> strong element
+  funnelRows.forEach(row => {
+    const label = row.querySelector("span")?.textContent?.trim()?.toLowerCase();
+    const strong = row.querySelector("strong");
+    if (label && strong) funnelMap[label] = strong;
+  });
+
+  // SVG paths
+  const line = document.querySelector(".chart-line");
+  const area = document.querySelector(".chart-area");
+  const mask = document.querySelector(".chart-line-mask");
+
+  // If any missing, bail safely
+  if (!controls || !rangeLabel || !line || !area || !mask) return;
+
+  // ✅ Data presets (feel “real”)
+  // You can adjust numbers any time.
+  const DATA = {
+    all: {
+      label: "All",
+      kpis: { enquiries: 38, booked: 12, won: 5, revenue: 48200 },
+      pipeline: { enquiries: 38, contacted: 28, booked: 12, won: 5 },
+      path: "M0 96 L40 80 L80 84 L120 60 L160 56 L200 70 L240 40 L280 30 L300 28"
+    },
+    tradies: {
+      label: "Tradies",
+      kpis: { enquiries: 27, booked: 11, won: 4, revenue: 38800 },
+      pipeline: { enquiries: 27, contacted: 21, booked: 11, won: 4 },
+      path: "M0 100 L40 86 L80 90 L120 66 L160 62 L200 78 L240 46 L280 34 L300 30"
+    },
+    builders: {
+      label: "Builders",
+      kpis: { enquiries: 22, booked: 8, won: 3, revenue: 52100 },
+      pipeline: { enquiries: 22, contacted: 16, booked: 8, won: 3 },
+      path: "M0 102 L40 92 L80 82 L120 70 L160 58 L200 62 L240 50 L280 38 L300 34"
+    },
+    insurance: {
+      label: "Insurance",
+      kpis: { enquiries: 19, booked: 7, won: 2, revenue: 29800 },
+      pipeline: { enquiries: 19, contacted: 14, booked: 7, won: 2 },
+      path: "M0 104 L40 96 L80 88 L120 72 L160 68 L200 80 L240 54 L280 42 L300 36"
+    },
+    solar: {
+      label: "Solar",
+      kpis: { enquiries: 31, booked: 10, won: 4, revenue: 76400 },
+      pipeline: { enquiries: 31, contacted: 23, booked: 10, won: 4 },
+      path: "M0 98 L40 84 L80 76 L120 60 L160 54 L200 60 L240 44 L280 32 L300 26"
+    },
+    agencies: {
+      label: "Agencies",
+      kpis: { enquiries: 16, booked: 6, won: 2, revenue: 21400 },
+      pipeline: { enquiries: 16, contacted: 12, booked: 6, won: 2 },
+      path: "M0 106 L40 98 L80 92 L120 86 L160 78 L200 74 L240 62 L280 52 L300 48"
+    }
+  };
+
+  function formatMoney(n){
+    return "$" + Number(n || 0).toLocaleString();
+  }
+
+  function setCounts(ind){
+    // update label
+    rangeLabel.textContent = `7 days • ${DATA[ind].label}`;
+
+    // update KPIs (keep your count animation? we just set directly)
+    if (kpiEnq) kpiEnq.textContent = DATA[ind].kpis.enquiries.toLocaleString();
+    if (kpiBooked) kpiBooked.textContent = DATA[ind].kpis.booked.toLocaleString();
+    if (kpiWon) kpiWon.textContent = DATA[ind].kpis.won.toLocaleString();
+    if (kpiRev) kpiRev.textContent = formatMoney(DATA[ind].kpis.revenue);
+
+    // update funnel numbers
+    if (funnelMap.enquiries) funnelMap.enquiries.textContent = DATA[ind].pipeline.enquiries.toLocaleString();
+    if (funnelMap.contacted) funnelMap.contacted.textContent = DATA[ind].pipeline.contacted.toLocaleString();
+    if (funnelMap.booked) funnelMap.booked.textContent = DATA[ind].pipeline.booked.toLocaleString();
+    if (funnelMap.won) funnelMap.won.textContent = DATA[ind].pipeline.won.toLocaleString();
+  }
+
+  function setPath(ind){
+    const d = DATA[ind].path;
+    // line
+    line.setAttribute("d", d);
+    // mask
+    mask.setAttribute("d", d);
+
+    // area from line -> bottom fill
+    // We reuse the same points and close the path at the bottom
+    const areaD = `${d} L300 120 L0 120 Z`;
+    area.setAttribute("d", areaD);
+
+    // reset line draw animation so it feels responsive
+    line.style.animation = "none";
+    // force reflow
+    void line.getBoundingClientRect();
+    line.style.animation = "";
+  }
+
+  function activate(btn){
+    controls.querySelectorAll(".seg").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+
+  controls.addEventListener("click", (e) => {
+    const btn = e.target.closest(".seg");
+    if (!btn) return;
+
+    const ind = btn.dataset.industry || "all";
+    if (!DATA[ind]) return;
+
+    activate(btn);
+    setCounts(ind);
+    setPath(ind);
+  });
+
+  // initial state
+  setCounts("all");
+  setPath("all");
+})();
+
   });
 })();
 
 // ===============================
 // END: script.js
 // ===============================
+
