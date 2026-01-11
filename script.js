@@ -21,31 +21,40 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 // -------------------------------
 // 2) Scroll reveal (with stagger)
 // -------------------------------
+document.documentElement.classList.add("js");
 const revealEls = Array.from(document.querySelectorAll(".reveal"));
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+if (!("IntersectionObserver" in window)) {
+  revealEls.forEach((el) => el.classList.add("show"));
+} else {
+  const revealFallback = setTimeout(() => {
+    revealEls.forEach((el) => el.classList.add("show"));
+  }, 1600);
 
-      const el = entry.target;
-      // stagger children if it's a container
-      const kids = el.querySelectorAll(".reveal-child");
-      if (kids.length) {
-        kids.forEach((k, i) => {
-          k.style.transitionDelay = `${i * 90}ms`;
-          k.classList.add("show");
-        });
-      }
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-      el.classList.add("show");
-      revealObserver.unobserve(el);
-    });
-  },
-  { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
-);
+        const el = entry.target;
+        // stagger children if it's a container
+        const kids = el.querySelectorAll(".reveal-child");
+        if (kids.length) {
+          kids.forEach((k, i) => {
+            k.style.transitionDelay = `${i * 90}ms`;
+            k.classList.add("show");
+          });
+        }
 
-revealEls.forEach((el) => revealObserver.observe(el));
+        el.classList.add("show");
+        revealObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
+  );
+
+  revealEls.forEach((el) => revealObserver.observe(el));
+}
 
 // -------------------------------
 // 3) Count-up animation (slower + stagger)
