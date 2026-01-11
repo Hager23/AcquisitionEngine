@@ -114,6 +114,8 @@ body {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid var(--line2);
 }
 
 .header-inner {
@@ -137,8 +139,15 @@ body {
   .logo{ height: 24px; }
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
 .nav a {
-  margin-left: 24px;
+  margin-left: 0;
   text-decoration: none;
   color: rgba(12,10,27,0.82);
   font-weight: 700;
@@ -958,7 +967,8 @@ body {
 ========================= */
 @media (max-width: 900px) {
   .header-inner { padding: 14px 16px; }
-  .nav a { margin-left: 14px; font-size: 14px; }
+  .nav { gap: 14px; }
+  .nav a { font-size: 14px; }
   .logo { height: 32px; }
 
   .hero { padding: 90px 16px 70px; }
@@ -974,7 +984,7 @@ body {
 @media (max-width: 520px) {
   .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
   .nav { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; }
-  .nav a { margin-left: 0; font-size: 14px; }
+  .nav a { font-size: 14px; }
   .nav a.btn-primary { width: fit-content; }
 
   .section { padding: 70px 16px; }
