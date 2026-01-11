@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  // -------- Mobile nav (defensive) --------
+  // ---------- Mobile nav (defensive) ----------
   const toggle = document.querySelector("[data-nav-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
 
@@ -25,8 +25,7 @@
 
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
-      if (expanded) closeMobileNav();
-      else openMobileNav();
+      expanded ? closeMobileNav() : openMobileNav();
     });
 
     mobileNav.addEventListener("click", (e) => {
@@ -43,11 +42,11 @@
     });
   }
 
-  // -------- Footer year --------
+  // ---------- Footer year ----------
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // -------- Reveal on scroll --------
+  // ---------- Reveal on scroll (stronger but still premium) ----------
   const revealEls = Array.from(document.querySelectorAll(".reveal"));
   if (revealEls.length) {
     const io = new IntersectionObserver(
@@ -59,12 +58,45 @@
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
     );
     revealEls.forEach((el) => io.observe(el));
   }
 
-  // -------- Dashboard segmentation --------
+  // ---------- Micro tilt (very subtle) ----------
+  // Adds a premium “depth” feel to cards without breaking anything.
+  const tiltEls = Array.from(document.querySelectorAll("[data-tilt]"));
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+  if (!prefersReduced && tiltEls.length) {
+    tiltEls.forEach((el) => {
+      let raf = 0;
+
+      function onMove(e) {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;  // 0..1
+          const y = (e.clientY - r.top) / r.height;  // 0..1
+          const rx = clamp((0.5 - y) * 6, -3, 3);
+          const ry = clamp((x - 0.5) * 6, -3, 3);
+          el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+        });
+      }
+
+      function onLeave() {
+        cancelAnimationFrame(raf);
+        el.style.transform = "";
+      }
+
+      el.addEventListener("mousemove", onMove);
+      el.addEventListener("mouseleave", onLeave);
+    });
+  }
+
+  // ---------- Dashboard segmentation ----------
   const data = {
     all: {
       enquiries: { v: "38", d: "+18%", cls: "up" },
@@ -119,13 +151,21 @@
     el.classList.add(cls);
   }
 
+  function pulse(el){
+    if (!el) return;
+    el.classList.remove("pulse");
+    // reflow
+    void el.offsetWidth;
+    el.classList.add("pulse");
+  }
+
   function applySegment(key) {
     const d = data[key];
     if (!d) return;
 
     const setText = (sel, v) => {
       const el = document.querySelector(sel);
-      if (el) el.textContent = v;
+      if (el) { el.textContent = v; pulse(el); }
     };
 
     setText('[data-kpi="enquiries"]', d.enquiries.v);
@@ -138,17 +178,16 @@
     const dd = document.querySelector('[data-kpi-delta="deals"]');
     const dr = document.querySelector('[data-kpi-delta="revenue"]');
 
-    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); }
-    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); }
-    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); }
-    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); }
+    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); pulse(de); }
+    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); pulse(dc); }
+    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); pulse(dd); }
+    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); pulse(dr); }
 
     if (sparkLine) {
-      sparkLine.style.opacity = "0.25";
-      window.setTimeout(() => {
-        sparkLine.setAttribute("d", d.line);
-        sparkLine.style.opacity = "1";
-      }, 90);
+      sparkLine.classList.remove("path-pop");
+      void sparkLine.getBBox();
+      sparkLine.setAttribute("d", d.line);
+      sparkLine.classList.add("path-pop");
     }
   }
 
@@ -161,14 +200,13 @@
         });
         b.classList.add("is-active");
         b.setAttribute("aria-selected", "true");
-
         const key = b.getAttribute("data-seg") || "all";
         applySegment(key);
       });
     });
   }
 
-  // -------- Engine steps --------
+  // ---------- Engine steps ----------
   const stepBtns = Array.from(document.querySelectorAll(".step[data-step]"));
   const bar = document.querySelector("[data-engine-bar]");
   const badge = document.querySelector("[data-engine-badge]");
@@ -186,7 +224,6 @@
   function renderStep(i) {
     const s = steps[i];
     if (!s) return;
-
     if (badge) badge.textContent = s.b;
     if (title) title.textContent = s.t;
 
@@ -197,6 +234,7 @@
         li.textContent = txt;
         list.appendChild(li);
       });
+      pulse(list);
     }
 
     if (bar) bar.style.width = `${(i + 1) * 20}%`;
