@@ -88,24 +88,28 @@ function animateCount(el, delayMs = 0) {
 }
 
 const countEls = Array.from(document.querySelectorAll(".count[data-count]"));
-const countObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
+if ("IntersectionObserver" in window && countEls.length) {
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
 
-      const parent = e.target.closest(".dashboard-card, .outcomes, .section");
-      const group = parent
-        ? Array.from(parent.querySelectorAll(".count[data-count]"))
-        : [e.target];
+        const parent = e.target.closest(".dashboard-card, .outcomes, .section");
+        const group = parent
+          ? Array.from(parent.querySelectorAll(".count[data-count]"))
+          : [e.target];
 
-      group.forEach((node, i) => animateCount(node, i * 110));
-      group.forEach((node) => countObserver.unobserve(node));
-    });
-  },
-  { threshold: 0.35 }
-);
+        group.forEach((node, i) => animateCount(node, i * 110));
+        group.forEach((node) => countObserver.unobserve(node));
+      });
+    },
+    { threshold: 0.35 }
+  );
 
-countEls.forEach((el) => countObserver.observe(el));
+  countEls.forEach((el) => countObserver.observe(el));
+} else {
+  countEls.forEach((el, i) => animateCount(el, i * 110));
+}
 
 // -------------------------------
 // 4) Tooltip for KPI (data-tip)
@@ -138,7 +142,7 @@ document.querySelectorAll("[data-tip]").forEach((node) => {
 });
 
 // -------------------------------
-// 5) Hero dashboard tilt/parallax (Stripe-ish feel)
+// 5) Hero dashboard tilt/parallax
 // -------------------------------
 const heroCard = document.querySelector(".hero-dashboard");
 let tiltRAF = null;
@@ -184,14 +188,11 @@ if (heroCard) {
 }
 
 // -------------------------------
-// 6) Lead chart: animate ONCE (no constant moving)
+// 6) Lead chart: animate ONCE
 // -------------------------------
 const chart = document.querySelector(".line-chart");
 const linePath = document.getElementById("trendLine") || document.querySelector(".chart-line");
 const dot = document.getElementById("trendDot") || document.querySelector(".chart-dot");
-const areaPath = document.getElementById("trendArea") || document.querySelector(".chart-area");
-const maskPath = document.getElementById("trendLineMask") || document.querySelector(".chart-line-mask");
-const shimmerPath = document.getElementById("trendShimmer") || document.querySelector(".chart-shimmer");
 
 function placeDotAtEnd() {
   if (!linePath || !dot || !linePath.getTotalLength) return;
@@ -222,7 +223,7 @@ function animateDotOnce() {
 }
 
 const hero = document.querySelector(".hero");
-if (hero) {
+if (hero && "IntersectionObserver" in window) {
   const heroObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
@@ -254,7 +255,7 @@ if (chart && linePath && dot && linePath.getTotalLength) {
 }
 
 // -------------------------------
-// 7) Button micro-interaction (press bounce)
+// 7) Button micro-interaction
 // -------------------------------
 document.querySelectorAll(".btn-primary, .btn-secondary").forEach((btn) => {
   btn.addEventListener("mousedown", () => {
@@ -353,11 +354,9 @@ if (aurora) {
     items.forEach((it, i) => {
       const dot = it.querySelector(".t-dot");
       if (!dot) return;
-      if (i <= activeCount) {
-        dot.style.background = "rgba(106,0,255,0.9)";
-      } else {
-        dot.style.background = "rgba(106,0,255,0.35)";
-      }
+      dot.style.background = (i <= activeCount)
+        ? "rgba(106,0,255,0.9)"
+        : "rgba(106,0,255,0.35)";
     });
   }
 
@@ -366,25 +365,28 @@ if (aurora) {
 })();
 
 // ================================
-// Booking links: ALWAYS scroll to #book
+// Booking links: ALWAYS scroll to #book (safe)
+/// Only converts buttons that clearly mean booking
 // ================================
 (function bindBookingLinks(){
-  document.querySelectorAll("[data-book], .btn-primary, .btn-secondary").forEach((el) => {
+  document.querySelectorAll(".btn-primary, .btn-secondary, [data-book]").forEach((el) => {
     if (!el || !el.getAttribute) return;
     const href = el.getAttribute("href") || "";
-    if (!href) return;
+    const txt = (el.textContent || "").toLowerCase();
 
-    // Only convert obvious booking CTAs (keeps other buttons intact)
     const isBook =
       el.hasAttribute("data-book") ||
-      /book/i.test(el.textContent || "") ||
+      txt.includes("book") ||
       href.includes("calendly.com");
 
     if (!isBook) return;
 
-    el.setAttribute("href", "#book");
-    el.removeAttribute("target");
-    el.removeAttribute("rel");
+    // only rewrite if this page actually has #book
+    if (document.getElementById("book")) {
+      el.setAttribute("href", "#book");
+      el.removeAttribute("target");
+      el.removeAttribute("rel");
+    }
   });
 })();
 
@@ -430,8 +432,7 @@ if (aurora) {
 })();
 
 // ======================================================
-// ✅ Industry-based “real results” dashboard switching
-// (KPI + Funnel + Trend updates per industry)
+// Industry-based dashboard switching (only if exists)
 // ======================================================
 (function industryDashboard(){
   const segButtons = Array.from(document.querySelectorAll(".seg-btn"));
@@ -465,58 +466,21 @@ if (aurora) {
   const area = document.getElementById("trendArea");
   const mask = document.getElementById("trendLineMask");
   const shimmer = document.getElementById("trendShimmer");
-  const dot = document.getElementById("trendDot");
+  const dotEl = document.getElementById("trendDot");
 
   const DATA = {
-    all: {
-      label: "Combined",
-      deltas: { enq: "+18%", calls: "+9%", wins: "—", rev: "-4%" },
-      kpis: { enq: 38, calls: 12, wins: 5, rev: 48200 },
-      funnel: { enq: 38, con: 28, boo: 12, won: 5 },
-      trend: [10, 14, 13, 18, 20, 17, 25, 28, 30]
-    },
-    tradies: {
-      label: "Tradies",
-      deltas: { enq: "+22%", calls: "+14%", wins: "+8%", rev: "+6%" },
-      kpis: { enq: 44, calls: 16, wins: 6, rev: 61200 },
-      funnel: { enq: 44, con: 34, boo: 16, won: 6 },
-      trend: [8, 12, 14, 18, 21, 19, 26, 29, 33]
-    },
-    builders: {
-      label: "Builders",
-      deltas: { enq: "+11%", calls: "+7%", wins: "—", rev: "+3%" },
-      kpis: { enq: 31, calls: 9, wins: 3, rev: 73400 },
-      funnel: { enq: 31, con: 22, boo: 9, won: 3 },
-      trend: [6, 9, 10, 13, 14, 12, 16, 18, 19]
-    },
-    insurance: {
-      label: "Insurance",
-      deltas: { enq: "+15%", calls: "+10%", wins: "+5%", rev: "+9%" },
-      kpis: { enq: 27, calls: 11, wins: 4, rev: 38800 },
-      funnel: { enq: 27, con: 21, boo: 11, won: 4 },
-      trend: [5, 7, 8, 10, 11, 12, 13, 14, 16]
-    },
-    solar: {
-      label: "Solar",
-      deltas: { enq: "+19%", calls: "+12%", wins: "+6%", rev: "+8%" },
-      kpis: { enq: 36, calls: 13, wins: 5, rev: 92600 },
-      funnel: { enq: 36, con: 27, boo: 13, won: 5 },
-      trend: [7, 9, 11, 15, 18, 16, 20, 22, 24]
-    },
-    agencies: {
-      label: "Agencies",
-      deltas: { enq: "+9%", calls: "+6%", wins: "—", rev: "+4%" },
-      kpis: { enq: 22, calls: 7, wins: 2, rev: 26400 },
-      funnel: { enq: 22, con: 16, boo: 7, won: 2 },
-      trend: [4, 5, 6, 7, 8, 9, 10, 10, 11]
-    }
+    all: { label:"Combined", deltas:{ enq:"+18%", calls:"+9%", wins:"—", rev:"-4%" }, kpis:{ enq:38, calls:12, wins:5, rev:48200 }, funnel:{ enq:38, con:28, boo:12, won:5 }, trend:[10,14,13,18,20,17,25,28,30] },
+    tradies: { label:"Tradies", deltas:{ enq:"+22%", calls:"+14%", wins:"+8%", rev:"+6%" }, kpis:{ enq:44, calls:16, wins:6, rev:61200 }, funnel:{ enq:44, con:34, boo:16, won:6 }, trend:[8,12,14,18,21,19,26,29,33] },
+    builders: { label:"Builders", deltas:{ enq:"+11%", calls:"+7%", wins:"—", rev:"+3%" }, kpis:{ enq:31, calls:9, wins:3, rev:73400 }, funnel:{ enq:31, con:22, boo:9, won:3 }, trend:[6,9,10,13,14,12,16,18,19] },
+    insurance: { label:"Insurance", deltas:{ enq:"+15%", calls:"+10%", wins:"+5%", rev:"+9%" }, kpis:{ enq:27, calls:11, wins:4, rev:38800 }, funnel:{ enq:27, con:21, boo:11, won:4 }, trend:[5,7,8,10,11,12,13,14,16] },
+    solar: { label:"Solar", deltas:{ enq:"+19%", calls:"+12%", wins:"+6%", rev:"+8%" }, kpis:{ enq:36, calls:13, wins:5, rev:92600 }, funnel:{ enq:36, con:27, boo:13, won:5 }, trend:[7,9,11,15,18,16,20,22,24] },
+    agencies: { label:"Agencies", deltas:{ enq:"+9%", calls:"+6%", wins:"—", rev:"+4%" }, kpis:{ enq:22, calls:7, wins:2, rev:26400 }, funnel:{ enq:22, con:16, boo:7, won:2 }, trend:[4,5,6,7,8,9,10,10,11] }
   };
 
   function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
   function toPath(values){
-    const xs = [0, 40, 80, 120, 160, 200, 240, 280, 300];
-
+    const xs = [0,40,80,120,160,200,240,280,300];
     const minV = Math.min(...values);
     const maxV = Math.max(...values);
     const topY = 28;
@@ -524,7 +488,7 @@ if (aurora) {
 
     function y(v){
       if (maxV === minV) return (topY + botY) / 2;
-      const t = (v - minV) / (maxV - minV); // 0..1
+      const t = (v - minV) / (maxV - minV);
       return botY - t * (botY - topY);
     }
 
@@ -533,10 +497,7 @@ if (aurora) {
     const dArea = `${dLine} L300 120 L0 120 Z`;
 
     const end = pts[pts.length - 1].split(" ");
-    const endX = Number(end[0]);
-    const endY = Number(end[1]);
-
-    return { dLine, dArea, endX, endY };
+    return { dLine, dArea, endX: Number(end[0]), endY: Number(end[1]) };
   }
 
   function restartFill(el){
@@ -591,7 +552,7 @@ if (aurora) {
     if (area) area.setAttribute("d", p.dArea);
     if (mask) mask.setAttribute("d", p.dLine);
     if (shimmer) shimmer.setAttribute("d", p.dLine);
-    if (dot){ dot.setAttribute("cx", String(p.endX)); dot.setAttribute("cy", String(p.endY)); }
+    if (dotEl){ dotEl.setAttribute("cx", String(p.endX)); dotEl.setAttribute("cy", String(p.endY)); }
 
     animateDotOnce();
   }
@@ -611,33 +572,6 @@ if (aurora) {
   });
 
   apply("all");
-})();
-
-// ================================
-// ✅ Results page mobile nav toggle (safe / no-op if not present)
-// ================================
-(function resultsMobileNav(){
-  const toggle = document.querySelector("[data-nav-toggle]");
-  const panel = document.querySelector("[data-nav-panel]");
-  const backdrop = document.querySelector("[data-nav-backdrop]");
-  const body = document.body;
-
-  if (!toggle || !panel || !backdrop) return;
-
-  function openNav(){ body.classList.add("nav-open"); }
-  function closeNav(){ body.classList.remove("nav-open"); }
-
-  toggle.addEventListener("click", openNav);
-
-  document.querySelectorAll("[data-nav-close]").forEach((el) => {
-    el.addEventListener("click", closeNav);
-  });
-
-  backdrop.addEventListener("click", closeNav);
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeNav();
-  });
 })();
 
 // ===============================
