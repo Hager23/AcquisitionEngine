@@ -3,135 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ONIX — Results & Booking</title>
+  <title>ONIX — Results</title>
+
+  <meta name="description" content="Real outcomes from real lead systems. See how ONIX installs a pipeline that delivers enquiries, books calls, and tracks ROI." />
+
+  <link rel="icon" href="logo2.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900;950&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
-<body class="results-page">
-  <!-- Global animated background (match index) -->
+<body>
+  <!-- Global animated background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
   </div>
 
-  <!-- Header -->
+  <!-- HEADER (same as home) -->
   <header class="header">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="./index.html" aria-label="ONIX Home">
-          <img src="logo2.png" alt="ONIX logo" onerror="this.style.display='none'">
-          <div class="brand-name">ONIX</div>
-        </a>
+    <div class="header-inner">
+      <a href="index.html" aria-label="Go to home">
+        <img src="logo2.png" alt="ONIX" class="logo" />
+      </a>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="./index.html#results">Results</a>
-          <a href="./index.html#how">How it works</a>
-          <a href="./index.html#pricing">Pricing</a>
-          <a href="./results.html">Results Page</a>
-        </nav>
-
-        <div class="nav-cta">
-          <a class="btn btn-primary" href="#book">Book a Call</a>
-          <button class="nav-toggle" data-nav-toggle aria-label="Open menu">☰</button>
-        </div>
-      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="results.html">Results</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#book" class="btn-primary">Book a Call</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Mobile nav -->
-  <div class="nav-backdrop" data-nav-backdrop></div>
-  <aside class="nav-panel" data-nav-panel aria-label="Mobile menu">
-    <div class="nav-panel-top">
-      <b>Menu</b>
-      <button class="nav-toggle" data-nav-close aria-label="Close menu">✕</button>
-    </div>
-    <a href="./index.html#results" data-nav-close>Results</a>
-    <a href="./index.html#how" data-nav-close>How it works</a>
-    <a href="./index.html#pricing" data-nav-close>Pricing</a>
-    <a href="./results.html" data-nav-close>Results Page</a>
-    <div style="height:10px"></div>
-    <a class="btn btn-primary" href="#book" data-nav-close style="justify-content:center;">Book a Call</a>
-  </aside>
-
+  <!-- RESULTS HERO -->
   <section class="results-hero">
-    <div class="container">
-      <div class="results-grid">
-        <div class="results-card">
-          <div class="kicker">RESULTS</div>
-          <h1 class="h2">Real outcomes from real lead systems.</h1>
-          <p class="p">
-            If you want a pipeline that delivers enquiries, books calls, and tracks ROI,
-            we’ll show you exactly how it works — and if you’re a fit, we’ll install it.
-          </p>
+    <div class="results-grid">
+      <div class="results-card reveal">
+        <div class="kicker">RESULTS</div>
+        <h1 class="h2">Real outcomes from real lead systems.</h1>
+        <p class="p">
+          If you want a pipeline that delivers enquiries, books calls, and tracks ROI,
+          we’ll show you exactly how it works — and if you’re a fit, we’ll install it.
+        </p>
 
-          <div class="stat-row">
-            <div class="stat">
-              <div class="n">$100k</div>
-              <div class="t">extra bottom line</div>
-            </div>
-            <div class="stat">
-              <div class="n">$110k</div>
-              <div class="t">return from 17k</div>
-            </div>
-            <div class="stat">
-              <div class="n">20–25</div>
-              <div class="t">leads/month example</div>
-            </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="n">$100k</div>
+            <div class="t">extra bottom line</div>
           </div>
-
-          <div class="results-list">
-            <div class="tick"><div class="dot"></div><div><b>Qualified enquiries</b> <span>delivered in real time.</span></div></div>
-            <div class="tick"><div class="dot"></div><div><b>Fast follow-up</b> <span>so leads don’t go cold.</span></div></div>
-            <div class="tick"><div class="dot"></div><div><b>Booked calls</b> <span>with tracking + reporting.</span></div></div>
+          <div class="stat">
+            <div class="n">$110k</div>
+            <div class="t">return from 17k</div>
           </div>
-
-          <div style="height:14px"></div>
-
-          <div class="proof-grid">
-            <div class="quote">
-              <p>“My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!”</p>
-              <div class="who">— Mike M. (ACC Business Advice)</div>
-            </div>
-            <div class="quote">
-              <p>“The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!”</p>
-              <div class="who">— Amanda S. (Real Estate Agent WGTN)</div>
-            </div>
-            <div class="quote">
-              <p>“Careful what you wish for working with John. He’ll have your business flying in a flash!”</p>
-              <div class="who">— Rachel J. (CEO FIJI Yacht Cruises)</div>
-            </div>
+          <div class="stat">
+            <div class="n">20–25</div>
+            <div class="t">leads/month example</div>
           </div>
         </div>
 
-        <div class="calendly" id="book">
-          <iframe
-            title="Book a call"
-            src="https://calendly.com/"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <div class="results-list">
+          <div class="tick"><div class="dot"></div><div><b>Qualified enquiries</b> <span>delivered in real time.</span></div></div>
+          <div class="tick"><div class="dot"></div><div><b>Fast follow-up</b> <span>so leads don’t go cold.</span></div></div>
+          <div class="tick"><div class="dot"></div><div><b>Booked calls</b> <span>with tracking + reporting.</span></div></div>
         </div>
+
+        <div style="height:14px"></div>
+
+        <div class="proof-grid" aria-label="Client quotes">
+          <div class="quote">
+            <p>“My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!”</p>
+            <div class="who">— Mike M. (ACC Business Advice)</div>
+          </div>
+          <div class="quote">
+            <p>“The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!”</p>
+            <div class="who">— Amanda S. (Real Estate Agent WGTN)</div>
+          </div>
+          <div class="quote">
+            <p>“Careful what you wish for working with John. He’ll have your business flying in a flash!”</p>
+            <div class="who">— Rachel J. (CEO FIJI Yacht Cruises)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendly reveal" id="book" aria-label="Book a call">
+        <!-- Put your real Calendly URL here -->
+        <iframe
+          title="Book a call"
+          src="https://calendly.com/"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-note">
-        <span>© <span id="year"></span> ONIX. All rights reserved.</span>
-        <span><a href="./index.html" style="display:inline; padding:0;">Back to Home</a></span>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> ONIX. All rights reserved.</p>
+        <p class="footer-promise"><a href="index.html" style="text-decoration: underline;">Back to Home</a></p>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
