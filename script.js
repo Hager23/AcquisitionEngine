@@ -1,312 +1,223 @@
-// =========================
-// START: script.js
-// =========================
-(() => {
+/* =========================
+   START: script.js
+========================= */
+(function () {
   "use strict";
 
-  // -------- Helpers (defensive) --------
-  const qs = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  // -------- Mobile nav (defensive, no stray text) --------
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const mobileNav = document.querySelector("[data-mobile-nav]");
 
-  function safeOn(el, event, handler, opts) {
-    if (!el) return;
-    el.addEventListener(event, handler, opts);
-  }
-
-  // -------- Year --------
-  qsa("[data-year]").forEach((el) => {
-    try { el.textContent = String(new Date().getFullYear()); } catch (_) {}
-  });
-
-  // -------- Mobile nav (robust, no overlay) --------
-  const toggle = qs(".nav-toggle");
-  const mobileNav = qs("#mobileNav");
-
-  function setMobileOpen(open) {
+  function closeMobileNav() {
     if (!toggle || !mobileNav) return;
-    toggle.setAttribute("aria-expanded", String(open));
-    mobileNav.hidden = !open;
+    mobileNav.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
   }
 
-  safeOn(toggle, "click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    setMobileOpen(!expanded);
-  });
-
-  // Close mobile nav when clicking a link
-  if (mobileNav) {
-    qsa("a", mobileNav).forEach((a) => {
-      safeOn(a, "click", () => setMobileOpen(false));
-    });
-  }
-
-  // Close on resize back to desktop
-  safeOn(window, "resize", () => {
+  function openMobileNav() {
     if (!toggle || !mobileNav) return;
-    const isDesktop = window.matchMedia("(min-width: 981px)").matches;
-    if (isDesktop) setMobileOpen(false);
-  });
+    mobileNav.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+  }
 
-  // -------- Smooth scroll for internal anchors (defensive) --------
-  qsa('a[href^="#"]').forEach((a) => {
-    safeOn(a, "click", (e) => {
-      const href = a.getAttribute("href");
-      if (!href || href.length < 2) return;
-      const target = qs(href);
-      if (!target) return;
-      e.preventDefault();
-      try {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        // close mobile menu if open
-        setMobileOpen(false);
-      } catch (_) {
-        // fallback
-        location.hash = href;
-      }
+  if (toggle && mobileNav) {
+    closeMobileNav();
+
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      if (expanded) closeMobileNav();
+      else openMobileNav();
     });
-  });
 
-  // For buttons with data-scroll-to
-  qsa("[data-scroll-to]").forEach((btn) => {
-    safeOn(btn, "click", () => {
-      const sel = btn.getAttribute("data-scroll-to");
-      if (!sel) return;
-      const target = qs(sel);
-      if (!target) return;
-      try { target.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (_) {}
+    // Close menu when clicking a link
+    mobileNav.addEventListener("click", (e) => {
+      const a = e.target && e.target.closest ? e.target.closest("a") : null;
+      if (a) closeMobileNav();
     });
-  });
 
-  // -------- Reveal on scroll --------
-  const revealEls = qsa(".reveal");
-  if ("IntersectionObserver" in window && revealEls.length) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMobileNav();
+    });
+
+    // Close if resized up to desktop
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 981px)").matches) closeMobileNav();
+    });
+  }
+
+  // -------- Footer year (defensive) --------
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  // -------- Reveal on scroll (subtle) --------
+  const revealEls = Array.from(document.querySelectorAll(".reveal"));
+  if (revealEls.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
         }
-      });
-    }, { threshold: 0.12 });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+
     revealEls.forEach((el) => io.observe(el));
-  } else {
-    // fallback: reveal immediately
-    revealEls.forEach((el) => el.classList.add("is-in"));
   }
 
-  // -------- Dashboard data + chart --------
-  const DATA = {
+  // -------- Dashboard segmentation + KPI swap (defensive) --------
+  const data = {
     all: {
-      kpis: { enquiries: 38, enquiriesDelta: "+18%", calls: 12, callsDelta: "+9%", deals: 5, dealsDelta: "—", revenue: 48200, revenueDelta: "-4%" },
-      trend: [14, 18, 16, 22, 26, 24, 30],
+      enquiries: { v: "38", d: "+18%", cls: "up" },
+      calls: { v: "12", d: "+9%", cls: "up" },
+      deals: { v: "5", d: "—", cls: "neutral" },
+      revenue: { v: "$48,200", d: "-4%", cls: "down" },
+      line: "M20 92 C 60 70, 85 74, 110 66 C 135 58, 155 62, 180 52 C 205 42, 225 50, 250 36 C 275 22, 290 30, 300 22"
     },
     tradies: {
-      kpis: { enquiries: 22, enquiriesDelta: "+14%", calls: 7, callsDelta: "+6%", deals: 3, dealsDelta: "+1", revenue: 27100, revenueDelta: "+3%" },
-      trend: [8, 11, 10, 13, 15, 14, 17],
+      enquiries: { v: "41", d: "+12%", cls: "up" },
+      calls: { v: "14", d: "+7%", cls: "up" },
+      deals: { v: "6", d: "+1", cls: "up" },
+      revenue: { v: "$52,900", d: "+3%", cls: "up" },
+      line: "M20 94 C 60 78, 92 70, 118 62 C 145 54, 165 56, 190 46 C 215 36, 235 44, 258 30 C 280 18, 292 26, 300 18"
     },
     builders: {
-      kpis: { enquiries: 16, enquiriesDelta: "+10%", calls: 5, callsDelta: "+4%", deals: 2, dealsDelta: "—", revenue: 21200, revenueDelta: "-2%" },
-      trend: [6, 7, 7, 10, 11, 10, 12],
+      enquiries: { v: "29", d: "+6%", cls: "up" },
+      calls: { v: "9", d: "+4%", cls: "up" },
+      deals: { v: "3", d: "—", cls: "neutral" },
+      revenue: { v: "$34,700", d: "-2%", cls: "down" },
+      line: "M20 96 C 58 82, 90 80, 118 70 C 145 60, 165 66, 190 58 C 215 50, 238 52, 260 46 C 282 40, 292 42, 300 38"
     },
     insurance: {
-      kpis: { enquiries: 12, enquiriesDelta: "+7%", calls: 4, callsDelta: "+2%", deals: 2, dealsDelta: "+1", revenue: 18800, revenueDelta: "+5%" },
-      trend: [5, 6, 6, 7, 8, 9, 9],
+      enquiries: { v: "33", d: "+9%", cls: "up" },
+      calls: { v: "11", d: "+6%", cls: "up" },
+      deals: { v: "4", d: "—", cls: "neutral" },
+      revenue: { v: "$44,100", d: "+1%", cls: "up" },
+      line: "M20 98 C 60 84, 92 76, 118 72 C 145 68, 170 60, 196 56 C 220 52, 242 46, 262 42 C 284 38, 294 36, 300 34"
     },
     solar: {
-      kpis: { enquiries: 28, enquiriesDelta: "+20%", calls: 10, callsDelta: "+11%", deals: 4, dealsDelta: "—", revenue: 54200, revenueDelta: "+8%" },
-      trend: [10, 12, 14, 15, 18, 20, 22],
+      enquiries: { v: "46", d: "+21%", cls: "up" },
+      calls: { v: "15", d: "+10%", cls: "up" },
+      deals: { v: "7", d: "+2", cls: "up" },
+      revenue: { v: "$61,300", d: "+6%", cls: "up" },
+      line: "M20 92 C 56 78, 86 72, 112 56 C 138 40, 164 46, 188 36 C 212 26, 236 34, 258 22 C 280 10, 292 18, 300 12"
     },
     agencies: {
-      kpis: { enquiries: 19, enquiriesDelta: "+12%", calls: 6, callsDelta: "+5%", deals: 2, dealsDelta: "—", revenue: 33600, revenueDelta: "-1%" },
-      trend: [7, 8, 9, 11, 12, 11, 13],
-    },
+      enquiries: { v: "26", d: "+5%", cls: "up" },
+      calls: { v: "8", d: "+2%", cls: "up" },
+      deals: { v: "2", d: "—", cls: "neutral" },
+      revenue: { v: "$18,800", d: "+5%", cls: "up" },
+      line: "M20 98 C 58 90, 92 84, 118 74 C 145 64, 170 66, 194 56 C 218 46, 240 52, 262 44 C 284 36, 294 40, 300 34"
+    }
   };
 
-  function formatMoney(n) {
-    try {
-      return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-    } catch (_) {
-      // fallback
-      return "$" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-  }
+  const segBtns = Array.from(document.querySelectorAll(".seg-btn"));
+  const sparkLine = document.querySelector("[data-spark-line]");
 
-  function setDelta(el, delta) {
+  function setDelta(el, cls) {
     if (!el) return;
-    el.textContent = String(delta);
     el.classList.remove("up", "down", "neutral");
-
-    const d = String(delta).trim();
-    if (d === "—" || d === "-" || d.toLowerCase() === "na") {
-      el.classList.add("neutral");
-      return;
-    }
-    if (d.startsWith("+")) el.classList.add("up");
-    else if (d.startsWith("-")) el.classList.add("down");
-    else el.classList.add("neutral");
-  }
-
-  function buildSparkPath(values, w, h, pad) {
-    // returns { lineD, areaD, pts } where pts are {x,y}
-    const n = values.length;
-    const min = Math.min(...values);
-    const max = Math.max(...values);
-    const span = Math.max(1, max - min);
-
-    const x0 = pad, x1 = w - pad;
-    const y0 = pad, y1 = h - pad;
-
-    const pts = values.map((v, i) => {
-      const t = n === 1 ? 0 : i / (n - 1);
-      const x = x0 + t * (x1 - x0);
-      const yn = (v - min) / span;
-      const y = y1 - yn * (y1 - y0);
-      return { x, y };
-    });
-
-    // simple smooth-ish using quadratic midpoints
-    let d = "";
-    pts.forEach((p, i) => {
-      if (i === 0) d += `M ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
-      else {
-        const prev = pts[i - 1];
-        const mx = ((prev.x + p.x) / 2).toFixed(2);
-        const my = ((prev.y + p.y) / 2).toFixed(2);
-        d += ` Q ${prev.x.toFixed(2)} ${prev.y.toFixed(2)} ${mx} ${my}`;
-        if (i === pts.length - 1) {
-          d += ` T ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
-        }
-      }
-    });
-
-    const last = pts[pts.length - 1];
-    const first = pts[0];
-    const area = `${d} L ${last.x.toFixed(2)} ${(h - pad).toFixed(2)} L ${first.x.toFixed(2)} ${(h - pad).toFixed(2)} Z`;
-
-    return { lineD: d, areaD: area, pts };
-  }
-
-  function renderChart(values) {
-    const svg = qs(".spark");
-    if (!svg) return;
-
-    const line = qs(".spark-line", svg);
-    const area = qs(".spark-area", svg);
-    const pointsG = qs(".spark-points", svg);
-    if (!line || !area || !pointsG) return;
-
-    // clear points
-    pointsG.innerHTML = "";
-
-    const w = 320, h = 110, pad = 20;
-    const { lineD, areaD, pts } = buildSparkPath(values, w, h, pad);
-
-    line.setAttribute("d", lineD);
-    area.setAttribute("d", areaD);
-
-    pts.forEach((p) => {
-      const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      c.setAttribute("cx", p.x.toFixed(2));
-      c.setAttribute("cy", p.y.toFixed(2));
-      c.setAttribute("r", "3.8");
-      c.setAttribute("fill", "#ffffff");
-      c.setAttribute("stroke", "url(#gViolet)");
-      c.setAttribute("stroke-width", "2.2");
-      pointsG.appendChild(c);
-    });
+    el.classList.add(cls);
   }
 
   function applySegment(key) {
-    const seg = DATA[key] || DATA.all;
-    // KPIs
-    const elEnq = qs('[data-kpi="enquiries"]');
-    const elCalls = qs('[data-kpi="calls"]');
-    const elDeals = qs('[data-kpi="deals"]');
-    const elRev = qs('[data-kpi="revenue"]');
+    const d = data[key];
+    if (!d) return;
 
-    if (elEnq) elEnq.textContent = String(seg.kpis.enquiries);
-    if (elCalls) elCalls.textContent = String(seg.kpis.calls);
-    if (elDeals) elDeals.textContent = String(seg.kpis.deals);
-    if (elRev) elRev.textContent = formatMoney(seg.kpis.revenue);
+    const setText = (sel, v) => {
+      const el = document.querySelector(sel);
+      if (el) el.textContent = v;
+    };
 
-    setDelta(qs('[data-kpi-delta="enquiries"]'), seg.kpis.enquiriesDelta);
-    setDelta(qs('[data-kpi-delta="calls"]'), seg.kpis.callsDelta);
-    setDelta(qs('[data-kpi-delta="deals"]'), seg.kpis.dealsDelta);
-    setDelta(qs('[data-kpi-delta="revenue"]'), seg.kpis.revenueDelta);
+    setText('[data-kpi="enquiries"]', d.enquiries.v);
+    setText('[data-kpi="calls"]', d.calls.v);
+    setText('[data-kpi="deals"]', d.deals.v);
+    setText('[data-kpi="revenue"]', d.revenue.v);
 
-    renderChart(seg.trend);
-  }
+    const de = document.querySelector('[data-kpi-delta="enquiries"]');
+    const dc = document.querySelector('[data-kpi-delta="calls"]');
+    const dd = document.querySelector('[data-kpi-delta="deals"]');
+    const dr = document.querySelector('[data-kpi-delta="revenue"]');
 
-  // Segment buttons
-  const segBtns = qsa(".seg-btn");
-  if (segBtns.length) {
-    segBtns.forEach((b) => {
-      safeOn(b, "click", () => {
-        const key = b.getAttribute("data-seg") || "all";
-        segBtns.forEach((x) => x.classList.remove("is-active"));
-        b.classList.add("is-active");
-        applySegment(key);
-      });
-    });
-    // initial render
-    applySegment("all");
-  }
+    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); }
+    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); }
+    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); }
+    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); }
 
-  // -------- Engine Map tabs --------
-  const stepBtns = qsa(".step");
-  const stepCards = qsa("[data-step-card]");
-  const bar = qs("[data-engine-bar]");
-
-  function showStep(i) {
-    if (!stepBtns.length || !stepCards.length) return;
-
-    stepBtns.forEach((b, idx) => {
-      b.classList.toggle("is-active", idx === i);
-      b.setAttribute("aria-selected", idx === i ? "true" : "false");
-    });
-
-    stepCards.forEach((c) => {
-      const idx = Number(c.getAttribute("data-step-card"));
-      c.hidden = idx !== i;
-    });
-
-    if (bar) {
-      const pct = ((i + 1) / stepBtns.length) * 100;
-      bar.style.width = `${pct}%`;
+    if (sparkLine) {
+      // animate path swap
+      sparkLine.style.opacity = "0.25";
+      window.setTimeout(() => {
+        sparkLine.setAttribute("d", d.line);
+        sparkLine.style.opacity = "1";
+      }, 90);
     }
   }
 
-  if (stepBtns.length && stepCards.length) {
-    stepBtns.forEach((b) => {
-      safeOn(b, "click", () => {
-        const i = Number(b.getAttribute("data-step"));
-        if (!Number.isFinite(i)) return;
-        showStep(i);
+  if (segBtns.length) {
+    segBtns.forEach((b) => {
+      b.addEventListener("click", () => {
+        segBtns.forEach((x) => {
+          x.classList.remove("is-active");
+          x.setAttribute("aria-selected", "false");
+        });
+        b.classList.add("is-active");
+        b.setAttribute("aria-selected", "true");
+
+        const key = b.getAttribute("data-seg") || "all";
+        applySegment(key);
       });
     });
-    showStep(0);
   }
 
-  // -------- Proof carousel subtle snap assist (mobile only) --------
-  const track = qs("[data-proof-track]");
-  if (track) {
-    let raf = null;
-    safeOn(track, "scroll", () => {
-      // update dots (decor only; never critical)
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const dots = qsa(".proof-dots span");
-        if (!dots.length) return;
+  // -------- Engine steps (defensive) --------
+  const stepBtns = Array.from(document.querySelectorAll(".step[data-step]"));
+  const bar = document.querySelector("[data-engine-bar]");
+  const badge = document.querySelector("[data-engine-badge]");
+  const title = document.querySelector("[data-engine-title]");
+  const list = document.querySelector("[data-engine-list]");
 
-        const items = qsa(".proof", track);
-        if (!items.length) return;
+  const steps = [
+    { b: "Step 01", t: "Capture", items: ["High-intent forms that reduce junk.", "Track source + service + urgency.", "Instant lead routing to the right place."] },
+    { b: "Step 02", t: "Instant Response", items: ["Speed-to-lead reply templates.", "Auto-qualification questions.", "Booking link routing by service."] },
+    { b: "Step 03", t: "Multi-touch Follow-up", items: ["SMS + email sequences that feel human.", "No-show reminders + reschedule loops.", "After-hours responses covered."] },
+    { b: "Step 04", t: "Booking", items: ["Calendly confirmations + reminders.", "Pipeline stage updates automatically.", "Cleaner handoff to delivery."] },
+    { b: "Step 05", t: "Reporting", items: ["Track reply rate + booked call rate.", "See lead source performance.", "Fix drop-offs with simple changes."] }
+  ];
 
-        const idx = Math.round(track.scrollLeft / Math.max(1, (items[0].clientWidth + 14)));
-        dots.forEach((d, i) => d.style.opacity = i === Math.min(dots.length - 1, Math.max(0, idx)) ? "0.95" : "0.40");
+  function renderStep(i) {
+    const s = steps[i];
+    if (!s) return;
+
+    if (badge) badge.textContent = s.b;
+    if (title) title.textContent = s.t;
+
+    if (list) {
+      list.innerHTML = "";
+      s.items.forEach((txt) => {
+        const li = document.createElement("li");
+        li.textContent = txt;
+        list.appendChild(li);
+      });
+    }
+
+    if (bar) bar.style.width = `${(i + 1) * 20}%`;
+  }
+
+  if (stepBtns.length) {
+    stepBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        stepBtns.forEach((x) => x.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        const idx = Number(btn.getAttribute("data-step") || "0");
+        renderStep(Math.max(0, Math.min(4, idx)));
       });
     });
   }
 })();
-// =========================
-// END: script.js
-// =========================
+ /* =========================
+    END: script.js
+ ========================= */
