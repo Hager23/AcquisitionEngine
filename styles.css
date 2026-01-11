@@ -586,6 +586,9 @@ body{
   margin-top: 10px;
   color: var(--muted);
   font-size: 14px;
+   display:flex;
+  align-items:center;
+  justify-content:center;
 }
 .outcome-ic{
   width: 44px; height: 44px;
@@ -593,6 +596,11 @@ body{
   border: 1px solid rgba(106,0,255,0.18);
   background: linear-gradient(135deg, rgba(106,0,255,0.18), rgba(179,136,255,0.14));
   box-shadow: 0 18px 40px rgba(106,0,255,0.12);
+}
+.outcome-ic .ic{
+  width: 22px;
+  height: 22px;
+  color: rgba(106,0,255,0.90);
 }
 .outcome-ic.alt{
   border-color: rgba(12,10,27,0.10);
@@ -1206,4 +1214,5 @@ code{
 /* =========================
    END: styles.css
 ========================= */
+
 
