@@ -972,8 +972,10 @@ body {
 }
 
 @media (max-width: 520px) {
-  .nav a { display: none; }
-  .nav a.btn-primary { display: inline-block; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nav { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; }
+  .nav a { margin-left: 0; font-size: 14px; }
+  .nav a.btn-primary { width: fit-content; }
 
   .section { padding: 70px 16px; }
   .hero-copy h1 { font-size: 34px; }
