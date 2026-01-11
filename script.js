@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  // -------- Mobile nav (defensive, no stray text) --------
+  // -------- Mobile nav (defensive) --------
   const toggle = document.querySelector("[data-nav-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
 
@@ -29,28 +29,25 @@
       else openMobileNav();
     });
 
-    // Close menu when clicking a link
     mobileNav.addEventListener("click", (e) => {
       const a = e.target && e.target.closest ? e.target.closest("a") : null;
       if (a) closeMobileNav();
     });
 
-    // Close on Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeMobileNav();
     });
 
-    // Close if resized up to desktop
     window.addEventListener("resize", () => {
       if (window.matchMedia("(min-width: 981px)").matches) closeMobileNav();
     });
   }
 
-  // -------- Footer year (defensive) --------
+  // -------- Footer year --------
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // -------- Reveal on scroll (subtle) --------
+  // -------- Reveal on scroll --------
   const revealEls = Array.from(document.querySelectorAll(".reveal"));
   if (revealEls.length) {
     const io = new IntersectionObserver(
@@ -64,11 +61,10 @@
       },
       { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
     );
-
     revealEls.forEach((el) => io.observe(el));
   }
 
-  // -------- Dashboard segmentation + KPI swap (defensive) --------
+  // -------- Dashboard segmentation --------
   const data = {
     all: {
       enquiries: { v: "38", d: "+18%", cls: "up" },
@@ -148,7 +144,6 @@
     if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); }
 
     if (sparkLine) {
-      // animate path swap
       sparkLine.style.opacity = "0.25";
       window.setTimeout(() => {
         sparkLine.setAttribute("d", d.line);
@@ -173,7 +168,7 @@
     });
   }
 
-  // -------- Engine steps (defensive) --------
+  // -------- Engine steps --------
   const stepBtns = Array.from(document.querySelectorAll(".step[data-step]"));
   const bar = document.querySelector("[data-engine-bar]");
   const badge = document.querySelector("[data-engine-badge]");
