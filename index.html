@@ -1,289 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ONIX — Your pipeline, on autopilot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONIX Marketing</title>
+  <meta name="description" content="ONIX Marketing helps service businesses generate enquiries, follow up fast, and book qualified calls with a managed acquisition system." />
+  <link rel="icon" href="logo2.png" type="image/png" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Fonts (Stripe-like) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900;950&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="site-bg" aria-hidden="true"></div>
+  <!-- Tooltip -->
+  <div id="chartTip" class="chart-tip" aria-hidden="true"></div>
 
-  <!-- Header -->
+  <!-- Global animated background -->
+  <div class="site-bg" aria-hidden="true">
+    <div class="site-aurora"></div>
+    <div class="site-noise"></div>
+  </div>
+
+  <!-- HEADER -->
   <header class="header">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="./index.html" aria-label="ONIX Home">
-          <img src="./assets/onix-logo.png" alt="ONIX logo" onerror="this.style.display='none'">
-          <div class="brand-name">ONIX</div>
+    <div class="header-inner">
+      <img src="logo2.png" alt="Acquisition Engine" class="logo" />
+
+      <nav class="nav">
+        <a href="#proof">Results</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a
+          href="https://calendly.com/jordan-burkett/get-more-reno-jobs/2025-12-31T10:30:00+13:00?embed_domain=fb.myrenoquotes.co.nz&embed_type=Inline&utm_source=an&utm_medium=Auckland%2B26mi%2B%7C%2B18-65%2B%7C%2BBroad%2B%2B%E2%80%93%2BCopy&utm_campaign=Test%2BB2B%2B%7C%2BLeads%2B%7C%2BK%26B%2B%7C%2BCBO%2B%7C%2B%24100&utm_content=VID-26-JUNE&utm_term=an&month=2025-12&date=2025-12-31"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener"
+        >
+          Book a Call
         </a>
-
-        <nav class="nav-links" aria-label="Primary">
-          <a href="./results.html">Results</a>
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
-          <a href="./results.html">Results Page</a>
-        </nav>
-
-        <div class="nav-cta">
-          <a class="btn btn-primary" href="./results.html">Book a Call</a>
-          <button class="nav-toggle" data-nav-toggle aria-label="Open menu">☰</button>
-        </div>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <!-- Mobile nav -->
-  <div class="nav-backdrop" data-nav-backdrop></div>
-  <aside class="nav-panel" data-nav-panel aria-label="Mobile menu">
-    <div class="nav-panel-top">
-      <b>Menu</b>
-      <button class="nav-toggle" data-nav-close aria-label="Close menu">✕</button>
-    </div>
-    <a href="#results" data-nav-close>Results</a>
-    <a href="#how" data-nav-close>How it works</a>
-    <a href="#pricing" data-nav-close>Pricing</a>
-    <a href="./results.html" data-nav-close>Results Page</a>
-    <div style="height:10px"></div>
-    <a class="btn btn-primary" href="./results.html" style="justify-content:center;">Book a Call</a>
-  </aside>
-
   <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div class="hero-copy">
+        <span class="pill">⚙️ Done-for-you acquisition + follow-up system</span>
+        <h1>Your pipeline, on autopilot.</h1>
+        <p>
+          Built for tradies, solar companies, agencies, and local service businesses.
+          We generate enquiries, follow up fast with a managed receptionist team, book qualified calls,
+          and track ROI — so you can focus on delivery.
+        </p>
 
-        <div class="hero-copy">
-          <div class="pill">⚙️ Done-for-you acquisition + follow-up system</div>
-          <h1 class="h1">Your pipeline, on autopilot.</h1>
-          <p class="p">
-            Built for tradies, solar companies, agencies, and local service businesses.
-            We generate enquiries, follow up fast with a managed receptionist team, book qualified calls,
-            and track ROI — so you can focus on delivery.
-          </p>
+        <div class="hero-cta">
+          <a
+            href="https://calendly.com/jordan-burkett/get-more-reno-jobs/2025-12-31T10:30:00+13:00?embed_domain=fb.myrenoquotes.co.nz&embed_type=Inline&utm_source=an&utm_medium=Auckland%2B26mi%2B%7C%2B18-65%2B%7C%2BBroad%2B%2B%E2%80%93%2BCopy&utm_campaign=Test%2BB2B%2B%7C%2BLeads%2B%7C%2BK%26B%2B%7C%2BCBO%2B%7C%2B%24100&utm_content=VID-26-JUNE&utm_term=an&month=2025-12&date=2025-12-31"
+            class="btn-primary large"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a 15-minute call
+          </a>
+          <a href="#how" class="btn-secondary">See the engine</a>
+        </div>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="./results.html">Book a 15-minute call</a>
-            <a class="btn btn-ghost" href="#how">See the engine</a>
+        <!-- HERO PROOF STRIP -->
+        <div class="proof-strip" aria-label="Recent client results screenshots">
+          <img src="proof1.png" alt="Client result screenshot 1" loading="lazy" decoding="async">
+          <img src="proof2.png" alt="Client result screenshot 2" loading="lazy" decoding="async">
+          <img src="proof3.png" alt="Client result screenshot 3" loading="lazy" decoding="async">
+        </div>
+        <p class="proof-note">Real client messages • Unedited screenshots</p>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-visual">
+        <div class="dashboard-card hero-dashboard">
+          <!-- KPI 1 -->
+          <div class="kpi" data-tip="New enquiries received today across your channels">
+            <div class="kpi-top">
+              <span class="kpi-icon">⚡</span>
+              <span class="label">New Enquiries</span>
+              <span class="delta up">+18%</span>
+            </div>
+            <span class="value count" data-count="38">0</span>
           </div>
 
-          <!-- ✅ Proof only here, readable -->
-          <div class="hero-proof">
-            <div class="hero-proof-title">Real client messages • Unedited screenshots</div>
-            <div class="proof-strip">
-              <div class="proof-tile">
-                <img src="./assets/proof-1.jpg" alt="Client message proof 1" onerror="this.style.display='none'">
-                <div class="proof-cap">“Absolutely f**ken insane 🤯”</div>
+          <!-- KPI 2 -->
+          <div class="kpi" data-tip="Qualified calls booked into your calendar">
+            <div class="kpi-top">
+              <span class="kpi-icon">📅</span>
+              <span class="label">Calls Booked</span>
+              <span class="delta up">+9%</span>
+            </div>
+            <span class="value count" data-count="12">0</span>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="kpi" data-tip="Deals marked as won (jobs/projects/clients)">
+            <div class="kpi-top">
+              <span class="kpi-icon">✅</span>
+              <span class="label">Deals Won</span>
+              <span class="delta flat">—</span>
+            </div>
+            <span class="value count" data-count="5">0</span>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="kpi" data-tip="Revenue influenced by the engine (today)">
+            <div class="kpi-top">
+              <span class="kpi-icon">💸</span>
+              <span class="label">Revenue</span>
+              <span class="delta down">-4%</span>
+            </div>
+            <span class="value money count" data-count="48200">$0</span>
+          </div>
+
+          <!-- Lead Trend chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4>Enquiry Trend</h4>
+              <span class="chip">7 days</span>
+            </div>
+
+            <svg class="line-chart" viewBox="0 0 300 120">
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#6A00FF"/>
+                  <stop offset="50%" stop-color="#B388FF"/>
+                  <stop offset="100%" stop-color="#6A00FF"/>
+                </linearGradient>
+
+                <linearGradient id="shimmerGrad" x1="-200" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.65)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                  <animate attributeName="x1" from="-200" to="300" dur="2.6s" repeatCount="indefinite"/>
+                  <animate attributeName="x2" from="0" to="500" dur="2.6s" repeatCount="indefinite"/>
+                </linearGradient>
+
+                <mask id="lineMask">
+                  <path class="chart-line-mask"
+                        d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                        stroke="white" stroke-width="6" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </mask>
+              </defs>
+
+              <path class="chart-area"
+                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28 L300 120 L0 120 Z"/>
+              <path class="chart-line"
+                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"/>
+              <path class="chart-shimmer"
+                    d="M0 100 L40 80 L80 85 L120 60 L160 55 L200 70 L240 40 L280 30 L300 28"
+                    mask="url(#lineMask)"/>
+              <circle class="chart-dot" r="4" cx="300" cy="28"/>
+            </svg>
+          </div>
+
+          <!-- Funnel -->
+          <div class="widget funnel-widget">
+            <div class="widget-head">
+              <span class="widget-title">Pipeline</span>
+              <span class="widget-pill">Today</span>
+            </div>
+
+            <div class="funnel">
+              <div class="frow">
+                <span>Enquiries</span>
+                <div class="bar"><div class="fill" style="--w: 100%"></div></div>
+                <strong>38</strong>
               </div>
-              <div class="proof-tile">
-                <img src="./assets/proof-2.jpg" alt="Client message proof 2" onerror="this.style.display='none'">
-                <div class="proof-cap">“Just closed another annual contract…”</div>
+
+              <div class="frow">
+                <span>Contacted</span>
+                <div class="bar"><div class="fill" style="--w: 74%"></div></div>
+                <strong>28</strong>
               </div>
-              <div class="proof-tile">
-                <img src="./assets/proof-3.jpg" alt="Client message proof 3" onerror="this.style.display='none'">
-                <div class="proof-cap">“$3,000 succeeded. Payment for invoice…”</div>
+
+              <div class="frow">
+                <span>Booked</span>
+                <div class="bar"><div class="fill" style="--w: 32%"></div></div>
+                <strong>12</strong>
+              </div>
+
+              <div class="frow">
+                <span>Won</span>
+                <div class="bar"><div class="fill" style="--w: 13%"></div></div>
+                <strong>5</strong>
               </div>
             </div>
+          </div>
+        </div><!-- /dashboard-card -->
+      </div><!-- /hero-visual -->
+    </div><!-- /hero-inner -->
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="section section-proof" id="proof">
+    <div class="container">
+      <div class="proof-top reveal">
+        <p class="kicker">Trusted systems, real outcomes</p>
+        <h2>More booked calls. Higher close rate. Clear ROI.</h2>
+        <p class="sub">
+          A complete acquisition engine for tradies, solar teams, agencies, and local service businesses —
+          designed to run in the background while you run operations.
+        </p>
+      </div>
+
+      <div class="logos reveal">
+        <div class="logo-chip">Tradies</div>
+        <div class="logo-chip">Solar</div>
+        <div class="logo-chip">Agencies</div>
+        <div class="logo-chip">Local Services</div>
+        <div class="logo-chip">Home Improvement</div>
+      </div>
+
+      <div class="outcomes">
+        <div class="outcome-card reveal">
+          <div class="outcome-icon">📈</div>
+          <h3>Predictable enquiries</h3>
+          <p>Consistent lead flow engineered for buyers — not browsers — across trades, solar, agencies, and services.</p>
+          <div class="metric">
+            <span class="m-label">Avg qualified enquiries / week</span>
+            <span class="m-value count" data-count="18">0</span>
           </div>
         </div>
 
-        <!-- Dashboard mock -->
-        <div class="dash" data-chart>
-          <div class="kpi-grid">
-            <div class="kpi">
-              <div class="kpi-top">
-                <div class="kpi-title">⚡ New Enquiries</div>
-                <div class="kpi-badge">+18%</div>
+        <div class="outcome-card reveal">
+          <div class="outcome-icon">⚡</div>
+          <h3>Speed-to-lead wins</h3>
+          <p>Our receptionist team follows up in minutes so you’re first — and first usually wins.</p>
+          <div class="metric">
+            <span class="m-label">Median response time</span>
+            <span class="m-value"><span class="count" data-count="2">0</span> min</span>
+          </div>
+        </div>
+
+        <div class="outcome-card reveal">
+          <div class="outcome-icon">🧠</div>
+          <h3>Know your ROI</h3>
+          <p>Track enquiries → booked calls → quotes/jobs → revenue so you always know what to scale.</p>
+          <div class="metric">
+            <span class="m-label">Typical ROI range</span>
+            <span class="m-value">
+              <span class="count" data-count="3">0</span>–<span class="count" data-count="6">0</span>x
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROOF GRID (SECTION 2) -->
+      <div class="proof-grid reveal" aria-label="More proof screenshots">
+        <figure class="proof-card">
+          <img src="proof4.png" alt="Client result screenshot 4" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof5.png" alt="Client result screenshot 5" loading="lazy" decoding="async">
+        </figure>
+        <figure class="proof-card">
+          <img src="proof6.png" alt="Client result screenshot 6" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: How it works (Engine Map) -->
+  <section class="section section-engine" id="how">
+    <div class="container engine">
+      <div class="engine-left reveal">
+        <p class="kicker">How it works</p>
+        <h2>The Acquisition Engine, end-to-end.</h2>
+        <p class="sub">
+          You don’t “learn marketing.” We install the system, run it daily, and keep improving it —
+          so your calendar stays full with qualified opportunities.
+        </p>
+
+        <div class="engine-rail" aria-hidden="true">
+          <div class="rail-line"></div>
+          <div class="rail-progress" id="railProgress"></div>
+        </div>
+
+        <div class="engine-index">
+          <button class="idx active" data-step="0">01 Trust & Presence</button>
+          <button class="idx" data-step="1">02 Content Engine</button>
+          <button class="idx" data-step="2">03 Proof & Positioning</button>
+          <button class="idx" data-step="3">04 Ads & Targeting</button>
+          <button class="idx" data-step="4">05 Receptionist Follow-Up</button>
+          <button class="idx" data-step="5">06 Nurture Automation</button>
+          <button class="idx" data-step="6">07 Booking & Calendar</button>
+          <button class="idx" data-step="7">08 Reporting & Optimisation</button>
+          <button class="idx" data-step="8">09 Support & Guarantee</button>
+        </div>
+      </div>
+
+      <div class="engine-right" id="engineSteps">
+        <article class="step-card reveal" data-step="0">
+          <div class="step-top">
+            <span class="step-num">01</span>
+            <span class="step-ic">🏷️</span>
+            <h3>Trust & visibility foundation</h3>
+          </div>
+          <p>We tighten your positioning so prospects instantly “get it” and feel safe booking.</p>
+          <div class="step-tags">
+            <span class="tag">Offer clarity</span><span class="tag">Authority</span><span class="tag">Presence</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="1">
+          <div class="step-top">
+            <span class="step-num">02</span>
+            <span class="step-ic">🎥</span>
+            <h3>Content engine (done-for-you)</h3>
+          </div>
+          <p>Short-form proof + authority content that warms people before they speak to you.</p>
+          <div class="step-tags">
+            <span class="tag">Scripts</span><span class="tag">Posting cadence</span><span class="tag">Proof</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="2">
+          <div class="step-top">
+            <span class="step-num">03</span>
+            <span class="step-ic">⭐</span>
+            <h3>Proof & trust sequence</h3>
+          </div>
+          <p>Reviews, examples, and follow-up messaging that makes you the obvious choice.</p>
+          <div class="step-tags">
+            <span class="tag">Reviews</span><span class="tag">Case studies</span><span class="tag">Trust sequence</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="3">
+          <div class="step-top">
+            <span class="step-num">04</span>
+            <span class="step-ic">📣</span>
+            <h3>Paid demand that scales to capacity</h3>
+          </div>
+          <p>Targeted campaigns that we increase or throttle depending on your workload.</p>
+          <div class="step-tags">
+            <span class="tag">Targeting</span><span class="tag">Testing</span><span class="tag">Budget control</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="4">
+          <div class="step-top">
+            <span class="step-num">05</span>
+            <span class="step-ic">📞</span>
+            <h3>Receptionist team (we hire + manage)</h3>
+          </div>
+          <p>We provide trained receptionists to call, qualify, and book — so enquiries don’t go cold.</p>
+          <div class="step-tags">
+            <span class="tag">Calls</span><span class="tag">Qualification</span><span class="tag">Booking</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="5">
+          <div class="step-top">
+            <span class="step-num">06</span>
+            <span class="step-ic">⚙️</span>
+            <h3>Nurture automation</h3>
+          </div>
+          <p>SMS + email follow-ups for non-responders and warm leads — automatically.</p>
+          <div class="step-tags">
+            <span class="tag">SMS</span><span class="tag">Email</span><span class="tag">Nurture</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="6">
+          <div class="step-top">
+            <span class="step-num">07</span>
+            <span class="step-ic">🗓️</span>
+            <h3>Booking + calendar control</h3>
+          </div>
+          <p>Qualified leads turn into booked calls/site visits — synced to your calendar.</p>
+          <div class="step-tags">
+            <span class="tag">Calendly</span><span class="tag">Capacity</span><span class="tag">No-shows reduced</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="7">
+          <div class="step-top">
+            <span class="step-num">08</span>
+            <span class="step-ic">📊</span>
+            <h3>Weekly optimisation & reporting</h3>
+          </div>
+          <p>We track enquiries → bookings → wins so you know what’s working and what to scale.</p>
+          <div class="step-tags">
+            <span class="tag">KPIs</span><span class="tag">Leak fixes</span><span class="tag">Next actions</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal" data-step="8">
+          <div class="step-top">
+            <span class="step-num">09</span>
+            <span class="step-ic">🛡️</span>
+            <h3>Support + guarantee</h3>
+          </div>
+          <p>Direct support, SOPs, and a results-first guarantee: if you don’t win work, we don’t get paid.</p>
+          <div class="step-tags">
+            <span class="tag">WhatsApp support</span><span class="tag">SOPs</span><span class="tag">Guarantee</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Before vs After (Autopilot) -->
+  <section class="section section-compare" id="results">
+    <div class="container compare">
+      <div class="compare-head reveal">
+        <p class="kicker">Before vs after</p>
+        <h2>From chaos to autopilot.</h2>
+        <p class="sub">
+          Most businesses don’t lose because they’re bad — they lose because follow-up is inconsistent.
+          Acquisition Engine gives you <strong>the team, the playbook, and the daily execution</strong> to turn enquiries into booked calls
+          across trades, solar, agencies, and local services.
+        </p>
+      </div>
+
+      <div class="compare-grid">
+        <!-- BEFORE -->
+        <article class="compare-card before reveal">
+          <div class="compare-top">
+            <span class="badge bad">Before</span>
+            <h3>Owner-run, inconsistent follow-up</h3>
+          </div>
+
+          <ul class="compare-list">
+            <li><span class="compare-dot bad"></span> Enquiries sit too long</li>
+            <li><span class="compare-dot bad"></span> Missed calls + slow replies</li>
+            <li><span class="compare-dot bad"></span> Leads go cold / get lost</li>
+            <li><span class="compare-dot bad"></span> No clear tracking of what’s working</li>
+            <li><span class="compare-dot bad"></span> Feast-or-famine months</li>
+          </ul>
+
+          <div class="signal">
+            <div class="signal-row">
+              <span class="signal-label">Speed-to-lead</span>
+              <div class="meter"><div class="meter-fill" style="--w: 28%"></div></div>
+            </div>
+            <div class="signal-row">
+              <span class="signal-label">Booked calls</span>
+              <div class="meter"><div class="meter-fill" style="--w: 35%"></div></div>
+            </div>
+            <div class="signal-row">
+              <span class="signal-label">Close rate</span>
+              <div class="meter"><div class="meter-fill" style="--w: 22%"></div></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- AFTER -->
+        <article class="compare-card after reveal">
+          <div class="compare-top">
+            <span class="badge good">After</span>
+            <h3>A managed team that runs the pipeline daily</h3>
+          </div>
+
+          <ul class="compare-list">
+            <li><span class="compare-dot good"></span> Enquiries contacted fast (minutes, not hours)</li>
+            <li><span class="compare-dot good"></span> Receptionist team calls + follows up for you</li>
+            <li><span class="compare-dot good"></span> Leads qualified and booked into your calendar</li>
+            <li><span class="compare-dot good"></span> Weekly reporting + improvements</li>
+            <li><span class="compare-dot good"></span> Consistent pipeline you can scale</li>
+          </ul>
+
+          <div class="signal">
+            <div class="signal-row">
+              <span class="signal-label">Speed-to-lead</span>
+              <div class="meter"><div class="meter-fill good" style="--w: 88%"></div></div>
+            </div>
+            <div class="signal-row">
+              <span class="signal-label">Booked calls</span>
+              <div class="meter"><div class="meter-fill good" style="--w: 78%"></div></div>
+            </div>
+            <div class="signal-row">
+              <span class="signal-label">Close rate</span>
+              <div class="meter"><div class="meter-fill good" style="--w: 66%"></div></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- AUTOPILOT STRIP -->
+        <article class="autopilot-strip reveal">
+          <div class="auto-left">
+            <h3>What “autopilot” actually means</h3>
+            <p>
+              While you deliver the work, <strong>our team handles the follow-up and admin</strong>:
+              <strong>new enquiries → calls → qualification → bookings → reporting.</strong>
+            </p>
+
+            <div class="auto-stats">
+              <div class="stat">
+                <span class="stat-label">Typical lift</span>
+                <span class="stat-value">+5–10 jobs / month</span>
               </div>
-              <div class="kpi-value">38</div>
+              <div class="stat">
+                <span class="stat-label">Big win example</span>
+                <span class="stat-value">$500k+ job closed</span>
+              </div>
             </div>
 
-            <div class="kpi">
-              <div class="kpi-top">
-                <div class="kpi-title">📅 Calls Booked</div>
-                <div class="kpi-badge">+9%</div>
-              </div>
-              <div class="kpi-value">12</div>
-            </div>
-
-            <div class="kpi">
-              <div class="kpi-top">
-                <div class="kpi-title">✅ Deals Won</div>
-                <div class="kpi-badge">—</div>
-              </div>
-              <div class="kpi-value">5</div>
-            </div>
-
-            <div class="kpi">
-              <div class="kpi-top">
-                <div class="kpi-title">💸 Revenue</div>
-                <div class="kpi-badge neg">-4%</div>
-              </div>
-              <div class="kpi-value">$48,200</div>
+            <div class="auto-cta">
+              <a class="btn-primary large" href="#book" data-book>Book a 15-minute call</a>
+              <a class="btn-secondary" href="#pricing">See pricing</a>
             </div>
           </div>
 
-          <div class="chart">
-            <div class="chart-head">
-              <div>
-                <div class="chart-title">Enquiry Trend</div>
-                <div class="chart-tabs" data-chart-tabs role="tablist" aria-label="Trend filters">
-                  <button class="tab is-active" data-tab="All" role="tab" aria-selected="true">All</button>
-                  <button class="tab" data-tab="Tradies" role="tab" aria-selected="false">Tradies</button>
-                  <button class="tab" data-tab="Builders" role="tab" aria-selected="false">Builders</button>
-                  <button class="tab" data-tab="Insurance" role="tab" aria-selected="false">Insurance</button>
-                  <button class="tab" data-tab="Solar" role="tab" aria-selected="false">Solar</button>
-                  <button class="tab" data-tab="Agencies" role="tab" aria-selected="false">Agencies</button>
+          <div class="auto-right">
+            <!-- Animated timeline -->
+            <div class="timeline" aria-label="Autopilot timeline">
+              <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="t-content">
+                  <span class="t-title">Enquiry comes in</span>
+                  <span class="t-sub">Form / call / message</span>
                 </div>
               </div>
-              <button class="chart-range" type="button" data-chart-range>7 days • All</button>
-            </div>
 
-            <div class="chart-wrap">
-              <svg class="chart-svg" viewBox="0 0 520 220" aria-label="Enquiry trend chart">
-                <path class="chart-fill" data-chart-fill d=""></path>
-                <path class="chart-line" data-chart-line d=""></path>
-                <circle class="chart-dot" data-chart-dot cx="0" cy="0" r="10"></circle>
-              </svg>
+              <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="t-content">
+                  <span class="t-title">Receptionist follow-up</span>
+                  <span class="t-sub">Calls + qualifies</span>
+                </div>
+              </div>
+
+              <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="t-content">
+                  <span class="t-title">Booking confirmed</span>
+                  <span class="t-sub">Calendar filled</span>
+                </div>
+              </div>
+
+              <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="t-content">
+                  <span class="t-title">Weekly optimisation</span>
+                  <span class="t-sub">Improve scripts + scale what works</span>
+                </div>
+              </div>
+
+              <div class="t-line" aria-hidden="true"></div>
+              <div class="t-progress" id="timelineProgress" aria-hidden="true"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF WALL (BEFORE PRICING) -->
+  <section class="section section-proofwall" aria-label="Proof wall">
+    <div class="container">
+      <div class="proofwall-head reveal">
+        <p class="kicker">More proof</p>
+        <h2>Not testimonials — receipts.</h2>
+        <p class="sub">A few unedited snapshots from real conversations and wins.</p>
+      </div>
+
+      <div class="proof-wall reveal">
+        <img src="proof7.png" alt="Client result screenshot 7" loading="lazy" decoding="async">
+        <img src="proof8.png" alt="Client result screenshot 8" loading="lazy" decoding="async">
+        <img src="proof9.png" alt="Client result screenshot 9" loading="lazy" decoding="async">
+        <img src="proof10.png" alt="Client result screenshot 10" loading="lazy" decoding="async">
+        <img src="proof11.png" alt="Client result screenshot 11" loading="lazy" decoding="async">
+        <img src="proof12.png" alt="Client result screenshot 12" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Pricing + Guarantee -->
+  <section class="section section-pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-head reveal">
+        <p class="kicker">Pricing & guarantee</p>
+        <h2>We only win when you win.</h2>
+        <p class="sub">
+          Acquisition Engine is a fully-managed growth system — not software and not DIY.
+          We build it, run it daily, optimise it weekly, and scale it with you.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card featured reveal">
+          <div class="pricing-badge">Most popular</div>
+
+          <h3>Local Authority Scaling System</h3>
+          <p class="pricing-desc">
+            End-to-end acquisition, follow-up, booking, and optimisation.
+            Built to run while you run operations.
+          </p>
+
+          <div class="pricing-price">
+            <span class="price-main">6-month engagement</span>
+            <span class="price-sub">Structured, managed, and performance-driven</span>
+          </div>
+
+          <ul class="pricing-list">
+            <li>✔ Trust & visibility foundation</li>
+            <li>✔ Content + authority positioning</li>
+            <li>✔ Receptionist follow-up</li>
+            <li>✔ Calls booked into your calendar</li>
+            <li>✔ Paid scaling (when ready)</li>
+            <li>✔ Weekly reporting & optimisation</li>
+            <li>✔ WhatsApp support with your team</li>
+          </ul>
+
+          <div class="pricing-cta">
+            <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
+            <span class="pricing-note">If you don’t win work, we don’t get paid.</span>
+          </div>
+        </article>
+
+        <article class="pricing-card guarantee reveal">
+          <h3>Our guarantee</h3>
+
+          <div class="guarantee-box">
+            <span class="guarantee-icon">🛡️</span>
+            <p class="guarantee-main">Results-first partnership</p>
+            <p class="guarantee-sub">
+              If you don’t win work, we don’t get paid.
+            </p>
+          </div>
+
+          <div class="guarantee-stats">
+            <div class="g-stat">
+              <span class="g-label">Typical result</span>
+              <span class="g-value">+5–10 wins / month</span>
+            </div>
+            <div class="g-stat">
+              <span class="g-label">Largest win</span>
+              <span class="g-value">$500k+ deal closed</span>
             </div>
           </div>
 
-          <div class="pipeline">
-            <div class="pipeline-head">
-              <div class="pipeline-title">Pipeline</div>
-              <div class="pill-mini">Today • All</div>
-            </div>
-
-            <div class="pipe-row">
-              <div class="pipe-label">Enquiries</div>
-              <div class="pipe-bar"><div class="pipe-fill" style="width:92%"></div></div>
-              <div class="pipe-num">38</div>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-label">Contacted</div>
-              <div class="pipe-bar"><div class="pipe-fill" style="width:74%"></div></div>
-              <div class="pipe-num">28</div>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-label">Booked</div>
-              <div class="pipe-bar"><div class="pipe-fill" style="width:42%"></div></div>
-              <div class="pipe-num">12</div>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-label">Won</div>
-              <div class="pipe-bar"><div class="pipe-fill" style="width:20%"></div></div>
-              <div class="pipe-num">5</div>
-            </div>
+          <div class="guarantee-foot">
+            <p>
+              We scale to your capacity — not hype.
+              If you can handle more work, we increase volume. If you’re capped, we throttle.
+            </p>
           </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <!-- FINAL CTA STRIP -->
+  <section class="section section-final-cta" id="final">
+    <div class="container">
+      <div class="final-cta reveal">
+        <div class="final-copy">
+          <p class="kicker">Ready when you are</p>
+          <h2>Turn your pipeline into a machine.</h2>
+          <p class="sub">
+            Enquiries in. Follow-up handled. Calls booked. ROI tracked.
+            You stay focused on delivery — we run the engine.
+          </p>
+        </div>
+
+        <div class="final-actions">
+          <a href="#book" class="btn-primary large" data-book>Book a 15-minute call</a>
+          <p class="tiny-note">If you don’t win work, we don’t get paid.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Proof section (dedicated) -->
-  <section class="section" id="results">
-    <div class="container">
-      <div class="kicker">RESULTS</div>
-      <h2 class="h2">Proof that the system works.</h2>
-      <p class="p">These are pulled from FlyMeHigh’s “What My Clients Have To Say” section.</p>
-
-      <div class="proof-grid">
-        <div class="quote">
-          <p>“John’s leads and system have given us an extra $100k on our bottom line year on year.”</p>
-          <div class="who">— Nicky M. (No1 Real Estate Agent West Auckland)</div>
-        </div>
-        <div class="quote">
-          <p>“John is a sharp, smart mover who gets things done. He is always one step ahead and his word is 100% genuine…”</p>
-          <div class="who">— Carolyn M. (Real Estate Agent Napier)</div>
-        </div>
-        <div class="quote">
-          <p>“I’ve invested 17k… and my return was $110k. Super happy and just gets better year on year.”</p>
-          <div class="who">— Paul S. (Risk Insurance)</div>
-        </div>
-      </div>
-
-      <div style="height:14px"></div>
-      <a class="btn btn-primary" href="./results.html">See the Results Page</a>
-    </div>
-  </section>
-
-  <!-- How it works (placeholder anchor for your stepper section) -->
-  <section class="section" id="how">
-    <div class="container">
-      <div class="kicker">HOW IT WORKS</div>
-      <h2 class="h2">The Acquisition Engine, end-to-end.</h2>
-      <p class="p">This section stays as your stepper (we can paste your exact stepper block after this).</p>
-    </div>
-  </section>
-
-  <!-- Pricing (placeholder) -->
-  <section class="section" id="pricing">
-    <div class="container">
-      <div class="kicker">PRICING</div>
-      <h2 class="h2">Choose the engine that fits your capacity.</h2>
-      <p class="p">Pricing section goes here.</p>
-    </div>
-  </section>
-
-  <!-- Footer (full) -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <h4>ONIX</h4>
-          <p class="p">Done-for-you acquisition + follow-up that fills your calendar with qualified calls.</p>
+        <div class="footer-col">
+          <img src="logo2.png" alt="Acquisition Engine" class="footer-logo" />
+          <p class="footer-desc">
+            A fully managed acquisition + follow-up engine for tradies, solar, agencies, and service businesses.
+          </p>
+          <div class="footer-badges">
+            <span class="f-badge">Receptionist follow-up</span>
+            <span class="f-badge">Booked calls</span>
+            <span class="f-badge">ROI reporting</span>
+          </div>
         </div>
 
-        <div>
-          <h4>Pages</h4>
-          <a href="#results">Results</a>
+        <div class="footer-col">
+          <h4>Product</h4>
           <a href="#how">How it works</a>
+          <a href="#results">Results</a>
           <a href="#pricing">Pricing</a>
-          <a href="./results.html">Results Page</a>
+          <a href="#book" data-book>Book a call</a>
         </div>
 
-        <div>
+        <div class="footer-col">
           <h4>Company</h4>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Privacy</a>
+          <a href="#top">Home</a>
+          <a href="#proof">Why us</a>
+          <a href="#book" data-book>Contact</a>
+          <a href="#book" data-book>Support</a>
         </div>
 
-        <div>
-          <h4>Book</h4>
-          <a href="./results.html">Book a Call</a>
-          <a href="#">Email Support</a>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="cookies.html">Cookie Policy</a>
         </div>
       </div>
 
-      <div class="footer-note">
-        <span>© <span id="year"></span> ONIX. All rights reserved.</span>
-        <span>Built to convert • Track ROI • Scale safely</span>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Acquisition Engine. All rights reserved.</p>
+        <p class="footer-promise">If you don’t win work, we don’t get paid.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Cookie -->
-  <div class="cookie is-hidden" data-cookie role="dialog" aria-label="Cookie banner">
-    <div>
-      <b>Cookies</b>
-      <p>We use cookies to improve your experience and understand site usage. <u>Cookie Policy</u></p>
-    </div>
-    <div class="cookie-actions">
-      <button class="btn" type="button" data-cookie-decline>Decline</button>
-      <button class="btn btn-primary" type="button" data-cookie-accept>Accept</button>
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie notice" aria-hidden="true">
+    <div class="cookie-card">
+      <div class="cookie-copy">
+        <p class="cookie-title">Cookies</p>
+        <p class="cookie-text">
+          We use cookies to improve your experience and understand site usage.
+          <a href="cookies.html" class="cookie-link">Cookie Policy</a>
+        </p>
+      </div>
+
+      <div class="cookie-actions">
+        <button class="cookie-btn ghost" id="cookieDecline" type="button">Decline</button>
+        <button class="cookie-btn solid" id="cookieAccept" type="button">Accept</button>
+      </div>
     </div>
   </div>
 
-  <script>
-    // footer year (tiny inline)
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
