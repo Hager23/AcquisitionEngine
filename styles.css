@@ -278,29 +278,34 @@ button{ font-family: inherit; }
   flex-wrap: wrap;
 }
 
-/* HERO PROOF STRIP — now “scattered” */
+/* ✅ FIX: proof strip always horizontal; scroll on small screens */
 .proof-strip{
   margin-top: 22px;
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+
+.proof-strip::-webkit-scrollbar{ height: 8px; }
+.proof-strip::-webkit-scrollbar-thumb{
+  background: rgba(12,10,27,0.10);
+  border-radius: 999px;
 }
 
 .proof-strip img{
   width: 92px;
   height: 64px;
+  flex: 0 0 auto;
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid var(--line);
   box-shadow: 0 18px 50px rgba(12,10,27,0.08);
   background: rgba(255,255,255,0.6);
-  transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
 }
-
-/* subtle “scatter” offsets */
-.proof-strip img:nth-child(1){ --r: -2deg; --y: 1px; }
-.proof-strip img:nth-child(2){ --r: 1.5deg; --y: -3px; }
-.proof-strip img:nth-child(3){ --r: -1deg; --y: 2px; }
 
 .proof-note{
   margin-top: 10px;
@@ -713,39 +718,27 @@ button{ font-family: inherit; }
   font-size: 15px;
 }
 
-/* =========================
-   ✅ PROOF GRID (SECTION 2) — SCATTERED HORIZONTAL LAYOUT
-   (Only on the home page section-proof, doesn't affect results page quotes)
-========================= */
-.section-proof .proof-grid{
+/* proof grid */
+.proof-grid{
   margin-top: 22px;
-  display:flex;
-  flex-wrap: wrap;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  align-items:flex-start;
 }
 
-.section-proof .proof-card{
+.proof-card{
   border-radius: 18px;
   overflow:hidden;
   border: 1px solid rgba(12,10,27,0.10);
   background: rgba(255,255,255,0.75);
   box-shadow: 0 26px 70px rgba(12,10,27,0.08);
-  flex: 1 1 280px;
-  max-width: 360px;
-  transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
 }
 
-.section-proof .proof-card img{
+.proof-card img{
   width: 100%;
   height: 230px;
   object-fit: cover;
 }
-
-/* scatter offsets */
-.section-proof .proof-card:nth-child(1){ --r: -2deg; --y: 6px; }
-.section-proof .proof-card:nth-child(2){ --r: 1.6deg; --y: -6px; }
-.section-proof .proof-card:nth-child(3){ --r: -1deg; --y: 3px; }
 
 /* =========================
    SECTION: ENGINE MAP
@@ -1241,13 +1234,11 @@ button{ font-family: inherit; }
   color: var(--ink);
 }
 
-/* ✅ PROOF WALL — scattered “horizontal” wrap */
 .proof-wall{
   margin-top: 20px;
-  display:flex;
-  flex-wrap: wrap;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  align-items:flex-start;
 }
 
 .proof-wall img{
@@ -1257,18 +1248,7 @@ button{ font-family: inherit; }
   background: rgba(255,255,255,0.75);
   object-fit: cover;
   height: 240px;
-  flex: 1 1 260px;
-  max-width: 360px;
-  transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
 }
-
-/* scatter offsets */
-.proof-wall img:nth-child(1){ --r: -1.5deg; --y: 5px; }
-.proof-wall img:nth-child(2){ --r: 1.2deg;  --y: -6px; }
-.proof-wall img:nth-child(3){ --r: -0.8deg; --y: 2px; }
-.proof-wall img:nth-child(4){ --r: 1.8deg;  --y: -4px; }
-.proof-wall img:nth-child(5){ --r: -1.2deg; --y: 4px; }
-.proof-wall img:nth-child(6){ --r: 0.9deg;  --y: -2px; }
 
 /* =========================
    SECTION: PRICING
@@ -1713,7 +1693,7 @@ button{ font-family: inherit; }
 }
 
 /* =========================
-   RESULTS PAGE (Your existing block)
+   RESULTS PAGE (Uses SAME layout system)
 ========================= */
 .results-hero .hero-inner{
   align-items: center;
@@ -1753,63 +1733,6 @@ button{ font-family: inherit; }
   gap: 10px;
   color: rgba(12,10,27,0.78);
   font-weight: 750;
-}
-
-/* bubbles */
-.section-bubbles{
-  background: linear-gradient(180deg, #ffffff 0%, rgba(84,64,178,0.05) 35%, #ffffff 100%);
-}
-
-.bubbles{
-  margin-top: 18px;
-  display:grid;
-  gap: 14px;
-}
-
-.bubble{
-  display:flex;
-}
-.bubble-left{ justify-content:flex-start; }
-.bubble-right{ justify-content:flex-end; }
-
-.bubble-inner{
-  max-width: 760px;
-  width: 100%;
-  border-radius: 18px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 26px 60px rgba(12,10,27,0.06);
-  padding: 16px;
-  position: relative;
-}
-
-.bubble-left .bubble-inner{ border-top-left-radius: 10px; }
-.bubble-right .bubble-inner{ border-top-right-radius: 10px; }
-
-.bubble-inner p{
-  margin: 0;
-  color: rgba(12,10,27,0.82);
-  font-weight: 650;
-  line-height: 1.55;
-}
-
-.bubble-meta{
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(12,10,27,0.06);
-  display:flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.bubble-meta strong{
-  font-weight: 950;
-  color: var(--ink);
-}
-.bubble-meta span{
-  color: rgba(12,10,27,0.60);
-  font-weight: 750;
-  font-size: 12.5px;
 }
 
 /* =========================
@@ -1861,304 +1784,45 @@ button{ font-family: inherit; }
 
 /* =========================
    ✅ Scattered proof “float cards” (desktop only)
+   (more horizontal scatter, less vertical clumping)
 ========================= */
 .has-floats{ position: relative; overflow: hidden; }
 
 .proof-float{
   position: absolute;
-  width: 220px;
+  width: 240px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: rgba(255,255,255,0.75);
   box-shadow: 0 30px 80px rgba(12,10,27,0.10);
   transform: rotate(-2deg);
-  opacity: 0.85;
+  opacity: 0.86;
   pointer-events: none;
 }
+
 .proof-float img{
   width: 100%;
   height: auto;
   display:block;
 }
 
-.proof-float--a{ top: 22px; right: 36px; transform: rotate(2deg); }
-.proof-float--b{ bottom: 34px; left: 22px; transform: rotate(-3deg); }
-.proof-float--c{ top: 30px; left: 26px; transform: rotate(-2deg); }
-.proof-float--d{ bottom: 44px; right: 26px; transform: rotate(2.5deg); }
+.proof-float--a{ top: 34px; right: 44px; transform: rotate(2deg); }
+.proof-float--b{ top: 160px; left: 34px; transform: rotate(-3deg); }
+.proof-float--c{ bottom: 72px; left: 22px; transform: rotate(-2deg); }
+.proof-float--d{ bottom: 88px; right: 30px; transform: rotate(2.5deg); }
 
 @media (max-width: 900px){
   .proof-float{ display:none; }
 }
 
 /* =========================
-   ✅ RESULTS PAGE STYLING (keeps your home page unchanged)
+   ✅ SAFETY: if any results mobile-nav markup exists,
+   NEVER let it show on home by accident.
 ========================= */
-.results-page .header .container{
-  width: min(1180px, calc(100% - 44px));
-}
-
-.results-page .header .nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 14px 0;
-}
-
-.results-page .brand{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  font-weight: 950;
-  letter-spacing: -0.02em;
-}
-
-.results-page .brand img{
-  height: 30px;
-  width:auto;
-  display:block;
-}
-
-.results-page .brand-name{
-  font-size: 14px;
-  color: rgba(12,10,27,0.82);
-}
-
-.results-page .nav-links{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
-
-.results-page .nav-links a{
-  font-weight: 850;
-  font-size: 13px;
-  color: rgba(12,10,27,0.74);
-  padding: 10px 10px;
-  border-radius: 999px;
-  transition: background 180ms ease, transform 180ms ease;
-}
-.results-page .nav-links a:hover{
-  background: rgba(245,246,250,0.9);
-  transform: translateY(-1px);
-}
-
-.results-page .nav-cta{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
-
-.results-page .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius: 999px;
-  font-weight: 950;
-  letter-spacing: -0.01em;
-  padding: 12px 16px;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
-}
-
-.results-page .btn-primary{
-  background: linear-gradient(135deg, rgba(106,0,255,0.95) 0%, rgba(179,136,255,0.9) 55%, rgba(106,0,255,0.95) 100%);
-  color:#fff;
-  box-shadow: 0 18px 44px rgba(106,0,255,0.18);
-}
-.results-page .btn-primary:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 22px 56px rgba(106,0,255,0.22);
-}
-
-.results-page .nav-toggle{
-  display:none;
-  border: 1px solid rgba(12,10,27,0.12);
-  background: rgba(255,255,255,0.78);
-  border-radius: 12px;
-  padding: 10px 12px;
-  font-weight: 950;
-  cursor:pointer;
-}
-
-/* Mobile panel */
-.results-page .nav-backdrop{
-  position: fixed;
-  inset: 0;
-  background: rgba(12,10,27,0.40);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease;
-  z-index: 80;
-}
-.results-page .nav-panel{
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  left: 14px;
-  max-width: 520px;
-  margin-left: auto;
-  border-radius: 18px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 30px 90px rgba(12,10,27,0.16);
-  padding: 12px;
-  transform: translateY(-10px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
-  z-index: 90;
-}
-.results-page .nav-panel-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding: 8px 6px 10px;
-  border-bottom: 1px solid rgba(12,10,27,0.08);
-  margin-bottom: 10px;
-}
-.results-page .nav-panel a{
-  display:block;
-  padding: 12px 10px;
-  border-radius: 12px;
-  font-weight: 900;
-  color: rgba(12,10,27,0.78);
-}
-.results-page .nav-panel a:hover{
-  background: rgba(245,246,250,0.9);
-}
-
-/* open state */
-.results-page.nav-open .nav-backdrop{
-  opacity: 1;
-  pointer-events: auto;
-}
-.results-page.nav-open .nav-panel{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.results-hero{
-  padding: 62px 0 56px;
-}
-
-.results-grid{
-  display:grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 18px;
-  align-items: start;
-}
-
-.results-page .h2{
-  margin-top: 10px;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 1.06;
-  letter-spacing: -0.02em;
-  font-weight: 950;
-  color: var(--ink);
-}
-
-.results-page .p{
-  margin-top: 10px;
-  color: rgba(12,10,27,0.70);
-  font-weight: 650;
-}
-
-.results-page .stat-row{
-  margin-top: 14px;
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-.results-page .stat{
-  border-radius: 18px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(245,246,250,0.70);
-  padding: 12px;
-}
-.results-page .stat .n{
-  font-weight: 950;
-  color: rgba(12,10,27,0.88);
-  font-size: 16px;
-}
-.results-page .stat .t{
-  margin-top: 6px;
-  color: rgba(12,10,27,0.56);
-  font-weight: 850;
-  font-size: 12px;
-}
-
-.results-page .results-list{
-  margin-top: 14px;
-  display:grid;
-  gap: 10px;
-}
-.results-page .tick{
-  display:flex;
-  gap: 10px;
-  align-items:flex-start;
-  border-radius: 16px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 22px 60px rgba(12,10,27,0.06);
-  padding: 12px;
-}
-.results-page .tick .dot{
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  margin-top: 4px;
-  background: rgba(106,0,255,0.80);
-  box-shadow: 0 12px 22px rgba(106,0,255,0.18);
-}
-
-.results-page .quote{
-  border-radius: 18px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 22px 60px rgba(12,10,27,0.06);
-  padding: 14px;
-}
-.results-page .quote p{
-  color: rgba(12,10,27,0.82);
-  font-weight: 650;
-  line-height: 1.55;
-}
-.results-page .who{
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(12,10,27,0.06);
-  color: rgba(12,10,27,0.60);
-  font-weight: 850;
-  font-size: 12.5px;
-}
-
-.results-page .calendly iframe{
-  width: 100%;
-  height: 780px;
-  border: 0;
-  border-radius: 22px;
-  border: 1px solid rgba(12,10,27,0.10);
-  background: rgba(255,255,255,0.82);
-  box-shadow: var(--shadow);
-}
-
-.results-page .footer-note{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  color: rgba(12,10,27,0.60);
-  font-weight: 800;
-  font-size: 12px;
+[data-nav-backdrop],
+[data-nav-panel]{
+  display: none !important;
 }
 
 /* =========================
@@ -2186,14 +1850,6 @@ button{ font-family: inherit; }
   .footer-grid{
     grid-template-columns: 1fr 1fr;
   }
-  .results-grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 820px){
-  .results-page .nav-links{ display:none; }
-  .results-page .nav-toggle{ display:inline-flex; }
 }
 
 @media (max-width: 640px){
@@ -2214,49 +1870,25 @@ button{ font-family: inherit; }
     padding: 64px 0 46px;
   }
 
-  .proof-strip{
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
-  }
-
   .proof-strip img{
     width: 84px;
     height: 58px;
     border-radius: 12px;
-    transform: none; /* keep clean on tiny screens */
   }
 
   .outcomes{
     grid-template-columns: 1fr;
   }
 
-  /* ✅ On mobile: proof areas become swipe rows (no awkward stacking) */
-  .section-proof .proof-grid{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
+  .proof-grid{
+    grid-template-columns: 1fr;
   }
-  .section-proof .proof-card{
-    flex: 0 0 84%;
-    max-width: 84%;
-    transform: none;
-  }
-  .section-proof .proof-card img{ height: 220px; }
+  .proof-card img{ height: 220px; }
 
   .proof-wall{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
+    grid-template-columns: 1fr;
   }
-  .proof-wall img{
-    flex: 0 0 84%;
-    max-width: 84%;
-    height: 220px;
-    transform: none;
-  }
+  .proof-wall img{ height: 220px; }
 
   .footer-grid{
     grid-template-columns: 1fr;
@@ -2270,10 +1902,4 @@ button{ font-family: inherit; }
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .bubble{ justify-content: stretch; }
-  .bubble-inner{ max-width: 100%; }
-
-  .results-page .stat-row{ grid-template-columns: 1fr; }
-  .results-page .calendly iframe{ height: 720px; }
 }
