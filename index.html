@@ -7,643 +7,502 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ONIX — Your pipeline, on autopilot.</title>
-  <meta name="description" content="ONIX: Done-for-you acquisition + follow-up system. Book more calls with a Stripe-level, premium pipeline engine." />
+  <meta name="description" content="Done-for-you acquisition + follow-up system that turns enquiries into booked calls." />
   <link rel="icon" href="logo2.png" />
+
+  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <!-- Background -->
+  <!-- Aurora background -->
   <div class="site-bg" aria-hidden="true">
     <div class="aurora"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
   </div>
 
-  <!-- Sticky Header -->
-  <header class="header" id="top">
+  <!-- Header -->
+  <header class="header" data-header>
     <div class="container header-inner">
-      <a class="brand" href="./index.html" aria-label="ONIX Home">
-        <img class="brand-logo" src="logo2.png" alt="ONIX logo" onerror="this.style.display='none'" />
-        <span class="brand-name">ONIX</span>
+      <a class="brand" href="./index.html" aria-label="ONIX home">
+        <!-- show full logo, no ONIX word next to it -->
+        <img class="brand-logo brand-logo--full" src="logo2.png" alt="ONIX logo" />
       </a>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="./results.html" class="hide-sm">Results Page</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="./results.html">Results</a>
         <a href="#how">How it works</a>
-        <a href="#book" class="btn btn-sm btn-primary">Book a Call</a>
+
+        <!-- Pricing covered (instead of pricing) -->
+        <a href="#pricing" class="is-muted">Pricing</a>
+
+        <a class="btn btn-primary btn-sm nav-cta" href="#book">Book a Call</a>
       </nav>
 
-      <!-- Robust mobile: no overlay, no raw “Menu” text -->
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" data-nav-toggle>
         <span class="nav-toggle-ic" aria-hidden="true"></span>
       </button>
     </div>
 
-    <div class="mobile-nav" id="mobileNav" hidden>
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="mobile-nav" hidden data-mobile-nav>
       <div class="container mobile-nav-inner">
-        <a href="./results.html">Results</a>
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
         <a href="./results.html">Results Page</a>
-        <a href="#book" class="btn btn-primary">Book a Call</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing Covered</a>
+        <a class="btn btn-primary btn-block" href="#book">Book a Call</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="section hero" aria-label="Hero">
-      <div class="container hero-grid">
-        <div class="hero-left">
-          <div class="pill reveal">
-            <span class="pill-dot" aria-hidden="true"></span>
-            Done-for-you acquisition + follow-up system
-          </div>
-
-          <h1 class="h1 reveal" style="--d: 70ms">Your pipeline, on autopilot.</h1>
-          <p class="subhead reveal" style="--d: 120ms">
-            Built for tradies, solar, agencies, and local service businesses that want more booked calls —
-            without chasing leads all day.
-          </p>
-
-          <div class="cta-row reveal" style="--d: 170ms">
-            <a class="btn btn-primary btn-lg" href="#book">Book a 15-minute call</a>
-            <a class="btn btn-ghost btn-lg" href="#how">See the engine</a>
-          </div>
-
-          <div class="microproof reveal" style="--d: 220ms">
-            <span class="microproof-dot" aria-hidden="true"></span>
-            Real client messages • Unedited screenshots
-          </div>
-
-          <!-- Proof row (desktop: scattered feel, still horizontal row; mobile: swipe carousel) -->
-          <div class="proof-strip reveal" style="--d: 260ms" aria-label="Proof screenshots carousel">
-            <div class="proof-track" data-proof-track>
-              <!-- If images missing, cards still render -->
-              <figure class="proof proof-a">
-                <img src="proof1.png" alt="Client message proof 1" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof proof-b">
-                <img src="proof2.png" alt="Client message proof 2" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof proof-c">
-                <img src="proof3.png" alt="Client message proof 3" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof proof-d">
-                <img src="proof4.png" alt="Client message proof 4" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-            </div>
-
-            <div class="proof-dots" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-          </div>
+  <!-- Hero -->
+  <main class="section hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="pill reveal">
+          <span class="pill-dot" aria-hidden="true"></span>
+          Done-for-you acquisition + follow-up system
         </div>
 
-        <!-- DASHBOARD CARD -->
-        <aside class="hero-right reveal" style="--d: 140ms" aria-label="Live dashboard preview">
-          <div class="glass card dash">
-            <div class="dash-top">
-              <div>
-                <div class="kicker">Live Dashboard</div>
-                <div class="dash-title">Pipeline Snapshot</div>
-              </div>
+        <h1 class="h1 reveal" style="--d:80ms;">Your pipeline, on autopilot.</h1>
+        <p class="subhead reveal" style="--d:140ms;">
+          Built for tradies, solar, agencies, and local service businesses that want more booked calls — without chasing leads all day.
+        </p>
 
-              <div class="segmented" role="tablist" aria-label="Industry selector">
-                <button type="button" class="seg-btn is-active" data-seg="all" role="tab" aria-selected="true">All</button>
-                <button type="button" class="seg-btn" data-seg="tradies" role="tab">Tradies</button>
-                <button type="button" class="seg-btn" data-seg="builders" role="tab">Builders</button>
-                <button type="button" class="seg-btn" data-seg="insurance" role="tab">Insurance</button>
-                <button type="button" class="seg-btn" data-seg="solar" role="tab">Solar</button>
-                <button type="button" class="seg-btn" data-seg="agencies" role="tab">Agencies</button>
-              </div>
-            </div>
-
-            <div class="kpi-grid" id="kpiGrid" aria-label="KPI cards">
-              <div class="kpi">
-                <div class="kpi-label">New Enquiries</div>
-                <div class="kpi-value" data-kpi="enquiries">38</div>
-                <div class="kpi-delta up" data-kpi-delta="enquiries">+18%</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-label">Calls Booked</div>
-                <div class="kpi-value" data-kpi="calls">12</div>
-                <div class="kpi-delta up" data-kpi-delta="calls">+9%</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-label">Deals Won</div>
-                <div class="kpi-value" data-kpi="deals">5</div>
-                <div class="kpi-delta neutral" data-kpi-delta="deals">—</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-label">Revenue</div>
-                <div class="kpi-value" data-kpi="revenue">$48,200</div>
-                <div class="kpi-delta down" data-kpi-delta="revenue">-4%</div>
-              </div>
-            </div>
-
-            <div class="dash-chart">
-              <div class="dash-chart-head">
-                <div class="dash-chart-title">Enquiry Trend</div>
-                <div class="dash-chart-note">Last 7 days</div>
-              </div>
-
-              <svg class="spark" viewBox="0 0 320 110" width="100%" height="110" role="img" aria-label="Enquiry trend chart">
-                <defs>
-                  <linearGradient id="gViolet" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stop-color="#6A00FF"/>
-                    <stop offset="1" stop-color="#B388FF"/>
-                  </linearGradient>
-                  <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-                    <feGaussianBlur stdDeviation="3" result="blur"/>
-                    <feMerge>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                <!-- grid -->
-                <g opacity="0.22">
-                  <path d="M20 20H300" stroke="rgba(12,10,27,0.14)"/>
-                  <path d="M20 50H300" stroke="rgba(12,10,27,0.10)"/>
-                  <path d="M20 80H300" stroke="rgba(12,10,27,0.10)"/>
-                </g>
-
-                <!-- area + line injected by JS -->
-                <path class="spark-area" d="" fill="url(#gViolet)" opacity="0.14"></path>
-                <path class="spark-line" d="" fill="none" stroke="url(#gViolet)" stroke-width="3.5" stroke-linecap="round" filter="url(#softGlow)"></path>
-
-                <!-- points -->
-                <g class="spark-points"></g>
-              </svg>
-            </div>
-
-            <div class="dash-foot">
-              <div class="tag">
-                <span class="tag-dot" aria-hidden="true"></span>
-                Updates instantly per industry
-              </div>
-              <a class="link" href="./results.html">See real outcomes →</a>
-            </div>
-          </div>
-
-          <!-- Soft floating accents (decor only) -->
-          <div class="float float-1" aria-hidden="true"></div>
-          <div class="float float-2" aria-hidden="true"></div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- PROOF / OUTCOMES -->
-    <section class="section" aria-label="Outcomes">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Outcomes</div>
-          <h2 class="h2">More booked calls. Cleaner follow-up. Higher close rate.</h2>
-          <p class="p">
-            We install a simple acquisition engine + follow-up system that turns enquiries into scheduled calls —
-            while you focus on delivery.
-          </p>
+        <div class="cta-row reveal" style="--d:200ms;">
+          <a class="btn btn-primary btn-lg" href="#book">Book a 15-minute call</a>
+          <a class="btn btn-ghost btn-lg" href="#how">See the engine</a>
         </div>
 
-        <div class="outcome-grid">
-          <article class="glass card outcome reveal" style="--d: 70ms">
-            <div class="outcome-ic">
-                 <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
-                      <path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                 </svg>
-            </div>
-
-            <h3>Calls Booked, Automatically</h3>
-            <p>Lead capture → instant response → multi-touch follow-up → calendar booking — without manual chasing.</p>
-            <div class="mini-metric">
-              <span>Avg booking uplift</span>
-              <strong>+20–45%</strong>
-            </div>
-          </article>
-
-          <article class="glass card outcome reveal" style="--d: 120ms">
-           <div class="outcome-ic alt">
-                <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
-                     <path d="M4 19c2.2-3.6 5.3-5.4 8.6-5.4 3.4 0 6.2 1.6 7.4 4.8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                     <path d="M7 10.5c0-2.7 2.2-4.9 4.9-4.9S16.8 7.8 16.8 10.5 14.6 15.4 11.9 15.4 7 13.2 7 10.5z" fill="none" stroke="currentColor" stroke-width="2.2"/>
-                </svg>
-           </div>
-
-            <h3>Follow-up That Feels Human</h3>
-            <p>Personalised sequences that keep conversations alive and move leads forward — even after hours.</p>
-            <div class="mini-metric">
-              <span>Reply rate</span>
-              <strong>15–30%</strong>
-            </div>
-          </article>
-
-          <article class="glass card outcome reveal" style="--d: 170ms">
-            <div class="outcome-ic alt2">
-                 <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
-                      <path d="M4 18V6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                      <path d="M6.5 16l4-6 3 4 3.5-6 3 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                 </svg>
-            </div>
-
-            <h3>Visibility in One Place</h3>
-            <p>Know what’s working: sources, follow-up health, booked calls, and revenue attribution.</p>
-            <div class="mini-metric">
-              <span>Time saved/week</span>
-              <strong>5–10 hrs</strong>
-            </div>
-          </article>
+        <div class="microproof reveal" style="--d:260ms;">
+          <span class="microproof-dot" aria-hidden="true"></span>
+          Real client messages • Unedited screenshots
         </div>
 
-        <div class="chip-row reveal" aria-label="Compatible tools">
-          <span class="chip">Meta Ads</span>
-          <span class="chip">Google Ads</span>
-          <span class="chip">Landing Pages</span>
-          <span class="chip">Calendly</span>
-          <span class="chip">CRM / Pipelines</span>
-          <span class="chip">SMS + Email</span>
-          <span class="chip">Reporting</span>
-        </div>
-
-       
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how" aria-label="How it works">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">How it works</div>
-          <h2 class="h2">The ONIX Engine Map</h2>
-          <p class="p">A simple, repeatable flow that converts attention into booked calls — then keeps following up until you win.</p>
-        </div>
-
-        <div class="engine">
-          <div class="engine-left reveal">
-            <div class="engine-rail">
-              <div class="engine-bar" data-engine-bar></div>
+        <!-- Clean proof row desktop, stack mobile (CSS handles) -->
+        <div class="proof-strip reveal" style="--d:320ms;">
+          <div class="proof-track" aria-label="Proof screenshots">
+            <div class="proof">
+              <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy" onerror="this.closest('.proof').classList.add('is-missing')">
+              <div class="proof-fallback">Proof Screenshot</div>
             </div>
-
-            <div class="engine-steps" role="tablist" aria-label="Engine steps">
-              <button class="step is-active" type="button" data-step="0" role="tab" aria-selected="true">
-                <span class="step-num">01</span>
-                <span class="step-body">
-                  <span class="step-title">Offer + funnel</span>
-                  <span class="step-sub">Message, page, and lead capture</span>
-                </span>
-              </button>
-
-              <button class="step" type="button" data-step="1" role="tab">
-                <span class="step-num">02</span>
-                <span class="step-body">
-                  <span class="step-title">Instant response</span>
-                  <span class="step-sub">Speed-to-lead setup</span>
-                </span>
-              </button>
-
-              <button class="step" type="button" data-step="2" role="tab">
-                <span class="step-num">03</span>
-                <span class="step-body">
-                  <span class="step-title">Follow-up sequences</span>
-                  <span class="step-sub">SMS + email + reminders</span>
-                </span>
-              </button>
-
-              <button class="step" type="button" data-step="3" role="tab">
-                <span class="step-num">04</span>
-                <span class="step-body">
-                  <span class="step-title">Booking + routing</span>
-                  <span class="step-sub">Calendar + pipeline stages</span>
-                </span>
-              </button>
-
-              <button class="step" type="button" data-step="4" role="tab">
-                <span class="step-num">05</span>
-                <span class="step-body">
-                  <span class="step-title">Reporting</span>
-                  <span class="step-sub">KPIs + attribution + weekly review</span>
-                </span>
-              </button>
+            <div class="proof">
+              <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy" onerror="this.closest('.proof').classList.add('is-missing')">
+              <div class="proof-fallback">Proof Screenshot</div>
             </div>
-          </div>
-
-          <div class="engine-right">
-            <article class="glass card engine-card reveal" data-step-card="0">
-              <div class="engine-card-top">
-                <div class="engine-badge">Stage 01</div>
-                <h3>Offer + funnel that’s built to convert</h3>
-              </div>
-              <p>We install a clean message + landing flow that attracts the right buyers, filters tyre-kickers, and captures leads with high intent.</p>
-              <ul class="list">
-                <li>Offer positioning + hooks</li>
-                <li>Conversion-first landing structure</li>
-                <li>Tracking + event setup</li>
-              </ul>
-            </article>
-
-            <article class="glass card engine-card reveal" data-step-card="1" hidden>
-              <div class="engine-card-top">
-                <div class="engine-badge">Stage 02</div>
-                <h3>Speed-to-lead in minutes, not hours</h3>
-              </div>
-              <p>New enquiries get an instant, human-sounding response. No more “Sorry just saw this” messages.</p>
-              <ul class="list">
-                <li>Instant SMS/email confirmation</li>
-                <li>Auto-qualifying questions</li>
-                <li>Business-hours logic + fallbacks</li>
-              </ul>
-            </article>
-
-            <article class="glass card engine-card reveal" data-step-card="2" hidden>
-              <div class="engine-card-top">
-                <div class="engine-badge">Stage 03</div>
-                <h3>Follow-up sequences that win later</h3>
-              </div>
-              <p>Most deals close after multiple touches. We automate polite persistence so leads don’t slip through.</p>
-              <ul class="list">
-                <li>Multi-touch sequences</li>
-                <li>Personalised templates</li>
-                <li>Nurture + reactivation</li>
-              </ul>
-            </article>
-
-            <article class="glass card engine-card reveal" data-step-card="3" hidden>
-              <div class="engine-card-top">
-                <div class="engine-badge">Stage 04</div>
-                <h3>Bookings, routing, and clear pipeline stages</h3>
-              </div>
-              <p>When they’re ready, leads book a call. They get routed into the right pipeline stage automatically.</p>
-              <ul class="list">
-                <li>Calendly embed + reminders</li>
-                <li>Pipeline stages + notifications</li>
-                <li>Missed-call recovery</li>
-              </ul>
-            </article>
-
-            <article class="glass card engine-card reveal" data-step-card="4" hidden>
-              <div class="engine-card-top">
-                <div class="engine-badge">Stage 05</div>
-                <h3>Reporting that tells you what’s working</h3>
-              </div>
-              <p>Weekly visibility on leads, booked calls, follow-up health, and ROI. You make decisions with confidence.</p>
-              <ul class="list">
-                <li>Weekly KPI snapshot</li>
-                <li>Attribution by source</li>
-                <li>Simple optimisation plan</li>
-              </ul>
-            </article>
+            <div class="proof">
+              <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy" onerror="this.closest('.proof').classList.add('is-missing')">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </div>
+            <div class="proof">
+              <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy" onerror="this.closest('.proof').classList.add('is-missing')">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- COMPARE -->
-    <section class="section" aria-label="Compare">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Compare</div>
-          <h2 class="h2">Before vs After ONIX</h2>
-          <p class="p">Same ad spend — very different outcomes when follow-up is consistent and bookings are frictionless.</p>
-        </div>
-
-        <div class="compare-grid">
-          <article class="glass card compare reveal">
-            <div class="compare-title">Before</div>
-            <ul class="list">
-              <li>Leads go cold after 5–30 minutes</li>
-              <li>Manual chasing + missed follow-ups</li>
-              <li>No visibility on what converts</li>
-              <li>Inconsistent messaging across staff</li>
-              <li>Calendar gaps, chaotic scheduling</li>
-            </ul>
-          </article>
-
-          <article class="glass card compare highlight reveal" style="--d: 120ms">
-            <div class="compare-title">After</div>
-            <ul class="list">
-              <li>Instant response + structured qualification</li>
-              <li>Multi-touch follow-up on autopilot</li>
-              <li>Booked calls increase without more admin</li>
-              <li>Consistent templates that sound human</li>
-              <li>Clean pipeline stages + reporting</li>
-            </ul>
-          </article>
-
-          <article class="glass card timeline reveal" style="--d: 170ms">
-            <div class="timeline-top">
-              <div class="timeline-title">Autopilot timeline</div>
-              <div class="timeline-sub">What happens after a lead opts in</div>
-            </div>
-            <div class="timeline-rows">
-              <div class="trow">
-                <span class="tbadge">0–1 min</span>
-                <span class="ttext">Confirmation + first response</span>
-              </div>
-              <div class="trow">
-                <span class="tbadge">10–60 min</span>
-                <span class="ttext">Follow-up touch + booking link</span>
-              </div>
-              <div class="trow">
-                <span class="tbadge">Day 1–3</span>
-                <span class="ttext">Sequence continues + objections handled</span>
-              </div>
-              <div class="trow">
-                <span class="tbadge">Day 7–21</span>
-                <span class="ttext">Nurture + reactivation for slow leads</span>
-              </div>
+      <!-- Dashboard -->
+      <aside class="hero-right reveal" style="--d:220ms;">
+        <div class="dash glass card">
+          <div class="dash-top">
+            <div>
+              <div class="kicker">Live Dashboard</div>
+              <div class="dash-title">Pipeline Snapshot</div>
             </div>
 
-            <a class="btn btn-ghost btn-block" href="./results.html">See results →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing" aria-label="Pricing">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Pricing</div>
-          <h2 class="h2">Choose your install level</h2>
-          <p class="p">Simple packages. Premium execution. Book a call to confirm fit and timelines.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="glass card pricing reveal">
-            <div class="pricing-top">
-              <div class="pricing-name">Standard</div>
-              <div class="pricing-desc">Perfect if you need the engine installed and running quickly.</div>
-            </div>
-            <div class="price">
-              <span class="price-currency">$</span>
-              <span class="price-amount">2,500</span>
-              <span class="price-note">setup</span>
-            </div>
-            <ul class="list">
-              <li>Offer + landing flow</li>
-              <li>Instant response + qualification</li>
-              <li>Follow-up sequences (core)</li>
-              <li>Calendly embed + reminders</li>
-              <li>Basic KPI dashboard</li>
-            </ul>
-            <a class="btn btn-primary btn-block" href="#book">Book a call</a>
-            <div class="fine">Typical install: 7–10 days</div>
-          </article>
-
-          <article class="glass card pricing featured reveal" style="--d: 120ms">
-            <div class="featured-badge">Most chosen</div>
-            <div class="pricing-top">
-              <div class="pricing-name">Premium</div>
-              <div class="pricing-desc">Best for teams wanting higher conversion + ongoing optimisation.</div>
-            </div>
-            <div class="price">
-              <span class="price-currency">$</span>
-              <span class="price-amount">4,500</span>
-              <span class="price-note">setup</span>
-            </div>
-            <ul class="list">
-              <li>Everything in Standard</li>
-              <li>Industry-specific messaging library</li>
-              <li>Advanced routing + pipeline stages</li>
-              <li>Attribution + source reporting</li>
-              <li>Weekly optimisation review (30 days)</li>
-            </ul>
-            <a class="btn btn-primary btn-block" href="#book">Book a call</a>
-            <div class="fine">Typical install: 10–14 days</div>
-          </article>
-
-          <aside class="glass card guarantee reveal" style="--d: 170ms">
-            <div class="guarantee-top">
-              <div class="guarantee-ic" aria-hidden="true"></div>
-              <div>
-                <div class="guarantee-title">Risk reversal</div>
-                <div class="guarantee-sub">If we can’t map a clear path to more booked calls, we’ll tell you before you pay.</div>
-              </div>
-            </div>
-            <div class="guarantee-box">
-              <strong>Fit Check Guarantee</strong>
-              <p>If ONIX isn’t a fit for your niche, offer, or market, you’ll get a direct plan for what to fix next — at no cost.</p>
-            </div>
-            <a class="link" href="./results.html">See proven outcomes →</a>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOOK -->
-    <section class="section" id="book" aria-label="Book a call">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Book a call</div>
-          <h2 class="h2">Let’s install your pipeline engine</h2>
-          <p class="p">Book a short call and we’ll map your fastest path to more booked calls — with a clean, premium system.</p>
-        </div>
-
-        <div class="glass card book-card reveal">
-          <div class="book-left">
-            <h3>What you’ll get</h3>
-            <ul class="list">
-              <li>Quick audit of your current lead flow</li>
-              <li>Recommendation: Standard vs Premium</li>
-              <li>Offer + follow-up map for your niche</li>
-              <li>Clear next steps and timeline</li>
-            </ul>
-
-            <div class="book-bullets">
-              <div class="bb">
-                <span class="bb-dot" aria-hidden="true"></span>
-                No pressure, no fluff — just clarity.
-              </div>
-              <div class="bb">
-                <span class="bb-dot" aria-hidden="true"></span>
-                https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01
-              </div>
+            <div class="segmented" role="tablist" aria-label="Industry">
+              <button class="seg-btn is-active" data-seg="all" role="tab" aria-selected="true">All</button>
+              <button class="seg-btn" data-seg="tradies" role="tab" aria-selected="false">Tradies</button>
+              <button class="seg-btn" data-seg="builders" role="tab" aria-selected="false">Builders</button>
+              <button class="seg-btn" data-seg="insurance" role="tab" aria-selected="false">Insurance</button>
+              <button class="seg-btn" data-seg="solar" role="tab" aria-selected="false">Solar</button>
+              <button class="seg-btn" data-seg="agencies" role="tab" aria-selected="false">Agencies</button>
             </div>
           </div>
 
-          <div class="book-right">
-            <div class="embed-wrap">
-              <iframe
-                title="Calendly"
-                class="calendly"
-                src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
-                loading="lazy"
-              ></iframe>
+          <div class="kpi-grid" data-kpis>
+            <div class="kpi">
+              <div class="kpi-label">New Enquiries</div>
+              <div class="kpi-value" data-kpi="enquiries">38</div>
+              <div class="kpi-delta up" data-kpi-delta="enquiries">+18%</div>
             </div>
-            <div class="embed-note">https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01 <code>index.html</code> + <code>results.html</code>.</div>
+
+            <div class="kpi">
+              <div class="kpi-label">Calls Booked</div>
+              <div class="kpi-value" data-kpi="calls">12</div>
+              <div class="kpi-delta up" data-kpi-delta="calls">+9%</div>
+            </div>
+
+            <div class="kpi">
+              <div class="kpi-label">Deals Won</div>
+              <div class="kpi-value" data-kpi="deals">5</div>
+              <div class="kpi-delta neutral" data-kpi-delta="deals">—</div>
+            </div>
+
+            <div class="kpi">
+              <div class="kpi-label">Revenue</div>
+              <div class="kpi-value" data-kpi="revenue">$48,200</div>
+              <div class="kpi-delta down" data-kpi-delta="revenue">-4%</div>
+            </div>
+          </div>
+
+          <div class="dash-chart" aria-label="Enquiry trend">
+            <div class="dash-chart-head">
+              <div class="dash-chart-title">Enquiry Trend</div>
+              <div class="dash-chart-note">7 days</div>
+            </div>
+
+            <svg class="spark" viewBox="0 0 320 120" width="100%" height="120" aria-hidden="true">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#6A00FF" />
+                  <stop offset="1" stop-color="#B388FF" />
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-50%" width="140%" height="200%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <path d="M20 92 C 60 70, 85 74, 110 66 C 135 58, 155 62, 180 52 C 205 42, 225 50, 250 36 C 275 22, 290 30, 300 22"
+                fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round" filter="url(#softGlow)" data-spark-line></path>
+
+              <circle cx="110" cy="66" r="5" fill="#fff" stroke="#6A00FF" stroke-width="3" opacity="0.9" data-spark-dot></circle>
+              <circle cx="250" cy="36" r="5" fill="#fff" stroke="#B388FF" stroke-width="3" opacity="0.9" data-spark-dot></circle>
+            </svg>
+          </div>
+
+          <div class="dash-foot">
+            <div class="tag">
+              <span class="tag-dot" aria-hidden="true"></span>
+              Updates instantly per industry
+            </div>
+            <a class="link" href="./results.html">See results →</a>
           </div>
         </div>
-      </div>
-    </section>
+
+        <div class="float float-1" aria-hidden="true"></div>
+        <div class="float float-2" aria-hidden="true"></div>
+      </aside>
+    </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- Outcomes -->
+  <section id="results" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Outcomes</div>
+        <h2 class="h2">More booked calls. Cleaner follow-up. Higher close rate.</h2>
+        <p class="p">We install a simple acquisition engine + follow-up system that turns enquiries into scheduled calls — while you focus on delivery.</p>
+      </div>
 
+      <div class="outcome-grid">
+        <article class="outcome glass card reveal">
+          <div class="outcome-ic">
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
+              <path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Calls Booked, Automatically</h3>
+          <p>Lead capture → instant response → multi-touch follow-up → calendar booking — without manual chasing.</p>
+          <div class="mini-metric">
+            <span>Avg booking uplift</span>
+            <strong>+20–45%</strong>
+          </div>
+        </article>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="foot-col">
-        <div class="foot-brand">
-          <img src="./logo2.png" alt="ONIX logo" loading="lazy">
-          <div>
-            <div class="foot-name">ONIX</div>
-            <div class="foot-tag">1–1 acquisition + follow-up system</div>
+        <article class="outcome glass card reveal" style="--d:80ms;">
+          <div class="outcome-ic alt">
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
+              <path d="M4 19c2.2-3.6 5.3-5.4 8.6-5.4 3.4 0 6.2 1.6 7.4 4.8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M7 10.5c0-2.7 2.2-4.9 4.9-4.9S16.8 7.8 16.8 10.5 14.6 15.4 11.9 15.4 7 13.2 7 10.5z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            </svg>
+          </div>
+          <h3>Follow-up That Feels Human</h3>
+          <p>Personalised sequences that keep conversations alive and move leads forward — even after hours.</p>
+          <div class="mini-metric">
+            <span>Reply rate</span>
+            <strong>15–30%</strong>
+          </div>
+        </article>
+
+        <article class="outcome glass card reveal" style="--d:160ms;">
+          <div class="outcome-ic alt2">
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true">
+              <path d="M4 18V6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M6.5 16l4-6 3 4 3.5-6 3 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Visibility in One Place</h3>
+          <p>Know what’s working: sources, follow-up health, booked calls, and revenue attribution.</p>
+          <div class="mini-metric">
+            <span>Time saved/week</span>
+            <strong>5–10 hrs</strong>
+          </div>
+        </article>
+      </div>
+
+      <div class="chip-row reveal" style="--d:140ms;">
+        <span class="chip">Meta Ads</span>
+        <span class="chip">Google Ads</span>
+        <span class="chip">Landing Pages</span>
+        <span class="chip">Calendly</span>
+        <span class="chip">CRM / Pipelines</span>
+        <span class="chip">SMS + Email</span>
+        <span class="chip">Reporting</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">How it works</div>
+        <h2 class="h2">The engine map — simple, measurable, repeatable.</h2>
+        <p class="p">Click a step to see what’s happening under the hood.</p>
+      </div>
+
+      <div class="engine">
+        <div class="engine-left">
+          <div class="engine-rail" aria-hidden="true">
+            <div class="engine-bar" data-engine-bar></div>
+          </div>
+
+          <div class="engine-steps">
+            <button class="step is-active" data-step="0">
+              <div class="step-num">01</div>
+              <div>
+                <div class="step-title">Capture</div>
+                <span class="step-sub">Form + call + DM — clean intake</span>
+              </div>
+            </button>
+
+            <button class="step" data-step="1">
+              <div class="step-num">02</div>
+              <div>
+                <div class="step-title">Instant Response</div>
+                <span class="step-sub">Speed to lead in minutes</span>
+              </div>
+            </button>
+
+            <button class="step" data-step="2">
+              <div class="step-num">03</div>
+              <div>
+                <div class="step-title">Multi-touch Follow-up</div>
+                <span class="step-sub">SMS + email + reminders</span>
+              </div>
+            </button>
+
+            <button class="step" data-step="3">
+              <div class="step-num">04</div>
+              <div>
+                <div class="step-title">Booking</div>
+                <span class="step-sub">Calendly routing + confirmations</span>
+              </div>
+            </button>
+
+            <button class="step" data-step="4">
+              <div class="step-num">05</div>
+              <div>
+                <div class="step-title">Reporting</div>
+                <span class="step-sub">KPIs you can act on</span>
+              </div>
+            </button>
           </div>
         </div>
-        <p class="foot-p">
-          We build a simple engine that turns enquiries into booked calls — without chasing leads all day.
-        </p>
-        <div class="foot-chips">
-          <span class="chip small">Tradies</span>
-          <span class="chip small">Solar</span>
-          <span class="chip small">Agencies</span>
-          <span class="chip small">Local Service</span>
+
+        <div class="engine-card glass card reveal" data-engine-card>
+          <div class="engine-card-top">
+            <span class="engine-badge" data-engine-badge>Step 01</span>
+            <span class="engine-badge">Built-in</span>
+          </div>
+          <h3 data-engine-title>Capture</h3>
+          <ul class="list" data-engine-list>
+            <li>High-intent forms that reduce junk.</li>
+            <li>Track source + service + urgency.</li>
+            <li>Instant lead routing to the right place.</li>
+          </ul>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="foot-col">
-        <div class="foot-h">Pages</div>
-        <a href="./index.html#how">How it works</a>
-        <a href="./index.html#results">Results</a>
-        <a href="./results.html">Results Page</a>
-        <a href="./index.html#book">Book a Call</a>
+  <!-- Compare -->
+  <section id="compare" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Compare</div>
+        <h2 class="h2">Before vs After — the autopilot effect.</h2>
+        <p class="p">This is what changes when follow-up becomes a system.</p>
       </div>
 
-      <div class="foot-col">
-        <div class="foot-h">Company</div>
-        <a href="./index.html#compare">Compare</a>
-        <a href="./index.html#engine">The Engine</a>
-        <a href="./index.html#faq">FAQ</a>
-      </div>
+      <div class="compare-grid">
+        <article class="compare glass card reveal">
+          <div class="compare-title">Before</div>
+          <ul class="list">
+            <li>Leads go cold after 15 minutes.</li>
+            <li>Manual chasing + inconsistent messages.</li>
+            <li>No visibility on what’s working.</li>
+          </ul>
+        </article>
 
-      <div class="foot-col">
-        <div class="foot-h">Contact</div>
-        <div class="foot-muted">+64 21 563 431:</div>
-        <div class="foot-muted">Email: sales@onixmrkt.com</div>
-        <div class="foot-muted">Location: 49 Golf Road Tauranga New Zealand,3116</div>
-        <a class="btn btn-primary btn-sm" href="./index.html#book">Book a Call</a>
+        <article class="compare glass card reveal" style="--d:80ms;">
+          <div class="compare-title">After</div>
+          <ul class="list">
+            <li>Immediate response + smart routing.</li>
+            <li>Automated follow-up that feels human.</li>
+            <li>Booked calls become predictable.</li>
+          </ul>
+        </article>
+
+        <article class="timeline glass card reveal" style="--d:160ms;">
+          <div class="timeline-top">
+            <div class="timeline-title">Autopilot timeline</div>
+            <div class="timeline-sub">What happens after a lead comes in.</div>
+          </div>
+
+          <div class="timeline-rows">
+            <div class="trow">
+              <span class="tbadge">0–2 mins</span>
+              <div class="ttext">Instant response + qualification.</div>
+            </div>
+            <div class="trow">
+              <span class="tbadge">2–60 mins</span>
+              <div class="ttext">Follow-up touches + booking links.</div>
+            </div>
+            <div class="trow">
+              <span class="tbadge">24–72 hrs</span>
+              <div class="ttext">Nurture + objections handled automatically.</div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
+  </section>
 
-    <div class="foot-bottom">
-      <div class="foot-line"></div>
-      <div class="foot-bottom-row">
-        <div>© <span id="year"></span> ONIX. All rights reserved.</div>
-        <div class="foot-muted">Built to book calls — fast.</div>
+  <!-- Pricing Covered (replaces pricing) -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Pricing</div>
+        <h2 class="h2">Pricing covered — book a call for the details.</h2>
+        <p class="p">We keep pricing off the public page because scope varies by industry, offer, and volume. We’ll map the engine to your pipeline on a quick call.</p>
+      </div>
+
+      <div class="pricing-covered glass card reveal">
+        <div class="pc-left">
+          <div class="pc-kicker">What you’ll get on the call</div>
+          <ul class="list">
+            <li>Where leads are leaking and why.</li>
+            <li>A simple follow-up map built for your niche.</li>
+            <li>Expected lift in booked calls based on your numbers.</li>
+          </ul>
+          <div class="pc-note">If it’s not a fit, we’ll tell you straight.</div>
+        </div>
+
+        <div class="pc-right">
+          <div class="pc-box">
+            <div class="pc-title">Book now</div>
+            <div class="pc-sub">15 minutes. Clear plan. No fluff.</div>
+            <a class="btn btn-primary btn-block btn-lg" href="#book">Book a Call</a>
+            <div class="pc-small">Prefer results first? <a class="link" href="./results.html">See results →</a></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </section>
 
+  <!-- Book -->
+  <section id="book" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Book a Call</div>
+        <h2 class="h2">Let’s build your pipeline engine.</h2>
+        <p class="p">Drop into a 15-minute call and we’ll map the fastest path to more booked calls.</p>
+      </div>
+
+      <div class="book-card glass card reveal">
+        <div class="book-left">
+          <h3>What we’ll cover</h3>
+          <div class="book-bullets">
+            <div class="bb"><span class="bb-dot" aria-hidden="true"></span>Where leads are leaking</div>
+            <div class="bb"><span class="bb-dot" aria-hidden="true"></span>Follow-up sequence for your niche</div>
+            <div class="bb"><span class="bb-dot" aria-hidden="true"></span>Simple KPI targets for 30 days</div>
+          </div>
+        </div>
+
+        <div class="embed-wrap">
+          <iframe class="calendly" title="Calendly booking" src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (redesigned) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="foot-top glass card">
+        <div class="foot-brandline">
+          <img class="foot-logo" src="logo2.png" alt="ONIX logo" loading="lazy">
+          <div class="foot-bl">
+            <div class="foot-title">ONIX</div>
+            <div class="foot-subtitle">Done-for-you acquisition + follow-up system</div>
+          </div>
+          <a class="btn btn-primary btn-sm foot-cta" href="#book">Book a Call</a>
+        </div>
+
+        <div class="footer-grid">
+          <div class="foot-col">
+            <div class="foot-h">What we do</div>
+            <p class="foot-p">We turn enquiries into booked calls with a simple, measurable follow-up engine — installed for you.</p>
+            <div class="foot-chips">
+              <span class="chip small">Tradies</span>
+              <span class="chip small">Solar</span>
+              <span class="chip small">Agencies</span>
+              <span class="chip small">Local Service</span>
+            </div>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Navigate</div>
+            <a href="./results.html">Results Page</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing Covered</a>
+            <a href="#book">Book a Call</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Proof</div>
+            <a href="./results.html#proof">Screenshots</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Contact: +64 21 563 431</div>
+            <div class="foot-muted">Email: sales@onixmrkt.com</div>
+            <div class="foot-muted">Location: 49 Golf Road Tauranga New Zealand,3116</div>
+            <div class="foot-muted">Response: within 24h</div>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <div class="foot-line"></div>
+          <div class="foot-bottom-row">
+            <div>© <span id="year"></span> ONIX. All rights reserved.</div>
+            <div class="foot-muted">Built to book calls — fast.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="./script.js"></script>
@@ -652,12 +511,3 @@
 <!-- =========================
      END: index.html
 ========================= -->
-
-
-
-
-
-
-
-
-
