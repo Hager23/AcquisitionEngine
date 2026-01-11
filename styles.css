@@ -184,6 +184,10 @@ body{
 }
 .nav-toggle-ic::before{ top: 0; }
 .nav-toggle-ic::after{ bottom: 0; }
+/* ===== PATCH: HEADER CTA WHITE TEXT ===== */
+.header .btn-primary{
+  color: #fff !important;
+}
 
 .mobile-nav{
   border-top: 1px solid var(--line2);
@@ -1202,3 +1206,4 @@ code{
 /* =========================
    END: styles.css
 ========================= */
+
