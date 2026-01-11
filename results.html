@@ -6,290 +6,196 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ONIX Results — Proof & Outcomes</title>
-  <meta name="description" content="Results and outcomes from ONIX: booked calls, higher close rate, and follow-up systems that work." />
-  <link rel="icon" href="./assets/logo2.png" />
+  <title>ONIX — Results</title>
+  <meta name="description" content="Client results and proof screenshots for ONIX." />
+  <link rel="icon" href="logo2.png" />
+
+  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <!-- Background -->
   <div class="site-bg" aria-hidden="true">
     <div class="aurora"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
   </div>
 
-  <!-- Sticky Header -->
-  <header class="header" id="top">
+  <!-- Header -->
+  <header class="header" data-header>
     <div class="container header-inner">
-      <a class="brand" href="./index.html" aria-label="ONIX Home">
-        <img class="brand-logo" src="./logo2.png" alt="ONIX logo" onerror="this.style.display='none'" />
-        <span class="brand-name">ONIX</span>
+      <a class="brand" href="./index.html" aria-label="ONIX home">
+        <img class="brand-logo brand-logo--full" src="logo2.png" alt="ONIX logo" />
       </a>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="./results.html" class="hide-sm">Results Page</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="./results.html" class="is-current">Results</a>
         <a href="./index.html#how">How it works</a>
-        <a href="#book" class="btn btn-sm btn-primary">Book a Call</a>
+        <a href="./index.html#pricing" class="is-muted">Pricing</a>
+        <a class="btn btn-primary btn-sm nav-cta" href="./index.html#book">Book a Call</a>
       </nav>
 
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" data-nav-toggle>
         <span class="nav-toggle-ic" aria-hidden="true"></span>
       </button>
     </div>
 
-    <div class="mobile-nav" id="mobileNav" hidden>
+    <div id="mobileNav" class="mobile-nav" hidden data-mobile-nav>
       <div class="container mobile-nav-inner">
         <a href="./results.html">Results</a>
         <a href="./index.html#how">How it works</a>
         <a href="./index.html#pricing">Pricing</a>
-        <a href="./results.html">Results Page</a>
-        <a href="#book" class="btn btn-primary">Book a Call</a>
+        <a class="btn btn-primary btn-block" href="./index.html#book">Book a Call</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Results Hero -->
-    <section class="section results-hero" aria-label="Results hero">
-      <div class="container results-grid">
-        <div class="results-left">
-          <div class="pill reveal">
-            <span class="pill-dot" aria-hidden="true"></span>
-            Proof & outcomes
-          </div>
-
-          <h1 class="h1 reveal" style="--d: 70ms">Results that show up in your calendar.</h1>
-          <p class="subhead reveal" style="--d: 120ms">
-            When speed-to-lead and follow-up are installed properly, you stop losing warm enquiries —
-            and start booking calls consistently.
-          </p>
-
-          <div class="stats-row">
-            <div class="glass card stat reveal" style="--d: 170ms">
-              <div class="stat-top">
-                <div class="stat-k">Bottom-line growth</div>
-                <div class="stat-v">$100k</div>
-              </div>
-              <div class="stat-s">From follow-up + booked calls improvements</div>
-            </div>
-
-            <div class="glass card stat reveal" style="--d: 210ms">
-              <div class="stat-top">
-                <div class="stat-k">Return</div>
-                <div class="stat-v">$110k</div>
-              </div>
-              <div class="stat-s">From ~$17k spend (example outcome)</div>
-            </div>
-
-            <div class="glass card stat reveal" style="--d: 250ms">
-              <div class="stat-top">
-                <div class="stat-k">Lead volume</div>
-                <div class="stat-v">20–25</div>
-              </div>
-              <div class="stat-s">Qualified leads/month (typical)</div>
-            </div>
-          </div>
-
-          <div class="quotes">
-            <article class="glass card quote reveal" style="--d: 140ms">
-              <p>“We stopped missing enquiries. The follow-up is polite but persistent — and the calendar stays full.”</p>
-              <div class="quote-by">— Local services owner</div>
-            </article>
-            <article class="glass card quote reveal" style="--d: 190ms">
-              <p>“The system feels premium. Everything is clean: pipeline stages, reminders, and tracking.”</p>
-              <div class="quote-by">— Agency operator</div>
-            </article>
-            <article class="glass card quote reveal" style="--d: 240ms">
-              <p>“We got more booked calls without increasing ad spend — just better speed-to-lead + sequences.”</p>
-              <div class="quote-by">— Solar / trades</div>
-            </article>
-          </div>
-
-          <div class="cta-row reveal" style="--d: 280ms">
-            <a class="btn btn-primary btn-lg" href="#book">Book a 15-minute call</a>
-            <a class="btn btn-ghost btn-lg" href="./index.html#pricing">See pricing</a>
-          </div>
-        </div>
-
-        <aside class="results-right reveal" style="--d: 160ms" aria-label="Calendly embed">
-          <div class="glass card embed-card">
-            <div class="embed-card-top">
-              <div>
-                <div class="kicker">Book a call</div>
-                <div class="dash-title">Pick a time</div>
-              </div>
-              <a class="link" href="./index.html">Back to home →</a>
-            </div>
-
-            <div class="embed-wrap">
-              <iframe
-                title="Calendly"
-                class="calendly"
-                src="https://calendly.com/"
-                loading="lazy"
-              ></iframe>
-            </div>
-            <div class="embed-note">https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01</div>
-          </div>
-
-          <div class="float float-1" aria-hidden="true"></div>
-          <div class="float float-2" aria-hidden="true"></div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Results Proof Grid -->
-    <section class="section" aria-label="Proof gallery">
-      <div class="container">
+  <!-- Results Hero -->
+  <main class="section results-hero">
+    <div class="container results-grid">
+      <div>
         <div class="section-head reveal">
-          <div class="eyebrow">Screenshots</div>
-          <h2 class="h2">Unedited client proof</h2>
-          <p class="p">Drop your screenshots into <code>/assets</code> and update the paths. Layout stays stable even if some images are missing.</p>
+          <div class="eyebrow">Results</div>
+          <h1 class="h2">Booked calls you can count on — without chasing.</h1>
+          <p class="p">Real numbers and proof screenshots from client pipelines.</p>
         </div>
 
-        <div class="proof-grid reveal">
-          <figure class="proof-tile">
-            <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-          <figure class="proof-tile">
-            <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-          <figure class="proof-tile">
-            <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-          <figure class="proof-tile">
-            <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-          <figure class="proof-tile">
-            <img src="./proof5.png" alt="Proof screenshot 5" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-          <figure class="proof-tile">
-            <img src="./proof6.png" alt="Proof screenshot 6" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof7.png" alt="Proof screenshot 7" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof8.png" alt="Proof screenshot 8" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof9.png" alt="Proof screenshot 9" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof10.png" alt="Proof screenshot 10" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof11.png" alt="Proof screenshot 11" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-           <figure class="proof-tile">
-            <img src="./proof12.png" alt="Proof screenshot 12" loading="lazy" onerror="this.closest('figure').classList.add('is-missing')" />
-            <div class="proof-fallback">Proof Screenshot</div>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Book section anchor -->
-    <section class="section" id="book" aria-label="Book a call">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Next step</div>
-          <h2 class="h2">Want this installed for your business?</h2>
-          <p class="p">If you’re spending on leads but losing them to slow follow-up, ONIX will fix that fast.</p>
-        </div>
-
-        <div class="glass card book-card reveal">
-          <div class="book-left">
-            <h3>Fast fit check</h3>
-            <ul class="list">
-              <li>We review your current funnel + lead flow</li>
-              <li>We map your follow-up gaps</li>
-              <li>We recommend the best install path</li>
-              <li>You leave with a clear plan either way</li>
-            </ul>
-            <a class="btn btn-primary btn-block" href="javascript:void(0)" data-scroll-to="#top">Back to top</a>
-          </div>
-
-          <div class="book-right">
-            <div class="embed-wrap">
-              <iframe
-                title="Calendly"
-                class="calendly"
-                src="https://calendly.com/"
-                loading="lazy"
-              ></iframe>
+        <div class="stats-row">
+          <article class="stat glass card reveal">
+            <div class="stat-top">
+              <div class="stat-k">Bottom line</div>
+              <div class="stat-v">$100k+</div>
             </div>
-            <div class="embed-note">Replace the URL with your exact Calendly link.</div>
-          </div>
+            <div class="stat-s">Added profit across implementations.</div>
+          </article>
+
+          <article class="stat glass card reveal" style="--d:80ms;">
+            <div class="stat-top">
+              <div class="stat-k">Return</div>
+              <div class="stat-v">$110k</div>
+            </div>
+            <div class="stat-s">From ~17k spend in one example.</div>
+          </article>
+
+          <article class="stat glass card reveal" style="--d:160ms;">
+            <div class="stat-top">
+              <div class="stat-k">Lead flow</div>
+              <div class="stat-v">20–25</div>
+            </div>
+            <div class="stat-s">Leads/month in consistent niches.</div>
+          </article>
+        </div>
+
+        <div class="quotes">
+          <article class="quote glass card reveal">
+            <p>“We stopped chasing leads and started showing up to booked calls. The follow-up is relentless but doesn’t feel spammy.”</p>
+            <div class="quote-by">— Local service owner</div>
+          </article>
+
+          <article class="quote glass card reveal" style="--d:80ms;">
+            <p>“The pipeline finally makes sense. Replies increased immediately and the calendar filled up within the first week.”</p>
+            <div class="quote-by">— Trade business</div>
+          </article>
+
+          <article class="quote glass card reveal" style="--d:160ms;">
+            <p>“Best part is visibility. We can see what’s working and where leads drop off — then fix it.”</p>
+            <div class="quote-by">— Agency operator</div>
+          </article>
         </div>
       </div>
-    </section>
+
+      <aside class="embed-card glass card reveal" style="--d:120ms;">
+        <div class="embed-card-top">
+          <div>
+            <div class="kicker">Book now</div>
+            <div class="dash-title">Get your plan</div>
+          </div>
+          <a class="btn btn-primary btn-sm" href="./index.html#book">Home →</a>
+        </div>
+        <div class="embed-wrap">
+          <iframe class="calendly" title="Calendly booking" src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01" loading="lazy"></iframe>
+        </div>
+      </aside>
+    </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer" aria-label="Footer">
-    <div class="container footer-grid">
-      <div class="foot-col">
-        <div class="foot-brand">
-          <img src="./assets/logo2.png" alt="ONIX logo" onerror="this.style.display='none'" />
-          <div>
-            <div class="foot-name">ONIX</div>
-            <div class="foot-tag">Marketing • 1–1 acquisition + follow-up system</div>
-          </div>
-        </div>
-        <p class="foot-p">
-          Systems that feel premium — and perform.
-        </p>
+  <!-- Proof grid -->
+  <section id="proof" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Proof</div>
+        <h2 class="h2">Unedited screenshots</h2>
+        <p class="p">If an image is missing, the layout won’t break.</p>
       </div>
 
-      <div class="foot-col">
-        <div class="foot-h">Pages</div>
-        <a href="./index.html">Home</a>
-        <a href="./results.html">Results</a>
-        <a href="./index.html#how">How it works</a>
-        <a href="./index.html#pricing">Pricing</a>
-      </div>
-
-      <div class="foot-col">
-        <div class="foot-h">Links</div>
-        <a href="#book">Book a call</a>
-        <a href="./index.html#pricing">Pricing</a>
-        <a href="./index.html#how">Engine map</a>
-      </div>
-
-      <div class="foot-col">
-        <div class="foot-h">Contact</div>
-        <a href="#book">Schedule a call</a>
-        <span class="foot-muted">Replace with your email + socials</span>
-        <div class="foot-chips">
-          <span class="chip small">Glass</span>
-          <span class="chip small">Fast</span>
-          <span class="chip small">Minimal</span>
-        </div>
+      <div class="proof-grid">
+        <!-- show 12 tiles (proof1..proof12) -->
+        <div class="proof-tile reveal"><img src="proof1.png" alt="Proof 1" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:40ms;"><img src="proof2.png" alt="Proof 2" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:80ms;"><img src="proof3.png" alt="Proof 3" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal"><img src="proof4.png" alt="Proof 4" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:40ms;"><img src="proof5.png" alt="Proof 5" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:80ms;"><img src="proof6.png" alt="Proof 6" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal"><img src="proof7.png" alt="Proof 7" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:40ms;"><img src="proof8.png" alt="Proof 8" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:80ms;"><img src="proof9.png" alt="Proof 9" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal"><img src="proof10.png" alt="Proof 10" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:40ms;"><img src="proof11.png" alt="Proof 11" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
+        <div class="proof-tile reveal" style="--d:80ms;"><img src="proof12.png" alt="Proof 12" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
       </div>
     </div>
+  </section>
 
-    <div class="container foot-bottom">
-      <div class="foot-line"></div>
-      <div class="foot-bottom-row">
-        <span>© <span data-year></span> ONIX. All rights reserved.</span>
-        <span class="foot-muted">Results page.</span>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="foot-top glass card">
+        <div class="foot-brandline">
+          <img class="foot-logo" src="./logo2.png" alt="ONIX logo" loading="lazy">
+          <div class="foot-bl">
+            <div class="foot-title">ONIX</div>
+            <div class="foot-subtitle">Done-for-you acquisition + follow-up system</div>
+          </div>
+          <a class="btn btn-primary btn-sm foot-cta" href="./index.html#book">Book a Call</a>
+        </div>
+
+        <div class="footer-grid">
+          <div class="foot-col">
+            <div class="foot-h">What we do</div>
+            <p class="foot-p">We turn enquiries into booked calls with a simple, measurable follow-up engine — installed for you.</p>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Navigate</div>
+            <a href="./index.html#how">How it works</a>
+            <a href="./index.html#pricing">Pricing</a>
+            <a href="./index.html#book">Book a Call</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Proof</div>
+            <a href="#proof">Screenshots</a>
+            <a href="./index.html#results">Outcomes</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Contact</div>
+            <div class="foot-muted">Email: hello@onix.com</div>
+            <div class="foot-muted">Response: within 24h</div>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <div class="foot-line"></div>
+          <div class="foot-bottom-row">
+            <div>© <span id="year"></span> ONIX. All rights reserved.</div>
+            <div class="foot-muted">Built to book calls — fast.</div>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
