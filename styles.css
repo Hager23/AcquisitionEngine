@@ -116,19 +116,17 @@ body{
   align-items:center;
   min-width: 56px;
 }
-.brand-logo{
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(12,10,27,0.10);
-  object-fit: contain; /* show full logo */
-  background: rgba(255,255,255,0.55);
-  border: 1px solid var(--line2);
-}
 
-/* show full logo, no cropping */
-.brand-logo--full{
-  width: 54px;
-  height: 38px;
-  padding: 6px;
+/* ===== LOGO: RAW (NOT CONTAINED) ===== */
+.brand-logo{
+  width: auto;
+  height: 40px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  object-fit: initial !important;
 }
 
 .nav{
@@ -228,7 +226,7 @@ body{
 
 .btn-primary{
   border: 1px solid rgba(106,0,255,0.25);
-  color: #ffffff !important; /* ensure white text */
+  color: #ffffff !important;
   background: linear-gradient(90deg, var(--violetA), var(--violetB));
   box-shadow: 0 18px 42px rgba(106,0,255,0.22);
 }
@@ -504,8 +502,6 @@ body{
   border: 1px solid rgba(106,0,255,0.18);
   background: linear-gradient(135deg, rgba(106,0,255,0.18), rgba(179,136,255,0.14));
   box-shadow: 0 18px 40px rgba(106,0,255,0.12);
-
-  /* FIX: icon perfectly centered */
   display:flex;
   align-items:center;
   justify-content:center;
@@ -521,7 +517,6 @@ body{
   width: 22px;
   height: 22px;
   color: rgba(106,0,255,0.92);
-  transform: translateY(0); /* defensive */
 }
 
 .mini-metric{
@@ -805,7 +800,7 @@ code{
 .proof-tile.is-missing img{ display:none; }
 .proof-tile.is-missing .proof-fallback{ display:flex; }
 
-/* ============ FOOTER (REDESIGNED) ============ */
+/* ============ FOOTER ============ */
 .footer{ padding: 40px 0 26px; }
 .foot-top{ padding: 18px; }
 .foot-brandline{
@@ -815,14 +810,16 @@ code{
   gap: 12px;
   padding-bottom: 14px;
 }
+/* Raw logo (not contained) */
 .foot-logo{
-  width: 54px;
+  width: auto;
   height: 40px;
-  padding: 6px;
-  border-radius: 12px;
-  object-fit: contain;
-  border: 1px solid var(--line2);
-  background: rgba(255,255,255,0.65);
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  object-fit: initial !important;
 }
 .foot-bl{ display:grid; gap: 2px; }
 .foot-title{ font-weight: 950; letter-spacing:-0.02em; }
@@ -873,7 +870,7 @@ code{
   transform: translateY(0px);
 }
 
-/* ============ RESPONSIVE / MOBILE POLISH ============ */
+/* ============ RESPONSIVE ============ */
 @media (max-width: 980px){
   .container{ width:min(var(--max), calc(100% - 28px)); }
 
