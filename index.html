@@ -9,15 +9,13 @@ START: index.html
   <title>ONIX — Your pipeline, on autopilot</title>
   <meta name="description" content="ONIX installs a done-for-you acquisition + follow-up system that turns enquiries into booked calls — without chasing leads all day." />
 
-  <!-- Cache-busted favicon -->
-  <link rel="icon" href="./logo2.png?v=20260113-01" />
+  <link rel="icon" href="./logo2.png?v=20260113-02" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Cache-busted CSS -->
-  <link rel="stylesheet" href="./styles.css?v=20260113-01">
+  <link rel="stylesheet" href="./styles.css?v=20260113-02">
 </head>
 
 <body>
@@ -37,7 +35,7 @@ START: index.html
       <nav class="nav-desktop" aria-label="Primary">
         <a class="nav-link" href="./results.html">Results</a>
         <a class="nav-link" href="#how">How it works</a>
-        <a class="nav-link" href="#pricing">Pricing Covered</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
         <a class="btn btn-primary" href="#book">Book a Call</a>
       </nav>
 
@@ -51,7 +49,7 @@ START: index.html
       <div class="container mobile-nav-inner">
         <a class="mobile-link" href="./results.html">Results</a>
         <a class="mobile-link" href="#how">How it works</a>
-        <a class="mobile-link" href="#pricing">Pricing Covered</a>
+        <a class="mobile-link" href="#pricing">Pricing</a>
         <a class="btn btn-primary btn-block mobile-cta" href="#book">Book a Call</a>
       </div>
     </div>
@@ -243,58 +241,59 @@ START: index.html
       </div>
     </section>
 
-    <!-- VIDEO PROOF (NEW) -->
+    <!-- VIDEO PROOF (HORIZONTAL) -->
     <section class="section watch-section" id="video-proof">
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">VIDEO PROOF</div>
           <h2 class="h2">Real conversations. Real results.</h2>
-          <p class="p">Short clips from actual client threads — nothing staged. (If a video is missing, the layout won’t break.)</p>
+          <p class="p">Short clips from actual client threads — nothing staged.</p>
         </div>
 
-        <div class="video-grid">
-          <!-- NOTE: filenames include spaces + parentheses, so we percent-encode -->
-          <figure class="video-card glass reveal">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.07.mp4"></video>
-            <figcaption class="video-cap">Client proof clip 01</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+        <div class="video-strip reveal">
+          <div class="video-track" aria-label="Proof videos">
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.07.mp4"></video>
+              <figcaption class="video-cap">Client proof clip 01</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
 
-          <figure class="video-card glass reveal" style="--d:90ms">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10%20(1).mp4"></video>
-            <figcaption class="video-cap">Client proof clip 02</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10%20(1).mp4"></video>
+              <figcaption class="video-cap">Client proof clip 02</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
 
-          <figure class="video-card glass reveal" style="--d:160ms">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10%20(2).mp4"></video>
-            <figcaption class="video-cap">Client proof clip 03</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10%20(2).mp4"></video>
+              <figcaption class="video-cap">Client proof clip 03</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
 
-          <figure class="video-card glass reveal" style="--d:230ms">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10.mp4"></video>
-            <figcaption class="video-cap">Client proof clip 04</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.10.mp4"></video>
+              <figcaption class="video-cap">Client proof clip 04</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
 
-          <figure class="video-card glass reveal" style="--d:300ms">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.11%20(1).mp4"></video>
-            <figcaption class="video-cap">Client proof clip 05</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.11%20(1).mp4"></video>
+              <figcaption class="video-cap">Client proof clip 05</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
 
-          <figure class="video-card glass reveal" style="--d:370ms">
-            <video class="vid" controls playsinline preload="metadata" data-video
-              src="./WhatsApp%20Video%202026-01-13%20at%2004.54.11.mp4"></video>
-            <figcaption class="video-cap">Client proof clip 06</figcaption>
-            <div class="video-fallback">Video unavailable</div>
-          </figure>
+            <figure class="video-card glass">
+              <video class="vid" controls playsinline preload="metadata" data-video
+                src="./WhatsApp%20Video%202026-01-13%20at%2004.54.11.mp4"></video>
+              <figcaption class="video-cap">Client proof clip 06</figcaption>
+              <div class="video-fallback">Video unavailable</div>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -334,7 +333,6 @@ START: index.html
 
           <div class="engine-right">
             <div class="engine-cards">
-
               <article class="engine-card glass reveal is-active" data-card="0">
                 <h3>Capture</h3>
                 <p>High-intent landing + form flow that makes it easy to raise a hand and request a quote/call.</p>
@@ -374,19 +372,18 @@ START: index.html
                   <li class="engine-point">No-show reduction</li>
                 </ul>
               </article>
-
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRICING COVERED -->
+    <!-- PRICING (renamed) -->
     <section class="section watch-section" id="pricing">
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">PRICING</div>
-          <h2 class="h2">Pricing is covered on the call.</h2>
+          <h2 class="h2">Pricing.</h2>
           <p class="p">We don’t sell packages that don’t fit. We’ll map your needs, then recommend the right build.</p>
         </div>
 
@@ -474,7 +471,7 @@ START: index.html
               <div class="foot-h">Pages</div>
               <a href="./index.html#how">How it works</a>
               <a href="./results.html">Results</a>
-              <a href="./index.html#pricing">Pricing Covered</a>
+              <a href="./index.html#pricing">Pricing</a>
               <a href="./index.html#book">Book</a>
             </div>
 
@@ -519,8 +516,7 @@ START: index.html
     </div>
   </div>
 
-  <!-- Cache-busted JS -->
-  <script src="./script.js?v=20260113-01" defer></script>
+  <script src="./script.js?v=20260113-02" defer></script>
 </body>
 </html>
 <!-- =========================
