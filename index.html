@@ -9,10 +9,8 @@ START: index.html
   <title>ONIX — Your pipeline, on autopilot</title>
   <meta name="description" content="ONIX installs a done-for-you acquisition + follow-up system that turns enquiries into booked calls — without chasing leads all day." />
 
-  <!-- Favicon (root file) -->
   <link rel="icon" href="./logo2.png" />
 
-  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,7 +19,6 @@ START: index.html
 </head>
 
 <body>
-  <!-- Aurora background -->
   <div class="site-bg" aria-hidden="true">
     <div class="site-aurora"></div>
     <div class="site-noise"></div>
@@ -38,7 +35,7 @@ START: index.html
       <nav class="nav-desktop" aria-label="Primary">
         <a class="nav-link" href="./results.html">Results</a>
         <a class="nav-link" href="#how">How it works</a>
-        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#pricing">Pricing Covered</a>
         <a class="btn btn-primary" href="#book">Book a Call</a>
       </nav>
 
@@ -52,7 +49,7 @@ START: index.html
       <div class="container mobile-nav-inner">
         <a class="mobile-link" href="./results.html">Results</a>
         <a class="mobile-link" href="#how">How it works</a>
-        <a class="mobile-link" href="#pricing">Pricing</a>
+        <a class="mobile-link" href="#pricing">Pricing Covered</a>
         <a class="btn btn-primary btn-block mobile-cta" href="#book">Book a Call</a>
       </div>
     </div>
@@ -84,7 +81,7 @@ START: index.html
             Real client messages • Unedited screenshots
           </div>
 
-          <!-- Proof strip: horizontal on desktop, swipe on mobile -->
+          <!-- Proof strip -->
           <div class="proof-strip reveal" style="--d:360ms">
             <div class="proof-track" aria-label="Proof screenshots">
               <figure class="proof">
@@ -279,45 +276,52 @@ START: index.html
 
           <div class="engine-right">
             <div class="engine-cards">
+
               <article class="engine-card glass reveal is-active" data-card="0">
                 <h3>Capture</h3>
                 <p>High-intent landing + form flow that makes it easy to raise a hand and request a quote/call.</p>
-                <ul>
-                  <li>Fast page load</li>
-                  <li>Clear CTA</li>
-                  <li>Mobile-first forms</li>
+
+                <!-- NEW: points animate on scroll -->
+                <ul class="engine-points points-on-scroll" data-points>
+                  <li class="engine-point">Fast page load</li>
+                  <li class="engine-point">Clear CTA</li>
+                  <li class="engine-point">Mobile-first forms</li>
                 </ul>
               </article>
 
               <article class="engine-card glass reveal" data-card="1">
                 <h3>Respond</h3>
                 <p>Instant SMS/email response that qualifies leads and reduces “cold form fills”.</p>
-                <ul>
-                  <li>Speed to lead</li>
-                  <li>Simple qualification</li>
-                  <li>Auto reminders</li>
+
+                <ul class="engine-points points-on-scroll" data-points>
+                  <li class="engine-point">Speed to lead</li>
+                  <li class="engine-point">Simple qualification</li>
+                  <li class="engine-point">Auto reminders</li>
                 </ul>
               </article>
 
               <article class="engine-card glass reveal" data-card="2">
                 <h3>Nurture</h3>
                 <p>Follow-up sequences that feel human — built around what prospects care about.</p>
-                <ul>
-                  <li>Personalised sequences</li>
-                  <li>Timing windows</li>
-                  <li>Stop rules</li>
+
+                <ul class="engine-points points-on-scroll" data-points>
+                  <li class="engine-point">Personalised sequences</li>
+                  <li class="engine-point">Timing windows</li>
+                  <li class="engine-point">Stop rules</li>
                 </ul>
               </article>
 
               <article class="engine-card glass reveal" data-card="3">
                 <h3>Book</h3>
                 <p>Booked calls without chasing — prospects choose a time, you show up prepared.</p>
-                <ul>
-                  <li>Calendly / calendar routing</li>
-                  <li>Confirmation messages</li>
-                  <li>No-show reduction</li>
+
+                <ul class="engine-points points-on-scroll" data-points>
+                  <li class="engine-point">Calendly / routing</li>
+                  <li class="engine-point">Confirmations + reminders</li>
+                  <li class="engine-point">No-show reduction</li>
                 </ul>
               </article>
+
             </div>
           </div>
         </div>
@@ -368,7 +372,7 @@ START: index.html
         <div class="book-card glass reveal">
           <div class="book-left">
             <h3>Book a 15-minute call</h3>
-            <p class="p">Want to fill the intake first? You’ll get a popup form after you’ve viewed two sections.</p>
+            <p class="p">You’ll get a popup intake form after you’ve viewed two sections.</p>
 
             <div class="contact-mini">
               <div><strong>Email:</strong> sales@onixmrkt.com</div>
@@ -421,7 +425,7 @@ START: index.html
               <div class="foot-h">Pages</div>
               <a href="./index.html#how">How it works</a>
               <a href="./results.html">Results</a>
-              <a href="./index.html#pricing">Pricing</a>
+              <a href="./index.html#pricing">Pricing Covered</a>
               <a href="./index.html#book">Book</a>
             </div>
 
@@ -452,7 +456,7 @@ START: index.html
     </footer>
   </main>
 
-  <!-- Intake Modal (Formspree) -->
+  <!-- Intake Modal -->
   <div class="modal" id="intakeModal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
 
@@ -525,11 +529,10 @@ START: index.html
           <textarea name="notes" rows="3" placeholder="Service area, job types, current lead sources..."></textarea>
         </label>
 
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+        <!-- FIXED: submit button visible + ONIX gradient -->
+        <button class="btn btn-primary btn-lg btn-block form-submit" type="submit">Submit</button>
 
-        <p class="form-fine">
-          By submitting, you agree to be contacted about your request.
-        </p>
+        <p class="form-fine">By submitting, you agree to be contacted about your request.</p>
 
         <div class="form-success" id="formSuccess" hidden>
           ✅ Submitted. Now choose a time in Calendly below.
