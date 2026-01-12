@@ -50,7 +50,6 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        // Your CSS supports is-visible (and is-in fallback)
         e.target.classList.add("is-visible");
         io.unobserve(e.target);
       });
@@ -213,29 +212,58 @@
     setStep(0);
   }
 
-  // Counters (kept)
+  // Counters (RESTORED + formatted)
   (function initCounters(){
     const nodes = Array.from(document.querySelectorAll("[data-count]"));
     if (!nodes.length) return;
 
-    const fmt = (n) => {
+    const fmtCompactMoney = (n) => {
+      try {
+        return new Intl.NumberFormat(undefined, {
+          style: "currency",
+          currency: "USD",
+          notation: "compact",
+          maximumFractionDigits: 0
+        }).format(n);
+      } catch {
+        // fallback
+        const m = n >= 1e9 ? (n/1e9).toFixed(0) + "B" : (n/1e6).toFixed(0) + "M";
+        return "$" + m;
+      }
+    };
+
+    const fmtNumber = (n) => {
       try { return new Intl.NumberFormat().format(Math.round(n)); }
       catch { return String(Math.round(n)); }
+    };
+
+    const applyFormat = (el, value) => {
+      const mode = (el.getAttribute("data-count-format") || "").trim();
+      if (mode === "compactMoney") return fmtCompactMoney(value);
+      if (mode === "plus") return fmtNumber(value) + "+";
+      return fmtNumber(value);
     };
 
     const animate = (el) => {
       const target = Number(el.getAttribute("data-count") || 0);
       if (!isFinite(target)) return;
-      if (prefersReduced) { el.textContent = fmt(target); return; }
+
+      if (prefersReduced) {
+        el.textContent = applyFormat(el, target);
+        return;
+      }
 
       const duration = 1100;
       const start = performance.now();
+
       const tick = (t) => {
         const p = Math.min(1, (t - start) / duration);
         const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(target * eased);
+        const cur = target * eased;
+        el.textContent = applyFormat(el, cur);
         if (p < 1) requestAnimationFrame(tick);
       };
+
       requestAnimationFrame(tick);
     };
 
@@ -252,7 +280,7 @@
     nodes.forEach((el) => io.observe(el));
   })();
 
-  // NEW: Video safety (no layout break if missing / unsupported)
+  // Video safety
   (function videoSafety(){
     const vids = $$("[data-video]");
     if (!vids.length) return;
@@ -265,13 +293,9 @@
 
       v.addEventListener("error", markMissing);
       v.addEventListener("stalled", () => {
-        // if the browser can’t load it at all, mark missing after a moment
-        setTimeout(() => {
-          if (v.readyState === 0) markMissing();
-        }, 400);
+        setTimeout(() => { if (v.readyState === 0) markMissing(); }, 400);
       });
 
-      // If the src is empty for any reason
       const src = v.getAttribute("src");
       if (!src) markMissing();
     });
