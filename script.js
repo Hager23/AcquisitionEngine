@@ -4,18 +4,13 @@
 (() => {
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
   const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // -------------------------
   // Footer year
-  // -------------------------
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // -------------------------
-  // Mobile nav (robust)
-  // -------------------------
+  // Mobile nav
   const toggle = $(".nav-toggle");
   const mobileNav = $("#mobileNav");
 
@@ -24,7 +19,6 @@
     toggle.setAttribute("aria-expanded", "false");
     mobileNav.hidden = true;
   };
-
   const openMobileNav = () => {
     if (!toggle || !mobileNav) return;
     toggle.setAttribute("aria-expanded", "true");
@@ -34,8 +28,7 @@
   if (toggle && mobileNav) {
     toggle.addEventListener("click", () => {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      if (isOpen) closeMobileNav();
-      else openMobileNav();
+      isOpen ? closeMobileNav() : openMobileNav();
     });
 
     $$(".mobile-link, .mobile-nav .btn", mobileNav).forEach(a => {
@@ -51,9 +44,7 @@
     }, { passive: true });
   }
 
-  // -------------------------
   // Reveal animations
-  // -------------------------
   const revealEls = $$(".reveal");
   if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
     const io = new IntersectionObserver((entries) => {
@@ -68,9 +59,28 @@
     revealEls.forEach(el => el.classList.add("is-visible"));
   }
 
-  // -------------------------
-  // Dashboard industry switch (index only)
-  // -------------------------
+  // NEW: points appear as you scroll (engine map lists)
+  (function pointsOnScroll(){
+    const lists = $$("[data-points]");
+    if (!lists.length) return;
+
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      lists.forEach(l => l.classList.add("is-visible"));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-visible");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.25 });
+
+    lists.forEach(l => io.observe(l));
+  })();
+
+  // Dashboard industry switch (index)
   const segButtons = $$(".seg-btn");
   const spark = $(".spark");
   const areaPath = $(".spark-area");
@@ -94,8 +104,7 @@
   const setKpi = (key, val) => {
     const el = document.querySelector(`[data-kpi="${key}"]`);
     if (!el) return;
-    if (key === "revenue") el.textContent = fmtMoney(val);
-    else el.textContent = String(val);
+    el.textContent = key === "revenue" ? fmtMoney(val) : String(val);
   };
 
   const setDelta = (key, txt) => {
@@ -148,7 +157,6 @@
     }
 
     const dArea = `${d} L ${mapX(pts.length-1)} ${h-padY} L ${mapX(0)} ${h-padY} Z`;
-
     linePath.setAttribute("d", d);
     areaPath.setAttribute("d", dArea);
 
@@ -166,14 +174,10 @@
 
   const applyIndustry = (industry) => {
     const d = DATA[industry] || DATA.all;
-    setKpi("enquiries", d.enquiries);
-    setDelta("enquiries", d.enquiriesDelta);
-    setKpi("calls", d.calls);
-    setDelta("calls", d.callsDelta);
-    setKpi("deals", d.deals);
-    setDelta("deals", d.dealsDelta);
-    setKpi("revenue", d.revenue);
-    setDelta("revenue", d.revenueDelta);
+    setKpi("enquiries", d.enquiries); setDelta("enquiries", d.enquiriesDelta);
+    setKpi("calls", d.calls);         setDelta("calls", d.callsDelta);
+    setKpi("deals", d.deals);         setDelta("deals", d.dealsDelta);
+    setKpi("revenue", d.revenue);     setDelta("revenue", d.revenueDelta);
     makePath(d.points);
   };
 
@@ -188,9 +192,7 @@
     });
   }
 
-  // -------------------------
-  // Engine steps (index)
-  // -------------------------
+  // Engine steps
   const steps = $$(".step");
   const cards = $$(".engine-card");
   const bar = $(".progress-bar");
@@ -210,9 +212,7 @@
     setStep(0);
   }
 
-  // -------------------------
-  // Counters count-up (Results)
-  // -------------------------
+  // Counters
   (function initCounters(){
     const nodes = Array.from(document.querySelectorAll("[data-count]"));
     if (!nodes.length) return;
@@ -229,7 +229,6 @@
 
       const duration = 1100;
       const start = performance.now();
-
       const tick = (t) => {
         const p = Math.min(1, (t - start) / duration);
         const eased = 1 - Math.pow(1 - p, 3);
@@ -239,10 +238,7 @@
       requestAnimationFrame(tick);
     };
 
-    if (!("IntersectionObserver" in window)) {
-      nodes.forEach(animate);
-      return;
-    }
+    if (!("IntersectionObserver" in window)) { nodes.forEach(animate); return; }
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -255,9 +251,7 @@
     nodes.forEach((el) => io.observe(el));
   })();
 
-  // -------------------------
-  // Modal open/close
-  // -------------------------
+  // Modal
   const modal = $("#intakeModal");
   const openBtns = $$("[data-open-intake]");
   const closeBtns = $$("[data-close-modal]");
@@ -281,18 +275,11 @@
 
   openBtns.forEach(b => b.addEventListener("click", openModal));
   closeBtns.forEach(b => b.addEventListener("click", closeModal));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-
-  // -------------------------
   // Popup after viewing 2 sections
-  // -------------------------
   (function popupAfterTwoSections(){
     if (!modal || !("IntersectionObserver" in window)) return;
-
-    // Don’t repeatedly nag users
     if (localStorage.getItem(FORM_SHOWN_KEY) === "1") return;
 
     const sections = $$(".watch-section");
@@ -304,14 +291,13 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
-        const id = e.target.id || e.target.getAttribute("data-id") || Math.random().toString(36).slice(2);
+        const id = e.target.id || Math.random().toString(36).slice(2);
         if (seenSet.has(id)) return;
         seenSet.add(id);
         seen += 1;
 
         if (seen >= 2) {
           localStorage.setItem(FORM_SHOWN_KEY, "1");
-          // Small delay so it feels intentional
           setTimeout(openModal, 450);
           io.disconnect();
         }
@@ -321,9 +307,7 @@
     sections.forEach(s => io.observe(s));
   })();
 
-  // -------------------------
-  // Formspree AJAX submit (no page reload)
-  // -------------------------
+  // Formspree AJAX submit
   (function ajaxForm(){
     const form = $("#leadForm");
     const success = $("#formSuccess");
@@ -343,56 +327,42 @@
           body: formData,
           headers: { "Accept": "application/json" }
         });
-
         if (!res.ok) throw new Error("Submit failed");
 
         if (success) success.hidden = false;
+
         form.querySelectorAll("input, textarea, button").forEach(el => {
           if (el.tagName === "BUTTON") return;
           el.disabled = true;
         });
 
-        // auto-close modal after a moment
-        setTimeout(() => {
-          closeModal();
-          // allow scrolling again
-        }, 1200);
-
+        setTimeout(() => { closeModal(); }, 1200);
       }catch(err){
-        // fallback: normal submit
         try { form.submit(); } catch(_) {}
       }
     });
   })();
 
-  // -------------------------
-  // Cookie banner (simple)
-  // -------------------------
+  // Cookie banner
   (function cookies(){
     const banner = $("#cookieBanner");
     if (!banner) return;
 
     const KEY = "onix_cookie_choice_v1";
     const choice = localStorage.getItem(KEY);
-
     const show = () => { banner.hidden = false; };
     const hide = () => { banner.hidden = true; };
-
     if (!choice) show();
 
     const acceptBtn = $("[data-cookie-accept]");
     const declineBtn = $("[data-cookie-decline]");
-
-    const setChoice = (val) => {
-      localStorage.setItem(KEY, val);
-      hide();
-    };
+    const setChoice = (val) => { localStorage.setItem(KEY, val); hide(); };
 
     if (acceptBtn) acceptBtn.addEventListener("click", () => setChoice("accepted"));
     if (declineBtn) declineBtn.addEventListener("click", () => setChoice("declined"));
   })();
 
-  // Hard safety: no horizontal scroll
+  // Safety: no horizontal scroll
   document.documentElement.style.overflowX = "hidden";
   document.body.style.overflowX = "hidden";
 })();
