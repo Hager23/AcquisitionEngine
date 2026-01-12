@@ -1220,10 +1220,50 @@ h1, h2, h3, p, a, button{
   .calendly{ height: 680px !important; }
 }
 
+/* =========================
+   STOP HORIZONTAL SCROLL (MOBILE + iOS)
+========================= */
+html, body{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body{
+  position: relative;
+}
+
+/* Prevent any section/row from pushing width */
+.container, .section, header, main, footer{
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* iOS: 100vw can exceed visible width (scrollbar) */
+.site-bg{
+  left: 0; right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Common culprits: long rows + SVGs */
+svg, .spark{ max-width: 100%; }
+
+.proof-track,
+.segmented{
+  max-width: 100%;
+}
+
+/* segmented control: allow horizontal scroll INSIDE it, not the page */
+.segmented{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 /* =========================
    END: styles.css
 ========================= */
+
 
 
 
