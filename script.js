@@ -1,36 +1,45 @@
-/* =========================
-   START: script.js
-========================= */
-(function () {
-  "use strict";
+// =========================
+// START: script.js
+// =========================
+(() => {
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // ---------- Mobile nav (defensive) ----------
-  const toggle = document.querySelector("[data-nav-toggle]");
-  const mobileNav = document.querySelector("[data-mobile-nav]");
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function closeMobileNav() {
+  // -------------------------
+  // Footer year
+  // -------------------------
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  // -------------------------
+  // Mobile nav (robust)
+  // -------------------------
+  const toggle = $(".nav-toggle");
+  const mobileNav = $("#mobileNav");
+
+  const closeMobileNav = () => {
     if (!toggle || !mobileNav) return;
-    mobileNav.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
-  }
+    mobileNav.hidden = true;
+  };
 
-  function openMobileNav() {
+  const openMobileNav = () => {
     if (!toggle || !mobileNav) return;
-    mobileNav.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
-  }
+    mobileNav.hidden = false;
+  };
 
   if (toggle && mobileNav) {
-    closeMobileNav();
-
     toggle.addEventListener("click", () => {
-      const expanded = toggle.getAttribute("aria-expanded") === "true";
-      expanded ? closeMobileNav() : openMobileNav();
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeMobileNav();
+      else openMobileNav();
     });
 
-    mobileNav.addEventListener("click", (e) => {
-      const a = e.target && e.target.closest ? e.target.closest("a") : null;
-      if (a) closeMobileNav();
+    $$(".mobile-link, .mobile-nav .btn", mobileNav).forEach(a => {
+      a.addEventListener("click", () => closeMobileNav());
     });
 
     document.addEventListener("keydown", (e) => {
@@ -38,204 +47,355 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.matchMedia("(min-width: 981px)").matches) closeMobileNav();
-    });
+      if (window.innerWidth > 780) closeMobileNav();
+    }, { passive: true });
   }
 
-  // ---------- Footer year ----------
-  const year = document.getElementById("year");
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  // ---------- Reveal on scroll ----------
-  const revealEls = Array.from(document.querySelectorAll(".reveal"));
-  if (revealEls.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            io.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.14, rootMargin: "0px 0px -12% 0px" }
-    );
-    revealEls.forEach((el) => io.observe(el));
+  // -------------------------
+  // Reveal animations
+  // -------------------------
+  const revealEls = $$(".reveal");
+  if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-visible");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("is-visible"));
   }
 
-  // ---------- Micro tilt (subtle) ----------
-  const tiltEls = Array.from(document.querySelectorAll("[data-tilt]"));
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // -------------------------
+  // Dashboard industry switch (index only)
+  // -------------------------
+  const segButtons = $$(".seg-btn");
+  const spark = $(".spark");
+  const areaPath = $(".spark-area");
+  const linePath = $(".spark-line");
+  const dotsGroup = $(".spark-dots");
 
-  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  const DATA = {
+    all:      { enquiries: 38, enquiriesDelta: "+18%", calls: 12, callsDelta: "+9%", deals: 5, dealsDelta: "—", revenue: 48200, revenueDelta: "-4%", points: [18,22,21,27,29,36,41] },
+    tradies:  { enquiries: 24, enquiriesDelta: "+12%", calls: 8,  callsDelta: "+8%", deals: 3, dealsDelta: "+1", revenue: 31800, revenueDelta: "+6%", points: [10,14,13,17,19,21,24] },
+    builders: { enquiries: 14, enquiriesDelta: "+9%",  calls: 5,  callsDelta: "+4%", deals: 2, dealsDelta: "—", revenue: 22400, revenueDelta: "+2%", points: [6,7,9,10,10,12,14] },
+    insurance:{ enquiries: 12, enquiriesDelta: "+7%",  calls: 4,  callsDelta: "+2%", deals: 2, dealsDelta: "+1", revenue: 18800, revenueDelta: "+5%", points: [5,6,6,7,8,10,12] },
+    solar:    { enquiries: 18, enquiriesDelta: "+15%", calls: 6,  callsDelta: "+5%", deals: 3, dealsDelta: "+1", revenue: 39200, revenueDelta: "+9%", points: [7,9,10,13,14,16,18] },
+    agencies: { enquiries: 20, enquiriesDelta: "+11%", calls: 7,  callsDelta: "+6%", deals: 3, dealsDelta: "—", revenue: 41200, revenueDelta: "+4%", points: [8,11,12,12,14,16,20] }
+  };
 
-  if (!prefersReduced && tiltEls.length) {
-    tiltEls.forEach((el) => {
-      let raf = 0;
+  const fmtMoney = (n) => {
+    try { return new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n); }
+    catch { return "$" + Math.round(n).toString(); }
+  };
 
-      function onMove(e) {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          const r = el.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width;
-          const y = (e.clientY - r.top) / r.height;
-          const rx = clamp((0.5 - y) * 6, -3, 3);
-          const ry = clamp((x - 0.5) * 6, -3, 3);
-          el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
-        });
-      }
+  const setKpi = (key, val) => {
+    const el = document.querySelector(`[data-kpi="${key}"]`);
+    if (!el) return;
+    if (key === "revenue") el.textContent = fmtMoney(val);
+    else el.textContent = String(val);
+  };
 
-      function onLeave() {
-        cancelAnimationFrame(raf);
-        el.style.transform = "";
-      }
+  const setDelta = (key, txt) => {
+    const el = document.querySelector(`[data-kpi-delta="${key}"]`);
+    if (!el) return;
+    el.textContent = txt;
+    el.classList.remove("up","down","flat");
+    if (txt.includes("+")) el.classList.add("up");
+    else if (txt.includes("-")) el.classList.add("down");
+    else el.classList.add("flat");
+  };
 
-      el.addEventListener("mousemove", onMove);
-      el.addEventListener("mouseleave", onLeave);
-    });
-  }
+  const ensureGrad = () => {
+    if (!spark || spark.querySelector("defs")) return;
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    defs.innerHTML = `
+      <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#6A00FF"></stop>
+        <stop offset="100%" stop-color="#B388FF"></stop>
+      </linearGradient>
+    `;
+    spark.prepend(defs);
+  };
 
-  // ---------- Dashboard segmentation ----------
-  const data = {
-    all: {
-      enquiries: { v: "38", d: "+18%", cls: "up" },
-      calls: { v: "12", d: "+9%", cls: "up" },
-      deals: { v: "5", d: "—", cls: "neutral" },
-      revenue: { v: "$48,200", d: "-4%", cls: "down" },
-      line: "M20 92 C 60 70, 85 74, 110 66 C 135 58, 155 62, 180 52 C 205 42, 225 50, 250 36 C 275 22, 290 30, 300 22"
-    },
-    tradies: {
-      enquiries: { v: "41", d: "+12%", cls: "up" },
-      calls: { v: "14", d: "+7%", cls: "up" },
-      deals: { v: "6", d: "+1", cls: "up" },
-      revenue: { v: "$52,900", d: "+3%", cls: "up" },
-      line: "M20 94 C 60 78, 92 70, 118 62 C 145 54, 165 56, 190 46 C 215 36, 235 44, 258 30 C 280 18, 292 26, 300 18"
-    },
-    builders: {
-      enquiries: { v: "29", d: "+6%", cls: "up" },
-      calls: { v: "9", d: "+4%", cls: "up" },
-      deals: { v: "3", d: "—", cls: "neutral" },
-      revenue: { v: "$34,700", d: "-2%", cls: "down" },
-      line: "M20 96 C 58 82, 90 80, 118 70 C 145 60, 165 66, 190 58 C 215 50, 238 52, 260 46 C 282 40, 292 42, 300 38"
-    },
-    insurance: {
-      enquiries: { v: "33", d: "+9%", cls: "up" },
-      calls: { v: "11", d: "+6%", cls: "up" },
-      deals: { v: "4", d: "—", cls: "neutral" },
-      revenue: { v: "$44,100", d: "+1%", cls: "up" },
-      line: "M20 98 C 60 84, 92 76, 118 72 C 145 68, 170 60, 196 56 C 220 52, 242 46, 262 42 C 284 38, 294 36, 300 34"
-    },
-    solar: {
-      enquiries: { v: "46", d: "+21%", cls: "up" },
-      calls: { v: "15", d: "+10%", cls: "up" },
-      deals: { v: "7", d: "+2", cls: "up" },
-      revenue: { v: "$61,300", d: "+6%", cls: "up" },
-      line: "M20 92 C 56 78, 86 72, 112 56 C 138 40, 164 46, 188 36 C 212 26, 236 34, 258 22 C 280 10, 292 18, 300 12"
-    },
-    agencies: {
-      enquiries: { v: "26", d: "+5%", cls: "up" },
-      calls: { v: "8", d: "+2%", cls: "up" },
-      deals: { v: "2", d: "—", cls: "neutral" },
-      revenue: { v: "$18,800", d: "+5%", cls: "up" },
-      line: "M20 98 C 58 90, 92 84, 118 74 C 145 64, 170 66, 194 56 C 218 46, 240 52, 262 44 C 284 36, 294 40, 300 34"
+  const makePath = (pts) => {
+    if (!spark || !linePath || !areaPath) return;
+    ensureGrad();
+
+    const w = 300, h = 88;
+    const padX = 10, padY = 14;
+    const max = Math.max(...pts);
+    const min = Math.min(...pts);
+    const span = Math.max(1, max - min);
+
+    const xStep = (w - padX*2) / (pts.length - 1);
+    const mapX = (i) => padX + i * xStep;
+    const mapY = (v) => {
+      const t = (v - min) / span;
+      return (h - padY) - t * (h - padY*2);
+    };
+
+    let d = `M ${mapX(0)} ${mapY(pts[0])}`;
+    for (let i=1;i<pts.length;i++){
+      const x = mapX(i);
+      const y = mapY(pts[i]);
+      const prevX = mapX(i-1);
+      const prevY = mapY(pts[i-1]);
+      const cx = (prevX + x) / 2;
+      d += ` Q ${cx} ${prevY} ${x} ${y}`;
+    }
+
+    const dArea = `${d} L ${mapX(pts.length-1)} ${h-padY} L ${mapX(0)} ${h-padY} Z`;
+
+    linePath.setAttribute("d", d);
+    areaPath.setAttribute("d", dArea);
+
+    if (dotsGroup) {
+      dotsGroup.innerHTML = "";
+      pts.forEach((v,i) => {
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", mapX(i));
+        c.setAttribute("cy", mapY(v));
+        c.setAttribute("r", 4.2);
+        dotsGroup.appendChild(c);
+      });
     }
   };
 
-  const segBtns = Array.from(document.querySelectorAll(".seg-btn"));
-  const sparkLine = document.querySelector("[data-spark-line]");
+  const applyIndustry = (industry) => {
+    const d = DATA[industry] || DATA.all;
+    setKpi("enquiries", d.enquiries);
+    setDelta("enquiries", d.enquiriesDelta);
+    setKpi("calls", d.calls);
+    setDelta("calls", d.callsDelta);
+    setKpi("deals", d.deals);
+    setDelta("deals", d.dealsDelta);
+    setKpi("revenue", d.revenue);
+    setDelta("revenue", d.revenueDelta);
+    makePath(d.points);
+  };
 
-  function setDelta(el, cls) {
-    if (!el) return;
-    el.classList.remove("up", "down", "neutral");
-    el.classList.add(cls);
+  if (segButtons.length) {
+    applyIndustry("all");
+    segButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        segButtons.forEach(b => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        applyIndustry(btn.getAttribute("data-industry") || "all");
+      });
+    });
   }
 
-  function applySegment(key) {
-    const d = data[key];
-    if (!d) return;
+  // -------------------------
+  // Engine steps (index)
+  // -------------------------
+  const steps = $$(".step");
+  const cards = $$(".engine-card");
+  const bar = $(".progress-bar");
 
-    const setText = (sel, v) => {
-      const el = document.querySelector(sel);
-      if (el) el.textContent = v;
+  const setStep = (idx) => {
+    steps.forEach(s => s.classList.remove("is-active"));
+    cards.forEach(c => c.classList.remove("is-active"));
+    const st = steps[idx];
+    const cd = cards[idx];
+    if (st) st.classList.add("is-active");
+    if (cd) cd.classList.add("is-active");
+    if (bar && steps.length) bar.style.setProperty("--p", `${(idx+1)/steps.length*100}%`);
+  };
+
+  if (steps.length && cards.length) {
+    steps.forEach((s, i) => s.addEventListener("click", () => setStep(i)));
+    setStep(0);
+  }
+
+  // -------------------------
+  // Counters count-up (Results)
+  // -------------------------
+  (function initCounters(){
+    const nodes = Array.from(document.querySelectorAll("[data-count]"));
+    if (!nodes.length) return;
+
+    const fmt = (n) => {
+      try { return new Intl.NumberFormat().format(Math.round(n)); }
+      catch { return String(Math.round(n)); }
     };
 
-    setText('[data-kpi="enquiries"]', d.enquiries.v);
-    setText('[data-kpi="calls"]', d.calls.v);
-    setText('[data-kpi="deals"]', d.deals.v);
-    setText('[data-kpi="revenue"]', d.revenue.v);
+    const animate = (el) => {
+      const target = Number(el.getAttribute("data-count") || 0);
+      if (!isFinite(target)) return;
+      if (prefersReduced) { el.textContent = fmt(target); return; }
 
-    const de = document.querySelector('[data-kpi-delta="enquiries"]');
-    const dc = document.querySelector('[data-kpi-delta="calls"]');
-    const dd = document.querySelector('[data-kpi-delta="deals"]');
-    const dr = document.querySelector('[data-kpi-delta="revenue"]');
+      const duration = 1100;
+      const start = performance.now();
 
-    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); }
-    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); }
-    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); }
-    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); }
+      const tick = (t) => {
+        const p = Math.min(1, (t - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
 
-    if (sparkLine) sparkLine.setAttribute("d", d.line);
-  }
-
-  if (segBtns.length) {
-    segBtns.forEach((b) => {
-      b.addEventListener("click", () => {
-        segBtns.forEach((x) => {
-          x.classList.remove("is-active");
-          x.setAttribute("aria-selected", "false");
-        });
-        b.classList.add("is-active");
-        b.setAttribute("aria-selected", "true");
-        const key = b.getAttribute("data-seg") || "all";
-        applySegment(key);
-      });
-    });
-  }
-
-  // ---------- Engine steps ----------
-  const stepBtns = Array.from(document.querySelectorAll(".step[data-step]"));
-  const bar = document.querySelector("[data-engine-bar]");
-  const badge = document.querySelector("[data-engine-badge]");
-  const title = document.querySelector("[data-engine-title]");
-  const list = document.querySelector("[data-engine-list]");
-
-  const steps = [
-    { b: "Step 01", t: "Capture", items: ["High-intent forms that reduce junk.", "Track source + service + urgency.", "Instant lead routing to the right place."] },
-    { b: "Step 02", t: "Instant Response", items: ["Speed-to-lead reply templates.", "Auto-qualification questions.", "Booking link routing by service."] },
-    { b: "Step 03", t: "Multi-touch Follow-up", items: ["SMS + email sequences that feel human.", "No-show reminders + reschedule loops.", "After-hours responses covered."] },
-    { b: "Step 04", t: "Booking", items: ["Calendly confirmations + reminders.", "Pipeline stage updates automatically.", "Cleaner handoff to delivery."] },
-    { b: "Step 05", t: "Reporting", items: ["Track reply rate + booked call rate.", "See lead source performance.", "Fix drop-offs with simple changes."] }
-  ];
-
-  function renderStep(i) {
-    const s = steps[i];
-    if (!s) return;
-    if (badge) badge.textContent = s.b;
-    if (title) title.textContent = s.t;
-
-    if (list) {
-      list.innerHTML = "";
-      s.items.forEach((txt) => {
-        const li = document.createElement("li");
-        li.textContent = txt;
-        list.appendChild(li);
-      });
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(animate);
+      return;
     }
 
-    if (bar) bar.style.width = `${(i + 1) * 20}%`;
-  }
-
-  if (stepBtns.length) {
-    stepBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        stepBtns.forEach((x) => x.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        const idx = Number(btn.getAttribute("data-step") || "0");
-        renderStep(Math.max(0, Math.min(4, idx)));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        animate(e.target);
+        io.unobserve(e.target);
       });
+    }, { threshold: 0.35 });
+
+    nodes.forEach((el) => io.observe(el));
+  })();
+
+  // -------------------------
+  // Modal open/close
+  // -------------------------
+  const modal = $("#intakeModal");
+  const openBtns = $$("[data-open-intake]");
+  const closeBtns = $$("[data-close-modal]");
+  const FORM_SHOWN_KEY = "onix_intake_shown_v1";
+
+  const openModal = () => {
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  };
+
+  openBtns.forEach(b => b.addEventListener("click", openModal));
+  closeBtns.forEach(b => b.addEventListener("click", closeModal));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // -------------------------
+  // Popup after viewing 2 sections
+  // -------------------------
+  (function popupAfterTwoSections(){
+    if (!modal || !("IntersectionObserver" in window)) return;
+
+    // Don’t repeatedly nag users
+    if (localStorage.getItem(FORM_SHOWN_KEY) === "1") return;
+
+    const sections = $$(".watch-section");
+    if (!sections.length) return;
+
+    let seen = 0;
+    const seenSet = new Set();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const id = e.target.id || e.target.getAttribute("data-id") || Math.random().toString(36).slice(2);
+        if (seenSet.has(id)) return;
+        seenSet.add(id);
+        seen += 1;
+
+        if (seen >= 2) {
+          localStorage.setItem(FORM_SHOWN_KEY, "1");
+          // Small delay so it feels intentional
+          setTimeout(openModal, 450);
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => io.observe(s));
+  })();
+
+  // -------------------------
+  // Formspree AJAX submit (no page reload)
+  // -------------------------
+  (function ajaxForm(){
+    const form = $("#leadForm");
+    const success = $("#formSuccess");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const action = form.getAttribute("action");
+      if (!action) { form.submit(); return; }
+
+      const formData = new FormData(form);
+
+      try{
+        const res = await fetch(action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (!res.ok) throw new Error("Submit failed");
+
+        if (success) success.hidden = false;
+        form.querySelectorAll("input, textarea, button").forEach(el => {
+          if (el.tagName === "BUTTON") return;
+          el.disabled = true;
+        });
+
+        // auto-close modal after a moment
+        setTimeout(() => {
+          closeModal();
+          // allow scrolling again
+        }, 1200);
+
+      }catch(err){
+        // fallback: normal submit
+        try { form.submit(); } catch(_) {}
+      }
     });
-  }
+  })();
+
+  // -------------------------
+  // Cookie banner (simple)
+  // -------------------------
+  (function cookies(){
+    const banner = $("#cookieBanner");
+    if (!banner) return;
+
+    const KEY = "onix_cookie_choice_v1";
+    const choice = localStorage.getItem(KEY);
+
+    const show = () => { banner.hidden = false; };
+    const hide = () => { banner.hidden = true; };
+
+    if (!choice) show();
+
+    const acceptBtn = $("[data-cookie-accept]");
+    const declineBtn = $("[data-cookie-decline]");
+
+    const setChoice = (val) => {
+      localStorage.setItem(KEY, val);
+      hide();
+    };
+
+    if (acceptBtn) acceptBtn.addEventListener("click", () => setChoice("accepted"));
+    if (declineBtn) declineBtn.addEventListener("click", () => setChoice("declined"));
+  })();
+
+  // Hard safety: no horizontal scroll
+  document.documentElement.style.overflowX = "hidden";
+  document.body.style.overflowX = "hidden";
 })();
- /* =========================
-    END: script.js
- ========================= */
+// =========================
+// END: script.js
+// =========================
