@@ -659,6 +659,100 @@ body{
 /* Only show fallback label if image is missing */
 .avatar-fallback{ display:none !important; }
 .about-avatar.is-missing .avatar-fallback{ display:flex !important; }
+/* =========================
+   PATCH: 20260113-01
+   - Fix black graph
+   - Video strip styling
+   - Calendly scroll polish
+========================= */
+
+/* Sparkline (force gradient, prevent black) */
+.spark-line{
+  stroke: url(#grad) !important;
+  stroke-width: 4.5 !important;
+  fill: none !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.spark-area{
+  fill: url(#grad) !important;
+  opacity: 0.18 !important;
+}
+.spark-dots circle{
+  fill: #ffffff !important;
+  stroke: url(#grad) !important;
+  stroke-width: 3 !important;
+  opacity: 0.98 !important;
+}
+
+/* Calendly: ensure iframe can be interacted with */
+.embed-wrap{ overflow: hidden; }
+.calendly{
+  width: 100%;
+  height: 560px;
+  border: 0;
+  display: block;
+  background: transparent;
+}
+
+/* Video proof strip */
+.video-strip{ margin-top: 16px; }
+.video-track{
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 10px 2px 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.video-card{
+  flex: 0 0 auto;
+  width: 360px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.58);
+  box-shadow: 0 22px 60px rgba(12,10,27,0.10);
+  overflow: hidden;
+  scroll-snap-align: start;
+  position: relative;
+}
+.video{
+  width: 100%;
+  height: 210px;
+  display: block;
+  background: rgba(255,255,255,0.35);
+  object-fit: cover;
+}
+.video-cap{
+  padding: 12px 14px 14px;
+  font-weight: 950;
+  color: rgba(12,10,27,0.72);
+  font-size: 13px;
+}
+.video-fallback{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+  color: rgba(12,10,27,0.62);
+  background: rgba(255,255,255,0.75);
+}
+
+/* Mobile: stack videos nicely */
+@media (max-width: 560px){
+  .video-track{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: visible;
+    gap: 12px;
+    padding: 6px 0 0;
+    scroll-snap-type: none;
+  }
+  .video-card{ width: 100%; }
+  .video{ height: 220px; }
+}
+
 
 
 /* Stop horizontal scroll */
@@ -677,5 +771,6 @@ svg{ max-width: 100%; }
 /* =========================
    END: styles.css
 ========================= */
+
 
 
