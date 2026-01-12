@@ -1125,11 +1125,105 @@ body{
   }
 }
 
-body{ outline: 6px solid red !important; }
+/* =========================
+   iOS / MOBILE OVERFLOW FIX (SITE-WIDE)
+   Paste at VERY BOTTOM of styles.css
+========================= */
+
+/* Critical: stop grid/flex children from overflowing on iOS */
+.container,
+.hero-grid,
+.results-grid,
+.engine,
+.book-card,
+.pricing-covered,
+.outcome-grid,
+.stats-row,
+.footer-grid{
+  min-width: 0;
+}
+
+.hero-grid > *,
+.results-grid > *,
+.engine > *,
+.book-card > *,
+.pricing-covered > *,
+.outcome-grid > *,
+.stats-row > *,
+.footer-grid > *{
+  min-width: 0;
+}
+
+/* Make sure headlines + text can wrap nicely */
+h1, h2, h3, p, a, button{
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Mobile typography + spacing (tight and premium) */
+@media (max-width: 560px){
+
+  .section{ padding: 44px 0; }
+
+  .pill{ font-size: 12px; padding: 8px 12px; margin-bottom: 14px; }
+
+  /* Clamp headline so it NEVER blows out the screen */
+  .h1{
+    font-size: clamp(26px, 8.2vw, 34px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 12px !important;
+  }
+
+  .h2{
+    font-size: clamp(20px, 6.2vw, 26px) !important;
+    line-height: 1.14 !important;
+  }
+
+  .subhead, .p{
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .cta-row{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .cta-row .btn{ width: 100%; }
+
+  /* Proof: clean stack on mobile */
+  .proof-track{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    overflow: visible !important;
+    padding: 6px 0 0 !important;
+  }
+  .proof{ width: 100% !important; height: 170px !important; }
+
+  /* KPI tiles: single column on phone */
+  .kpi-grid{ grid-template-columns: 1fr !important; }
+
+  /* Footer: no squeeze */
+  .footer-grid{ grid-template-columns: 1fr !important; }
+  .foot-cta{
+    width: 100%;
+    padding: 14px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Calendly height: feels intentional */
+  .embed-wrap{ min-height: 680px !important; }
+  .calendly{ height: 680px !important; }
+}
 
 
 /* =========================
    END: styles.css
 ========================= */
+
 
 
