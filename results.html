@@ -1,242 +1,347 @@
 <!-- =========================
-     START: results.html
+START: results.html
 ========================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ONIX — Results</title>
-  <meta name="description" content="Client results and proof screenshots for ONIX." />
+  <meta name="description" content="Real outcomes: booked calls, clean follow-up, and predictable pipeline." />
   <link rel="icon" href="./logo2.png" />
 
-  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
   <div class="site-bg" aria-hidden="true">
-    <div class="aurora"></div>
-    <div class="noise"></div>
-    <div class="vignette"></div>
+    <div class="site-aurora"></div>
+    <div class="site-noise"></div>
   </div>
 
-  <header class="header" data-header>
+  <header class="header glass">
     <div class="container header-inner">
       <a class="brand" href="./index.html" aria-label="ONIX home">
-        <img class="brand-logo" src="./logo2.png" alt="ONIX logo" />
+        <img class="brand-logo" src="./logo2.png" alt="ONIX" loading="eager" onerror="this.style.display='none'">
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="./results.html" class="is-current">Results</a>
-        <a href="./index.html#how">How it works</a>
-        <a href="./index.html#pricing" class="is-muted">Pricing</a>
-        <a class="btn btn-primary btn-sm nav-cta" href="./index.html#book">Book a Call</a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a class="nav-link is-active" href="./results.html">Results</a>
+        <a class="nav-link" href="./index.html#how">How it works</a>
+        <a class="nav-link" href="./index.html#pricing">Pricing Covered</a>
+        <a class="btn btn-primary" href="./index.html#book">Book a Call</a>
       </nav>
 
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" data-nav-toggle>
-        <span class="nav-toggle-ic" aria-hidden="true"></span>
+      <button class="nav-toggle glass" type="button"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span class="hamburger" aria-hidden="true"></span>
       </button>
     </div>
 
-    <div id="mobileNav" class="mobile-nav" hidden data-mobile-nav>
+    <div id="mobileNav" class="mobile-nav" hidden>
       <div class="container mobile-nav-inner">
-        <a href="./results.html">Results</a>
-        <a href="./index.html#how">How it works</a>
-        <a href="./index.html#pricing">Pricing</a>
-        <a class="btn btn-primary btn-block" href="./index.html#book">Book a Call</a>
+        <a class="mobile-link" href="./results.html">Results</a>
+        <a class="mobile-link" href="./index.html#how">How it works</a>
+        <a class="mobile-link" href="./index.html#pricing">Pricing Covered</a>
+        <a class="btn btn-primary btn-block mobile-cta" href="./index.html#book">Book a Call</a>
       </div>
     </div>
   </header>
 
-  <main class="section results-hero">
-    <div class="container results-grid">
-      <div>
+  <main>
+    <section class="section results-hero watch-section" id="r-hero">
+      <div class="container results-grid">
+        <div class="results-left">
+          <div class="eyebrow reveal">RESULTS</div>
+          <h1 class="h1 reveal">What “pipeline on autopilot” looks like.</h1>
+          <p class="subhead reveal" style="--d:120ms">
+            This is what happens when speed-to-lead + follow-up + booking are installed properly.
+          </p>
+
+          <div class="stats-row reveal" style="--d:220ms">
+            <div class="stat glass">
+              <div class="stat-big">$100k</div>
+              <div class="stat-small">extra bottom line/year</div>
+            </div>
+            <div class="stat glass">
+              <div class="stat-big">$110k</div>
+              <div class="stat-small">return from $17k</div>
+            </div>
+            <div class="stat glass">
+              <div class="stat-big">20–25</div>
+              <div class="stat-small">leads/month</div>
+            </div>
+          </div>
+
+          <button class="btn btn-ghost reveal" style="--d:300ms" type="button" data-open-intake>
+            Get the intake form
+          </button>
+        </div>
+
+        <div class="results-right reveal" style="--d:180ms">
+          <div class="embed-wrap glass">
+            <iframe
+              class="calendly"
+              title="Calendly booking"
+              src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Counters -->
+    <section class="section watch-section" id="counters">
+      <div class="container">
+        <div class="counters glass reveal">
+          <div class="counter-card">
+            <div class="counter-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 17V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M11 17V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 17V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 9l4-3 3 2 5-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="counter-num" data-count="127370900">0</div>
+            <div class="counter-label">Sales Revenue 2001–2022</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 3v3M17 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 8h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="counter-num" data-count="1443">0</div>
+            <div class="counter-label">Client Meetings</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 22a10 10 0 1 0-7.07-2.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 2l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15 2h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="counter-num" data-count="34215">0</div>
+            <div class="counter-label">Leads Generated</div>
+          </div>
+
+          <div class="counter-card">
+            <div class="counter-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="counter-num" data-count="897">0</div>
+            <div class="counter-label">Clients</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section watch-section" id="reviews">
+      <div class="container">
         <div class="section-head reveal">
-          <div class="eyebrow">Results</div>
-          <h1 class="h2">Booked calls you can count on — without chasing.</h1>
-          <p class="p">Real numbers and proof screenshots from client pipelines.</p>
+          <div class="eyebrow">REVIEWS</div>
+          <h2 class="h2">Real words from real clients.</h2>
+          <p class="p">We’ll keep this section filled — no empty testimonials blocks.</p>
         </div>
 
-        <div class="stats-row">
-          <article class="stat glass card reveal hover-lift" data-tilt>
-            <div class="stat-top">
-              <div class="stat-k">Bottom line</div>
-              <div class="stat-v">$100k+</div>
+        <div class="quotes-grid">
+          <article class="quote glass reveal">
+            <p class="quote-text">“John’s leads and system have given us an extra $100k on our bottom line year on year.”</p>
+            <div class="quote-meta">
+              <span class="quote-name">Client</span>
+              <span class="quote-role">West Auckland</span>
             </div>
-            <div class="stat-s">Added profit across implementations.</div>
           </article>
 
-          <article class="stat glass card reveal hover-lift" style="--d:80ms;" data-tilt>
-            <div class="stat-top">
-              <div class="stat-k">Return</div>
-              <div class="stat-v">$110k</div>
+          <article class="quote glass reveal" style="--d:120ms">
+            <p class="quote-text">“I’ve invested 17k and my return was $110k. Super happy and just gets better year on year.”</p>
+            <div class="quote-meta">
+              <span class="quote-name">Client</span>
+              <span class="quote-role">Risk Insurance</span>
             </div>
-            <div class="stat-s">From ~17k spend in one example.</div>
           </article>
 
-          <article class="stat glass card reveal hover-lift" style="--d:160ms;" data-tilt>
-            <div class="stat-top">
-              <div class="stat-k">Lead flow</div>
-              <div class="stat-v">20–25</div>
+          <article class="quote glass reveal" style="--d:220ms">
+            <p class="quote-text">“My site generates 20–25 leads a month returning $8k–$10k to me in commission per month. It works!”</p>
+            <div class="quote-meta">
+              <span class="quote-name">Client</span>
+              <span class="quote-role">Business Advice</span>
             </div>
-            <div class="stat-s">Leads/month in consistent niches.</div>
-          </article>
-        </div>
-
-        <div class="quotes">
-          <article class="quote glass card reveal hover-lift" data-tilt>
-            <p>“We stopped chasing leads and started showing up to booked calls. The follow-up is relentless but doesn’t feel spammy.”</p>
-            <div class="quote-by">— Local service owner</div>
-          </article>
-
-          <article class="quote glass card reveal hover-lift" style="--d:80ms;" data-tilt>
-            <p>“The pipeline finally makes sense. Replies increased immediately and the calendar filled up within the first week.”</p>
-            <div class="quote-by">— Trade business</div>
-          </article>
-
-          <article class="quote glass card reveal hover-lift" style="--d:160ms;" data-tilt>
-            <p>“Best part is visibility. We can see what’s working and where leads drop off — then fix it.”</p>
-            <div class="quote-by">— Agency operator</div>
-               
           </article>
         </div>
       </div>
-       >
+    </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="foot-top glass">
+          <div class="footer-grid">
+            <div>
+              <div class="foot-brandline">
+                <img class="foot-logo" src="./logo2.png" alt="ONIX" loading="lazy" onerror="this.style.display='none'">
+              </div>
+              <p class="p foot-desc">Premium acquisition + follow-up systems that turn enquiries into booked calls — on autopilot.</p>
+              <a class="btn btn-primary foot-cta" href="./index.html#book">Book a Call</a>
+            </div>
 
-      <aside class="embed-card glass card reveal hover-lift" style="--d:120ms;" data-tilt>
-        <div class="embed-card-top">
-          <div>
-            <div class="kicker">Book now</div>
-            <div class="dash-title">Get your plan</div>
-          </div>
-          <a class="btn btn-primary btn-sm" href="./index.html#book">Home →</a>
-        </div>
-        <div class="embed-wrap">
-          <iframe
-            class="calendly"
-            title="Calendly booking"
-            src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
-            loading="lazy"></iframe>
-        </div>
-        <p class="embed-note">Email: sales@onixmrkt.com • +64 21 563 431</p>
-      </aside>
-    </div>
-  </main>
+            <div>
+              <div class="foot-h">Pages</div>
+              <a href="./index.html">Home</a>
+              <a href="./results.html">Results</a>
+              <a href="./index.html#how">How it works</a>
+              <a href="./index.html#pricing">Pricing Covered</a>
+            </div>
 
-  <section id="proof" class="section">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Proof</div>
-        <h2 class="h2">Unedited screenshots</h2>
-        <p class="p">If an image is missing, the layout won’t break.</p>
-      </div>
+            <div>
+              <div class="foot-h">Policies</div>
+              <a href="./privacy.html">Privacy Policy</a>
+              <a href="./terms.html">Terms</a>
+              <a href="./cookies.html">Cookies</a>
+            </div>
 
-      <div class="proof-grid">
-        <div class="proof-tile reveal"><img src="./proof1.png" alt="Proof 1" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:40ms;"><img src="./proof2.png" alt="Proof 2" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:80ms;"><img src="./proof3.png" alt="Proof 3" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal"><img src="./proof4.png" alt="Proof 4" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:40ms;"><img src="./proof5.png" alt="Proof 5" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:80ms;"><img src="./proof6.png" alt="Proof 6" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal"><img src="./proof7.png" alt="Proof 7" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:40ms;"><img src="./proof8.png" alt="Proof 8" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:80ms;"><img src="./proof9.png" alt="Proof 9" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal"><img src="./proof10.png" alt="Proof 10" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:40ms;"><img src="./proof11.png" alt="Proof 11" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-        <div class="proof-tile reveal" style="--d:80ms;"><img src="./proof12.png" alt="Proof 12" loading="lazy" onerror="this.closest('.proof-tile').classList.add('is-missing')"><div class="proof-fallback">Proof Screenshot</div></div>
-      </div>
-    </div>
-  </section>
-
-       <!-- =========================
-     START: Reviews (from FlyMeHigh)
-========================= -->
-<div class="quotes-grid">
-  <article class="quote glass reveal">
-    <p class="quote-text">“John’s leads and system have given us an extra $100k on our bottom line year on year.”</p>
-    <div class="quote-meta">
-      <span means="author" class="quote-name">Nicky M.</span>
-      <span class="quote-role">No1 Real Estate Agent, West Auckland</span>
-    </div>
-  </article>
-
-  <article class="quote glass reveal" style="--d:120ms">
-    <p class="quote-text">“I’ve invested 17k and my return was $110k. Super happy and just gets better year on year.”</p>
-    <div class="quote-meta">
-      <span class="quote-name">Paul S.</span>
-      <span class="quote-role">Risk Insurance</span>
-    </div>
-  </article>
-
-  <article class="quote glass reveal" style="--d:220ms">
-    <p class="quote-text">“My site generates 20–25 leads a month returning $8k–$10k to me in commission per month. It works!”</p>
-    <div class="quote-meta">
-      <span class="quote-name">Mike M.</span>
-      <span class="quote-role">ACC Business Advice</span>
-    </div>
-  </article>
-</div>
-
-
-  <footer class="footer">
-    <div class="container">
-      <div class="foot-top glass card">
-        <div class="foot-brandline">
-          <img class="foot-logo" src="./logo2.png" alt="ONIX logo" loading="lazy">
-          <div class="foot-bl">
-            <div class="foot-title">ONIX</div>
-            <div class="foot-subtitle">Done-for-you acquisition + follow-up system</div>
-          </div>
-          <a class="btn btn-primary btn-sm foot-cta" href="./index.html#book">Book a Call</a>
-        </div>
-
-        <div class="footer-grid">
-          <div class="foot-col">
-            <div class="foot-h">About</div>
-            <p class="foot-p">We turn enquiries into booked calls with a simple, measurable follow-up engine — installed for you.</p>
-          </div>
-
-          <div class="foot-col">
-            <div class="foot-h">Links</div>
-            <a href="./index.html#how">How it works</a>
-            <a href="./index.html#pricing">Pricing</a>
-            <a href="./index.html#book">Book a Call</a>
-          </div>
-
-          <div class="foot-col">
-            <div class="foot-h">Contact</div>
-            <div class="foot-muted">Email: sales@onixmrkt.com</div>
-            <div class="foot-muted">Phone: +64 21 563 431</div>
-            <div class="foot-muted">92 Comers Road, Kaimarama 3591, New Zealand</div>
-          </div>
-
-          <div class="foot-col">
-            <div class="foot-h">Response</div>
-            <div class="foot-muted">Within 24 hours</div>
-            <a class="link" href="./index.html#book">Book now →</a>
+            <div>
+              <div class="foot-h">Contact</div>
+              <div class="foot-text">sales@onixmrkt.com</div>
+              <div class="foot-text">+64 21 563 431</div>
+              <div class="foot-text">92 Comers Road, Kaimarama 3591, New Zealand</div>
+            </div>
           </div>
         </div>
 
         <div class="foot-bottom">
-          <div class="foot-line"></div>
           <div class="foot-bottom-row">
-            <div>© <span id="year"></span> ONIX. All rights reserved.</div>
-            <div class="foot-muted">Built to book calls — fast.</div>
+            <span>© <span id="year"></span> ONIX</span>
+            <span class="sep">•</span>
+            <span>All rights reserved</span>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </main>
 
-  <script src="./script.js"></script>
+  <!-- Intake Modal (same as index) -->
+  <div class="modal" id="intakeModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <div class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="intakeTitle">
+      <button class="modal-close glass" type="button" aria-label="Close" data-close-modal>✕</button>
+
+      <div class="modal-head">
+        <h3 class="modal-title" id="intakeTitle">Quick intake (2 minutes)</h3>
+        <p class="modal-sub">
+          This form is only for trade business owners or sole contractors who run and quote their own jobs.
+        </p>
+      </div>
+
+      <form class="lead-form" id="leadForm" action="https://formspree.io/f/meeeqqdk" method="POST">
+        <input type="hidden" name="form_name" value="ONIX Lead Intake" />
+        <input type="hidden" name="qualified_note" value="This form is only for trade business owners or sole contractors who run and quote their own jobs." />
+        <input type="hidden" name="_subject" value="New ONIX Lead Intake Submission" />
+
+        <div class="form-grid">
+          <label class="field">
+            <span class="label">First Name</span>
+            <input name="first_name" type="text" placeholder="First name" autocomplete="given-name" required />
+          </label>
+
+          <label class="field">
+            <span class="label">Last Name</span>
+            <input name="last_name" type="text" placeholder="Last name" autocomplete="family-name" required />
+          </label>
+
+          <label class="field">
+            <span class="label">Email</span>
+            <input name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+          </label>
+
+          <label class="field">
+            <span class="label">Phone</span>
+            <input name="phone" type="tel" placeholder="+64..." autocomplete="tel" required />
+          </label>
+        </div>
+
+        <fieldset class="fieldset">
+          <legend class="label">How long have you been running your own building/renovation business?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="years_running" value="1–3 years" required /><span>1–3 years</span></label>
+            <label class="opt"><input type="radio" name="years_running" value="3–5 years" /><span>3–5 years</span></label>
+            <label class="opt"><input type="radio" name="years_running" value="5+ years" /><span>5+ years</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="label">How soon can you handle the remodeling jobs?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="start_time" value="I can start ASAP" required /><span>I can start ASAP</span></label>
+            <label class="opt"><input type="radio" name="start_time" value="Within 2 weeks" /><span>Within 2 weeks</span></label>
+            <label class="opt"><input type="radio" name="start_time" value="Within 30 days" /><span>Within 30 days</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="label">How much of a priority is it for you to get remodeling jobs?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="priority" value="Top priority — ready to start immediately" required /><span>Top priority — I’m ready to get started immediately</span></label>
+            <label class="opt"><input type="radio" name="priority" value="Important — starting soon" /><span>Important — starting soon</span></label>
+            <label class="opt"><input type="radio" name="priority" value="Exploring — not urgent" /><span>Exploring — not urgent</span></label>
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="label">Anything else we should know? (optional)</span>
+          <textarea name="notes" rows="3" placeholder="Service area, job types, current lead sources..."></textarea>
+        </label>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+
+        <p class="form-fine">By submitting, you agree to be contacted about your request.</p>
+
+        <div class="form-success" id="formSuccess" hidden>
+          ✅ Submitted. Now choose a time in Calendly.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cookie Banner -->
+  <div class="cookie" id="cookieBanner" hidden>
+    <div class="cookie-card glass">
+      <div class="cookie-text">
+        <strong>Cookies</strong>
+        <span>We use cookies to improve your experience. Read our <a href="./cookies.html">Cookies Policy</a> and <a href="./privacy.html">Privacy Policy</a>.</span>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn btn-ghost" type="button" data-cookie-decline>Decline</button>
+        <button class="btn btn-primary" type="button" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js" defer></script>
 </body>
 </html>
 <!-- =========================
-     END: results.html
+END: results.html
 ========================= -->
