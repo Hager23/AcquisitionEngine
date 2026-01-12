@@ -9,13 +9,13 @@ START: results.html
   <title>ONIX — Results</title>
   <meta name="description" content="Real outcomes from acquisition + follow-up systems. Book a call to see if ONIX fits your business." />
 
-  <link rel="icon" href="./logo2.png?v=20260113-01" />
+  <link rel="icon" href="./logo2.png?v=20260113-02" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./styles.css?v=20260113-01">
+  <link rel="stylesheet" href="./styles.css?v=20260113-02">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ START: results.html
       <nav class="nav-desktop" aria-label="Primary">
         <a class="nav-link is-current" href="./results.html">Results</a>
         <a class="nav-link" href="./index.html#how">How it works</a>
-        <a class="nav-link" href="./index.html#pricing">Pricing Covered</a>
+        <a class="nav-link" href="./index.html#pricing">Pricing</a>
         <a class="btn btn-primary" href="./index.html#book">Book a Call</a>
       </nav>
 
@@ -49,7 +49,7 @@ START: results.html
       <div class="container mobile-nav-inner">
         <a class="mobile-link" href="./results.html">Results</a>
         <a class="mobile-link" href="./index.html#how">How it works</a>
-        <a class="mobile-link" href="./index.html#pricing">Pricing Covered</a>
+        <a class="mobile-link" href="./index.html#pricing">Pricing</a>
         <a class="btn btn-primary btn-block mobile-cta" href="./index.html#book">Book a Call</a>
       </div>
     </div>
@@ -71,34 +71,46 @@ START: results.html
             We don’t just generate leads — we build end-to-end acquisition + follow-up systems that lift booked calls and improve close rate.
           </p>
 
-          <!-- UPDATED STATS -->
+          <!-- STATS (static headline) -->
           <div class="stats-row reveal" style="--d:200ms">
             <div class="stat glass">
-              <div class="stat-top">
-                <div class="stat-k">Ad Spend Managed</div>
-              </div>
+              <div class="stat-top"><div class="stat-k">Ad Spend Managed</div></div>
               <div class="stat-v">$14M</div>
               <div class="stat-s">Across multiple industries</div>
             </div>
 
             <div class="stat glass">
-              <div class="stat-top">
-                <div class="stat-k">Revenue Generated</div>
-              </div>
+              <div class="stat-top"><div class="stat-k">Revenue Generated</div></div>
               <div class="stat-v">$150M</div>
               <div class="stat-s">Attributed outcomes for clients</div>
             </div>
 
             <div class="stat glass">
-              <div class="stat-top">
-                <div class="stat-k">Clients Served</div>
-              </div>
+              <div class="stat-top"><div class="stat-k">Clients Served</div></div>
               <div class="stat-v">1000+</div>
               <div class="stat-s">Local business + tradies</div>
             </div>
           </div>
 
-          <div class="quotes reveal" style="--d:260ms">
+          <!-- COUNTERS (RESTORED / ADDED) -->
+          <section class="counter-section reveal" style="--d:260ms" aria-label="Animated counters">
+            <div class="counter-grid">
+              <div class="counter glass">
+                <div class="counter-k">Spend managed</div>
+                <div class="counter-v" data-count="14000000" data-count-format="compactMoney">$14M</div>
+              </div>
+              <div class="counter glass">
+                <div class="counter-k">Revenue generated</div>
+                <div class="counter-v" data-count="150000000" data-count-format="compactMoney">$150M</div>
+              </div>
+              <div class="counter glass">
+                <div class="counter-k">Clients served</div>
+                <div class="counter-v" data-count="1000" data-count-format="plus">1000+</div>
+              </div>
+            </div>
+          </section>
+
+          <div class="quotes reveal" style="--d:320ms">
             <div class="quote glass">
               <p>“We finally stopped chasing leads. Calls started booking consistently — and we could focus on quoting and delivery.”</p>
               <div class="quote-by">— Trade business owner</div>
@@ -137,7 +149,7 @@ START: results.html
       </div>
     </section>
 
-    <!-- ABOUT (NEW) -->
+    <!-- ABOUT -->
     <section class="section watch-section" id="about">
       <div class="container">
         <div class="section-head reveal">
@@ -147,16 +159,27 @@ START: results.html
         </div>
 
         <div class="about-grid">
+          <!-- Jordan with image -->
           <article class="about-card glass reveal">
-            <div class="about-top">
-              <div class="about-name">Jordan Burkett</div>
-              <div class="about-role">(co-founder)</div>
+            <div class="about-person">
+              <div class="about-avatar">
+                <img src="./jordan.jpeg" alt="Jordan Burkett" loading="lazy"
+                     onerror="this.closest('.about-avatar').classList.add('is-missing'); this.remove();">
+                <div class="avatar-fallback">Jordan</div>
+              </div>
+
+              <div class="about-meta">
+                <div class="about-top">
+                  <div class="about-name">Jordan Burkett</div>
+                  <div class="about-role">(co-founder)</div>
+                </div>
+                <ul class="about-list">
+                  <li>Worked closely with 200+ local business and tradie clients</li>
+                  <li>Built and managed 1–1 marketing systems for the past 2 years</li>
+                  <li>Together, we’ve managed $7.8M+ in annual ad spend</li>
+                </ul>
+              </div>
             </div>
-            <ul class="about-list">
-              <li>Worked closely with 200+ local business and tradie clients</li>
-              <li>Built and managed 1–1 marketing systems for the past 2 years</li>
-              <li>Together, we’ve managed $7.8M+ in annual ad spend</li>
-            </ul>
           </article>
 
           <article class="about-card glass reveal" style="--d:120ms">
@@ -198,7 +221,7 @@ START: results.html
       </div>
     </section>
 
-    <!-- Footer (same style) -->
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="foot-top glass">
@@ -217,7 +240,7 @@ START: results.html
               <div class="foot-h">Pages</div>
               <a href="./index.html#how">How it works</a>
               <a href="./results.html">Results</a>
-              <a href="./index.html#pricing">Pricing Covered</a>
+              <a href="./index.html#pricing">Pricing</a>
               <a href="./index.html#book">Book</a>
             </div>
 
@@ -248,7 +271,7 @@ START: results.html
     </footer>
   </main>
 
-  <script src="./script.js?v=20260113-01" defer></script>
+  <script src="./script.js?v=20260113-02" defer></script>
 </body>
 </html>
 <!-- =========================
