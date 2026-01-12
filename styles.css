@@ -656,9 +656,7 @@ body{
   .footer-grid{ grid-template-columns: 1fr; }
   .foot-cta{ width: 100%; }
 }
-/* Only show fallback label if image is missing */
-.avatar-fallback{ display:none !important; }
-.about-avatar.is-missing .avatar-fallback{ display:flex !important; }
+
 /* =========================
    PATCH: 20260113-01
    - Fix black graph
@@ -771,6 +769,7 @@ svg{ max-width: 100%; }
 /* =========================
    END: styles.css
 ========================= */
+
 
 
 
