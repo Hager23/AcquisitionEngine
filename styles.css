@@ -925,8 +925,42 @@ h1, h2, h3, p, a, button, li{
 }
 
 /* =========================
+   CALENDLY — PHONE FIX (ONLY)
+========================= */
+@media (max-width: 560px){
+
+  /* Make the card feel less cramped */
+  .book-card{
+    padding: 12px !important;
+  }
+
+  /* Give the embed room + remove “squeezed” look */
+  .embed-wrap{
+    width: 100% !important;
+    min-height: 760px !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+
+  /* Calendly needs height on mobile or it looks chopped */
+  .calendly{
+    width: 100% !important;
+    height: 760px !important;
+    border: 0 !important;
+    display: block !important;
+  }
+
+  /* Prevent any accidental side scroll caused by iframe */
+  .book-right{
+    min-width: 0 !important;
+  }
+}
+
+
+/* =========================
    END: styles.css
 ========================= */
+
 
 
 
