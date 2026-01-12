@@ -780,9 +780,154 @@ svg{ max-width: 100%; }
   .reveal{ transition:none; transform:none; opacity:1; }
   .site-aurora{ animation:none; }
 }
+
+/* =========================
+   MOBILE RESCUE PATCH (FINAL)
+   Paste at VERY BOTTOM of styles.css
+========================= */
+
+/* Stop any page-level horizontal scroll */
+html, body{
+  width: 100%;
+  overflow-x: hidden !important;
+}
+body{ position: relative; }
+
+/* iOS/Safari grid overflow fix */
+.container,
+.hero-grid,
+.results-grid,
+.engine,
+.book-card,
+.pricing-covered,
+.outcome-grid,
+.stats-row,
+.footer-grid,
+.video-row{
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+.hero-grid > *,
+.results-grid > *,
+.engine > *,
+.book-card > *,
+.pricing-covered > *,
+.outcome-grid > *,
+.stats-row > *,
+.footer-grid > *,
+.video-row > *{
+  min-width: 0 !important;
+}
+
+/* Never allow media to push width */
+img, video, iframe, svg{
+  max-width: 100% !important;
+}
+
+/* Calendly specifically: prevent “stretched + cropped” */
+.embed-wrap{
+  overflow: hidden;
+  border-radius: 22px;
+}
+.calendly{
+  width: 100% !important;
+  height: 680px !important;
+  border: 0 !important;
+  display: block !important;
+}
+
+/* Fix sticky engine-left + any sticky blocks on mobile */
+@media (max-width: 980px){
+  .engine-left{
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+/* PHONE LAYOUT: force single-column + proper spacing */
+@media (max-width: 560px){
+  .container{ width: calc(100% - 22px) !important; }
+
+  .section{ padding: 44px 0 !important; }
+
+  /* clamp text so it never runs off-screen */
+  .h1{
+    font-size: clamp(26px, 8.2vw, 34px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.03em !important;
+  }
+  .h2{
+    font-size: clamp(20px, 6.2vw, 26px) !important;
+    line-height: 1.14 !important;
+  }
+  .subhead, .p{
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Convert all key grids into single column */
+  .hero-grid,
+  .results-grid,
+  .engine,
+  .book-card,
+  .pricing-covered,
+  .outcome-grid,
+  .stats-row,
+  .footer-grid{
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Buttons should be full width on phone */
+  .cta-row{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .cta-row .btn{ width: 100% !important; }
+
+  /* Dashboard KPI tiles one per row */
+  .kpi-grid{ grid-template-columns: 1fr !important; }
+
+  /* Proof strip: stack cleanly */
+  .proof-track{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    overflow: visible !important;
+    padding: 6px 0 0 !important;
+  }
+  .proof{ width: 100% !important; height: 170px !important; }
+
+  /* Video strip: one card per swipe, no weird stretch */
+  .video-row{
+    grid-auto-columns: minmax(86vw, 1fr) !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+  }
+  .video-card{
+    min-width: 86vw !important;
+  }
+  .vid{ height: 200px !important; }
+
+  /* Footer CTA padding + text color safety */
+  .foot-cta{
+    width: 100% !important;
+    padding: 14px 18px !important;
+    border-radius: 16px !important;
+    color: #fff !important;
+  }
+}
+
+/* Make sure long words/URLs never break layout */
+h1, h2, h3, p, a, button, li{
+  overflow-wrap: anywhere;
+}
+
 /* =========================
    END: styles.css
 ========================= */
+
 
 
 
