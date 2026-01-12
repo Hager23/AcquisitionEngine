@@ -1178,6 +1178,107 @@ h1, h2, h3, p, a, button{
   overflow-wrap: break-word;
   word-break: normal;
 }
+/* =========================
+   COUNTERS
+========================= */
+.counters{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.counter-card{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(12,10,27,0.08);
+  border-radius: 18px;
+  padding: 18px 16px;
+  box-shadow: 0 14px 40px rgba(12,10,27,0.06);
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  text-align:center;
+  min-width:0;
+}
+
+.counter-ico{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  background: rgba(106,0,255,0.10);
+  border: 1px solid rgba(106,0,255,0.18);
+  color: #1E1B4B;
+  margin-bottom: 10px;
+}
+.counter-ico svg{ width: 26px; height: 26px; opacity: 0.95; }
+
+.counter-num{
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--ink, #0C0A1B);
+}
+
+.counter-label{
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(12,10,27,0.65);
+  font-weight: 700;
+}
+
+/* =========================
+   REVIEWS GRID
+========================= */
+.quotes-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.quote{
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.quote-text{
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(12,10,27,0.86);
+}
+
+.quote-meta{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 4px;
+}
+
+.quote-name{
+  font-weight: 800;
+  color: var(--ink, #0C0A1B);
+}
+
+.quote-role{
+  font-size: 13px;
+  color: rgba(12,10,27,0.62);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .counters{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quotes-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 560px){
+  .counters{ grid-template-columns: 1fr; padding: 12px; }
+  .counter-num{ font-size: 30px; }
+}
+
 
 /* Mobile typography + spacing (tight and premium) */
 @media (max-width: 560px){
@@ -1281,6 +1382,7 @@ svg, .spark{ max-width: 100%; }
 /* =========================
    END: styles.css
 ========================= */
+
 
 
 
