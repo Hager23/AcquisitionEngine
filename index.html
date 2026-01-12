@@ -9,13 +9,15 @@ START: index.html
   <title>ONIX — Your pipeline, on autopilot</title>
   <meta name="description" content="ONIX installs a done-for-you acquisition + follow-up system that turns enquiries into booked calls — without chasing leads all day." />
 
-  <link rel="icon" href="./logo2.png" />
+  <!-- Cache-busted favicon -->
+  <link rel="icon" href="./logo2.png?v=20260112-02" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="./styles.css?v=20260112-01">
+  <!-- Cache-busted CSS -->
+  <link rel="stylesheet" href="./styles.css?v=20260112-02">
 </head>
 
 <body>
@@ -372,7 +374,7 @@ START: index.html
         <div class="book-card glass reveal">
           <div class="book-left">
             <h3>Book a 15-minute call</h3>
-            <p class="p">You’ll get a popup intake form after you’ve viewed two sections.</p>
+            <p class="p">Pick a time below — we’ll confirm fit and show the system.</p>
 
             <div class="contact-mini">
               <div><strong>Email:</strong> sales@onixmrkt.com</div>
@@ -388,9 +390,7 @@ START: index.html
               <a href="./cookies.html">Cookies</a>
             </div>
 
-            <button class="btn btn-ghost btn-block-sm" type="button" data-open-intake>
-              Open intake form
-            </button>
+            <!-- Intake form removed -->
           </div>
 
           <div class="book-right embed-wrap">
@@ -456,90 +456,7 @@ START: index.html
     </footer>
   </main>
 
-  <!-- Intake Modal -->
-  <div class="modal" id="intakeModal" aria-hidden="true">
-    <div class="modal-backdrop" data-close-modal></div>
-
-    <div class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="intakeTitle">
-      <button class="modal-close glass" type="button" aria-label="Close" data-close-modal>✕</button>
-
-      <div class="modal-head">
-        <h3 class="modal-title" id="intakeTitle">Quick intake (2 minutes)</h3>
-        <p class="modal-sub">
-          This form is only for trade business owners or sole contractors who run and quote their own jobs.
-        </p>
-      </div>
-
-      <form class="lead-form" id="leadForm" action="https://formspree.io/f/meeeqqdk" method="POST">
-        <input type="hidden" name="form_name" value="ONIX Lead Intake" />
-        <input type="hidden" name="qualified_note" value="This form is only for trade business owners or sole contractors who run and quote their own jobs." />
-        <input type="hidden" name="_subject" value="New ONIX Lead Intake Submission" />
-
-        <div class="form-grid">
-          <label class="field">
-            <span class="label">First Name</span>
-            <input name="first_name" type="text" placeholder="First name" autocomplete="given-name" required />
-          </label>
-
-          <label class="field">
-            <span class="label">Last Name</span>
-            <input name="last_name" type="text" placeholder="Last name" autocomplete="family-name" required />
-          </label>
-
-          <label class="field">
-            <span class="label">Email</span>
-            <input name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
-          </label>
-
-          <label class="field">
-            <span class="label">Phone</span>
-            <input name="phone" type="tel" placeholder="+64..." autocomplete="tel" required />
-          </label>
-        </div>
-
-        <fieldset class="fieldset">
-          <legend class="label">How long have you been running your own building/renovation business?</legend>
-          <div class="options">
-            <label class="opt"><input type="radio" name="years_running" value="1–3 years" required /><span>1–3 years</span></label>
-            <label class="opt"><input type="radio" name="years_running" value="3–5 years" /><span>3–5 years</span></label>
-            <label class="opt"><input type="radio" name="years_running" value="5+ years" /><span>5+ years</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset">
-          <legend class="label">How soon can you handle the remodeling jobs?</legend>
-          <div class="options">
-            <label class="opt"><input type="radio" name="start_time" value="I can start ASAP" required /><span>I can start ASAP</span></label>
-            <label class="opt"><input type="radio" name="start_time" value="Within 2 weeks" /><span>Within 2 weeks</span></label>
-            <label class="opt"><input type="radio" name="start_time" value="Within 30 days" /><span>Within 30 days</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset">
-          <legend class="label">How much of a priority is it for you to get remodeling jobs?</legend>
-          <div class="options">
-            <label class="opt"><input type="radio" name="priority" value="Top priority — ready to start immediately" required /><span>Top priority — I’m ready to get started immediately</span></label>
-            <label class="opt"><input type="radio" name="priority" value="Important — starting soon" /><span>Important — starting soon</span></label>
-            <label class="opt"><input type="radio" name="priority" value="Exploring — not urgent" /><span>Exploring — not urgent</span></label>
-          </div>
-        </fieldset>
-
-        <label class="field">
-          <span class="label">Anything else we should know? (optional)</span>
-          <textarea name="notes" rows="3" placeholder="Service area, job types, current lead sources..."></textarea>
-        </label>
-
-        <!-- FIXED: submit button visible + ONIX gradient -->
-        <button class="btn btn-primary btn-lg btn-block form-submit" type="submit">Submit</button>
-
-        <p class="form-fine">By submitting, you agree to be contacted about your request.</p>
-
-        <div class="form-success" id="formSuccess" hidden>
-          ✅ Submitted. Now choose a time in Calendly below.
-        </div>
-      </form>
-    </div>
-  </div>
+  <!-- Intake Modal removed -->
 
   <!-- Cookie Banner -->
   <div class="cookie" id="cookieBanner" hidden>
@@ -555,10 +472,10 @@ START: index.html
     </div>
   </div>
 
-<script src="./script.js?v=20260112-01" defer></script>
+  <!-- Cache-busted JS -->
+  <script src="./script.js?v=20260112-02" defer></script>
 </body>
 </html>
 <!-- =========================
 END: index.html
 ========================= -->
-
