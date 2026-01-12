@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>ONIX — Your pipeline, on autopilot.</title>
   <meta name="description" content="Done-for-you acquisition + follow-up system that turns enquiries into booked calls." />
   <link rel="icon" href="./logo2.png" />
@@ -34,7 +34,7 @@
       </a>
 
       <nav class="nav" aria-label="Primary navigation">
-        <a href="./results.html">Results Page</a>
+        <a href="./results.html">Results</a>
         <a href="#how">How it works</a>
         <a href="#pricing" class="is-muted">Pricing Covered</a>
         <a class="btn btn-primary btn-sm nav-cta" href="#book">Book a Call</a>
@@ -48,7 +48,7 @@
     <!-- Mobile nav -->
     <div id="mobileNav" class="mobile-nav" hidden data-mobile-nav>
       <div class="container mobile-nav-inner">
-        <a href="./results.html">Results Page</a>
+        <a href="./results.html">Results</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing Covered</a>
         <a class="btn btn-primary btn-block" href="#book">Book a Call</a>
@@ -324,59 +324,6 @@
     </div>
   </section>
 
-  <!-- Compare -->
-  <section id="compare" class="section">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Compare</div>
-        <h2 class="h2">Before vs After — the autopilot effect.</h2>
-        <p class="p">This is what changes when follow-up becomes a system.</p>
-      </div>
-
-      <div class="compare-grid">
-        <article class="compare glass card reveal hover-lift" data-tilt>
-          <div class="compare-title">Before</div>
-          <ul class="list">
-            <li>Leads go cold after 15 minutes.</li>
-            <li>Manual chasing + inconsistent messages.</li>
-            <li>No visibility on what’s working.</li>
-          </ul>
-        </article>
-
-        <article class="compare glass card reveal hover-lift" style="--d:80ms;" data-tilt>
-          <div class="compare-title">After</div>
-          <ul class="list">
-            <li>Immediate response + smart routing.</li>
-            <li>Automated follow-up that feels human.</li>
-            <li>Booked calls become predictable.</li>
-          </ul>
-        </article>
-
-        <article class="timeline glass card reveal hover-lift" style="--d:160ms;" data-tilt>
-          <div class="timeline-top">
-            <div class="timeline-title">Autopilot timeline</div>
-            <div class="timeline-sub">What happens after a lead comes in.</div>
-          </div>
-
-          <div class="timeline-rows">
-            <div class="trow">
-              <span class="tbadge">0–2 mins</span>
-              <div class="ttext">Instant response + qualification.</div>
-            </div>
-            <div class="trow">
-              <span class="tbadge">2–60 mins</span>
-              <div class="ttext">Follow-up touches + booking links.</div>
-            </div>
-            <div class="trow">
-              <span class="tbadge">24–72 hrs</span>
-              <div class="ttext">Nurture + objections handled automatically.</div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- Pricing Covered -->
   <section id="pricing" class="section">
     <div class="container">
@@ -426,11 +373,15 @@
             <div class="bb"><span class="bb-dot" aria-hidden="true"></span>Follow-up sequence for your niche</div>
             <div class="bb"><span class="bb-dot" aria-hidden="true"></span>Simple KPI targets for 30 days</div>
           </div>
-          <p class="embed-note">Replace the Calendly link in <code>index.html</code> + <code>results.html</code>.</p>
+          <p class="embed-note">Calendly is embedded on the right.</p>
         </div>
 
         <div class="embed-wrap">
-          <iframe class="calendly" title="Calendly booking" src="https://calendly.com/" loading="lazy"></iframe>
+          <iframe
+            class="calendly"
+            title="Calendly booking"
+            src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
+            loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -451,7 +402,7 @@
 
         <div class="footer-grid">
           <div class="foot-col">
-            <div class="foot-h">What we do</div>
+            <div class="foot-h">About</div>
             <p class="foot-p">We turn enquiries into booked calls with a simple, measurable follow-up engine — installed for you.</p>
             <div class="foot-chips">
               <span class="chip small">Tradies</span>
@@ -462,25 +413,25 @@
           </div>
 
           <div class="foot-col">
-            <div class="foot-h">Navigate</div>
-            <a href="./results.html">Results Page</a>
+            <div class="foot-h">Links</div>
+            <a href="./results.html">Results</a>
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing Covered</a>
             <a href="#book">Book a Call</a>
           </div>
 
           <div class="foot-col">
-            <div class="foot-h">Proof</div>
-            <a href="#results">Outcomes</a>
-            <a href="#compare">Compare</a>
-            <a href="./results.html#proof">Screenshots</a>
+            <div class="foot-h">Contact</div>
+            <div class="foot-muted">Email: sales@onixmrkt.com</div>
+            <div class="foot-muted">Phone: +64 21 563 431</div>
+            <div class="foot-muted">49 Golf Road Tauranga New Zealand, 3116</div>
           </div>
 
           <div class="foot-col">
-            <div class="foot-h">Contact</div>
-            <div class="foot-muted">Email: hello@onix.com</div>
-            <div class="foot-muted">Location: Remote</div>
-            <div class="foot-muted">Response: within 24h</div>
+            <div class="foot-h">Response</div>
+            <div class="foot-muted">Within 24 hours</div>
+            <div class="foot-muted">Remote service (NZ-wide)</div>
+            <a class="link" href="#book">Book now →</a>
           </div>
         </div>
 
