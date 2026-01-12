@@ -44,22 +44,26 @@
     }, { passive: true });
   }
 
-  // Reveal animations
+  // Reveal animations (supports both class names)
   const revealEls = $$(".reveal");
   if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
+        e.target.classList.add("is-in");
         e.target.classList.add("is-visible");
         io.unobserve(e.target);
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
   } else {
-    revealEls.forEach(el => el.classList.add("is-visible"));
+    revealEls.forEach(el => {
+      el.classList.add("is-in");
+      el.classList.add("is-visible");
+    });
   }
 
-  // Engine points appear on scroll
+  // Points appear as you scroll (engine map lists)
   (function pointsOnScroll(){
     const lists = $$("[data-points]");
     if (!lists.length) return;
@@ -212,58 +216,29 @@
     setStep(0);
   }
 
-  // Counters (RESTORED + formatted)
+  // Counters (kept)
   (function initCounters(){
     const nodes = Array.from(document.querySelectorAll("[data-count]"));
     if (!nodes.length) return;
 
-    const fmtCompactMoney = (n) => {
-      try {
-        return new Intl.NumberFormat(undefined, {
-          style: "currency",
-          currency: "USD",
-          notation: "compact",
-          maximumFractionDigits: 0
-        }).format(n);
-      } catch {
-        // fallback
-        const m = n >= 1e9 ? (n/1e9).toFixed(0) + "B" : (n/1e6).toFixed(0) + "M";
-        return "$" + m;
-      }
-    };
-
-    const fmtNumber = (n) => {
+    const fmt = (n) => {
       try { return new Intl.NumberFormat().format(Math.round(n)); }
       catch { return String(Math.round(n)); }
-    };
-
-    const applyFormat = (el, value) => {
-      const mode = (el.getAttribute("data-count-format") || "").trim();
-      if (mode === "compactMoney") return fmtCompactMoney(value);
-      if (mode === "plus") return fmtNumber(value) + "+";
-      return fmtNumber(value);
     };
 
     const animate = (el) => {
       const target = Number(el.getAttribute("data-count") || 0);
       if (!isFinite(target)) return;
-
-      if (prefersReduced) {
-        el.textContent = applyFormat(el, target);
-        return;
-      }
+      if (prefersReduced) { el.textContent = fmt(target); return; }
 
       const duration = 1100;
       const start = performance.now();
-
       const tick = (t) => {
         const p = Math.min(1, (t - start) / duration);
         const eased = 1 - Math.pow(1 - p, 3);
-        const cur = target * eased;
-        el.textContent = applyFormat(el, cur);
+        el.textContent = fmt(target * eased);
         if (p < 1) requestAnimationFrame(tick);
       };
-
       requestAnimationFrame(tick);
     };
 
@@ -280,24 +255,27 @@
     nodes.forEach((el) => io.observe(el));
   })();
 
-  // Video safety
-  (function videoSafety(){
-    const vids = $$("[data-video]");
-    if (!vids.length) return;
+  // Video fallback: if a clip fails, show “Video unavailable”
+  (function videoFallback(){
+    const cards = $$(".video-card");
+    if (!cards.length) return;
 
-    vids.forEach(v => {
-      const card = v.closest(".video-card");
-      if (!card) return;
+    cards.forEach(card => {
+      const v = $("video", card);
+      const fb = $(".video-fallback", card);
+      if (!v || !fb) return;
 
-      const markMissing = () => card.classList.add("is-missing");
-
-      v.addEventListener("error", markMissing);
-      v.addEventListener("stalled", () => {
-        setTimeout(() => { if (v.readyState === 0) markMissing(); }, 400);
+      v.addEventListener("error", () => {
+        fb.hidden = false;
       });
 
-      const src = v.getAttribute("src");
-      if (!src) markMissing();
+      // also catch source errors
+      const sources = $$("source", v);
+      sources.forEach(s => {
+        s.addEventListener("error", () => {
+          fb.hidden = false;
+        });
+      });
     });
   })();
 
