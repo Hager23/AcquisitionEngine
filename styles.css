@@ -485,6 +485,21 @@ body{
 
 .embed-wrap{ width:100%; border-radius: 22px; border: 1px solid rgba(255,255,255,0.55); background: rgba(255,255,255,0.44); overflow:hidden; min-height: 560px; }
 .calendly{ width:100%; height:560px; border:0; display:block; }
+.embed-wrap{ overflow:hidden; }
+
+/* Desktop/tablet */
+.calendly{
+  transform: translateY(-74px);
+  height: calc(560px + 74px);
+}
+
+/* Mobile (matches your 680px embed height) */
+@media (max-width: 560px){
+  .calendly{
+    transform: translateY(-74px);
+    height: calc(680px + 74px);
+  }
+}
 .embed-note{ margin-top: 10px; color: rgba(12,10,27,0.56); font-weight: 800; font-size: 12px; }
 
 /* Results page */
@@ -658,3 +673,4 @@ svg{ max-width: 100%; }
 /* =========================
    END: styles.css
 ========================= */
+
