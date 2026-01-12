@@ -46,7 +46,7 @@
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // ---------- Reveal on scroll (stronger but still premium) ----------
+  // ---------- Reveal on scroll ----------
   const revealEls = Array.from(document.querySelectorAll(".reveal"));
   if (revealEls.length) {
     const io = new IntersectionObserver(
@@ -63,8 +63,7 @@
     revealEls.forEach((el) => io.observe(el));
   }
 
-  // ---------- Micro tilt (very subtle) ----------
-  // Adds a premium “depth” feel to cards without breaking anything.
+  // ---------- Micro tilt (subtle) ----------
   const tiltEls = Array.from(document.querySelectorAll("[data-tilt]"));
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -78,8 +77,8 @@
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(() => {
           const r = el.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width;  // 0..1
-          const y = (e.clientY - r.top) / r.height;  // 0..1
+          const x = (e.clientX - r.left) / r.width;
+          const y = (e.clientY - r.top) / r.height;
           const rx = clamp((0.5 - y) * 6, -3, 3);
           const ry = clamp((x - 0.5) * 6, -3, 3);
           el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
@@ -151,21 +150,13 @@
     el.classList.add(cls);
   }
 
-  function pulse(el){
-    if (!el) return;
-    el.classList.remove("pulse");
-    // reflow
-    void el.offsetWidth;
-    el.classList.add("pulse");
-  }
-
   function applySegment(key) {
     const d = data[key];
     if (!d) return;
 
     const setText = (sel, v) => {
       const el = document.querySelector(sel);
-      if (el) { el.textContent = v; pulse(el); }
+      if (el) el.textContent = v;
     };
 
     setText('[data-kpi="enquiries"]', d.enquiries.v);
@@ -178,17 +169,12 @@
     const dd = document.querySelector('[data-kpi-delta="deals"]');
     const dr = document.querySelector('[data-kpi-delta="revenue"]');
 
-    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); pulse(de); }
-    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); pulse(dc); }
-    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); pulse(dd); }
-    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); pulse(dr); }
+    if (de) { de.textContent = d.enquiries.d; setDelta(de, d.enquiries.cls); }
+    if (dc) { dc.textContent = d.calls.d; setDelta(dc, d.calls.cls); }
+    if (dd) { dd.textContent = d.deals.d; setDelta(dd, d.deals.cls); }
+    if (dr) { dr.textContent = d.revenue.d; setDelta(dr, d.revenue.cls); }
 
-    if (sparkLine) {
-      sparkLine.classList.remove("path-pop");
-      void sparkLine.getBBox();
-      sparkLine.setAttribute("d", d.line);
-      sparkLine.classList.add("path-pop");
-    }
+    if (sparkLine) sparkLine.setAttribute("d", d.line);
   }
 
   if (segBtns.length) {
@@ -234,7 +220,6 @@
         li.textContent = txt;
         list.appendChild(li);
       });
-      pulse(list);
     }
 
     if (bar) bar.style.width = `${(i + 1) * 20}%`;
