@@ -561,7 +561,7 @@ h1, h2, h3, p, a, button{
 .foot-cta{
   margin-top: 14px;
   width: 100%;
-  padding: 14px 18px !important;
+  padding: 14px 14px !important;
   border-radius: 16px;
   color: #fff !important;
 }
@@ -756,3 +756,4 @@ h1, h2, h3, p, a, button{
 /* =========================
 END: styles.css
 ========================= */
+
