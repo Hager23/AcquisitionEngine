@@ -483,15 +483,7 @@ body{
 .legal-mini{ margin-top: 14px; display:flex; gap: 10px; flex-wrap: wrap; font-weight: 900; color: rgba(12,10,27,0.70); font-size: 13px; }
 .legal-mini .sep{ color: rgba(12,10,27,0.40); }
 
-.embed-wrap{ width:100%; border-radius: 22px; border: 1px solid rgba(255,255,255,0.55); background: rgba(255,255,255,0.44); overflow:hidden; min-height: 560px; }
-.calendly{ width:100%; height:560px; border:0; display:block; }
-.embed-wrap{ overflow:hidden; }
 
-/* Desktop/tablet */
-.calendly{
-  transform: translateY(-74px);
-  height: calc(560px + 74px);
-}
 
 /* Mobile (matches your 680px embed height) */
 @media (max-width: 560px){
@@ -650,9 +642,6 @@ body{
 
   .kpi-grid{ grid-template-columns: 1fr; }
 
-  .embed-wrap{ min-height: 680px; }
-  .calendly{ height: 680px; }
-
   .footer-grid{ grid-template-columns: 1fr; }
   .foot-cta{ width: 100%; }
 }
@@ -684,14 +673,39 @@ body{
 }
 
 /* Calendly: ensure iframe can be interacted with */
-.embed-wrap{ overflow: hidden; }
-.calendly{
-  width: 100%;
-  height: 560px;
-  border: 0;
-  display: block;
-  background: transparent;
+/* =========================
+   ORIGINAL: CALENDLY EMBED
+========================= */
+.embed-wrap{
+  width:100%;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.44);
+  overflow:hidden;
+  min-height: 560px;
 }
+
+.calendly{
+  width:100%;
+  height:560px;
+  border:0;
+  display:block;
+}
+
+/* Optional note under embed (if you had it originally) */
+.embed-note{
+  margin-top: 10px;
+  color: rgba(12,10,27,0.56);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* ORIGINAL mobile sizing */
+@media (max-width: 560px){
+  .embed-wrap{ min-height: 640px; }
+  .calendly{ height: 640px; }
+}
+
 
 /* Video proof strip */
 .video-strip{ margin-top: 16px; }
@@ -769,6 +783,7 @@ svg{ max-width: 100%; }
 /* =========================
    END: styles.css
 ========================= */
+
 
 
 
