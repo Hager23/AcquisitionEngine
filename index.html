@@ -16,7 +16,7 @@ START: index.html
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- CACHE VERSION -->
-  <link rel="stylesheet" href="./styles.css?v=20260113-01">
+  <link rel="stylesheet" href="./styles.css?v=20260113-02">
 </head>
 
 <body>
@@ -82,10 +82,8 @@ START: index.html
             Real client messages • Unedited screenshots
           </div>
 
-         
-
-          <!-- COUNTERS (kept + animated) -->
-          <div class="counter-row glass reveal" style="--d:420ms" aria-label="Counters">
+          <!-- COUNTERS (kept) -->
+          <div class="counter-row glass reveal" style="--d:360ms" aria-label="Counters">
             <div class="counter">
               <div class="counter-num"><span data-count="14">0</span>M</div>
               <div class="counter-label">Ad spend managed</div>
@@ -101,7 +99,7 @@ START: index.html
           </div>
         </div>
 
-        <!-- Live Dashboard -->
+        <!-- Dashboard -->
         <aside class="hero-right reveal" style="--d:180ms">
           <div class="dash glass">
             <div class="dash-top">
@@ -138,7 +136,7 @@ START: index.html
               </div>
               <div class="kpi">
                 <div class="kpi-label">Revenue</div>
-                <div class="kpi-value" data-kpi="revenue">$NZ 48,200</div>
+                <div class="kpi-value" data-kpi="revenue">$48,200</div>
                 <div class="kpi-delta down" data-kpi-delta="revenue">-4%</div>
               </div>
             </div>
@@ -219,7 +217,6 @@ START: index.html
               <span class="mini-label">Time saved/week</span>
               <span class="mini-val">5–10 hrs</span>
             </div>
-            
           </article>
         </div>
 
@@ -242,6 +239,38 @@ START: index.html
           <div class="eyebrow">HOW IT WORKS</div>
           <h2 class="h2">The engine map.</h2>
           <p class="p">A simple flow that captures demand, qualifies fast, and converts into booked calls.</p>
+        </div>
+
+        <!-- ✅ MOVED HERE: Proof screenshots (from hero) -->
+        <div class="proof-block glass reveal" style="--d:80ms">
+          <div class="proof-block-head">
+            <div class="proof-title">Proof screenshots</div>
+            <div class="proof-note">Real client messages • Unedited screenshots</div>
+          </div>
+
+          <div class="proof-track" aria-label="Proof screenshots">
+            <!-- Add more by duplicating these figures -->
+            <figure class="proof">
+              <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy"
+                   onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </figure>
+            <figure class="proof">
+              <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy"
+                   onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </figure>
+            <figure class="proof">
+              <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy"
+                   onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </figure>
+            <figure class="proof">
+              <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy"
+                   onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+              <div class="proof-fallback">Proof Screenshot</div>
+            </figure>
+          </div>
         </div>
 
         <div class="engine">
@@ -309,50 +338,25 @@ START: index.html
                   <li class="engine-point">No-show reduction</li>
                 </ul>
               </article>
-               <!-- Proof strip -->
-          <div class="proof-strip reveal" style="--d:360ms">
-            <div class="proof-track" aria-label="Proof screenshots">
-              <figure class="proof">
-                <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-            </div>
-          </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS (moved UNDER engine map) -->
+    <!-- TESTIMONIALS (under engine map) -->
     <section class="section watch-section" id="testimonials">
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">TESTIMONIALS</div>
           <h2 class="h2">Real feedback. Real outcomes.</h2>
-          <p class="p">Below are testimonials pulled from Fly Me High — add images later (placeholders included).</p>
         </div>
 
         <div class="t-grid">
           <article class="t-card glass reveal">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="./nicky_proof1.png" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Nicky M.</div>
                 <div class="t-role">No1 Real Estate Agent — West Auckland</div>
@@ -363,7 +367,8 @@ START: index.html
 
           <article class="t-card glass reveal" style="--d:80ms">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="carmeo-proof2.jpg" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Carolyn M.</div>
                 <div class="t-role">Real Estate Agent — Napier</div>
@@ -374,7 +379,8 @@ START: index.html
 
           <article class="t-card glass reveal" style="--d:160ms">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="./amanda_proof3.jpg" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Amanda S.</div>
                 <div class="t-role">Real Estate Agent — Wellington</div>
@@ -385,7 +391,8 @@ START: index.html
 
           <article class="t-card glass reveal">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="./rachel-j-proof3.png" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Rachel J.</div>
                 <div class="t-role">CEO — Fiji Yacht Cruises</div>
@@ -396,7 +403,8 @@ START: index.html
 
           <article class="t-card glass reveal" style="--d:80ms">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="./paul_proof4.png" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Paul S.</div>
                 <div class="t-role">Risk Insurance</div>
@@ -407,7 +415,8 @@ START: index.html
 
           <article class="t-card glass reveal" style="--d:160ms">
             <div class="t-top">
-              <div class="t-avatar" aria-hidden="true"></div>
+              <img class="t-avatar-img" src="./mike-proof5.png" alt="" loading="lazy"
+                   onerror="this.style.display='none'">
               <div>
                 <div class="t-name">Mike M.</div>
                 <div class="t-role">ACC Business Advice</div>
@@ -418,14 +427,12 @@ START: index.html
         </div>
       </div>
     </section>
-
-    <!-- VIDEO PROOF (home) -->
+<!-- VIDEO PROOF (home) -->
     <section class="section watch-section" id="videos">
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">VIDEO PROOF</div>
-          <h2 class="h2">Short proof clips (horizontal).</h2>
-          <p class="p">These should sit in the same folder as index.html. Filenames with spaces are URL-encoded below.</p>
+          <h2 class="h2">Short proof clips </h2>
         </div>
 
         <div class="video-row reveal" style="--d:120ms" aria-label="Video proof row">
@@ -450,7 +457,6 @@ START: index.html
         </div>
       </div>
     </section>
-
     <!-- PRICING -->
     <section class="section watch-section" id="pricing">
       <div class="container">
@@ -574,8 +580,7 @@ START: index.html
     </footer>
   </main>
 
-  <!-- CACHE VERSION -->
-  <script src="./script.js?v=20260113-01" defer></script>
+  <script src="./script.js?v=20260113-02" defer></script>
 </body>
 </html>
 <!-- =========================
