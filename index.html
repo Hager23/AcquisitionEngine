@@ -15,8 +15,8 @@ START: index.html
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- cache-busted -->
-<link rel="stylesheet" href="./styles.css?v=20260115-01">
+  <!-- CACHE VERSION -->
+  <link rel="stylesheet" href="./styles.css?v=20260113-01">
 </head>
 
 <body>
@@ -82,29 +82,21 @@ START: index.html
             Real client messages • Unedited screenshots
           </div>
 
-          <!-- Proof strip -->
-          <div class="proof-strip reveal" style="--d:360ms">
-            <div class="proof-track" aria-label="Proof screenshots">
-              <figure class="proof">
-                <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
-              <figure class="proof">
-                <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy"
-                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
-                <div class="proof-fallback">Proof Screenshot</div>
-              </figure>
+         
+
+          <!-- COUNTERS (kept + animated) -->
+          <div class="counter-row glass reveal" style="--d:420ms" aria-label="Counters">
+            <div class="counter">
+              <div class="counter-num"><span data-count="14">0</span>M</div>
+              <div class="counter-label">Ad spend managed</div>
+            </div>
+            <div class="counter">
+              <div class="counter-num"><span data-count="150">0</span>M</div>
+              <div class="counter-label">Revenue generated</div>
+            </div>
+            <div class="counter">
+              <div class="counter-num"><span data-count="1000">0</span>+</div>
+              <div class="counter-label">Clients served</div>
             </div>
           </div>
         </div>
@@ -114,7 +106,7 @@ START: index.html
           <div class="dash glass">
             <div class="dash-top">
               <div>
-                <div class="kicker">LIVE DASHBOARD</div>
+                <div class="kicker">DASHBOARD</div>
                 <div class="dash-title">Pipeline Snapshot</div>
               </div>
 
@@ -146,7 +138,7 @@ START: index.html
               </div>
               <div class="kpi">
                 <div class="kpi-label">Revenue</div>
-                <div class="kpi-value" data-kpi="revenue">$48,200</div>
+                <div class="kpi-value" data-kpi="revenue">$NZ 48,200</div>
                 <div class="kpi-delta down" data-kpi-delta="revenue">-4%</div>
               </div>
             </div>
@@ -170,63 +162,6 @@ START: index.html
             </div>
           </div>
         </aside>
-      </div>
-    </section>
-
-    <!-- VIDEO PROOF -->
-    <section class="section watch-section" id="video-proof">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">VIDEO PROOF</div>
-          <h2 class="h2">Real conversations. Real results.</h2>
-          <p class="p">Short clips from actual client threads — nothing staged.</p>
-        </div>
-
-        <div class="video-strip reveal">
-          <div class="video-track" aria-label="Client proof videos">
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-01.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 01</figcaption>
-            </figure>
-
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-02.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 02</figcaption>
-            </figure>
-
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-03.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 03</figcaption>
-            </figure>
-
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-04.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 04</figcaption>
-            </figure>
-
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-05.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 05</figcaption>
-            </figure>
-
-            <figure class="video-card glass">
-              <video class="video" controls playsinline preload="metadata">
-                <source src="clip-06.mp4" type="video/mp4">
-              </video>
-              <figcaption class="video-cap">Client proof clip 06</figcaption>
-            </figure>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -284,6 +219,7 @@ START: index.html
               <span class="mini-label">Time saved/week</span>
               <span class="mini-val">5–10 hrs</span>
             </div>
+            
           </article>
         </div>
 
@@ -334,21 +270,20 @@ START: index.html
 
           <div class="engine-right">
             <div class="engine-cards">
-
               <article class="engine-card glass reveal is-active" data-card="0">
                 <h3>Capture</h3>
-                <p>High-intent landing + form flow that makes it easy to raise a hand and request a quote/call.</p>
-                <ul class="engine-points points-on-scroll" data-points>
+                <p>High-intent landing + flow that makes it easy to raise a hand and request a quote/call.</p>
+                <ul class="engine-points" data-points>
                   <li class="engine-point">Fast page load</li>
                   <li class="engine-point">Clear CTA</li>
-                  <li class="engine-point">Mobile-first forms</li>
+                  <li class="engine-point">Mobile-first</li>
                 </ul>
               </article>
 
               <article class="engine-card glass reveal" data-card="1">
                 <h3>Respond</h3>
                 <p>Instant SMS/email response that qualifies leads and reduces “cold form fills”.</p>
-                <ul class="engine-points points-on-scroll" data-points>
+                <ul class="engine-points" data-points>
                   <li class="engine-point">Speed to lead</li>
                   <li class="engine-point">Simple qualification</li>
                   <li class="engine-point">Auto reminders</li>
@@ -358,7 +293,7 @@ START: index.html
               <article class="engine-card glass reveal" data-card="2">
                 <h3>Nurture</h3>
                 <p>Follow-up sequences that feel human — built around what prospects care about.</p>
-                <ul class="engine-points points-on-scroll" data-points>
+                <ul class="engine-points" data-points>
                   <li class="engine-point">Personalised sequences</li>
                   <li class="engine-point">Timing windows</li>
                   <li class="engine-point">Stop rules</li>
@@ -368,15 +303,150 @@ START: index.html
               <article class="engine-card glass reveal" data-card="3">
                 <h3>Book</h3>
                 <p>Booked calls without chasing — prospects choose a time, you show up prepared.</p>
-                <ul class="engine-points points-on-scroll" data-points>
+                <ul class="engine-points" data-points>
                   <li class="engine-point">Calendly / routing</li>
-                  <li class="engine-point">Confirmations + reminders</li>
+                  <li class="engine-point">Confirmations</li>
                   <li class="engine-point">No-show reduction</li>
                 </ul>
               </article>
-
+               <!-- Proof strip -->
+          <div class="proof-strip reveal" style="--d:360ms">
+            <div class="proof-track" aria-label="Proof screenshots">
+              <figure class="proof">
+                <img src="./proof1.png" alt="Proof screenshot 1" loading="lazy"
+                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+                <div class="proof-fallback">Proof Screenshot</div>
+              </figure>
+              <figure class="proof">
+                <img src="./proof2.png" alt="Proof screenshot 2" loading="lazy"
+                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+                <div class="proof-fallback">Proof Screenshot</div>
+              </figure>
+              <figure class="proof">
+                <img src="./proof3.png" alt="Proof screenshot 3" loading="lazy"
+                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+                <div class="proof-fallback">Proof Screenshot</div>
+              </figure>
+              <figure class="proof">
+                <img src="./proof4.png" alt="Proof screenshot 4" loading="lazy"
+                     onerror="this.closest('.proof').classList.add('is-missing'); this.remove();">
+                <div class="proof-fallback">Proof Screenshot</div>
+              </figure>
             </div>
           </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (moved UNDER engine map) -->
+    <section class="section watch-section" id="testimonials">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">TESTIMONIALS</div>
+          <h2 class="h2">Real feedback. Real outcomes.</h2>
+          <p class="p">Below are testimonials pulled from Fly Me High — add images later (placeholders included).</p>
+        </div>
+
+        <div class="t-grid">
+          <article class="t-card glass reveal">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Nicky M.</div>
+                <div class="t-role">No1 Real Estate Agent — West Auckland</div>
+              </div>
+            </div>
+            <p class="t-quote">“John’s leads and system have given us an extra $100k on our bottom line year on year.”</p>
+          </article>
+
+          <article class="t-card glass reveal" style="--d:80ms">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Carolyn M.</div>
+                <div class="t-role">Real Estate Agent — Napier</div>
+              </div>
+            </div>
+            <p class="t-quote">“John is a sharp, smart mover who gets things done. He is always one step ahead…”</p>
+          </article>
+
+          <article class="t-card glass reveal" style="--d:160ms">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Amanda S.</div>
+                <div class="t-role">Real Estate Agent — Wellington</div>
+              </div>
+            </div>
+            <p class="t-quote">“The leads we’ve been getting have cost us 12% of our gross commission. We’re very happy!”</p>
+          </article>
+
+          <article class="t-card glass reveal">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Rachel J.</div>
+                <div class="t-role">CEO — Fiji Yacht Cruises</div>
+              </div>
+            </div>
+            <p class="t-quote">“Careful what you wish for working with John. He’ll have your business flying in a flash!”</p>
+          </article>
+
+          <article class="t-card glass reveal" style="--d:80ms">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Paul S.</div>
+                <div class="t-role">Risk Insurance</div>
+              </div>
+            </div>
+            <p class="t-quote">“I’ve invested 17k and my return was $110k. Super happy and just gets better year on year.”</p>
+          </article>
+
+          <article class="t-card glass reveal" style="--d:160ms">
+            <div class="t-top">
+              <div class="t-avatar" aria-hidden="true"></div>
+              <div>
+                <div class="t-name">Mike M.</div>
+                <div class="t-role">ACC Business Advice</div>
+              </div>
+            </div>
+            <p class="t-quote">“My site generates 20 to 25 leads a month returning $8k – $10k to me in commission per month. It works!”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO PROOF (home) -->
+    <section class="section watch-section" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">VIDEO PROOF</div>
+          <h2 class="h2">Short proof clips (horizontal).</h2>
+          <p class="p">These should sit in the same folder as index.html. Filenames with spaces are URL-encoded below.</p>
+        </div>
+
+        <div class="video-row reveal" style="--d:120ms" aria-label="Video proof row">
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-01.mp4" type="video/mp4">
+          </video>
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-02.mp4" type="video/mp4">
+          </video>
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-03.mp4" type="video/mp4">
+          </video>
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-04.mp4" type="video/mp4">
+          </video>
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-05.mp4" type="video/mp4">
+          </video>
+          <video class="proof-video" controls playsinline preload="metadata">
+            <source src="./clip-06.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
@@ -386,8 +456,8 @@ START: index.html
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">PRICING</div>
-          <h2 class="h2">Pricing is covered on the call.</h2>
-          <p class="p">We don’t sell packages that don’t fit. We’ll map your needs, then recommend the right build.</p>
+          <h2 class="h2">Pricing is handled on the call.</h2>
+          <p class="p">We’ll map your needs, then recommend the right build.</p>
         </div>
 
         <div class="pricing-covered glass reveal">
@@ -425,7 +495,6 @@ START: index.html
         <div class="book-card glass reveal">
           <div class="book-left">
             <h3>Book a 15-minute call</h3>
-            <p class="p">Pick a time below — we’ll confirm fit and show the system.</p>
 
             <div class="contact-mini">
               <div><strong>Email:</strong> sales@onixmrkt.com</div>
@@ -448,7 +517,6 @@ START: index.html
               title="Calendly booking"
               src="https://calendly.com/jordan-burkett/my-reno-quotes-get-more-jobs-clone-clone?back=1&month=2026-01"
               loading="lazy"
-              allow="fullscreen"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
@@ -506,32 +574,10 @@ START: index.html
     </footer>
   </main>
 
-  <!-- Cookie Banner -->
-  <div class="cookie" id="cookieBanner" hidden>
-    <div class="cookie-card glass">
-      <div class="cookie-text">
-        <strong>Cookies</strong>
-        <span>We use cookies to improve your experience. Read our <a href="./cookies.html">Cookies Policy</a> and <a href="./privacy.html">Privacy Policy</a>.</span>
-      </div>
-      <div class="cookie-actions">
-        <button class="btn btn-ghost" type="button" data-cookie-decline>Decline</button>
-        <button class="btn btn-primary" type="button" data-cookie-accept>Accept</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- cache-busted -->
-  <script src="./script.js?v=20260115-01" defer></script>
+  <!-- CACHE VERSION -->
+  <script src="./script.js?v=20260113-01" defer></script>
 </body>
 </html>
 <!-- =========================
 END: index.html
 ========================= -->
-
-
-
-
-
-
-
-
