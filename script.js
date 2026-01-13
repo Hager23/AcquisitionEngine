@@ -44,42 +44,38 @@
     }, { passive: true });
   }
 
-  // Reveal animations (supports both class names)
+  // Reveal animations (FIXED: matches CSS class "is-in")
   const revealEls = $$(".reveal");
   if (!prefersReduced && "IntersectionObserver" in window && revealEls.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
         e.target.classList.add("is-in");
-        e.target.classList.add("is-visible");
         io.unobserve(e.target);
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
   } else {
-    revealEls.forEach(el => {
-      el.classList.add("is-in");
-      el.classList.add("is-visible");
-    });
+    revealEls.forEach(el => el.classList.add("is-in"));
   }
 
-  // Points appear as you scroll (engine map lists)
+  // Points appear on scroll (engine map lists)
   (function pointsOnScroll(){
     const lists = $$("[data-points]");
     if (!lists.length) return;
 
     if (prefersReduced || !("IntersectionObserver" in window)) {
-      lists.forEach(l => l.classList.add("is-visible"));
+      lists.forEach(l => l.classList.add("is-in"));
       return;
     }
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
-        e.target.classList.add("is-visible");
+        e.target.classList.add("is-in");
         io.unobserve(e.target);
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.35 });
 
     lists.forEach(l => io.observe(l));
   })();
@@ -100,8 +96,9 @@
     agencies: { enquiries: 20, enquiriesDelta: "+11%", calls: 7,  callsDelta: "+6%", deals: 3, dealsDelta: "—", revenue: 41200, revenueDelta: "+4%", points: [8,11,12,12,14,16,20] }
   };
 
+  // Currency formatting (NZD so no “US” vibe)
   const fmtMoney = (n) => {
-    try { return new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n); }
+    try { return new Intl.NumberFormat(undefined, { style: "currency", currency: "NZD", maximumFractionDigits: 0 }).format(n); }
     catch { return "$" + Math.round(n).toString(); }
   };
 
@@ -216,7 +213,7 @@
     setStep(0);
   }
 
-  // Counters (kept)
+  // Counters (count up)
   (function initCounters(){
     const nodes = Array.from(document.querySelectorAll("[data-count]"));
     if (!nodes.length) return;
@@ -255,50 +252,7 @@
     nodes.forEach((el) => io.observe(el));
   })();
 
-  // Video fallback: if a clip fails, show “Video unavailable”
-  (function videoFallback(){
-    const cards = $$(".video-card");
-    if (!cards.length) return;
-
-    cards.forEach(card => {
-      const v = $("video", card);
-      const fb = $(".video-fallback", card);
-      if (!v || !fb) return;
-
-      v.addEventListener("error", () => {
-        fb.hidden = false;
-      });
-
-      // also catch source errors
-      const sources = $$("source", v);
-      sources.forEach(s => {
-        s.addEventListener("error", () => {
-          fb.hidden = false;
-        });
-      });
-    });
-  })();
-
-  // Cookie banner
-  (function cookies(){
-    const banner = $("#cookieBanner");
-    if (!banner) return;
-
-    const KEY = "onix_cookie_choice_v1";
-    const choice = localStorage.getItem(KEY);
-    const show = () => { banner.hidden = false; };
-    const hide = () => { banner.hidden = true; };
-    if (!choice) show();
-
-    const acceptBtn = $("[data-cookie-accept]");
-    const declineBtn = $("[data-cookie-decline]");
-    const setChoice = (val) => { localStorage.setItem(KEY, val); hide(); };
-
-    if (acceptBtn) acceptBtn.addEventListener("click", () => setChoice("accepted"));
-    if (declineBtn) declineBtn.addEventListener("click", () => setChoice("declined"));
-  })();
-
-  // Safety: no horizontal scroll
+  // Safety: stop horizontal scroll
   document.documentElement.style.overflowX = "hidden";
   document.body.style.overflowX = "hidden";
 })();
